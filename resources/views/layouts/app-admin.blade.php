@@ -19,8 +19,13 @@
 </head>
 
 <body>
-
-    {{ $slot }}
+    <livewire:layout.sidebar.sidebar />
+    <livewire:layout.navbar.navbar />
+    <main class="w-full min-h-dvh ps-72 pt-16 overflow-y-auto">
+        <section class="p-6">
+            {{ $slot }}
+        </section>
+    </main>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
