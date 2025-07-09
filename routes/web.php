@@ -14,3 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome')->name('home');
+
+Route::group(['prefix' => 'web-panel'], function () {
+    Route::get('/', App\Livewire\Pages\WebPanel\Login\Index::class)->name('web-panel.login');
+    Route::get('/dashboard', App\Livewire\Pages\WebPanel\Dashboard\Index::class)->name('web-panel.dashboard');
+});
