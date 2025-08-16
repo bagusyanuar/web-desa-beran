@@ -11,22 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('certificate_death_persons', function (Blueprint $table) {
+        Schema::create('certificate_birth_mothers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('certificate_death_id')->unique()->nullable();
+            $table->uuid('certificate_birth_id')->unique()->nullable();
             $table->string('name');
-            $table->string('family_identifier_number');
             $table->string('identifier_number');
             $table->string('birth_place')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male', 'female']);
             $table->enum('citizenship', ['indonesia', 'foreign']);
             $table->enum('religion', ['islam', 'kristen', 'katolik', 'hindu', 'budha', 'konghucu', 'other']);
-            $table->enum('marriage', ['married', 'not-married']);
             $table->string('job')->nullable();
             $table->text('address')->nullable();
             $table->timestamps();
-            $table->foreign('certificate_death_id')->references('id')->on('certificate_deaths')->onDelete('set null');
+            $table->foreign('certificate_birth_id')->references('id')->on('certificate_births')->onDelete('set null');
         });
     }
 
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certificate_death_persons');
+        Schema::dropIfExists('certificate_birth_mothers');
     }
 };
