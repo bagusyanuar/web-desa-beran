@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('certificate_police_clearances', function (Blueprint $table) {
+        Schema::create('certificate_single_statuses', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->date('date');
             $table->string('reference_number')->unique();
             $table->enum('status', ['created', 'pending', 'finished', 'failed']);
-            $table->string('purpose')->nullable();
             $table->uuid('approved_by_id')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certificate_police_clearances');
+        Schema::dropIfExists('certificate_single_statuses');
     }
 };
