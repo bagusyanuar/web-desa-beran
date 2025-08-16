@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('certificate_single_status_applicants', function (Blueprint $table) {
+        Schema::create('certificate_domicile_applicants', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('certificate_single_status_id')->unique('uniq_cssa_css_id')->nullable();
+            $table->uuid('certificate_domicile_id')->unique()->nullable();
             $table->string('name');
             $table->string('phone')->nullable();
             $table->timestamps();
-            $table->foreign('certificate_single_status_id', 'fk_cssa_css')
+            $table->foreign('certificate_domicile_id')
                 ->references('id')
-                ->on('certificate_single_statuses')
+                ->on('certificate_domiciles')
                 ->onDelete('set null');
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certificate_single_status_applicants');
+        Schema::dropIfExists('certificate_domicile_applicants');
     }
 };
