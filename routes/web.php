@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', App\Livewire\Pages\Landing\Home\Index::class)->name('home');
+Route::get('/layanan', App\Livewire\Pages\Landing\Service\Index::class)->name('service');
+Route::get('/layanan/surat-keterangan-domisili', App\Livewire\Pages\Landing\Service\Domicile\Index::class)->name('service.domicile');
 
 Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/', App\Livewire\Pages\WebPanel\Login\Index::class)->name('web-panel.login');

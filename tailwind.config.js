@@ -58,7 +58,7 @@ module.exports = {
         './resources/**/*.jsx',
         './resources/**/*.ts',
         './resources/**/*.tsx',
-        './resources/**/*.php',
+        './resources/views/**/*.blade.php',
         './resources/**/*.vue',
         './resources/**/*.twig',
         "./node_modules/flowbite/**/*.js",
