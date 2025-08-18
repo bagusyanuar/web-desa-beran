@@ -62,13 +62,14 @@
                         labelClassName="font-semibold" />
                     <x-input.text.text :required="true" label="No. Whatsapp" parentClassName="w-full mb-5"
                         labelClassName="font-semibold" />
+                    <x-captcha.recaptcha store="SERVICE_DOMICILE_STORE" stateData="captchaToken" />
                     <div class="border-b border-neutral-300 w-full my-5"></div>
                     <div class="flex items-center justify-end gap-3">
                         <button
                             class="cursor-pointer text-sm rounded py-[0.5rem] px-[0.5rem] text-brand-500 bg-white hover:bg-neutral-100 transition-all duration-300 ease-in">
                             <span class="font-semibold">Pratinjau</span>
                         </button>
-                        <x-button.button>
+                        <x-button.button x-on:click="$store.SERVICE_DOMICILE_STORE.send()">
                             <span>Kirim</span>
                         </x-button.button>
                     </div>
@@ -77,12 +78,9 @@
 
         </x-container.landing-container>
     </div>
-    {{-- <div class="my-4">
-        <div id="recaptcha-container"></div>
-    </div> --}}
 </section>
 
 @push('scripts')
-    {{-- <script src="https://www.google.com/recaptcha/api.js?onload=initRecaptcha&render=explicit" async defer></script> --}}
-    @vite(['resources/js/util/captcha.js', 'resources/js/landing/service/certificate-domicile.js'])
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+    @vite(['resources/js/landing/service/certificate-domicile.js'])
 @endpush
