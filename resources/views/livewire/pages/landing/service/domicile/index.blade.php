@@ -29,8 +29,10 @@
                     <div class="grid grid-cols-2 gap-5 mb-5">
                         <x-input.text.text :required="true" label="Tempat Lahir" parentClassName="w-full"
                             labelClassName="font-semibold" />
-                        <x-input.text.text :required="true" label="Tanggal Lahir" parentClassName="w-full"
-                            labelClassName="font-semibold" />
+                        <x-input.date.datepicker :required="true" label="Tanggal Lahir" parentClassName="w-full"
+                            labelClassName="font-semibold" store="SERVICE_DOMICILE_STORE" dispatcher=""
+                            x-model="$store.SERVICE_DOMICILE_STORE.dateOfBirth"
+                            />
                     </div>
                     <div class="grid grid-cols-2 gap-5 mb-5">
                         <x-select.select :options="$gender" :required="true" label="Jenis Kelamin"
@@ -82,5 +84,5 @@
 
 @push('scripts')
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
-    @vite(['resources/js/util/captcha.js', 'resources/js/landing/service/certificate-domicile.js'])
+    @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/landing/service/certificate-domicile.js'])
 @endpush

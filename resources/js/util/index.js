@@ -1,1 +1,2 @@
 import './captcha';
+import './datepicker';

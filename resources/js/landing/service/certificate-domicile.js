@@ -3,6 +3,7 @@ document.addEventListener('alpine:init', () => {
     const STORE_PROPS = {
         component: null,
         captchaToken: '',
+        dateOfBirth: '',
         init: function () {
             Livewire.hook('component.init', ({
                 component
@@ -15,7 +16,9 @@ document.addEventListener('alpine:init', () => {
             });
         },
         send() {
-            this.component.$wire.call('mutate', this.captchaToken);
+            console.log(this.dateOfBirth);
+
+            // this.component.$wire.call('mutate', this.captchaToken);
         }
     };
     Alpine.store(STORE_NAME, STORE_PROPS);
