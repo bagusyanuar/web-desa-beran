@@ -33,16 +33,16 @@
                             labelClassName="font-semibold" />
                     </div>
                     <div class="grid grid-cols-2 gap-5 mb-5">
-                        <x-input.text.text :required="true" label="Jenis Kelamin" parentClassName="w-full"
-                            labelClassName="font-semibold" />
-                        <x-input.text.text :required="true" label="Kewarganegaraan" parentClassName="w-full"
-                            labelClassName="font-semibold" />
+                        <x-select.select :options="$gender" :required="true" label="Jenis Kelamin"
+                            parentClassName="w-full" labelClassName="font-semibold" />
+                        <x-select.select :options="$citizenship" :required="true" label="Kewarganegaraan"
+                            parentClassName="w-full" labelClassName="font-semibold" />
                     </div>
                     <div class="grid grid-cols-2 gap-5 mb-5">
-                        <x-input.text.text :required="true" label="Agama" parentClassName="w-full"
+                        <x-select.select :options="$religion" :required="true" label="Agama" parentClassName="w-full"
                             labelClassName="font-semibold" />
-                        <x-input.text.text :required="true" label="Status Perkawinan" parentClassName="w-full"
-                            labelClassName="font-semibold" />
+                        <x-select.select :options="$marriage" :required="true" label="Status Perkawinan"
+                            parentClassName="w-full" labelClassName="font-semibold" />
                     </div>
                     <div class="grid grid-cols-1 gap-5 mb-5">
                         <x-input.text.text label="Pekerjaan" parentClassName="w-full" labelClassName="font-semibold" />

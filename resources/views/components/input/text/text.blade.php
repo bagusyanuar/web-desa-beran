@@ -14,7 +14,8 @@
 
 <div class="{{ $parentClassName }}">
     <label for="{{ $id }}"
-        class="text-sm text-neutral-700 {{ $label ? 'block mb-1' : '' }} {{ $labelClassName }}">{{ $label }} <span class="text-red-500">{{ $required ? '*' : '' }}</span></label>
+        class="text-sm text-neutral-700 {{ $label ? 'block mb-1' : '' }} {{ $labelClassName }}">{{ $label }} <span
+            class="text-red-500">{{ $required ? '*' : '' }}</span></label>
     <div
         class="relative group w-full flex items-center border border-neutral-300 rounded focus-within:outline-none focus-within:ring-0 focus-within:border-neutral-500 transition-[border] duration-200 ease-in">
         <input id={{ $id }}
