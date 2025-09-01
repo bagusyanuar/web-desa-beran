@@ -28,14 +28,18 @@
     </x-container.landing-container>
 </div> --}}
 
-<nav id="landing-navbar" data-component-id="landing-navbar" class="w-full h-16 fixed z-30 top-0 left-0"
-    x-bind:class="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ? 'bg-transparent border-none' : 'bg-white border-b border-brand-500' "
->
+<nav id="landing-navbar" data-component-id="landing-navbar"
+    class="w-full h-16 fixed z-30 top-0 left-0 transition-colors ease-in duration-300"
+    x-bind:class="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ? 'bg-transparent border-none' :
+        'bg-white border-b border-brand-500 shadow-sm'">
     <x-container.landing-container class="h-full">
         <div class="w-full h-full flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <img src="{{ asset('static/images/logo-image-white.png') }}" class="w-10 h-10" />
-                <span class="text-white font-semibold text-sm">Beran Digital</span>
+                <img x-bind:src="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ? '{{ asset('static/images/logo-image-white.png') }}' : '{{ asset('static/images/logo-image.png') }}'" class="w-10 h-10" />
+                <span class="font-semibold text-sm"
+                    x-bind:class="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ? 'text-white' :
+                        'text-brand-500'">Beran
+                    Digital</span>
             </div>
             <div class="flex items-center gap-5">
                 <ul class="flex items-center gap-1">
@@ -64,7 +68,7 @@
             const STORE_PROPS = {
                 component: null,
                 scrollY: 0,
-                treshold: 20,
+                treshold: 50,
                 mode: 'transparent',
                 init: function() {
                     Livewire.hook('component.init', ({

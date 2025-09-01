@@ -3,7 +3,8 @@
 ])
 
 <li class="" x-data="{ open: false }">
-    <a href="#" class="relative flex items-center text-white font-semibold text-xs ps-3 pe-1.5"
+    <a href="#" class="relative flex items-center font-semibold text-xs ps-3 pe-1.5"
+        x-bind:class="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ? 'text-white' : 'text-brand-500'"
         x-on:click.prevent="open = !open">
         <span>{{ $text }}</span>
         <i data-lucide="chevron-down" class="h-[0.875rem] aspect-[1/1]"></i>

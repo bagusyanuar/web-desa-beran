@@ -17,7 +17,11 @@
     </div>
     <div class="w-full">
         <x-container.landing-container class="py-5">
-            <p class="">Layanan</p>
+            <p class="text-center text-lg font-semibold text-brand-500 mb-5">Layanan Desa Beran</p>
+            <div class="w-full">
+                <div class="w-24 h-24 rounded-md border border-neutral-300 shadow-sm">
+                </div>
+            </div>
         </x-container.landing-container>
     </div>
     {{-- <livewire:features.landing.home.hero />
