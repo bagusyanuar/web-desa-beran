@@ -15,6 +15,11 @@
             </x-container.landing-container>
         </div>
     </div>
+    <div class="w-full">
+        <x-container.landing-container class="py-5">
+            <p class="">Layanan</p>
+        </x-container.landing-container>
+    </div>
     {{-- <livewire:features.landing.home.hero />
     <div class="w-full relative -translate-y-[5rem] z-50">
         <livewire:features.landing.home.service />

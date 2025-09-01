@@ -1,0 +1,17 @@
+@props([
+    'text' => 'Menu',
+])
+
+<li class="" x-data="{ open: false }">
+    <a href="#" class="relative flex items-center text-white font-semibold text-xs ps-3 pe-1.5"
+        x-on:click.prevent="open = !open">
+        <span>{{ $text }}</span>
+        <i data-lucide="chevron-down" class="h-[0.875rem] aspect-[1/1]"></i>
+        <div x-cloak x-show="open" x-on:click.away="open = false;" class="absolute right-0 top-5"
+            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-5"
+            x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-5">
+            {{ $slot }}
+        </div>
+    </a>
+</li>
