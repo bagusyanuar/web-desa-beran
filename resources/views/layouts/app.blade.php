@@ -19,10 +19,31 @@
 </head>
 
 <body>
-    <livewire:layout.navbar.landing-top-navbar />
-    <livewire:layout.navbar.landing-navbar />
+    {{-- <livewire:layout.navbar.landing-top-navbar /> --}}
+    {{-- <livewire:layout.navbar.landing-navbar /> --}}
+    <div class="w-full h-16 fixed z-30 top-0 left-0">
+        <x-container.landing-container class="h-full">
+            <div class="w-full h-full flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="{{ asset('static/images/logo-image-white.png') }}" class="w-10 h-10" />
+                    <span class="text-white font-semibold text-sm">Beran Digital</span>
+                </div>
+                <div class="flex items-center gap-5">
+                    <span class="text-white text-sm">Beranda</span>
+                    <span class="text-white text-sm">Layanan</span>
+                    <span class="text-white text-sm">Profil</span>
+                    <span class="text-white text-sm">Produk</span>
+                </div>
+                <div>
+                    <a href="#" class="font-semibold flex items-center justify-center px-5 py-2.5 rounded-md text-sm text-white">
+                        <span>Ajukan Surat</span>
+                    </a>
+                </div>
+            </div>
+        </x-container.landing-container>
+    </div>
     {{ $slot }}
-    <livewire:layout.footer.footer />
+    {{-- <livewire:layout.footer.footer /> --}}
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
