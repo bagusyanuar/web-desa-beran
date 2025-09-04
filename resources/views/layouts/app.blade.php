@@ -22,7 +22,7 @@
     {{-- <livewire:layout.navbar.landing-top-navbar /> --}}
     <livewire:layout.navbar.landing-navbar />
     {{ $slot }}
-    {{-- <livewire:layout.footer.footer /> --}}
+    <livewire:layout.footer.footer />
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>

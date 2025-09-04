@@ -47,15 +47,23 @@
                 <ul class="flex items-center gap-1">
                     <x-navbar.navbar-item text="Beranda" to="/" />
                     <x-navbar.navbar-item-tree text="Profil">
-                        <div class="w-48 bg-white p-3 rounded-md ">
-                            {{-- <a href="#" class="text-xs text-neutral-700">Surat Online</a> --}}
-                            {{-- <a href="#" class="text-xs text-neutral-700">Aduan</a> --}}
+                        <div class="w-48 bg-white px-1.5 py-1.5 rounded-md border border-neutral-300">
+                            <a href="#" class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Tentang Desa</a>
+                            <a href="#" class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Visi dan Misi</a>
+                            <a href="#" class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Aparatur Desa</a>
+                            <a href="#" class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Statistik Desa</a>
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Layanan">
                         <div class="w-48 bg-white p-3 rounded-md border border-neutral-300">
                             <a href="#" class="block text-xs text-neutral-700">Surat Online</a>
                             <a href="#" class="block text-xs text-neutral-700">Aduan</a>
+                        </div>
+                    </x-navbar.navbar-item-tree>
+                    <x-navbar.navbar-item-tree text="Publikasi">
+                        <div class="w-48 bg-white p-3 rounded-md border border-neutral-300">
+                            <a href="#" class="block text-xs text-neutral-700">Berita</a>
+                            <a href="#" class="block text-xs text-neutral-700">Galeri</a>
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item text="Produk" to="/" />
