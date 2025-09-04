@@ -35,7 +35,9 @@
     <x-container.landing-container class="h-full">
         <div class="w-full h-full flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <img x-bind:src="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ? '{{ asset('static/images/logo-image-white.png') }}' : '{{ asset('static/images/logo-image.png') }}'" class="w-10 h-10" />
+                <img x-bind:src="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ?
+                    '{{ asset('static/images/logo-image-white.png') }}' : '{{ asset('static/images/logo-image.png') }}'"
+                    class="w-10 h-10" />
                 <span class="font-semibold text-sm"
                     x-bind:class="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ? 'text-white' :
                         'text-brand-500'">Beran
@@ -45,7 +47,15 @@
                 <ul class="flex items-center gap-1">
                     <x-navbar.navbar-item text="Beranda" to="/" />
                     <x-navbar.navbar-item-tree text="Profil">
-                        <div class="w-48 bg-white p-3 rounded-md">
+                        <div class="w-48 bg-white p-3 rounded-md ">
+                            {{-- <a href="#" class="text-xs text-neutral-700">Surat Online</a> --}}
+                            {{-- <a href="#" class="text-xs text-neutral-700">Aduan</a> --}}
+                        </div>
+                    </x-navbar.navbar-item-tree>
+                    <x-navbar.navbar-item-tree text="Layanan">
+                        <div class="w-48 bg-white p-3 rounded-md border border-neutral-300">
+                            <a href="#" class="block text-xs text-neutral-700">Surat Online</a>
+                            <a href="#" class="block text-xs text-neutral-700">Aduan</a>
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item text="Produk" to="/" />
