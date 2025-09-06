@@ -7,7 +7,18 @@ document.addEventListener('alpine:init', () => {
             dateValue: '',
             initDatePicker(config = {}) {
                 const baseConfig = {
-                    format: 'yyyy-mm-dd',
+                    language: 'id',
+                    format: {
+                        toValue(dateStr, format, locale) {
+                            // Parsing string ke Date (optional, biarkan default juga bisa)
+                            return new Date(dateStr);
+                        },
+                        toDisplay(date, format, locale) {
+                            // Format custom
+                            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                            return date.toLocaleDateString('id-ID', options);
+                        }
+                    },
                     autohide: true,
                 };
                 const cfg = Object.assign({}, baseConfig, config);

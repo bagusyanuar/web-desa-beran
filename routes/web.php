@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', App\Livewire\Pages\Landing\Home\Index::class)->name('home');
-Route::group(['prefix' => 'layanan'], function () {
-    Route::get('/', App\Livewire\Pages\Landing\Service\Index::class)->name('service');
-    Route::get('/surat-keterangan-domisili', App\Livewire\Pages\Landing\Service\Domicile\Index::class)->name('service.domicile');
+Route::group(['prefix' => 'surat-online'], function () {
+    Route::get('/', App\Livewire\Pages\Landing\OnlineLetter\Index::class)->name('online-letter');
+    Route::get('/surat-keterangan-domisili', App\Livewire\Pages\Landing\OnlineLetter\Domicile\Index::class)->name('online-letter.domicile');
     Route::get('/surat-keterangan-kelahiran', App\Livewire\Pages\Landing\Service\Birth\Index::class)->name('service.birth');
 });
 
