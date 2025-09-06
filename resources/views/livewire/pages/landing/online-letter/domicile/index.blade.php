@@ -20,60 +20,108 @@
             <div class="w-5/6 justify-self-center bg-white rounded-xl shadow-xl p-6 border border-neutral-300">
                 <div class="w-full">
                     <p class="text-md font-bold text-neutral-700 mb-5">A. Data Diri</p>
-                    <div class="w-full grid grid-cols-2 gap-x-7 gap-y-5">
+                    <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7">
                         <div class="w-full">
-                            <label for="name" class="text-sm text-neutral-700 block mb-1">
+                            <x-label.label for="name">
                                 <span>Nama Lengkap</span>
                                 <span class="text-red-500 text-sm italic">*</span>
-                            </label>
-                            <input id="name" type="text"
-                                class="w-full border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500" />
-                            <span class="text-xs text-red-500 ms-1 mt-1">
-                                kolom nama wajib di isi
-                            </span>
+                            </x-label.label>
+                            <x-input.text.text id="name" x-model="$store.SERVICE_DOMICILE_STORE.form.name" />
+                            <x-label.validator>
+                                <span>kolom nama wajib diisi.</span>
+                            </x-label.validator>
                         </div>
                         <div class="w-full">
-                            <label for="nik" class="text-sm text-neutral-700 block mb-1">
+                            <x-label.label for="nik">
                                 <span>NIK (Nomor Induk Kependudukan)</span>
                                 <span class="text-red-500 text-sm italic">*</span>
-                            </label>
-                            <input id="nik" type="text"
-                                class="w-full border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500" />
-                            <span class="text-xs text-red-500 ms-1 mt-1">
-                                kolom nik wajib di isi
-                            </span>
+                            </x-label.label>
+                            <x-input.text.text id="nik" x-model="$store.SERVICE_DOMICILE_STORE.form.nik" />
+                            <x-label.validator>
+                                <span>kolom nik wajib diisi.</span>
+                            </x-label.validator>
                         </div>
                         <div class="w-full">
-                            <label for="birth-place" class="text-sm text-neutral-700 block mb-1">
+                            <x-label.label for="birth-place">
                                 <span>Tempat Lahir</span>
-                                <span class="text-red-500 text-sm italic">*</span>
-                            </label>
-                            <input id="birth-place" type="text"
-                                class="w-full border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500" />
+                                <span class="text-red-500 text-sm italic">* <span class="text-xs">(Nama kota /
+                                        kabupaten)</span></span>
+                            </x-label.label>
+                            <x-input.text.text id="birth-place"
+                                x-model="$store.SERVICE_DOMICILE_STORE.form.birthPlace" />
+                            <x-label.validator>
+                                <span>kolom tempat lahir wajib diisi.</span>
+                            </x-label.validator>
                         </div>
                         <div class="w-full">
-                            <label for="date-of-birth" class="text-sm text-neutral-700 block mb-1">
+                            <x-label.label for="date-of-birth">
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
-                            </label>
-                            <input readonly id="date-of-birth" type="text"
-                                class="w-full border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500"
-                                x-bind:store-name="'SERVICE_DOMICILE_STORE'"
-                                x-model="$store.SERVICE_DOMICILE_STORE.form.dateOfBirth" x-bind="datepickerBind"
-                                x-init="initDatePicker()" />
+                            </x-label.label>
+                            <x-input.date.datepicker id="date-of-birth" x-bind:store-name="'SERVICE_DOMICILE_STORE'"
+                                x-model="$store.SERVICE_DOMICILE_STORE.form.dateOfBirth" />
                         </div>
                         <div class="w-full">
                             <label for="gender" class="text-sm text-neutral-700 block mb-1">
                                 <span>Jenis Kelamin</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </label>
-                            <select id="gender"
+                            <x-select.select2 x-init="initSelect({ placeholder: 'pilih jenis kelamin' })">
+                                <option></option>
+                                <option value="male">Laki-Laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </x-select.select2>
+                        </div>
+                        <div class="w-full">
+                            <label for="citizenship" class="text-sm text-neutral-700 block mb-1">
+                                <span>Kewarganegaraan</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </label>
+                            <select id="citizenship"
                                 class="w-full border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500">
-                                <option value="male" class="py-1.5">Laki-Laki</option>
+                                <option value="" class="py-1.5 text-neutral-500">--pilih kewarganegaraan--
+                                </option>
+                                <option value="indonesia" class="py-1.5">Indonesia</option>
+                                <option value="foreign" class="py-1.5">Warga Negara Asing</option>
                             </select>
                         </div>
+                        <div class="w-full">
+                            <label for="religion" class="text-sm text-neutral-700 block mb-1">
+                                <span>Agama</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </label>
+                            <select id="religion"
+                                class="w-full border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500">
+                                <option value="" class="py-1.5 text-neutral-500">--pilih agama--</option>
+                                <option value="islam" class="py-1.5">Islam</option>
+                                <option value="kristen" class="py-1.5">Kristen</option>
+                                <option value="katholik" class="py-1.5">Katholik</option>
+                                <option value="hindu" class="py-1.5">Hindu</option>
+                                <option value="budha" class="py-1.5">Budha</option>
+                            </select>
+                        </div>
+                        <div class="w-full">
+                            <label for="marriage" class="text-sm text-neutral-700 block mb-1">
+                                <span>Status Perkawinan</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </label>
+                            <select id="religion"
+                                class="w-full border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500">
+                                <option value="" class="py-1.5 text-neutral-500">--pilih status perkawinan--
+                                </option>
+                                <option value="married" class="py-1.5">Menikah</option>
+                                <option value="not-married" class="py-1.5">Belum Menikah</option>
+                            </select>
+                        </div>
+                        <div class="w-full col-span-2">
+                            <label for="job" class="text-sm text-neutral-700 block mb-1">
+                                <span>Pekerjaan</span>
+                            </label>
+                            <input id="job" type="text"
+                                class="w-full border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500" />
+                        </div>
                     </div>
-                    <p class="text-md font-bold text-neutral-700 my-5">B. Informasi Pemohon</p>
+                    <p class="text-md font-bold text-neutral-700 mb-5 mt-10">B. Informasi Pemohon</p>
                     <button class="w-full text-md text-white py-1.5 bg-brand-500"
                         x-on:click="$store.SERVICE_DOMICILE_STORE.send()">
                         <span>Kirim</span>
@@ -85,7 +133,7 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/datepicker.js'])
+    @vite(['resources/js/util/datepicker.js', 'resources/js/util/select2.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_DOMICILE_STORE';
@@ -94,6 +142,8 @@
                 captchaToken: '',
                 form: {
                     name: '',
+                    nik: '',
+                    birthPlace: '',
                     dateOfBirth: ''
                 },
                 init: function() {

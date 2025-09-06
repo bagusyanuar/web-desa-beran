@@ -37,7 +37,7 @@
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Layanan">
-                        <div class="w-48 bg-white p-3 rounded-md border border-neutral-300">
+                        <div class="w-48 bg-white px-1.5 py-1.5  rounded-md border border-neutral-300">
                             <a href="{{ route('online-letter') }}"
                                 class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Surat
                                 Online</a>
