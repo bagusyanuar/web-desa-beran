@@ -27,9 +27,11 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.text id="name" x-model="$store.SERVICE_DOMICILE_STORE.form.name" />
-                            <x-label.validator>
-                                <span>kolom nama wajib diisi.</span>
-                            </x-label.validator>
+                            <template x-if="'name' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.name[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full">
                             <x-label.label for="nik">
@@ -37,9 +39,11 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.text id="nik" x-model="$store.SERVICE_DOMICILE_STORE.form.nik" />
-                            <x-label.validator>
-                                <span>kolom nik wajib diisi.</span>
-                            </x-label.validator>
+                            <template x-if="'nik' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.nik[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full">
                             <x-label.label for="birth-place">
@@ -49,9 +53,11 @@
                             </x-label.label>
                             <x-input.text.text id="birth-place"
                                 x-model="$store.SERVICE_DOMICILE_STORE.form.birthPlace" />
-                            <x-label.validator>
-                                <span>kolom tempat lahir wajib diisi.</span>
-                            </x-label.validator>
+                            <template x-if="'birthPlace' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.birthPlace[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full">
                             <x-label.label for="date-of-birth">
@@ -60,6 +66,11 @@
                             </x-label.label>
                             <x-input.date.datepicker id="date-of-birth" x-bind:store-name="'SERVICE_DOMICILE_STORE'"
                                 x-model="$store.SERVICE_DOMICILE_STORE.form.dateOfBirth" />
+                            <template x-if="'dateOfBirth' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.dateOfBirth[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full">
                             <label for="gender" class="text-sm text-neutral-700 block mb-1">
@@ -72,6 +83,11 @@
                                 <option value="male">Laki-Laki</option>
                                 <option value="female">Perempuan</option>
                             </x-select.select2>
+                            <template x-if="'gender' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.gender[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full">
                             <label for="citizenship" class="text-sm text-neutral-700 block mb-1">
@@ -84,6 +100,11 @@
                                 <option value="indonesia">Indonesia</option>
                                 <option value="foreign">Warga Negara Asing</option>
                             </x-select.select2>
+                            <template x-if="'citizenship' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.citizenship[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full">
                             <label for="religion" class="text-sm text-neutral-700 block mb-1">
@@ -101,6 +122,11 @@
                                 <option value="konghucu">Konghucu</option>
                                 <option value="other">Lainnya</option>
                             </x-select.select2>
+                            <template x-if="'religion' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.religion[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full">
                             <label for="marriage" class="text-sm text-neutral-700 block mb-1">
@@ -113,6 +139,11 @@
                                 <option value="married" class="py-1.5">Menikah</option>
                                 <option value="not-married" class="py-1.5">Belum Menikah</option>
                             </x-select.select2>
+                            <template x-if="'marriage' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.marriage[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full col-span-2">
                             <x-label.label for="job">
@@ -127,6 +158,11 @@
                             </x-label.label>
                             <x-input.text.textarea id="address" rows="3"
                                 x-model="$store.SERVICE_DOMICILE_STORE.form.address" />
+                            <template x-if="'address' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.address[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                     </div>
                     <p class="text-md font-bold text-neutral-700 mb-5 mt-10">B. Informasi Pemohon</p>
@@ -137,10 +173,12 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.text id="applicant_name"
-                                x-model="$store.SERVICE_DOMICILE_STORE.form.applicatName" />
-                            <x-label.validator>
-                                <span>kolom nama pemohon wajib diisi.</span>
-                            </x-label.validator>
+                                x-model="$store.SERVICE_DOMICILE_STORE.form.applicantName" />
+                            <template x-if="'applicantName' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.applicantName[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full">
                             <x-label.label for="applicant_phone">
@@ -149,9 +187,12 @@
                             </x-label.label>
                             <x-input.text.text id="applicant_name"
                                 x-model="$store.SERVICE_DOMICILE_STORE.form.applicantPhone" />
-                            <x-label.validator>
-                                <span>kolom no. whatsapp pemohon wajib diisi.</span>
-                            </x-label.validator>
+                            <template x-if="'applicantPhone' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span
+                                        x-text="$store.SERVICE_DOMICILE_STORE.formValidator.applicantPhone[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                         <div class="w-full col-span-2 flex justify-center items-center">
                             <x-captcha.recaptcha store="SERVICE_DOMICILE_STORE" stateData="captchaToken" />
@@ -204,6 +245,7 @@
                     applicantName: '',
                     applicantPhone: '',
                 },
+                formValidator: {},
                 init: function() {
                     Livewire.hook('component.init', ({
                         component
@@ -220,26 +262,51 @@
                     });
                 },
                 send() {
-                    if (this.captchaToken === '') {
-                        console.log('isi captcha');
-                        this.toastStore.success('isi captcha');
-                    } else {
-                        const val = new Date(this.form.dateOfBirth);
-                        const year = val.getFullYear();
-                        const month = String(val.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                        const day = String(val.getDate()).padStart(2, '0');
+                    // if (this.captchaToken === '') {
+                    //     console.log('isi captcha');
+                    //     this.toastStore.success('isi captcha');
+                    // } else {
 
-                        const formatted = `${year}-${month}-${day}`;
-                        console.log(formatted);
-                        console.log(this.form);
-                        this.alertStore.show();
-                    }
+                    //     console.log(formatted);
+                    //     console.log(this.form);
+                    // }
+                    this.alertStore.show();
                 },
                 onAccept() {
                     this.alertStore.hide();
                     this.pageLoaderStore.show();
-                    console.log('accept');
+                    const val = new Date(this.form.dateOfBirth);
+                    const year = val.getFullYear();
+                    const month = String(val.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                    const day = String(val.getDate()).padStart(2, '0');
 
+                    const formatted = `${year}-${month}-${day}`;
+                    this.form.dateOfBirth = formatted;
+                    this.component.$wire.call('send', this.form, this.captchaToken)
+                        .then(response => {
+                            const {
+                                status,
+                                messsage,
+                                data
+                            } = response;
+                            switch (status) {
+                                case 201:
+                                    break;
+                                case 422:
+                                    this.formValidator = data;
+                                    this.toastStore.error('Harap mengisi formulir dengan lengkap dan benar',
+                                        2000);
+                                    break;
+                                case 500:
+                                    this.toastStore.error('Terjadi kesalahan server', 2000);
+                                default:
+                                    break;
+                            }
+                            console.log(response);
+                        })
+                        .finally(() => {
+                            this.pageLoaderStore.hide();
+                        });
                 }
             };
             Alpine.store(STORE_NAME, STORE_PROPS);

@@ -51,6 +51,10 @@ class Option
             'value' => 'konghucu',
             'text' => 'Konghucu'
         ],
+        [
+            'value' => 'other',
+            'text' => 'Lainnya'
+        ],
     ];
 
     const Marriage = [
