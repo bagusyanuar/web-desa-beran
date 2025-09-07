@@ -1,4 +1,8 @@
-@props([
+<textarea type="text"
+    {{ $attributes->merge(['class' => 'w-full text-neutral-700 border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500']) }}></textarea>
+
+
+{{-- @props([
     'id' => null,
     'label' => '',
     'parentClassName' => '',
@@ -27,4 +31,4 @@
                 x-text="{{ $validatorKey }}['{{ $validatorField }}'][0]"></span>
         </template>
     @endif
-</div>
+</div> --}}

@@ -6,6 +6,19 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                spinner: {
+                    '100%': { transform: 'rotate(360deg)' },
+                },
+                shimmer: {
+                    "0%": { transform: "translateX(-100%)" },
+                    "100%": { transform: "translateX(100%)" },
+                },
+            },
+            animation: {
+                spinner: 'spinner 1.5s linear infinite',
+                shimmer: "shimmer 1.5s infinite linear",
+            },
             colors: {
                 brand: {
                     50: '#e6eef5',

@@ -10,6 +10,11 @@ document.addEventListener('alpine:init', () => {
                     this.element.select2(cfg);
                     this._initStyle();
 
+                    this.element.on('change', () => {
+                        const val = this.element.val();
+                        this.$el._x_model.set(val);
+                    });
+
                     this.element.on('select2:open', () => {
                         const dropdown = document.querySelector('.select2-container--open .select2-dropdown');
                         const searchDropwdown = document.querySelector('.select2-container--open .select2-search--dropdown');
@@ -37,6 +42,7 @@ document.addEventListener('alpine:init', () => {
                                 '!rounded-md'
                             )
                         }
+
                     })
                 })
             },
