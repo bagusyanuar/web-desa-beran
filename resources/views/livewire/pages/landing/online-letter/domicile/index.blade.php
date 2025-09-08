@@ -207,6 +207,78 @@
             </div>
         </x-container.landing-container>
     </div>
+    <div>
+        <div class="fixed w-full h-dvh bg-black/50 top-0 left-0 z-50"></div>
+        <div
+            class="w-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[51] flex items-center justify-center">
+            <div class="bg-white rounded-lg shadow-lg w-[40rem] p-4">
+                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN DOMISILI BERHASIL DIBUAT
+                </p>
+                <div class="w-full flex items-center gap-3">
+                    <div class="w-56">
+                        <div class="w-52 h-52 flex items-center justify-center rounded-md border border-neutral-300">
+                            <div x-data x-init="new QRCode($refs.qrcode, {
+                                text: '550e8400-e29b-41d4-a716-446655440000',
+                                width: 200,
+                                height: 200
+                            })">
+                                <div x-ref="qrcode"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-neutral-700 font-semibold mb-3">Informasi Permohonan
+                        </p>
+                        <table class="border-collapse w-full mb-3">
+                            <tr>
+                                <td>
+                                    <span class="text-sm text-neutral-700">No. Pengajuan</span>
+                                </td>
+                                <td>
+                                    <span class="text-sm text-neutral-700">:</span>
+                                </td>
+                                <td>
+                                    <span class="text-sm text-neutral-700">SKD/20250907154003</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="text-sm text-neutral-700">Pemohon</span>
+                                </td>
+                                <td>
+                                    <span class="text-sm text-neutral-700">:</span>
+                                </td>
+                                <td>
+                                    <span class="text-sm text-neutral-700">Bagus Yanuar</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="text-sm text-neutral-700">No. Whatsapp</span>
+                                </td>
+                                <td>
+                                    <span class="text-sm text-neutral-700">:</span>
+                                </td>
+                                <td>
+                                    <span class="text-sm text-neutral-700">628918827758</span>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="w-full">
+                            <button
+                                class="w-full bg-accent-500 rounded-lg text-white py-2.5 text-sm hover:bg-accent-700 transition-all duration-200 ease-in"
+                                x-on:click="$store.SERVICE_DOMICILE_STORE.download()">
+                                <span>Unduh Bukti</span>
+                            </button>
+                        </div>
+                        <span class="text-xs text-neutral-500 italic leading-none">*) Gunakan QR Code untuk melakukan
+                            monitoring status pengajuan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <x-alert.confirmation onAccept="$store.SERVICE_DOMICILE_STORE.onAccept()">
         <p class="text-sm text-neutral-700 text-justify">Anda akan mengirim permohonan <span
                 class="font-semibold">Surat Keterangan Domisili</span>. Pastikan data yang anda isi sudah
@@ -220,6 +292,7 @@
 </section>
 
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
     @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
@@ -307,6 +380,31 @@
                         .finally(() => {
                             this.pageLoaderStore.hide();
                         });
+                },
+                download() {
+                    this.component.$wire.call('create_receipt')
+                        .then(response => {
+                            const {
+                                status,
+                                data
+                            } = response;
+                            const byteCharacters = atob(data);
+                            const byteNumbers = new Array(byteCharacters.length).fill(0).map((_, i) =>
+                                byteCharacters.charCodeAt(i));
+                            const byteArray = new Uint8Array(byteNumbers);
+                            const blob = new Blob([byteArray], {
+                                type: 'application/pdf'
+                            });
+                            const blobUrl = URL.createObjectURL(blob);
+                            window.open(blobUrl, '_blank');
+
+                            // const link = document.createElement('a');
+                            // link.href = blobUrl;
+                            // link.download = "letter-receipt.pdf";
+                            // link.click();
+
+                            // URL.revokeObjectURL(blobUrl);
+                        })
                 }
             };
             Alpine.store(STORE_NAME, STORE_PROPS);
