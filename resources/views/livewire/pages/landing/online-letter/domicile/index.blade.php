@@ -208,8 +208,15 @@
         </x-container.landing-container>
     </div>
     <div>
-        <div class="fixed w-full h-dvh bg-black/50 top-0 left-0 z-50"></div>
-        <div
+        <div x-cloak x-show="$store.SERVICE_DOMICILE_STORE.showReceipt"
+            class="fixed w-full h-dvh bg-black/50 top-0 left-0 z-50"></div>
+        <div x-cloak x-show="$store.SERVICE_DOMICILE_STORE.showReceipt"
+            x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="translate-y-[-10rem] opacity-0"
+            x-transition:enter-end="-translate-y-1/2 opacity-100"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="-translate-y-1/2 opacity-100"
+            x-transition:leave-end="translate-y-[-10rem] opacity-0"
             class="w-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[51] flex items-center justify-center">
             <div class="bg-white rounded-lg shadow-lg w-[40rem] p-4">
                 <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN DOMISILI BERHASIL DIBUAT
@@ -217,12 +224,8 @@
                 <div class="w-full flex items-center gap-3">
                     <div class="w-56">
                         <div class="w-52 h-52 flex items-center justify-center rounded-md border border-neutral-300">
-                            <div x-data x-init="new QRCode($refs.qrcode, {
-                                text: '550e8400-e29b-41d4-a716-446655440000',
-                                width: 200,
-                                height: 200
-                            })">
-                                <div x-ref="qrcode"></div>
+                            <div>
+                                <div id="qrcode"></div>
                             </div>
                         </div>
 
@@ -318,6 +321,7 @@
                     applicantName: '',
                     applicantPhone: '',
                 },
+                showReceipt: false,
                 formValidator: {},
                 init: function() {
                     Livewire.hook('component.init', ({
@@ -364,6 +368,9 @@
                             } = response;
                             switch (status) {
                                 case 201:
+                                    const code = data['url'];
+                                    this.generateQRCode(code);
+                                    this.showReceipt = true;
                                     break;
                                 case 422:
                                     this.formValidator = data;
@@ -405,6 +412,19 @@
 
                             // URL.revokeObjectURL(blobUrl);
                         })
+                },
+                generateQRCode(code) {
+                    const el = document.getElementById('qrcode');
+                    if (!el) return;
+
+                    // clear QR lama biar nggak numpuk
+                    el.innerHTML = '';
+
+                    new QRCode(el, {
+                        text: code,
+                        width: 200,
+                        height: 200
+                    });
                 }
             };
             Alpine.store(STORE_NAME, STORE_PROPS);

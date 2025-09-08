@@ -109,35 +109,35 @@
     <table class="w-full border-collapse" style="margin-bottom: 15px;">
         <tr>
             <td style="width: 20%;">
-                <span class="text-sm">No. Pengajuan</span>
+                <span class="text-sm" style="line-height: 0;">No. Pengajuan</span>
             </td>
             <td style="width: 10px; text-align: center">
-                <span class="text-sm">:</span>
+                <span class="text-sm" style="line-height: 0;">:</span>
             </td>
             <td>
-                <span class="text-sm">SKD/20250907154003</span>
+                <span class="text-sm" style="line-height: 0;">SKD/20250907154003</span>
+            </td>
+        </tr>
+        <tr style="height: fit-content;">
+            <td style="width: 20%;">
+                <span class="text-sm" style="line-height: 0;">Nama Pemohon</span>
+            </td>
+            <td style="width: 10px; text-align: center">
+                <span class="text-sm" style="line-height: 0;">:</span>
+            </td>
+            <td>
+                <span class="text-sm" style="line-height: 0;">Bagus Yanuar</span>
             </td>
         </tr>
         <tr>
             <td style="width: 20%;">
-                <span class="text-sm">Nama Pemohon</span>
+                <span class="text-sm" style="line-height: 0;">No. Whatsapp</span>
             </td>
             <td style="width: 10px; text-align: center">
-                <span class="text-sm">:</span>
+                <span class="text-sm" style="line-height: 0;">:</span>
             </td>
             <td>
-                <span class="text-sm">Bagus Yanuar</span>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 20%;">
-                <span class="text-sm">No. Whatsapp</span>
-            </td>
-            <td style="width: 10px; text-align: center">
-                <span class="text-sm">:</span>
-            </td>
-            <td>
-                <span class="text-sm">628817881290</span>
+                <span class="text-sm" style="line-height: 0;">628817881290</span>
             </td>
         </tr>
     </table>

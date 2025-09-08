@@ -25,7 +25,7 @@ class DomicileService implements DomicileServiceInterface
 
             $dataDomicile = [
                 'date' => Carbon::now(),
-                'reference_number' => 'SKD/' . date('YmdHis'),
+                'reference_number' => 'SKD-' . date('YmdHis'),
                 'status' => 'created',
                 'approved_by_id' => null,
                 'approved_at' => null
@@ -54,7 +54,10 @@ class DomicileService implements DomicileServiceInterface
             ];
             CertificateDomicilePerson::create($dataPerson);
             DB::commit();
-            return ServiceResponse::statusCreated("successfully send online letter", $certificateDomicile);
+            return ServiceResponse::statusCreated("successfully send online letter", [
+                'domicile' => $certificateDomicile,
+                'url' => url("/surat-online/surat-keterangan-domisili/{$certificateDomicile->reference_number}")
+            ]);
         } catch (\Throwable $e) {
             DB::rollBack();
             return ServiceResponse::internalServerError($e->getMessage());
