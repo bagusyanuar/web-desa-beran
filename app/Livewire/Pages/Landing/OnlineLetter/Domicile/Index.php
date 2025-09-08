@@ -10,6 +10,11 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Dompdf\Options;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 
 #[Layout('layouts.app')]
 class Index extends Component
@@ -36,10 +41,20 @@ class Index extends Component
 
     public function create_receipt()
     {
+        $renderer = new ImageRenderer(
+            new RendererStyle(200, 0),
+            new SvgImageBackEnd() // 👈 pakai SVG backend, bukan PNG
+        );
+
+        $writer = new Writer($renderer);
+
+        $qrCode = base64_encode($writer->writeString('SKD/20250907154003'));
         $options = new Options();
         $options->setIsPhpEnabled(true);
         $options->setIsRemoteEnabled(true);
-        $pdf = Pdf::loadView('pdf.letter-receipt')->setPaper('a5', 'landscape');
+        $pdf = Pdf::loadView('pdf.letter-receipt', [
+            'qrcode' => $qrCode
+        ])->setPaper('a5', 'landscape');
         $pdf->getDomPDF()->setOptions($options);
         $pdfBase64 = base64_encode($pdf->output());
         return AlpineResponse::toJSON(200, "successfully create pdf", $pdfBase64);

@@ -65,6 +65,14 @@
         .text-center {
             text-align: center;
         }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .border-collapse {
+            border-collapse: collapse;
+        }
     </style>
 </head>
 
@@ -74,7 +82,8 @@
             <tr>
                 <td style="vertical-align: middle; height: 80px; width: 100%">
                     <div style="width: 100%;">
-                        <img src="{{ asset('static/images/institution-logo.png') }}" alt="Image" style="height: 60px; position: absolute; left: 0; top: 50%; transform: translateY(-50%);" />
+                        <img src="{{ asset('static/images/institution-logo.png') }}" alt="Image"
+                            style="height: 60px; position: absolute; left: 0; top: 50%; transform: translateY(-50%);" />
                         <p class="text-md font-bold text-center mb-0" style="line-height: 0.5;">
                             PEMERINTAH KABUPATEN NGAWI</p>
                         <p class="text-sm text-center mb-0" style="line-height: 0.5;">KECAMATAN NGAWI</p>
@@ -86,8 +95,67 @@
                 </td>
             </tr>
         </table>
+
     </div>
-    <p class="text-md">Bukti</p>
+    <hr style="border: none; border-top: 1px solid black; margin: 3px 0 3px 0; padding: 0;" />
+    <hr style="border: none; border-top: 2px solid black; margin: 0 0 3px 0; padding: 0;" />
+    <table class="w-full" style="border-collapse: collapse; margin-bottom: 5px;">
+        <tr>
+            <td>
+                <p class="text-md font-bold">BUKTI PENGAJUAN SURAT KETERANGAN DOMISILI</p>
+            </td>
+        </tr>
+    </table>
+    <table class="w-full border-collapse" style="margin-bottom: 15px;">
+        <tr>
+            <td style="width: 20%;">
+                <span class="text-sm">No. Pengajuan</span>
+            </td>
+            <td style="width: 10px; text-align: center">
+                <span class="text-sm">:</span>
+            </td>
+            <td>
+                <span class="text-sm">SKD/20250907154003</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 20%;">
+                <span class="text-sm">Nama Pemohon</span>
+            </td>
+            <td style="width: 10px; text-align: center">
+                <span class="text-sm">:</span>
+            </td>
+            <td>
+                <span class="text-sm">Bagus Yanuar</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 20%;">
+                <span class="text-sm">No. Whatsapp</span>
+            </td>
+            <td style="width: 10px; text-align: center">
+                <span class="text-sm">:</span>
+            </td>
+            <td>
+                <span class="text-sm">628817881290</span>
+            </td>
+        </tr>
+    </table>
+    <table class="w-full border-collapse">
+        <tr>
+            <td style="text-align: center;">
+                <div>
+                    <img src="data:image/png;base64, {!! $qrcode !!}" width="150" height="150" style="margin-bottom: 3px;">
+                    <span class="text-xs" style="display: block; color: black; font-style: italic">Scan QRCode untuk
+                        melakukan
+                        monitoring
+                        pengajuan surat.</span>
+                    <span class="text-xs" style="display: block; color: black; font-style: italic">Kunjungi
+                        {{ url('/surat-keterangan-domisili/SKD/20250907154003') }}</span>
+                </div>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>
