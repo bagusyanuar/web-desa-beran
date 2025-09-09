@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('birth_place')->nullable();
             $table->string('identifier_number');
             $table->date('date_of_birth')->nullable();
-            $table->enum('gender', ['male', 'female']);
             $table->enum('citizenship', ['indonesia', 'foreign']);
             $table->enum('religion', ['islam', 'kristen', 'katolik', 'hindu', 'budha', 'konghucu', 'other']);
             $table->string('job')->nullable();

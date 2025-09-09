@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('birth_place')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male', 'female']);
+            $table->enum('birth_type', ['single', 'twin']);
             $table->integer('birth_order')->default(1);
             $table->timestamps();
             $table->foreign('certificate_birth_id')->references('id')->on('certificate_births')->onDelete('set null');

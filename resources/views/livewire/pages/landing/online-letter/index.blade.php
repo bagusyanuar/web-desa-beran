@@ -80,6 +80,11 @@
                         <span class="text-brand-500 font-semibold text-lg">SURAT KETERANGAN KEMATIAN</span>
                         <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                     </a>
+                    <a href="{{ route('online-letter.birth') }}"
+                        class="bg-white rounded-lg shadow-xl w-full h-16 px-6 border border-neutral-300 flex items-center justify-between cursor-pointer">
+                        <span class="text-brand-500 font-semibold text-lg">SURAT KETERANGAN KELAHIRAN</span>
+                        <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
+                    </a>
                 </div>
             </div>
         </x-container.landing-container>
