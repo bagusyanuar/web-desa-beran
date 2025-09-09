@@ -70,15 +70,14 @@
             </p>
             <div class="w-2/3 justify-self-center">
                 <div class="w-full flex flex-col gap-3">
-                    <a
-                    href="{{ route('online-letter.domicile') }}"
+                    <a href="{{ route('online-letter.domicile') }}"
                         class="bg-white rounded-lg shadow-xl w-full h-16 px-6 border border-neutral-300 flex items-center justify-between cursor-pointer">
                         <span class="text-brand-500 font-semibold text-lg">SURAT KETERANGAN DOMISILI</span>
                         <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                     </a>
-                    <a
+                    <a href="{{ route('online-letter.death') }}"
                         class="bg-white rounded-lg shadow-xl w-full h-16 px-6 border border-neutral-300 flex items-center justify-between cursor-pointer">
-                        <span class="text-brand-500 font-semibold text-lg">SURAT KETERANGAN KEHILANGAN</span>
+                        <span class="text-brand-500 font-semibold text-lg">SURAT KETERANGAN KEMATIAN</span>
                         <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                     </a>
                 </div>
