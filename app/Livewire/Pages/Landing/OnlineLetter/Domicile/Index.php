@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Landing\OnlineLetter\Domicile;
 
 use App\Commons\Const\Option;
+use App\Commons\Libs\Captcha\Recaptcha;
 use App\Commons\Libs\Http\AlpineResponse;
 use App\Schemas\Landing\OnlineLetter\Domicile\DomicileSchema;
 use App\Services\Landing\OnlineLetter\DomicileService;
@@ -34,30 +35,19 @@ class Index extends Component
 
     public function send($body, $captchaToken)
     {
-        $schema = (new DomicileSchema())->hydrateSchemaBody($body);
-        $response = $this->service->send($schema);
-        return AlpineResponse::fromService($response);
+        $captchaValidation = Recaptcha::validate($captchaToken);
+        if ($captchaValidation['success']) {
+            $schema = (new DomicileSchema())->hydrateSchemaBody($body);
+            $response = $this->service->send($schema);
+            return AlpineResponse::fromService($response);
+        }
+        return AlpineResponse::toJSON(500, "invalid captcha");
     }
 
-    public function create_receipt()
+    public function create_receipt($referenceNumber)
     {
-        $renderer = new ImageRenderer(
-            new RendererStyle(200, 0),
-            new SvgImageBackEnd() // 👈 pakai SVG backend, bukan PNG
-        );
-
-        $writer = new Writer($renderer);
-
-        $qrCode = base64_encode($writer->writeString('SKD/20250907154003'));
-        $options = new Options();
-        $options->setIsPhpEnabled(true);
-        $options->setIsRemoteEnabled(true);
-        $pdf = Pdf::loadView('pdf.letter-receipt', [
-            'qrcode' => $qrCode
-        ])->setPaper('a5', 'landscape');
-        $pdf->getDomPDF()->setOptions($options);
-        $pdfBase64 = base64_encode($pdf->output());
-        return AlpineResponse::toJSON(200, "successfully create pdf", $pdfBase64);
+        $response = $this->service->createReceipt($referenceNumber);
+        return AlpineResponse::fromService($response);
     }
 
 

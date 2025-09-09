@@ -194,7 +194,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full col-span-2 flex justify-center items-center">
+                        <div class="w-full col-span-2 flex justify-center items-center" wire:ignore>
                             <x-captcha.recaptcha store="SERVICE_DOMICILE_STORE" stateData="captchaToken" />
                         </div>
                     </div>
@@ -224,7 +224,7 @@
                 <div class="w-full flex items-center gap-3">
                     <div class="w-56">
                         <div class="w-52 h-52 flex items-center justify-center rounded-md border border-neutral-300">
-                            <div>
+                            <div wire:ignore>
                                 <div id="qrcode"></div>
                             </div>
                         </div>
@@ -242,7 +242,8 @@
                                     <span class="text-sm text-neutral-700">:</span>
                                 </td>
                                 <td>
-                                    <span class="text-sm text-neutral-700">SKD/20250907154003</span>
+                                    <span class="text-sm text-neutral-700"
+                                        x-text="$store.SERVICE_DOMICILE_STORE.receiptData.referenceNumber"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -253,7 +254,8 @@
                                     <span class="text-sm text-neutral-700">:</span>
                                 </td>
                                 <td>
-                                    <span class="text-sm text-neutral-700">Bagus Yanuar</span>
+                                    <span class="text-sm text-neutral-700"
+                                        x-text="$store.SERVICE_DOMICILE_STORE.receiptData.applicantName"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -264,11 +266,16 @@
                                     <span class="text-sm text-neutral-700">:</span>
                                 </td>
                                 <td>
-                                    <span class="text-sm text-neutral-700">628918827758</span>
+                                    <span class="text-sm text-neutral-700"
+                                        x-text="$store.SERVICE_DOMICILE_STORE.receiptData.applicantPhone"></span>
                                 </td>
                             </tr>
                         </table>
-                        <div class="w-full">
+                        <div class="w-full flex items-center gap-1">
+                            <button x-on:click="$store.SERVICE_DOMICILE_STORE.closeReceipt()"
+                                class="w-full bg-white text-brand-500 py-2.5 rounded-lg hover:bg-neutral-200 transition-all ease-in duration-200">
+                                <span>Tutup</span>
+                            </button>
                             <button
                                 class="w-full bg-accent-500 rounded-lg text-white py-2.5 text-sm hover:bg-accent-700 transition-all duration-200 ease-in"
                                 x-on:click="$store.SERVICE_DOMICILE_STORE.download()">
@@ -322,6 +329,11 @@
                     applicantPhone: '',
                 },
                 showReceipt: false,
+                receiptData: {
+                    referenceNumber: '',
+                    applicantName: '',
+                    applicantPhone: ''
+                },
                 formValidator: {},
                 init: function() {
                     Livewire.hook('component.init', ({
@@ -339,14 +351,6 @@
                     });
                 },
                 send() {
-                    // if (this.captchaToken === '') {
-                    //     console.log('isi captcha');
-                    //     this.toastStore.success('isi captcha');
-                    // } else {
-
-                    //     console.log(formatted);
-                    //     console.log(this.form);
-                    // }
                     this.alertStore.show();
                 },
                 onAccept() {
@@ -363,12 +367,22 @@
                         .then(response => {
                             const {
                                 status,
-                                messsage,
+                                message,
                                 data
                             } = response;
+
                             switch (status) {
                                 case 201:
+                                    this.formClear();
                                     const code = data['url'];
+                                    const domicile = data['domicile'];
+                                    const {
+                                        name, phone
+                                    } = data['applicant']
+                                    const referenceNumber = domicile['reference_number'];
+                                    this.receiptData.applicantName = name;
+                                    this.receiptData.applicantPhone = phone;
+                                    this.receiptData.referenceNumber = referenceNumber;
                                     this.generateQRCode(code);
                                     this.showReceipt = true;
                                     break;
@@ -378,48 +392,77 @@
                                         2000);
                                     break;
                                 case 500:
-                                    this.toastStore.error('Terjadi kesalahan server', 2000);
+                                    this.toastStore.error(message, 2000);
                                 default:
                                     break;
                             }
-                            console.log(response);
                         })
                         .finally(() => {
                             this.pageLoaderStore.hide();
                         });
                 },
                 download() {
-                    this.component.$wire.call('create_receipt')
+                    const referenceNumber = this.receiptData.referenceNumber;
+                    this.pageLoaderStore.show();
+                    this.component.$wire.call('create_receipt', referenceNumber)
                         .then(response => {
                             const {
                                 status,
+                                message,
                                 data
                             } = response;
-                            const byteCharacters = atob(data);
-                            const byteNumbers = new Array(byteCharacters.length).fill(0).map((_, i) =>
-                                byteCharacters.charCodeAt(i));
-                            const byteArray = new Uint8Array(byteNumbers);
-                            const blob = new Blob([byteArray], {
-                                type: 'application/pdf'
-                            });
-                            const blobUrl = URL.createObjectURL(blob);
-                            window.open(blobUrl, '_blank');
+                            if (status === 200) {
+                                const byteCharacters = atob(data);
+                                const byteNumbers = new Array(byteCharacters.length).fill(0).map((_, i) =>
+                                    byteCharacters.charCodeAt(i));
+                                const byteArray = new Uint8Array(byteNumbers);
+                                const blob = new Blob([byteArray], {
+                                    type: 'application/pdf'
+                                });
+                                const blobUrl = URL.createObjectURL(blob);
+                                window.open(blobUrl, '_blank');
 
-                            // const link = document.createElement('a');
-                            // link.href = blobUrl;
-                            // link.download = "letter-receipt.pdf";
-                            // link.click();
+                                // const link = document.createElement('a');
+                                // link.href = blobUrl;
+                                // link.download = "letter-receipt.pdf";
+                                // link.click();
 
-                            // URL.revokeObjectURL(blobUrl);
+                                // URL.revokeObjectURL(blobUrl);
+                            } else {
+                                this.toastStore.error(message, 2000);
+                            }
                         })
+                        .finally(() => {
+                            this.pageLoaderStore.hide();
+                        });
+                },
+                closeReceipt() {
+                    this.showReceipt = false;
+                    this.clearReceiptData();
+                },
+                formClear() {
+                    this.form.applicantName = '';
+                    this.form.applicantPhone = '';
+                    this.form.name = '';
+                    this.form.nik = '';
+                    this.form.birthPlace = '';
+                    this.form.dateOfBirth = '';
+                    this.form.gender = '';
+                    this.form.citizenship = '';
+                    this.form.religion = '';
+                    this.form.marriage = '';
+                    this.form.job = '';
+                    this.form.address = '';
+                },
+                clearReceiptData() {
+                    this.receiptData.applicantName = '';
+                    this.receiptData.applicantPhone = '';
+                    this.receiptData.referenceNumber = '';
                 },
                 generateQRCode(code) {
                     const el = document.getElementById('qrcode');
                     if (!el) return;
-
-                    // clear QR lama biar nggak numpuk
                     el.innerHTML = '';
-
                     new QRCode(el, {
                         text: code,
                         width: 200,

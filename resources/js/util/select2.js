@@ -15,6 +15,13 @@ document.addEventListener('alpine:init', () => {
                         this.$el._x_model.set(val);
                     });
 
+                    this.$watch(() => {
+                        return this.$el._x_model.get();
+                    }, (val) => {
+                        this.$el._x_model.set(val);
+                        this.element.val(val).trigger("change");
+                    })
+
                     this.element.on('select2:open', () => {
                         const dropdown = document.querySelector('.select2-container--open .select2-dropdown');
                         const searchDropwdown = document.querySelector('.select2-container--open .select2-search--dropdown');

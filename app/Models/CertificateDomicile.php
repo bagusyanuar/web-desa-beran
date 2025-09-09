@@ -20,4 +20,9 @@ class CertificateDomicile extends Model
         'approved_by_id',
         'approved_at'
     ];
+
+    public function applicant()
+    {
+        return $this->hasOne(CertificateDomicileApplicant::class, 'certificate_domicile_id');
+    }
 }

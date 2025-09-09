@@ -8,4 +8,5 @@ use App\Schemas\Landing\OnlineLetter\Domicile\DomicileSchema;
 interface DomicileServiceInterface
 {
     public function send(DomicileSchema $schema): ServiceResponse;
+    public function createReceipt($referenceNumber): ServiceResponse;
 }

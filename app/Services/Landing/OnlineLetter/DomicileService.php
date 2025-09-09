@@ -3,6 +3,7 @@
 namespace App\Services\Landing\OnlineLetter;
 
 use App\Commons\Libs\Http\ServiceResponse;
+use App\Commons\Libs\QRCode\QRCodeService;
 use App\Interface\Landing\OnlineLetter\DomicileServiceInterface;
 use App\Models\CertificateDomicile;
 use App\Models\CertificateDomicileApplicant;
@@ -10,6 +11,8 @@ use App\Models\CertificateDomicilePerson;
 use App\Schemas\Landing\OnlineLetter\Domicile\DomicileSchema;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Options;
 
 class DomicileService implements DomicileServiceInterface
 {
@@ -56,10 +59,45 @@ class DomicileService implements DomicileServiceInterface
             DB::commit();
             return ServiceResponse::statusCreated("successfully send online letter", [
                 'domicile' => $certificateDomicile,
+                'applicant' => [
+                    'name' => $schema->getApplicantName(),
+                    'phone' => $schema->getApplicantPhone(),
+                ],
                 'url' => url("/surat-online/surat-keterangan-domisili/{$certificateDomicile->reference_number}")
             ]);
         } catch (\Throwable $e) {
             DB::rollBack();
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function createReceipt($referenceNumber): ServiceResponse
+    {
+        try {
+            //code...
+            $certificate = CertificateDomicile::with(['applicant'])
+                ->where('reference_number', '=', $referenceNumber)
+                ->first();
+            if (!$certificate) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            # generate qrcode
+            $url = url("/surat-online/surat-keterangan-domisili/{$referenceNumber}");
+            $qrCode = QRCodeService::generate($url);
+
+            # create pdf
+            $options = new Options();
+            $options->setIsPhpEnabled(true);
+            $options->setIsRemoteEnabled(true);
+            $pdf = Pdf::loadView('pdf.letter-receipt', [
+                'qrcode' => $qrCode,
+                'certificate' => $certificate
+            ])->setPaper('a5', 'landscape');
+            $pdf->getDomPDF()->setOptions($options);
+            $pdfBase64 = base64_encode($pdf->output());
+            return ServiceResponse::statusOK("successfully create receipt", $pdfBase64);
+        } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }

@@ -115,7 +115,7 @@
                 <span class="text-sm" style="line-height: 0;">:</span>
             </td>
             <td>
-                <span class="text-sm" style="line-height: 0;">SKD/20250907154003</span>
+                <span class="text-sm" style="line-height: 0;">{{ $certificate->reference_number }}</span>
             </td>
         </tr>
         <tr style="height: fit-content;">
@@ -126,7 +126,7 @@
                 <span class="text-sm" style="line-height: 0;">:</span>
             </td>
             <td>
-                <span class="text-sm" style="line-height: 0;">Bagus Yanuar</span>
+                <span class="text-sm" style="line-height: 0;">{{ $certificate->applicant->name }}</span>
             </td>
         </tr>
         <tr>
@@ -137,7 +137,7 @@
                 <span class="text-sm" style="line-height: 0;">:</span>
             </td>
             <td>
-                <span class="text-sm" style="line-height: 0;">628817881290</span>
+                <span class="text-sm" style="line-height: 0;">{{ $certificate->applicant->phone }}</span>
             </td>
         </tr>
     </table>
@@ -145,13 +145,14 @@
         <tr>
             <td style="text-align: center;">
                 <div>
-                    <img src="data:image/png;base64, {!! $qrcode !!}" width="150" height="150" style="margin-bottom: 3px;">
+                    <img src="{{ $qrcode }}" width="150" height="150"
+                        style="margin-bottom: 3px;">
                     <span class="text-xs" style="display: block; color: black; font-style: italic">Scan QRCode untuk
                         melakukan
                         monitoring
                         pengajuan surat.</span>
                     <span class="text-xs" style="display: block; color: black; font-style: italic">Kunjungi
-                        {{ url('/surat-keterangan-domisili/SKD/20250907154003') }}</span>
+                        {{ url("/surat-keterangan-domisili/{$certificate->reference_number}") }}</span>
                 </div>
             </td>
         </tr>
