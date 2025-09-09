@@ -439,6 +439,7 @@
                 closeReceipt() {
                     this.showReceipt = false;
                     this.clearReceiptData();
+                    window.location.reload();
                 },
                 formClear() {
                     this.form.applicantName = '';

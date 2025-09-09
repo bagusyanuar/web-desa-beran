@@ -63,7 +63,9 @@ class DomicileService implements DomicileServiceInterface
                     'name' => $schema->getApplicantName(),
                     'phone' => $schema->getApplicantPhone(),
                 ],
-                'url' => url("/surat-online/surat-keterangan-domisili/{$certificateDomicile->reference_number}")
+                'url' => route('online-letter.domicile.code', [
+                    'code' => $certificateDomicile->reference_number
+                ])
             ]);
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -83,7 +85,9 @@ class DomicileService implements DomicileServiceInterface
             }
 
             # generate qrcode
-            $url = url("/surat-online/surat-keterangan-domisili/{$referenceNumber}");
+            $url = route('online-letter.domicile.code', [
+                'code' => $referenceNumber
+            ]);
             $qrCode = QRCodeService::generate($url);
 
             # create pdf
