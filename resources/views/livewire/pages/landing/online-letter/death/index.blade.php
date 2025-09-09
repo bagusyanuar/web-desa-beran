@@ -530,7 +530,8 @@
                         });
                 },
                 download() {
-                    const referenceNumber = this.receiptData.referenceNumber;
+                    // const referenceNumber = this.receiptData.referenceNumber;
+                    const referenceNumber = 'SKM-20250909072010';
                     this.pageLoaderStore.show();
                     this.component.$wire.call('create_receipt', referenceNumber)
                         .then(response => {

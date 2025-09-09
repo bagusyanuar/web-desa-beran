@@ -37,6 +37,13 @@ class Index extends Component
         }
         return AlpineResponse::toJSON(500, "invalid captcha");
     }
+
+    public function create_receipt($referenceNumber)
+    {
+        $response = $this->service->createReceipt($referenceNumber);
+        return AlpineResponse::fromService($response);
+    }
+
     public function render()
     {
         return view('livewire.pages.landing.online-letter.death.index');

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('cause_of_death')->nullable();
             $table->string('decider')->nullable();
             $table->text('post_mortem_notes')->nullable();
-            $table->integer('birth_order')->default(1);
+            $table->integer('birth_order')->default(1)->nullable();
             $table->timestamps();
             $table->foreign('certificate_death_id')->references('id')->on('certificate_deaths')->onDelete('set null');
         });
