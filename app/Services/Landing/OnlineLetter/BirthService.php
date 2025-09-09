@@ -6,6 +6,7 @@ use App\Commons\Libs\Http\ServiceResponse;
 use App\Commons\Libs\QRCode\QRCodeService;
 use App\Interface\Landing\OnlineLetter\BirthServiceInterface;
 use App\Models\CertificateBirth;
+use App\Models\CertificateBirthApplicant;
 use App\Models\CertificateBirthFather;
 use App\Models\CertificateBirthInfant;
 use App\Models\CertificateBirthMother;
@@ -29,7 +30,7 @@ class BirthService implements BirthServiceInterface
 
             $dataBirth = [
                 'date' => Carbon::now(),
-                'reference_number' => 'SKM-' . date('YmdHis'),
+                'reference_number' => 'SKL-' . date('YmdHis'),
                 'status' => 'created',
                 'approved_by_id' => null,
                 'approved_at' => null
@@ -73,6 +74,13 @@ class BirthService implements BirthServiceInterface
             ];
             CertificateBirthFather::create($dataFather);
 
+            $dataApplicant = [
+                'certificate_death_id' => $certificateBirth->id,
+                'name' => $schema->getApplicantName(),
+                'phone' => $schema->getApplicantPhone(),
+            ];
+            CertificateBirthApplicant::create($dataApplicant);
+
             DB::commit();
             return ServiceResponse::statusCreated("successfully send online letter", [
                 'birth' => $certificateBirth,
@@ -94,7 +102,7 @@ class BirthService implements BirthServiceInterface
     {
         try {
             //code...
-            $certificate = CertificateBirth::with(['applicant'])
+            $certificate = CertificateBirth::with(['applicant', 'infant'])
                 ->where('reference_number', '=', $referenceNumber)
                 ->first();
             if (!$certificate) {

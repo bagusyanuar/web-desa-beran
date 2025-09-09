@@ -25,4 +25,9 @@ class CertificateBirth extends Model
     {
         return $this->hasOne(CertificateBirthApplicant::class, 'certificate_birth_id');
     }
+
+    public function infant()
+    {
+        return $this->hasOne(CertificateBirthInfant::class, 'certificate_birth_id');
+    }
 }

@@ -1,4 +1,4 @@
-<section id="online-letter-death" data-component-id="online-letter-death" class="w-full">
+<section id="online-letter-birth" data-component-id="online-letter-birth" class="w-full">
     <div class="w-full h-[20rem] relative">
         <div class="w-full h-full">
             <img src="{{ asset('static/images/service/bg-service.png') }}"
@@ -15,116 +15,178 @@
     <div class="w-full py-10">
         <x-container.landing-container class="">
             <p class="text-center text-accent-500 text-lg font-bold mb-10">
-                FORMULIR SURAT KETERANGAN KEMATIAN PENDUDUK DESA BERAN
+                FORMULIR SURAT KETERANGAN KELAHIRAN PENDUDUK DESA BERAN
             </p>
             <div class="w-5/6 justify-self-center bg-white rounded-xl shadow-xl p-6 border border-neutral-300">
                 <div class="w-full">
-                    <p class="text-md font-bold text-neutral-700 mb-5">A. Data Diri</p>
+                    <p class="text-md font-bold text-neutral-700 mb-5">A. Data Anak</p>
                     <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7">
                         <div class="w-full col-span-2">
-                            <x-label.label for="name">
+                            <x-label.label for="infant-name">
                                 <span>Nama Lengkap</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="name" x-model="$store.SERVICE_DEATH_STORE.form.name" />
-                            <template x-if="'name' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <x-input.text.text id="infant-name" x-model="$store.SERVICE_BIRTH_STORE.form.infantName" />
+                            <template x-if="'infantName' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.name[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.infantName[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <x-label.label for="nik">
-                                <span>NIK (Nomor Induk Kependudukan)</span>
-                                <span class="text-red-500 text-sm italic">*</span>
-                            </x-label.label>
-                            <x-input.text.text id="nik" x-model="$store.SERVICE_DEATH_STORE.form.nik" />
-                            <template x-if="'nik' in $store.SERVICE_DEATH_STORE.formValidator">
-                                <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.nik[0]"></span>
-                                </x-label.validator>
-                            </template>
-                        </div>
-                        <div class="w-full">
-                            <x-label.label for="family-identifier">
-                                <span>No. Kartu Keluarga</span>
-                                <span class="text-red-500 text-sm italic">*</span>
-                            </x-label.label>
-                            <x-input.text.text id="family-identifier"
-                                x-model="$store.SERVICE_DEATH_STORE.form.familyIdentifier" />
-                            <template x-if="'familyIdentifier' in $store.SERVICE_DEATH_STORE.formValidator">
-                                <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.familyIdentifier[0]"></span>
-                                </x-label.validator>
-                            </template>
-                        </div>
-                        <div class="w-full">
-                            <x-label.label for="birth-place">
+                            <x-label.label for="infant-birth-place">
                                 <span>Tempat Lahir</span>
                                 <span class="text-red-500 text-sm italic">* <span class="text-xs">(Nama kota /
                                         kabupaten)</span></span>
                             </x-label.label>
-                            <x-input.text.text id="birth-place" x-model="$store.SERVICE_DEATH_STORE.form.birthPlace" />
-                            <template x-if="'birthPlace' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <x-input.text.text id="infant-birth-place"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.infantBirthPlace" />
+                            <template x-if="'infantBirthPlace' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.birthPlace[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.infantBirthPlace[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <x-label.label for="date-of-birth">
+                            <x-label.label for="infant-date-of-birth">
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.date.datepicker id="date-of-birth" x-bind:store-name="'SERVICE_DEATH_STORE'"
-                                x-model="$store.SERVICE_DEATH_STORE.form.dateOfBirthString" />
-                            <template x-if="'dateOfBirth' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <x-input.date.datepicker id="infant-date-of-birth" x-bind:store-name="'SERVICE_BIRTH_STORE'"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.infantDateOfBirthString" />
+                            <template x-if="'infantDateOfBirth' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.dateOfBirth[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.infantDateOfBirth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <label for="gender" class="text-sm text-neutral-700 block mb-1">
+                            <label for="infant-gender" class="text-sm text-neutral-700 block mb-1">
                                 <span>Jenis Kelamin</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </label>
-                            <x-select.select2 id="gender" x-init="initSelect({ placeholder: 'pilih jenis kelamin' })"
-                                x-model="$store.SERVICE_DEATH_STORE.form.gender">
+                            <x-select.select2 id="infant-gender" x-init="initSelect({ placeholder: 'pilih jenis kelamin' })"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.infantGender">
                                 <option></option>
                                 <option value="male">Laki-Laki</option>
                                 <option value="female">Perempuan</option>
                             </x-select.select2>
-                            <template x-if="'gender' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <template x-if="'infantGender' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.gender[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.infantGender[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <label for="citizenship" class="text-sm text-neutral-700 block mb-1">
+                            <label for="infant-birth-type" class="text-sm text-neutral-700 block mb-1">
+                                <span>Jenis Kelahiran</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </label>
+                            <x-select.select2 id="infant-birth-type" x-init="initSelect({ placeholder: 'pilih jenis kelahiran' })"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.infantBirthType">
+                                <option></option>
+                                <option value="single">Tunggal</option>
+                                <option value="twin">Kembar</option>
+                            </x-select.select2>
+                            <template x-if="'infantBirthType' in $store.SERVICE_BIRTH_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.infantBirthType[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
+                        <div class="w-full col-span-2">
+                            <x-label.label for="infant-birth-order">
+                                <span>Anak Ke</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </x-label.label>
+                            <x-input.text.text type="number" id="infant-birth-order"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.infantBirthOrder" />
+                            <template x-if="'infantBirthOrder' in $store.SERVICE_BIRTH_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.infantBirthOrder[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
+                    </div>
+                    <p class="text-md font-bold text-neutral-700 mb-5 mt-10">B. Data Ibu</p>
+                    <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7">
+                        <div class="w-full">
+                            <x-label.label for="mother-name">
+                                <span>Nama Lengkap</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </x-label.label>
+                            <x-input.text.text id="mother-name" x-model="$store.SERVICE_BIRTH_STORE.form.motherName" />
+                            <template x-if="'motherName' in $store.SERVICE_BIRTH_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.motherName[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
+                        <div class="w-full">
+                            <x-label.label for="mother-nik">
+                                <span>NIK (Nomor Induk Kependudukan)</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </x-label.label>
+                            <x-input.text.text id="mother-nik" x-model="$store.SERVICE_BIRTH_STORE.form.motherNik" />
+                            <template x-if="'motherNik' in $store.SERVICE_BIRTH_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.motherNik[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
+                        <div class="w-full">
+                            <x-label.label for="mother-birth-place">
+                                <span>Tempat Lahir</span>
+                                <span class="text-red-500 text-sm italic">* <span class="text-xs">(Nama kota /
+                                        kabupaten)</span></span>
+                            </x-label.label>
+                            <x-input.text.text id="mother-birth-place"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.motherBirthPlace" />
+                            <template x-if="'motherBirthPlace' in $store.SERVICE_BIRTH_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.motherBirthPlace[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
+                        <div class="w-full">
+                            <x-label.label for="mother-date-of-birth">
+                                <span>Tanggal Lahir</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </x-label.label>
+                            <x-input.date.datepicker id="mother-date-of-birth" x-bind:store-name="'SERVICE_BIRTH_STORE'"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.motherDateOfBirthString" />
+                            <template x-if="'motherDateOfBirth' in $store.SERVICE_BIRTH_STORE.formValidator">
+                                <x-label.validator>
+                                    <span
+                                        x-text="$store.SERVICE_BIRTH_STORE.formValidator.motherDateOfBirth[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
+                        <div class="w-full">
+                            <label for="mother-citizenship" class="text-sm text-neutral-700 block mb-1">
                                 <span>Kewarganegaraan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </label>
-                            <x-select.select2 id="citizenship" x-init="initSelect({ placeholder: 'pilih kewarganegaraan' })"
-                                x-model="$store.SERVICE_DEATH_STORE.form.citizenship">
+                            <x-select.select2 id="mother-citizenship" x-init="initSelect({ placeholder: 'pilih kewarganegaraan' })"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.motherCitizenship">
                                 <option></option>
                                 <option value="indonesia">Indonesia</option>
                                 <option value="foreign">Warga Negara Asing</option>
                             </x-select.select2>
-                            <template x-if="'citizenship' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <template x-if="'motherCitizenship' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.citizenship[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_BIRTH_STORE.formValidator.motherCitizenship[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <label for="religion" class="text-sm text-neutral-700 block mb-1">
+                            <label for="mother-religion" class="text-sm text-neutral-700 block mb-1">
                                 <span>Agama</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </label>
-                            <x-select.select2 id="religion" x-init="initSelect({ placeholder: 'pilih agama' })"
-                                x-model="$store.SERVICE_DEATH_STORE.form.religion">
+                            <x-select.select2 id="mother-religion" x-init="initSelect({ placeholder: 'pilih agama' })"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.motherReligion">
                                 <option></option>
                                 <option value="islam">Islam</option>
                                 <option value="kristen">Kristen</option>
@@ -134,145 +196,148 @@
                                 <option value="konghucu">Konghucu</option>
                                 <option value="other">Lainnya</option>
                             </x-select.select2>
-                            <template x-if="'religion' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <template x-if="'motherReligion' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.religion[0]"></span>
-                                </x-label.validator>
-                            </template>
-                        </div>
-                        <div class="w-full">
-                            <label for="marriage" class="text-sm text-neutral-700 block mb-1">
-                                <span>Status Perkawinan</span>
-                                <span class="text-red-500 text-sm italic">*</span>
-                            </label>
-                            <x-select.select2 id="marriage" x-init="initSelect({ placeholder: 'pilih status perkawinan' })"
-                                x-model="$store.SERVICE_DEATH_STORE.form.marriage">
-                                <option></option>
-                                <option value="married" class="py-1.5">Menikah</option>
-                                <option value="not-married" class="py-1.5">Belum Menikah</option>
-                            </x-select.select2>
-                            <template x-if="'marriage' in $store.SERVICE_DEATH_STORE.formValidator">
-                                <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.marriage[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.motherReligion[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full col-span-2">
-                            <x-label.label for="job">
+                            <x-label.label for="mother-job">
                                 <span>Pekerjaan</span>
                             </x-label.label>
-                            <x-input.text.text id="job" x-model="$store.SERVICE_DEATH_STORE.form.job" />
+                            <x-input.text.text id="mother-job" x-model="$store.SERVICE_BIRTH_STORE.form.motherJob" />
                         </div>
                         <div class="w-full col-span-2">
-                            <x-label.label for="address">
+                            <x-label.label for="mother-address">
                                 <span>Alamat</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.textarea id="address" rows="3"
-                                x-model="$store.SERVICE_DEATH_STORE.form.address" />
-                            <template x-if="'address' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <x-input.text.textarea id="mother-address" rows="3"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.motherAddress" />
+                            <template x-if="'motherAddress' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.address[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.motherAddress[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                     </div>
-                    <p class="text-md font-bold text-neutral-700 mb-5 mt-10">B. Informasi Kematian</p>
+
+                    <p class="text-md font-bold text-neutral-700 mb-5 mt-10">C. Data Ayah</p>
                     <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7">
                         <div class="w-full">
-                            <x-label.label for="district">
-                                <span>Kecamatan</span>
+                            <x-label.label for="father-name">
+                                <span>Nama Lengkap</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="district" x-model="$store.SERVICE_DEATH_STORE.form.district" />
-                            <template x-if="'district' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <x-input.text.text id="father-name" x-model="$store.SERVICE_BIRTH_STORE.form.fatherName" />
+                            <template x-if="'fatherName' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.district[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.fatherName[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <x-label.label for="city">
-                                <span>Kota / Kabupaten</span>
+                            <x-label.label for="father-nik">
+                                <span>NIK (Nomor Induk Kependudukan)</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="city" x-model="$store.SERVICE_DEATH_STORE.form.city" />
-                            <template x-if="'city' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <x-input.text.text id="father-nik" x-model="$store.SERVICE_BIRTH_STORE.form.fatherNik" />
+                            <template x-if="'fatherNik' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.city[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.fatherNik[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <x-label.label for="province">
-                                <span>Provinsi</span>
-                                <span class="text-red-500 text-sm italic">*</span>
+                            <x-label.label for="father-birth-place">
+                                <span>Tempat Lahir</span>
+                                <span class="text-red-500 text-sm italic">* <span class="text-xs">(Nama kota /
+                                        kabupaten)</span></span>
                             </x-label.label>
-                            <x-input.text.text id="province" x-model="$store.SERVICE_DEATH_STORE.form.province" />
-                            <template x-if="'province' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <x-input.text.text id="father-birth-place"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.fatherBirthPlace" />
+                            <template x-if="'fatherBirthPlace' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.province[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.fatherBirthPlace[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <x-label.label for="date">
-                                <span>Waktu Kematian (Tanggal & Jam)</span>
+                            <x-label.label for="father-date-of-birth">
+                                <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <div class="w-full flex items-center gap-1">
-                                <x-input.date.datepicker id="date" x-bind:store-name="'SERVICE_DEATH_STORE'"
-                                    x-model="$store.SERVICE_DEATH_STORE.form.date" />
-                                <x-input.date.timepicker class="!w-1/3"
-                                    x-model="$store.SERVICE_DEATH_STORE.form.time" />
-                            </div>
-                            <template x-if="'datetime' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <x-input.date.datepicker id="father-date-of-birth" x-bind:store-name="'SERVICE_BIRTH_STORE'"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.fatherDateOfBirthString" />
+                            <template x-if="'fatherDateOfBirth' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.datetime[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_BIRTH_STORE.formValidator.fatherDateOfBirth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <x-label.label for="cause-of-death">
-                                <span>Penyebab Kematian</span>
+                            <label for="father-citizenship" class="text-sm text-neutral-700 block mb-1">
+                                <span>Kewarganegaraan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
-                            </x-label.label>
-                            <x-input.text.text id="cause-of-death"
-                                x-model="$store.SERVICE_DEATH_STORE.form.causeOfDeath" />
-                            <template x-if="'causeOfDeath' in $store.SERVICE_DEATH_STORE.formValidator">
+                            </label>
+                            <x-select.select2 id="father-citizenship" x-init="initSelect({ placeholder: 'pilih kewarganegaraan' })"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.fatherCitizenship">
+                                <option></option>
+                                <option value="indonesia">Indonesia</option>
+                                <option value="foreign">Warga Negara Asing</option>
+                            </x-select.select2>
+                            <template x-if="'fatherCitizenship' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.causeOfDeath[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_BIRTH_STORE.formValidator.fatherCitizenship[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full">
-                            <x-label.label for="decider">
-                                <span>Yang Menentukan</span>
+                            <label for="father-religion" class="text-sm text-neutral-700 block mb-1">
+                                <span>Agama</span>
                                 <span class="text-red-500 text-sm italic">*</span>
-                            </x-label.label>
-                            <x-input.text.text id="decider" x-model="$store.SERVICE_DEATH_STORE.form.decider" />
-                            <template x-if="'decider' in $store.SERVICE_DEATH_STORE.formValidator">
+                            </label>
+                            <x-select.select2 id="father-religion" x-init="initSelect({ placeholder: 'pilih agama' })"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.fatherReligion">
+                                <option></option>
+                                <option value="islam">Islam</option>
+                                <option value="kristen">Kristen</option>
+                                <option value="katholik">Katholik</option>
+                                <option value="hindu">Hindu</option>
+                                <option value="budha">Budha</option>
+                                <option value="konghucu">Konghucu</option>
+                                <option value="other">Lainnya</option>
+                            </x-select.select2>
+                            <template x-if="'fatherReligion' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.decider[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.fatherReligion[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full col-span-2">
-                            <x-label.label for="post-mortem-notes">
-                                <span>Keterangan Visum</span>
+                            <x-label.label for="father-job">
+                                <span>Pekerjaan</span>
                             </x-label.label>
-                            <x-input.text.textarea id="post-mortem-notes" rows="3"
-                                x-model="$store.SERVICE_DEATH_STORE.form.postMortemNotes" />
+                            <x-input.text.text id="father-job" x-model="$store.SERVICE_BIRTH_STORE.form.fatherJob" />
                         </div>
                         <div class="w-full col-span-2">
-                            <x-label.label for="birth-order">
-                                <span>Anak Ke</span>
+                            <x-label.label for="father-address">
+                                <span>Alamat</span>
+                                <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text type="number" id="birth-order"
-                                x-model="$store.SERVICE_DEATH_STORE.form.birthOrder" />
+                            <x-input.text.textarea id="father-address" rows="3"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.fatherAddress" />
+                            <template x-if="'fatherAddress' in $store.SERVICE_BIRTH_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.fatherAddress[0]"></span>
+                                </x-label.validator>
+                            </template>
                         </div>
                     </div>
-                    <p class="text-md font-bold text-neutral-700 mb-5 mt-10">C. Informasi Pemohon</p>
+                    <p class="text-md font-bold text-neutral-700 mb-5 mt-10">D. Informasi Pemohon</p>
                     <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7 mb-10">
                         <div class="w-full">
                             <x-label.label for="applicant_name">
@@ -280,10 +345,10 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.text id="applicant_name"
-                                x-model="$store.SERVICE_DEATH_STORE.form.applicantName" />
-                            <template x-if="'applicantName' in $store.SERVICE_DEATH_STORE.formValidator">
+                                x-model="$store.SERVICE_BIRTH_STORE.form.applicantName" />
+                            <template x-if="'applicantName' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.applicantName[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.applicantName[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -293,20 +358,20 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.text id="applicant_name"
-                                x-model="$store.SERVICE_DEATH_STORE.form.applicantPhone" />
-                            <template x-if="'applicantPhone' in $store.SERVICE_DEATH_STORE.formValidator">
+                                x-model="$store.SERVICE_BIRTH_STORE.form.applicantPhone" />
+                            <template x-if="'applicantPhone' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.applicantPhone[0]"></span>
+                                    <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.applicantPhone[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
                         <div class="w-full col-span-2 flex justify-center items-center" wire:ignore>
-                            <x-captcha.recaptcha store="SERVICE_DEATH_STORE" stateData="captchaToken" />
+                            <x-captcha.recaptcha store="SERVICE_BIRTH_STORE" stateData="captchaToken" />
                         </div>
                     </div>
 
                     <button class="w-full rounded-lg text-md text-white py-2.5 bg-brand-500"
-                        x-on:click="$store.SERVICE_DEATH_STORE.send()">
+                        x-on:click="$store.SERVICE_BIRTH_STORE.send()">
                         <span>Kirim</span>
                     </button>
                 </div>
@@ -314,9 +379,9 @@
         </x-container.landing-container>
     </div>
     <div>
-        <div x-cloak x-show="$store.SERVICE_DEATH_STORE.showReceipt"
+        <div x-cloak x-show="$store.SERVICE_BIRTH_STORE.showReceipt"
             class="fixed w-full h-dvh bg-black/50 top-0 left-0 z-50"></div>
-        <div x-cloak x-show="$store.SERVICE_DEATH_STORE.showReceipt"
+        <div x-cloak x-show="$store.SERVICE_BIRTH_STORE.showReceipt"
             x-transition:enter="transition ease-out duration-300 transform"
             x-transition:enter-start="translate-y-[-10rem] opacity-0"
             x-transition:enter-end="-translate-y-1/2 opacity-100"
@@ -325,7 +390,7 @@
             x-transition:leave-end="translate-y-[-10rem] opacity-0"
             class="w-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[51] flex items-center justify-center">
             <div class="bg-white rounded-lg shadow-lg w-[40rem] p-4">
-                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN KEMATIAN BERHASIL DIBUAT
+                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN KELAHIRAN BERHASIL DIBUAT
                 </p>
                 <div class="w-full flex items-center gap-3">
                     <div class="w-56">
@@ -349,7 +414,7 @@
                                 </td>
                                 <td>
                                     <span class="text-sm text-neutral-700"
-                                        x-text="$store.SERVICE_DEATH_STORE.receiptData.referenceNumber"></span>
+                                        x-text="$store.SERVICE_BIRTH_STORE.receiptData.referenceNumber"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -361,7 +426,7 @@
                                 </td>
                                 <td>
                                     <span class="text-sm text-neutral-700"
-                                        x-text="$store.SERVICE_DEATH_STORE.receiptData.applicantName"></span>
+                                        x-text="$store.SERVICE_BIRTH_STORE.receiptData.applicantName"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -373,18 +438,18 @@
                                 </td>
                                 <td>
                                     <span class="text-sm text-neutral-700"
-                                        x-text="$store.SERVICE_DEATH_STORE.receiptData.applicantPhone"></span>
+                                        x-text="$store.SERVICE_BIRTH_STORE.receiptData.applicantPhone"></span>
                                 </td>
                             </tr>
                         </table>
                         <div class="w-full flex items-center gap-1">
-                            <button x-on:click="$store.SERVICE_DEATH_STORE.closeReceipt()"
+                            <button x-on:click="$store.SERVICE_BIRTH_STORE.closeReceipt()"
                                 class="w-full bg-white text-brand-500 py-2.5 rounded-lg hover:bg-neutral-200 transition-all ease-in duration-200">
                                 <span>Tutup</span>
                             </button>
                             <button
                                 class="w-full bg-accent-500 rounded-lg text-white py-2.5 text-sm hover:bg-accent-700 transition-all duration-200 ease-in"
-                                x-on:click="$store.SERVICE_DEATH_STORE.download()">
+                                x-on:click="$store.SERVICE_BIRTH_STORE.download()">
                                 <span>Unduh Bukti</span>
                             </button>
                         </div>
@@ -395,9 +460,9 @@
             </div>
         </div>
     </div>
-    <x-alert.confirmation onAccept="$store.SERVICE_DEATH_STORE.onAccept()">
+    <x-alert.confirmation onAccept="$store.SERVICE_BIRTH_STORE.onAccept()">
         <p class="text-sm text-neutral-700 text-justify">Anda akan mengirim permohonan <span
-                class="font-semibold">Surat Keterangan Kematian</span>. Pastikan data yang anda isi sudah
+                class="font-semibold">Surat Keterangan Kelahiran</span>. Pastikan data yang anda isi sudah
             lengkap dan
             benar, jika sudah klik <span class="font-semibold">"Kirim"</span> jika belum silahkan klik
             <span class="font-semibold">"Batal"</span> dan perbaiki data anda.
@@ -413,7 +478,7 @@
     @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
-            const STORE_NAME = 'SERVICE_DEATH_STORE';
+            const STORE_NAME = 'SERVICE_BIRTH_STORE';
             const STORE_PROPS = {
                 component: null,
                 captchaToken: '',
@@ -421,28 +486,31 @@
                 pageLoaderStore: null,
                 toastStore: null,
                 form: {
-                    name: '',
-                    nik: '',
-                    familyIdentifier: '',
-                    birthPlace: '',
-                    dateOfBirthString: '',
-                    dateOfBirth: '',
-                    gender: '',
-                    citizenship: '',
-                    religion: '',
-                    marriage: '',
-                    job: '',
-                    address: '',
-                    district: '',
-                    city: '',
-                    province: '',
-                    date: '',
-                    time: '',
-                    dateOfDeath: '',
-                    causeOfDeath: '',
-                    decider: '',
-                    postMortemNotes: '',
-                    birthOrder: 1,
+                    infantName: '',
+                    infantBirthPlace: '',
+                    infantDateOfBirth: '',
+                    infantDateOfBirthString: '',
+                    infantGender: '',
+                    infantBirthType: '',
+                    infantBirthOrder: 1,
+                    motherName: '',
+                    motherNik: '',
+                    motherBirthPlace: '',
+                    motherDateOfBirthString: '',
+                    motherDateOfBirth: '',
+                    motherCitizenship: '',
+                    motherReligion: '',
+                    motherJob: '',
+                    motherAddress: '',
+                    fatherName: '',
+                    fatherNik: '',
+                    fatherBirthPlace: '',
+                    fatherDateOfBirthString: '',
+                    fatherDateOfBirth: '',
+                    fatherCitizenship: '',
+                    fatherReligion: '',
+                    fatherJob: '',
+                    fatherAddress: '',
                     applicantName: '',
                     applicantPhone: '',
                 },
@@ -458,7 +526,7 @@
                         component
                     }) => {
                         const componentID = document.querySelector(
-                            '[data-component-id="online-letter-death"]')?.getAttribute(
+                            '[data-component-id="online-letter-birth"]')?.getAttribute(
                             'wire:id');
                         if (component.id === componentID) {
                             this.component = component;
@@ -475,20 +543,27 @@
                     this.alertStore.hide();
                     this.pageLoaderStore.show();
 
-                    const val = new Date(this.form.dateOfBirthString);
-                    const year = val.getFullYear();
-                    const month = String(val.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                    const day = String(val.getDate()).padStart(2, '0');
-                    const formatted = `${year}-${month}-${day}`;
+                    const infantVal = new Date(this.form.infantDateOfBirthString);
+                    const infantYear = infantVal.getFullYear();
+                    const infantMonth = String(infantVal.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                    const infantDay = String(infantVal.getDate()).padStart(2, '0');
+                    const infantFormatted = `${infantYear}-${infantMonth}-${infantDay}`;
 
-                    const valDeath = new Date(this.form.date);
-                    const yearDeath = valDeath.getFullYear();
-                    const monthDeath = String(valDeath.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                    const dayDeath = String(valDeath.getDate()).padStart(2, '0');
-                    const formattedDeath = `${yearDeath}-${monthDeath}-${dayDeath} ${this.form.time}`;
+                    const motherVal = new Date(this.form.motherDateOfBirthString);
+                    const motherYear = motherVal.getFullYear();
+                    const motherMonth = String(motherVal.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                    const motherDay = String(motherVal.getDate()).padStart(2, '0');
+                    const motherFormatted = `${motherYear}-${motherMonth}-${motherDay}`;
 
-                    this.form.dateOfBirth = formatted;
-                    this.form.dateOfDeath = formattedDeath;
+                    const fatherVal = new Date(this.form.motherDateOfBirthString);
+                    const fatherYear = fatherVal.getFullYear();
+                    const fatherMonth = String(fatherVal.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                    const fatherDay = String(fatherVal.getDate()).padStart(2, '0');
+                    const fatherFormatted = `${fatherYear}-${fatherMonth}-${fatherDay}`;
+
+                    this.form.infantDateOfBirth = infantFormatted;
+                    this.form.motherDateOfBirth = motherFormatted;
+                    this.form.fatherDateOfBirth = fatherFormatted;
 
                     this.component.$wire.call('send', this.form, this.captchaToken)
                         .then(response => {
@@ -503,11 +578,11 @@
                                 case 201:
                                     this.formClear();
                                     const code = data['url'];
-                                    const death = data['death'];
+                                    const birth = data['birth'];
                                     const {
                                         name, phone
                                     } = data['applicant']
-                                    const referenceNumber = death['reference_number'];
+                                    const referenceNumber = birth['reference_number'];
                                     this.receiptData.applicantName = name;
                                     this.receiptData.applicantPhone = phone;
                                     this.receiptData.referenceNumber = referenceNumber;
@@ -530,8 +605,7 @@
                         });
                 },
                 download() {
-                    // const referenceNumber = this.receiptData.referenceNumber;
-                    const referenceNumber = 'SKM-20250909072010';
+                    const referenceNumber = this.receiptData.referenceNumber;
                     this.pageLoaderStore.show();
                     this.component.$wire.call('create_receipt', referenceNumber)
                         .then(response => {
