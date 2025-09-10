@@ -5,7 +5,11 @@
     </div>
     <div class="w-full p-3 bg-white border border-neutral-300 shadow-xl rounded-lg">
         <div class="flex items-center justify-between mb-3">
-
+            <div class="flex items-center border border-neutral-300 rounded-md w-64">
+                <i data-lucide="search" class="text-neutral-500 min-h-4 min-w-4 ms-2"></i>
+                <input type="text" placeholder="search..."
+                    class="flex-grow w-full py-2 ps-2 pe-3 rounded-md text-sm text-neutral-700 border-none focus:outline-none focus:ring-0" />
+            </div>
         </div>
         <div class="w-full border border-neutral-300 rounded-lg overflow-x-auto">
             <table class="w-full border-collapse">
