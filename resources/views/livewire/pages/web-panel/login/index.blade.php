@@ -1,5 +1,22 @@
 <div class="flex">
-    <div class="flex-1 h-dvh bg-brand-100"></div>
+    <div class="flex-1 h-dvh relative">
+        <img src="{{ asset('static/images/hero/main-hero.png') }}" class="h-dvh w-full object-cover object-center"
+            alt="main-hero" />
+        <div class="w-full h-dvh absolute flex flex-col justify-center top-0 left-0 bg-black/50 px-16">
+            <img src="{{ asset('static/images/logo-image.png') }}" alt="img-login" class="h-24 w-24" />
+            <span class="font-extrabold text-accent-500 text-[2.25rem] mb-10"><span
+                    class="text-brand-500">Beran</span>Digital.id</span>
+            <h1 class="text-white font-semibold text-[2.25rem] w-2/3 leading-normal mb-7">Portal Data,
+                Layanan Dan Informasi
+                Desa Beran</h1>
+            <h2 class="text-white text-[0.875rem] w-2/3">
+                Platform digital terpadu yang mendukung berbagai layanan pengajuan surat, produk UMKM, aduan
+                masyarakat dan berbagai informasi yang
+                ada di Desa
+                Beran, untuk mewujudkan Desa Beran sebagai desa digital.
+            </h2>
+        </div>
+    </div>
     <div class="px-16 py-8 h-dvh bg-white w-[25rem] flex flex-col">
         <div class="w-full flex items-end gap-1">
             <img src="{{ asset('static/images/logo-image.png') }}" alt="img-login" class="h-12" />

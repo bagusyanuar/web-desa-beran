@@ -30,4 +30,5 @@ Route::group(['prefix' => 'surat-online'], function () {
 Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/', App\Livewire\Pages\WebPanel\Login\Index::class)->name('web-panel.login');
     Route::get('/dashboard', App\Livewire\Pages\WebPanel\Dashboard\Index::class)->name('web-panel.dashboard');
+    Route::get('/surat-keterangan-domisili', App\Livewire\Pages\WebPanel\OnlineLetter\Domicile\Index::class)->name('web-panel.online-letter.domicile');
 });
