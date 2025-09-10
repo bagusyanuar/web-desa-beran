@@ -30,6 +30,7 @@ document.addEventListener('alpine:init', () => {
 
                         this.$watch('page', () => {
                             this.paginate();
+                            this.dispatch()
                         })
                         this.$watch('pageSize', () => {
                             this.paginate();
