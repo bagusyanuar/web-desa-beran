@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Interface\WebPanel\OnlineLetter;
+
+use App\Commons\Libs\Http\ServiceResponse;
+use App\Schemas\WebPanel\OnlineLetter\Domicile\DomicileQuery;
+
+interface DomicileServiceInterface
+{
+    public function findAll(DomicileQuery $queryParams): ServiceResponse;
+}

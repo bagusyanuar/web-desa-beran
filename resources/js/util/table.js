@@ -1,4 +1,45 @@
 document.addEventListener('alpine:init', () => {
+    Alpine.bind('tableBind', () => ({
+        'x-data': () => ({
+            element: null,
+            store: '',
+            stateData: '',
+            stateLoading: '',
+            data: [],
+            loading: true,
+            initTable() {
+                this.$nextTick(() => {
+                    this.element = $(this.$el);
+                    this.store = this.$el.getAttribute('store') || '';
+                    this.stateData = this.$el.getAttribute('state-data') || '';
+                    this.stateLoading = this.$el.getAttribute('state-loading') || '';
+
+                    if (this.store) {
+                        this.$watch(() => {
+                            return Alpine.store(this.store)[this.stateData]
+                        }, (data) => {
+                            if (Array.isArray(data)) {
+                                this.data = data;
+                            }
+                        })
+
+                        if (this.stateLoading) {
+                            this.loading = Alpine.store(this.store)[this.stateLoading];
+                            this.$watch(() => {
+                                return Alpine.store(this.store)[this.stateLoading]
+                            }, (value) => {
+                                this.loading = value;
+                                console.log(value);
+                            })
+                        }
+                    }
+
+                })
+            },
+
+        }),
+        'x-init': 'initTable()'
+    }))
     Alpine.bind('tablePagination', () => ({
         'x-data': () => ({
             element: null,
@@ -32,10 +73,20 @@ document.addEventListener('alpine:init', () => {
                             this.paginate();
                             this.dispatch()
                         })
+
                         this.$watch('pageSize', () => {
                             this.paginate();
                             this.dispatch()
                         })
+
+                        if (this.stateTotalRows) {
+                            this.$watch(() => {
+                                return Alpine.store(this.store)[this.stateTotalRows]
+                            }, (value) => {
+                                this.totalRows = value;
+                            })
+                        }
+
                     }
                 })
             },
