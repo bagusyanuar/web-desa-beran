@@ -55,5 +55,38 @@
                 </tbody>
             </table>
         </div>
+        <x-table.pagination store="SERVICE_DOMICILE_STORE"  dispatcher="findAll" />
     </div>
 </section>
+
+@push('scripts')
+    @vite(['resources/js/util/table.js'])
+    <script>
+        document.addEventListener('alpine:init', () => {
+            const STORE_NAME = 'SERVICE_DOMICILE_STORE';
+            const STORE_PROPS = {
+                component: null,
+                totalRows: 100,
+                page: 1,
+                pageSize: 10,
+                pageSizeOptions: [10, 25, 50],
+                init: function() {
+                    Livewire.hook('component.init', ({
+                        component
+                    }) => {
+                        const componentID = document.querySelector(
+                            '[data-component-id="online-letter-domicile"]')?.getAttribute(
+                            'wire:id');
+                        if (component.id === componentID) {
+                            this.component = component;
+                        }
+                    });
+                },
+                findAll() {
+                    console.log('dispatch');
+                }
+            };
+            Alpine.store(STORE_NAME, STORE_PROPS);
+        });
+    </script>
+@endpush
