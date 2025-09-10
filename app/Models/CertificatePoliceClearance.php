@@ -23,6 +23,6 @@ class CertificatePoliceClearance extends Model
 
     public function applicant()
     {
-        return $this->hasOne(CertificatePoliceClearance::class, 'certificate_police_clearance_id');
+        return $this->hasOne(CertificatePoliceClearanceApplicant::class, 'certificate_police_clearance_id');
     }
 }

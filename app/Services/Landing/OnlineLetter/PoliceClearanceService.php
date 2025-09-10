@@ -73,7 +73,7 @@ class PoliceClearanceService implements PoliceClearanceServiceInterface
                     'name' => $schema->getApplicantName(),
                     'phone' => $schema->getApplicantPhone(),
                 ],
-                'url' => route('online-letter.death.code', [
+                'url' => route('online-letter.police-clearance.code', [
                     'code' => $certificatePoliceClearance->reference_number
                 ])
             ]);
