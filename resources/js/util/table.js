@@ -29,7 +29,6 @@ document.addEventListener('alpine:init', () => {
                                 return Alpine.store(this.store)[this.stateLoading]
                             }, (value) => {
                                 this.loading = value;
-                                console.log(value);
                             })
                         }
                     }
@@ -48,6 +47,7 @@ document.addEventListener('alpine:init', () => {
             statePage: '',
             statePageSize: '',
             statePageSizeOptions: '',
+            stateLoading: '',
             totalRows: 0,
             page: 1,
             pageSize: 10,
@@ -55,6 +55,7 @@ document.addEventListener('alpine:init', () => {
             dispatcher: '',
             totalPages: 0,
             shownPages: [],
+            loading: true,
             initPagination() {
                 this.$nextTick(() => {
                     this.element = $(this.$el);
@@ -64,6 +65,7 @@ document.addEventListener('alpine:init', () => {
                     this.statePageSize = this.$el.getAttribute('state-page-size') || '';
                     this.statePageSizeOptions = this.$el.getAttribute('state-page-size-options') || '';
                     this.dispatcher = this.$el.getAttribute('dispatcher') || '';
+                    this.stateLoading = this.$el.getAttribute('state-loading') || '';
 
                     if (this.store) {
                         this.initValue();
@@ -84,9 +86,18 @@ document.addEventListener('alpine:init', () => {
                                 return Alpine.store(this.store)[this.stateTotalRows]
                             }, (value) => {
                                 this.totalRows = value;
+                                this.paginate();
                             })
                         }
 
+                        if (this.stateLoading) {
+                            this.loading = Alpine.store(this.store)[this.stateLoading];
+                            this.$watch(() => {
+                                return Alpine.store(this.store)[this.stateLoading]
+                            }, (value) => {
+                                this.loading = value;
+                            })
+                        }
                     }
                 })
             },
@@ -135,5 +146,45 @@ document.addEventListener('alpine:init', () => {
             }
         }),
         'x-init': 'initPagination()'
+    }))
+
+    Alpine.bind('tableSearch', () => ({
+        'x-data': () => ({
+            element: null,
+            store: '',
+            stateParam: '',
+            param: '',
+            debounce: 500,
+            initTableSearch() {
+                this.$nextTick(() => {
+                    this.element = $(this.$el);
+                    this.store = this.$el.getAttribute('store') || '';
+                    this.stateParam = this.$el.getAttribute('state-param') || '';
+                    this.debounce = this.$el.getAttribute('debounce') || 1500;
+                    this.dispatcher = this.$el.getAttribute('dispatcher') || '';
+
+                    let timeout = null;
+                    if (this.stateParam) {
+                        this.param = Alpine.store(this.store)[this.stateParam];
+                        this.$watch('param', (value) => {
+                            Alpine.store(this.store)[this.stateParam] = value;
+                            clearTimeout(timeout);
+                            timeout = setTimeout(() => {
+                                this.dispatch();
+                            }, this.debounce);
+                        })
+                    }
+                });
+            },
+            dispatch() {
+                if (this.store && this.dispatcher) {
+                    const store = Alpine.store(this.store)
+                    if (store && typeof store[this.dispatcher] === 'function') {
+                        store[this.dispatcher]();
+                    }
+                }
+            },
+        }),
+        'x-init': 'initTableSearch()'
     }))
 })

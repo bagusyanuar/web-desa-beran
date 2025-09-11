@@ -17,7 +17,8 @@ class DomicileService implements DomicileServiceInterface
             $query = CertificateDomicile::with(['applicant'])
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
-                    return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%");
+                    return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%")
+                        ->orWhereRelation('applicant', 'name', 'LIKE', "%{$queryParams->getParam()}%");
                 })
                 ->orderBy('date', 'ASC');
             $pagination = $query->paginate($queryParams->getPageSize(), '*', 'page', $queryParams->getPage());

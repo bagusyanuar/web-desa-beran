@@ -5,11 +5,14 @@
     </div>
     <div class="w-full p-3 bg-white border border-neutral-300 shadow-xl rounded-lg">
         <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center border border-neutral-300 rounded-md w-64" wire:ignore>
-                <i data-lucide="search" class="text-neutral-500 min-h-4 min-w-4 ms-2"></i>
-                <input type="text" placeholder="search..."
-                    class="flex-grow w-full py-2 ps-2 pe-3 rounded-md text-sm text-neutral-700 border-none focus:outline-none focus:ring-0" />
-            </div>
+            <x-table.search store="SERVICE_DOMICILE_STORE" dispatcher="findAll" />
+            <x-table.filter>
+                <div class="w-56 flex flex-col">
+                   <p class="text-xs font-semibold text-neutral-700">Filter :</p>
+                   <div class="w-full border-b border-neutral-300 my-3"></div>
+                   <p class="text-xs font-semibold text-neutral-700">Status :</p>
+                </div>
+            </x-table.filter>
         </div>
         <x-table.table store="SERVICE_DOMICILE_STORE">
             <x-table.thead>
@@ -56,7 +59,8 @@
                                     setTimeout(() => { lucide.createIcons(); }, 0);
                                 }
                             }" x-init="initIcons()" x-effect="initIcons()"
-                                class="w-6 h-6 rounded-md flex items-center justify-center cursor-pointer hover:bg-neutral-100">
+                                class="w-6 h-6 rounded-md flex items-center justify-center cursor-pointer hover:bg-neutral-100"
+                                x-on:click="$store.SERVICE_DOMICILE_STORE.redirectToDetail(v.id)">
                                 <i data-lucide="ellipsis-vertical" class="text-neutral-500 h-4 w-4"></i>
                             </div>
                         </x-table.td>
@@ -65,12 +69,7 @@
             </x-table.tbody>
         </x-table.table>
         <x-table.pagination store="SERVICE_DOMICILE_STORE" dispatcher="findAll" />
-
-
     </div>
-    <button x-on:click="$store.SERVICE_DOMICILE_STORE.append()">
-        Push
-    </button>
 </section>
 
 @push('scripts')
@@ -85,7 +84,8 @@
                 pageSize: 10,
                 pageSizeOptions: [10, 25, 50],
                 data: [],
-                loading: true,
+                loading: false,
+                param: '',
                 init: function() {
                     Livewire.hook('component.init', ({
                         component
@@ -101,7 +101,7 @@
                 },
                 findAll() {
                     const query = {
-                        param: '',
+                        param: this.param,
                         page: this.page,
                         pageSize: this.pageSize
                     };
@@ -126,10 +126,8 @@
                             this.loading = false;
                         })
                 },
-                append() {
-                    this.data.push({
-                        date: '1/2/2022'
-                    })
+                redirectToDetail(id) {
+                    window.location.href = '/web-panel/surat-keterangan-domisili/' + id;
                 }
             };
             Alpine.store(STORE_NAME, STORE_PROPS);

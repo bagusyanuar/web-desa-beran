@@ -21,8 +21,8 @@ class Index extends Component
 
     public function findAll($query)
     {
-        $schema = (new DomicileQuery())->hydrateSchemaBody($query);
-        $response = $this->service->findAll($schema);
+        $queryParams = (new DomicileQuery())->hydrateSchemaQuery($query);
+        $response = $this->service->findAll($queryParams);
         return AlpineResponse::fromService($response);
     }
     public function render()

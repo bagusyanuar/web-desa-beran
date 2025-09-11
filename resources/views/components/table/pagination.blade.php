@@ -4,6 +4,7 @@
     'statePage' => 'page',
     'statePageSize' => 'pageSize',
     'statePageSizeOptions' => 'pageSizeOptions',
+    'stateLoading' => 'loading',
     'dispatcher' => 'dispatch',
 ])
 
@@ -16,13 +17,28 @@
 <div class="w-full flex items-center justify-between mt-3" x-bind:store="'{{ $store }}'"
     x-bind:state-total-rows="'{{ $stateTotalRows }}'" x-bind:state-page="'{{ $statePage }}'"
     x-bind:state-page-size="'{{ $statePageSize }}'" x-bind:state-page-size-options="'{{ $statePageSizeOptions }}'"
-    x-bind:dispatcher="'{{ $dispatcher }}'" x-bind="tablePagination">
-    <div class="flex items-center">
+    x-bind:dispatcher="'{{ $dispatcher }}'" x-bind:state-loading="'{{ $stateLoading }}'" x-bind="tablePagination">
+    <div x-show="loading" class="flex items-center gap-1">
+        <x-loader.shimmer class="!w-24" />
+        <x-loader.shimmer class="!w-8" />
+    </div>
+    <div x-cloak x-show="!loading" class="flex items-center">
         <span class="text-xs text-neutral-700">Total Rows :</span>
         <span class="text-xs text-neutral-700 ms-1" x-text="totalRows"></span>
     </div>
     <div class="flex items-center gap-3">
-        <div class="flex items-center gap-1">
+        <div x-show="loading" class="flex items-center gap-1">
+            <x-loader.shimmer />
+            <x-loader.shimmer class="!w-8 !h-6" />
+        </div>
+
+        <div x-show="loading" class="flex items-center gap-1">
+            <template x-for="i in 3">
+                <x-loader.shimmer class="!h-4 !w-4" />
+            </template>
+        </div>
+
+        <div x-cloak x-show="!loading" class="flex items-center gap-1">
             <span class="text-xs text-neutral-700">Rows Per Page :</span>
             <select
                 class="border border-neutral-500 w-fit appearance-none rounded-[4px] text-xs text-neutral-700 pl-2 !pr-[1.5rem] py-1 outline-none focus:outline-none focus:ring-0 focus:border-neutral-500 cursor-pointer"
@@ -36,7 +52,7 @@
                 </template>
             </select>
         </div>
-        <div class="flex items-center gap-1" wire:ignore>
+        <div x-cloak x-show="!loading" class="flex items-center gap-1" wire:ignore>
             <button x-bind:disabled="page === 1 || totalPages <= 0"
                 class="h-6 w-6 bg-white rounded-md flex items-center justify-center text-neutral-700 text-xs hover:bg-brand-500 hover:text-white transition-all duration-200 ease-in-out disabled:text-neutral-300 disabled:cursor-default disabled:hover:bg-transparent"
                 x-on:click="onPreviouspage()">
