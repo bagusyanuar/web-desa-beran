@@ -20,6 +20,14 @@ class DomicileService implements DomicileServiceInterface
                     return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%")
                         ->orWhereRelation('applicant', 'name', 'LIKE', "%{$queryParams->getParam()}%");
                 })
+                ->when($queryParams->getStatus(), function ($q) use ($queryParams) {
+                    /** @var Builder $q */
+                    return $q->whereIn('status', $queryParams->getStatus());
+                })
+                ->when(($queryParams->getStartDate() && $queryParams->getEndDate()), function ($q) use ($queryParams) {
+                    /** @var Builder $q */
+                    return $q->whereBetween('date', [$queryParams->getStartDate(), $queryParams->getEndDate()]);
+                })
                 ->orderBy('date', 'ASC');
             $pagination = $query->paginate($queryParams->getPageSize(), '*', 'page', $queryParams->getPage());
             $data = $pagination->items();
