@@ -12,7 +12,11 @@
     </div>
     <div class="w-full flex items-start gap-4">
         <div class="flex-1 p-6 bg-white border border-neutral-300 shadow-xl rounded-lg">
-            <p class="text-sm font-bold text-neutral-700 mb-3">A. Data Diri</p>
+            <div class="flex items-center justify-between mb-3">
+                <p class="text-sm font-bold text-neutral-700 mb-3">A. Data Diri</p>
+                <x-chip.chip-status-detail status="{{ $data->status }}" />
+            </div>
+
             <div class="w-full overflow-hidden rounded-lg border border-neutral-300">
                 <table class="border-collapse w-full text-sm font-semibold">
                     <tr class="even:bg-white odd:bg-brand-50">
@@ -70,7 +74,7 @@
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>Indonesia</span>
+                            <span>{{ App\Commons\Libs\Helper\Converter::citizenshipToDisplay($data->person->citizenship) }}</span>
                         </td>
                     </tr>
                     <tr class="even:bg-white odd:bg-brand-50">
@@ -81,7 +85,7 @@
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>Kristen</span>
+                            <span>{{ ucfirst($data->person->religion) }}</span>
                         </td>
                     </tr>
                     <tr class="even:bg-white odd:bg-brand-50">
@@ -92,7 +96,7 @@
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>Belum Menikah</span>
+                            <span>{{ App\Commons\Libs\Helper\Converter::marriageToDisplay($data->person->marriage) }}</span>
                         </td>
                     </tr>
                     <tr class="even:bg-white odd:bg-brand-50">
@@ -103,7 +107,7 @@
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>Freelancer</span>
+                            <span>{{ $data->person->job ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr class="even:bg-white odd:bg-brand-50">
@@ -114,7 +118,7 @@
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>Jl. surya no. 8, jagalan, surakarta</span>
+                            <span>{{ $data->person->address }}</span>
                         </td>
                     </tr>
                 </table>
@@ -132,40 +136,73 @@
             </div>
             <div class="w-full border-b border-neutral-300 my-3">
             </div>
-            <p class="text-sm font-bold text-neutral-700 mb-3">Konfirmasi</p>
-            <div class="w-full mb-3" wire:ignore>
-                <x-select.select2 id="gender" x-init="initSelect({ placeholder: 'pilih status konfirmasi' })"
-                    x-model="$store.SERVICE_DOMICILE_DETAIL_STORE.form.status">
-                    <option></option>
-                    <option value="accept">Terima</option>
-                    <option value="denied">Tolak</option>
-                </x-select.select2>
-            </div>
-            <div x-cloak x-show="$store.SERVICE_DOMICILE_DETAIL_STORE.form.status === 'denied'" class="w-full"
-                wire:ignore>
-                <x-label.label for="address">
-                    <span>Alasan Penolakan</span>
-                    <span class="text-red-500 text-sm italic">*</span>
-                </x-label.label>
-                <x-input.text.textarea id="address" rows="3"
-                    x-model="$store.SERVICE_DOMICILE_STORE.form.reason" />
-                <template x-if="'reason' in $store.SERVICE_DOMICILE_DETAIL_STORE.formValidator">
-                    <x-label.validator>
-                        <span x-text="$store.v.formValidator.reason[0]"></span>
-                    </x-label.validator>
-                </template>
-            </div>
-            <div class="w-full border-b border-neutral-300 my-3">
-            </div>
-            <button
-                class="w-full flex items-center justify-center gap-1 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
-                wire:ignore>
-                <i data-lucide="check" class="h-4 w-4"></i>
-                <span>Konfirmasi</span>
-            </button>
+            @if ($data->status === App\Commons\Enum\CertificateStatus::Created->value)
+                <p class="text-sm font-bold text-neutral-700 mb-3">Konfirmasi</p>
+                <div class="w-full mb-3" wire:ignore>
+                    <x-select.select2 id="status" x-init="initSelect({ placeholder: 'pilih status konfirmasi' })"
+                        x-model="$store.SERVICE_DOMICILE_DETAIL_STORE.form.status">
+                        <option></option>
+                        <option value="accept">Terima</option>
+                        <option value="denied">Tolak</option>
+                    </x-select.select2>
+                    <template x-if="'status' in $store.SERVICE_DOMICILE_DETAIL_STORE.formValidator">
+                        <x-label.validator>
+                            <span x-text="$store.SERVICE_DOMICILE_DETAIL_STORE.formValidator.status[0]"></span>
+                        </x-label.validator>
+                    </template>
+                </div>
+                <div x-cloak x-show="$store.SERVICE_DOMICILE_DETAIL_STORE.form.status === 'denied'" class="w-full"
+                    wire:ignore>
+                    <x-label.label for="address">
+                        <span>Alasan Penolakan</span>
+                        <span class="text-red-500 text-sm italic">*</span>
+                    </x-label.label>
+                    <x-input.text.textarea id="address" rows="3" class="!text-sm"
+                        x-model="$store.SERVICE_DOMICILE_DETAIL_STORE.form.reason" />
+                    <template x-if="'reason' in $store.SERVICE_DOMICILE_DETAIL_STORE.formValidator">
+                        <x-label.validator>
+                            <span x-text="$store.SERVICE_DOMICILE_DETAIL_STORE.formValidator.reason[0]"></span>
+                        </x-label.validator>
+                    </template>
+                </div>
+                <div class="w-full border-b border-neutral-300 my-3">
+                </div>
+                <button x-on:click="$store.SERVICE_DOMICILE_DETAIL_STORE.confirm()"
+                    class="w-full flex items-center justify-center gap-1 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
+                    wire:ignore>
+                    <i data-lucide="check" class="h-4 w-4"></i>
+                    <span>Konfirmasi</span>
+                </button>
+            @endif
+
+            @if ($data->status === App\Commons\Enum\CertificateStatus::Failed->value)
+                <p class="text-sm font-bold text-neutral-700 mb-3">Alasan Penolakan :</p>
+                <p class="text-sm text-neutral-700">{{ $data->failed_description }}</p>
+            @endif
+
+            @if ($data->status === App\Commons\Enum\CertificateStatus::Failed->value)
+                <div class="w-full border-b border-neutral-300 my-3">
+                </div>
+                <a href="{{ $this->chatTextLink }}" target="_blank"
+                    class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
+                    wire:ignore>
+                    <i data-lucide="phone" class="h-4 w-4"></i>
+                    <span>Hubungi Pemohon</span>
+                </a>
+            @endif
+
         </div>
     </div>
-
+    <x-alert.confirmation onAccept="$store.SERVICE_DOMICILE_DETAIL_STORE.onConfirm()" acceptText="Konfrimasi">
+        <p class="text-sm text-neutral-700 text-justify">Anda akan mengkonfirmasi <span class="font-semibold">Surat
+                Keterangan Domisili</span>. Pastikan data yang anda isi sudah
+            lengkap dan
+            benar, jika sudah klik <span class="font-semibold">"Konfirmasi"</span> jika belum silahkan klik
+            <span class="font-semibold">"Batal"</span> dan perbaiki data anda.
+        </p>
+    </x-alert.confirmation>
+    <x-loader.page-loader />
+    <x-alert.toast />
 </section>
 @push('scripts')
     @vite(['resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
@@ -174,10 +211,14 @@
             const STORE_NAME = 'SERVICE_DOMICILE_DETAIL_STORE';
             const STORE_PROPS = {
                 component: null,
+                alertStore: null,
+                pageLoaderStore: null,
+                toastStore: null,
                 form: {
                     status: '',
                     reason: ''
                 },
+                formValidator: {},
                 init: function() {
                     Livewire.hook('component.init', ({
                         component
@@ -188,9 +229,47 @@
                                 'wire:id');
                         if (component.id === componentID) {
                             this.component = component;
+                            this.alertStore = Alpine.store('alertStore');
+                            this.pageLoaderStore = Alpine.store('pageLoaderStore');
+                            this.toastStore = Alpine.store('toastStore');
                         }
                     });
                 },
+                confirm() {
+                    this.alertStore.show();
+                },
+                onConfirm() {
+                    this.alertStore.hide();
+                    this.pageLoaderStore.show();
+                    this.component.$wire.call('confirm', this.form)
+                        .then(response => {
+                            const {
+                                status,
+                                message,
+                                data
+                            } = response;
+                            switch (status) {
+                                case 200:
+                                    this.toastStore.success("Berhasil melakukan konfirmasi", 2000,
+                                        function() {
+                                            window.location.reload();
+                                        });
+                                    break;
+                                case 422:
+                                    this.formValidator = data;
+                                    this.toastStore.error('Harap mengisi data dengan lengkap dan benar',
+                                        2000);
+                                    break;
+                                case 500:
+                                    this.toastStore.error(message, 2000);
+                                default:
+                                    break;
+                            }
+                        })
+                        .finally(() => {
+                            this.pageLoaderStore.hide();
+                        });
+                }
             };
             Alpine.store(STORE_NAME, STORE_PROPS);
         });

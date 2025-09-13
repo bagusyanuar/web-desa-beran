@@ -14,12 +14,14 @@ document.addEventListener('alpine:init', () => {
         message: '',
         duration: 1500,
         type: 'success',
-        success(message = '', duration = 1500) {
+        success(message = '', duration = 1500, callback = function () { }) {
+            this.type = 'success';
             this.duration = duration;
             this.message = message;
             this.showToast = true;
             setTimeout(() => {
                 this.showToast = false;
+                callback();
             }, this.duration);
         },
         error(message = '', duration = 1500) {

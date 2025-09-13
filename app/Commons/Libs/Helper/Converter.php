@@ -12,4 +12,22 @@ class Converter
             default => '-'
         };
     }
+
+    public static function citizenshipToDisplay($citizenship): string
+    {
+        return match ($citizenship) {
+            'indonesia' => 'Indonesia',
+            'foreign' => 'Warga Negara Asing',
+            default => '-'
+        };
+    }
+
+    public static function marriageToDisplay($marriage): string
+    {
+        return match ($marriage) {
+            'married' => 'Menikah',
+            'not-married' => 'Belum Menikah',
+            default => '-'
+        };
+    }
 }

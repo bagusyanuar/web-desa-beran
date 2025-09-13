@@ -1,5 +1,7 @@
 @props([
     'onAccept' => '',
+    'acceptText' => 'Kirim',
+    'cancelText' => 'Batal',
 ])
 
 <div>
@@ -24,10 +26,10 @@
             <div class="flex items-center justify-end gap-1">
                 <button x-on:click="$store.alertStore.hide()"
                     class="text-neutral-700 bg-white px-5 py-1.5 rounded hover:bg-neutral-200 transition-all ease-in duration-200">
-                    <span>Batal</span>
+                    <span>{{ $cancelText }}</span>
                 </button>
                 <button x-on:click="{{ $onAccept }}" class="text-sm text-white bg-accent-500 px-5 py-1.5 rounded">
-                    <span>Kirim</span>
+                    <span>{{ $acceptText }}</span>
                 </button>
             </div>
         </div>

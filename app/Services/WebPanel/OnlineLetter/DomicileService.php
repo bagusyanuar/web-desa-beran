@@ -2,11 +2,15 @@
 
 namespace App\Services\WebPanel\OnlineLetter;
 
+use App\Commons\Enum\CertificateConfirmationStatus;
+use App\Commons\Enum\CertificateStatus;
 use App\Commons\Libs\Http\MetaPagination;
 use App\Commons\Libs\Http\ServiceResponse;
 use App\Interface\WebPanel\OnlineLetter\DomicileServiceInterface;
 use App\Models\CertificateDomicile;
+use App\Schemas\WebPanel\OnlineLetter\Domicile\DomicileConfirmationSchema;
 use App\Schemas\WebPanel\OnlineLetter\Domicile\DomicileQuery;
+use Carbon\Carbon;
 
 class DomicileService implements DomicileServiceInterface
 {
@@ -49,6 +53,36 @@ class DomicileService implements DomicileServiceInterface
             }
 
             return ServiceResponse::statusOK("successfully get certificate domicile", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function confirm($id, DomicileConfirmationSchema $schema): ServiceResponse
+    {
+        try {
+            $userId = null;
+            $approvedAt = Carbon::now();
+
+            $validator = $schema->validate();
+            if ($validator->fails()) {
+                return ServiceResponse::unprocessableEntity($validator->errors()->toArray());
+            }
+            $schema->hydrateBody();
+            $data = CertificateDomicile::with(['applicant'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            $data->update([
+                'status' => $schema->getStatus() === CertificateConfirmationStatus::Accept->value ? CertificateStatus::Pending->value : CertificateStatus::Failed->value,
+                'failed_description' => $schema->getReason(),
+                'approved_by_id' => $userId,
+                'approved_at' => $approvedAt
+            ]);
+            return ServiceResponse::statusOK("successfully confirm certificate");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

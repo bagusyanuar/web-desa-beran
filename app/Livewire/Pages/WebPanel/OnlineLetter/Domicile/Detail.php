@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Pages\WebPanel\OnlineLetter\Domicile;
 
+use App\Commons\Libs\Http\AlpineResponse;
+use App\Schemas\WebPanel\OnlineLetter\Domicile\DomicileConfirmationSchema;
 use App\Services\WebPanel\OnlineLetter\DomicileService;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
@@ -10,6 +12,8 @@ use Livewire\Attributes\Layout;
 class Detail extends Component
 {
     public $data;
+    public $id;
+    public $chatTextLink = '#';
 
     /** @var DomicileService $service */
     private $service;
@@ -21,11 +25,43 @@ class Detail extends Component
 
     public function mount($id)
     {
+        $this->id = $id;
         $response = $this->service->findByID($id);
         if ($response->getStatus() === 404) {
             abort(404, 'Data Permohonan Tidak DiTemukan');
         }
         $this->data = $response->getData();
+        $this->generateChatTextLink();
+    }
+
+    public function confirm($body)
+    {
+        $schema = (new DomicileConfirmationSchema())->hydrateSchemaBody($body);
+        $response = $this->service->confirm($this->id, $schema);
+        return AlpineResponse::fromService($response);
+    }
+
+    private function generateChatTextLink()
+    {
+        $phone = $this->data->applicant->phone;
+        $applicantName = $this->data->applicant->name;
+        $name = $this->data->person->name;
+
+        $header = "Pemberitahuan Pengajuan Surat Keterangan Domisili Desa Beran\n\n";
+        $subject = "Memberitahukan kepada {$applicantName} perihal pengajuan surat atas nama {$name}, dinyatakan :\n";
+        $status = match ($this->data->status) {
+            'pending' => "DITERIMA\n",
+            'failed' => "TIDAK DITERIMA\n"
+        };
+
+        $body = match ($this->data->status) {
+            'pending' => "Mengetahui hal tersebut dimohon surat pengajuan segera diambil di kantor DESA BERAN\n",
+            'failed' => "di karenakan :\n{$this->data->failed_description}\n\n",
+        };
+
+        $footer = "Hormat Kami\n\nAdmin DESA BERAN";
+        $message = urlencode($header . $subject . $status . $body . $footer);
+        $this->chatTextLink = "https://wa.me/{$phone}?text={$message}";
     }
 
     public function render()
