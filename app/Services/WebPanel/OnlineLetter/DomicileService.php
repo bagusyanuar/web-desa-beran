@@ -37,4 +37,20 @@ class DomicileService implements DomicileServiceInterface
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }
+
+    public function findByID($id): ServiceResponse
+    {
+        try {
+            $data = CertificateDomicile::with(['applicant'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            return ServiceResponse::statusOK("successfully get certificate domicile", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
 }

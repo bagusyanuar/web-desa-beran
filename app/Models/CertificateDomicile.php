@@ -25,4 +25,9 @@ class CertificateDomicile extends Model
     {
         return $this->hasOne(CertificateDomicileApplicant::class, 'certificate_domicile_id');
     }
+
+    public function person()
+    {
+        return $this->hasOne(CertificateDomicilePerson::class, 'certificate_domicile_id');
+    }
 }

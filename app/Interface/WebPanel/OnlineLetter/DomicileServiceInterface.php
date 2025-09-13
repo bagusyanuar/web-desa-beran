@@ -8,4 +8,5 @@ use App\Schemas\WebPanel\OnlineLetter\Domicile\DomicileQuery;
 interface DomicileServiceInterface
 {
     public function findAll(DomicileQuery $queryParams): ServiceResponse;
+    public function findByID($id): ServiceResponse;
 }
