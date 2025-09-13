@@ -178,17 +178,29 @@
             @if ($data->status === App\Commons\Enum\CertificateStatus::Failed->value)
                 <p class="text-sm font-bold text-neutral-700 mb-3">Alasan Penolakan :</p>
                 <p class="text-sm text-neutral-700">{{ $data->failed_description }}</p>
-            @endif
-
-            @if ($data->status === App\Commons\Enum\CertificateStatus::Failed->value)
                 <div class="w-full border-b border-neutral-300 my-3">
                 </div>
-                <a href="{{ $this->chatTextLink }}" target="_blank"
-                    class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
-                    wire:ignore>
-                    <i data-lucide="phone" class="h-4 w-4"></i>
-                    <span>Hubungi Pemohon</span>
-                </a>
+            @endif
+
+            @if (
+                $data->status === App\Commons\Enum\CertificateStatus::Failed->value ||
+                    $data->status === App\Commons\Enum\CertificateStatus::Pending->value)
+                <div class="w-full flex flex-col gap-2">
+                    <a href="{{ $this->chatTextLink }}" target="_blank"
+                        class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
+                        wire:ignore>
+                        <i data-lucide="phone" class="h-4 w-4"></i>
+                        <span>Hubungi Pemohon</span>
+                    </a>
+                    @if ($data->status === App\Commons\Enum\CertificateStatus::Pending->value)
+                        <button
+                            class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-accent-500 bg-neutral-50 cursor-pointer hover:bg-neutral-100 transition-all duration-200 ease-in-out"
+                            wire:ignore>
+                            <i data-lucide="printer" class="h-4 w-4"></i>
+                            <span>Cetak Surat</span>
+                        </button>
+                    @endif
+                </div>
             @endif
 
         </div>

@@ -51,12 +51,14 @@ class Detail extends Component
         $subject = "Memberitahukan kepada {$applicantName} perihal pengajuan surat atas nama {$name}, dinyatakan :\n";
         $status = match ($this->data->status) {
             'pending' => "DITERIMA\n",
-            'failed' => "TIDAK DITERIMA\n"
+            'failed' => "TIDAK DITERIMA\n",
+            default => ''
         };
 
         $body = match ($this->data->status) {
             'pending' => "Mengetahui hal tersebut dimohon surat pengajuan segera diambil di kantor DESA BERAN\n",
             'failed' => "di karenakan :\n{$this->data->failed_description}\n\n",
+            default => ''
         };
 
         $footer = "Hormat Kami\n\nAdmin DESA BERAN";
