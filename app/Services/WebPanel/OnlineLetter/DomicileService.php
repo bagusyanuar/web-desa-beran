@@ -10,7 +10,9 @@ use App\Interface\WebPanel\OnlineLetter\DomicileServiceInterface;
 use App\Models\CertificateDomicile;
 use App\Schemas\WebPanel\OnlineLetter\Domicile\DomicileConfirmationSchema;
 use App\Schemas\WebPanel\OnlineLetter\Domicile\DomicileQuery;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Dompdf\Options;
 
 class DomicileService implements DomicileServiceInterface
 {
@@ -83,6 +85,33 @@ class DomicileService implements DomicileServiceInterface
                 'approved_at' => $approvedAt
             ]);
             return ServiceResponse::statusOK("successfully confirm certificate");
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function createReceipt($id): ServiceResponse
+    {
+        try {
+            //code...
+            $certificate = CertificateDomicile::with(['applicant', 'person'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$certificate) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+
+            # create pdf
+            $options = new Options();
+            $options->setIsPhpEnabled(true);
+            $options->setIsRemoteEnabled(true);
+            $pdf = Pdf::loadView('pdf.online-letter.domicile', [
+                'certificate' => $certificate
+            ])->setPaper('a4', 'potrait');
+            $pdf->getDomPDF()->setOptions($options);
+            $pdfBase64 = base64_encode($pdf->output());
+            return ServiceResponse::statusOK("successfully create online letter", $pdfBase64);
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

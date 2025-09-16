@@ -1,0 +1,173 @@
+@extends('pdf.online-letter.index')
+
+@section('content')
+    <p class="text-lg font-bold"
+        style="line-height: 0.5; margin-bottom: 0; margin-top: 25px; text-align: center; text-decoration: underline">SURAT
+        KETERANGAN DOMISILI</p>
+    <p class="text-md font-bold" style="line-height: 0.3; margin-bottom: 30px; text-align: center;">Nomor : 477 / / 404.601.09
+        / 2025</p>
+    <table class="w-full border-collapse">
+        <tr>
+            <td style="width: 0;">
+            </td>
+            <td>
+                <!-- online letter body -->
+                <div class="w-full">
+                    <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 30px;">
+                        Yang bertanda
+                        tangan di bawah ini kami Kepala Desa Beran
+                        Kecamatan Ngawi Kabupaten Ngawi menerangkan dengan sebenarnya bahwa :
+                    </p>
+                    <table class="w-full border-collapse" style="margin-bottom: 30px;">
+                        <tr>
+                            <td style="width: 50px;">
+                            </td>
+                            <td>
+                                <div class="w-full">
+                                    <table class="w-full border-collapse text-md">
+                                        <tr>
+                                            <td style="width: 30%">
+                                                <p style="line-height: 1.2; margin-bottom: 0;">Nama</p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center;">
+                                                <p style="line-height: 1.2; margin-bottom: 0;">:</p>
+                                            </td>
+                                            <td>
+                                                <p style="text-transform: uppercase; line-height: 1.2; margin-bottom: 0; ">
+                                                    {{ $certificate->person->name }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Tempat,
+                                                    Tanggal Lahir</p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
+                                            </td>
+                                            <td>
+                                                @php
+                                                    \Carbon\Carbon::setLocale('id');
+                                                @endphp
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0; ">
+                                                    {{ $certificate->person->birth_place . ', ' . \Carbon\Carbon::parse($certificate->person->date_of_birth)->translatedFormat('d F Y') }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">NIK</p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
+                                            </td>
+                                            <td>
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">
+                                                    {{ $certificate->person->identifier_number }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Jenis Kelamin
+                                                </p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
+                                            </td>
+                                            <td>
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">
+                                                    {{ App\Commons\Libs\Helper\Converter::genderToDisplay($certificate->person->gender) }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Agama</p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
+                                            </td>
+                                            <td>
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">
+                                                    {{ ucfirst($certificate->person->religion) }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Warga Negara
+                                                </p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
+                                            </td>
+                                            <td>
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">
+                                                    {{ App\Commons\Libs\Helper\Converter::citizenshipToDisplay($certificate->person->citizenship) }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Status
+                                                    Perkawinan</p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
+                                            </td>
+                                            <td>
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">
+                                                    {{ App\Commons\Libs\Helper\Converter::marriageToDisplay($certificate->person->marriage) }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Pekerjaan</p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
+                                            </td>
+                                            <td>
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">
+                                                    {{ $certificate->person->job ?? '-' }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%; vertical-align: top;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Alamat</p>
+                                            </td>
+                                            <td style="width: 10px; text-align: center; vertical-align: top;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
+                                            </td>
+                                            <td style="vertical-align: top;">
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">
+                                                    {{ $certificate->person->address ?? '-' }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td style="width: 50px;">
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 30px;">
+                        Menerangkan
+                        dengan sesungguhnya bahwa yang tersebut di atas benar - benar masih berdomisili di
+                        {{ $certificate->person->address }}. Surat keterangan ini diberikan
+                        guna persyaratan melamar pekerjaan.
+                    </p>
+                    <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 30px;">
+                        Demikian surat keterangan ini dibuat dengan sebenarnya dan dapat dipergunakan sebagaimana mestinya.
+                    </p>
+                </div>
+            </td>
+            <td style="width: 0;">
+            </td>
+        </tr>
+    </table>
+@endsection

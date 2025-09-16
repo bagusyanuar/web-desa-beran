@@ -66,6 +66,12 @@ class Detail extends Component
         $this->chatTextLink = "https://wa.me/{$phone}?text={$message}";
     }
 
+    public function create_receipt($id)
+    {
+        $response = $this->service->createReceipt($id);
+        return AlpineResponse::fromService($response);
+    }
+
     public function render()
     {
         return view('livewire.pages.web-panel.online-letter.domicile.detail');

@@ -11,4 +11,5 @@ interface DomicileServiceInterface
     public function findAll(DomicileQuery $queryParams): ServiceResponse;
     public function findByID($id): ServiceResponse;
     public function confirm($id, DomicileConfirmationSchema $schema): ServiceResponse;
+    public function createReceipt($id): ServiceResponse;
 }

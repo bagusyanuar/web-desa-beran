@@ -186,14 +186,14 @@
                 $data->status === App\Commons\Enum\CertificateStatus::Failed->value ||
                     $data->status === App\Commons\Enum\CertificateStatus::Pending->value)
                 <div class="w-full flex flex-col gap-2">
-                    <a href="{{ $this->chatTextLink }}" target="_blank"
+                    <a href="{{ $chatTextLink }}" target="_blank"
                         class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
                         wire:ignore>
                         <i data-lucide="phone" class="h-4 w-4"></i>
                         <span>Hubungi Pemohon</span>
                     </a>
                     @if ($data->status === App\Commons\Enum\CertificateStatus::Pending->value)
-                        <button
+                        <button x-on:click="$store.SERVICE_DOMICILE_DETAIL_STORE.download('{{ $id }}')"
                             class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-accent-500 bg-neutral-50 cursor-pointer hover:bg-neutral-100 transition-all duration-200 ease-in-out"
                             wire:ignore>
                             <i data-lucide="printer" class="h-4 w-4"></i>
@@ -276,6 +276,40 @@
                                     this.toastStore.error(message, 2000);
                                 default:
                                     break;
+                            }
+                        })
+                        .finally(() => {
+                            this.pageLoaderStore.hide();
+                        });
+                },
+                download(id) {
+                    this.pageLoaderStore.show();
+                    this.component.$wire.call('create_receipt', id)
+                        .then(response => {
+                            const {
+                                status,
+                                message,
+                                data
+                            } = response;
+                            if (status === 200) {
+                                const byteCharacters = atob(data);
+                                const byteNumbers = new Array(byteCharacters.length).fill(0).map((_, i) =>
+                                    byteCharacters.charCodeAt(i));
+                                const byteArray = new Uint8Array(byteNumbers);
+                                const blob = new Blob([byteArray], {
+                                    type: 'application/pdf'
+                                });
+                                const blobUrl = URL.createObjectURL(blob);
+                                window.open(blobUrl, '_blank');
+
+                                // const link = document.createElement('a');
+                                // link.href = blobUrl;
+                                // link.download = "letter-receipt.pdf";
+                                // link.click();
+
+                                // URL.revokeObjectURL(blobUrl);
+                            } else {
+                                this.toastStore.error(message, 2000);
                             }
                         })
                         .finally(() => {
