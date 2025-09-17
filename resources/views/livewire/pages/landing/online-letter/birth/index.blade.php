@@ -52,15 +52,15 @@
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.date.datepicker id="infant-date-of-birth" x-bind:store-name="'SERVICE_BIRTH_STORE'"
-                                x-model="$store.SERVICE_BIRTH_STORE.form.infantDateOfBirthString" />
+                            <x-input.date.datepicker id="infant-date-of-birth" store="SERVICE_BIRTH_STORE"
+                                stateDate="form.infantDateOfBirth" format="long" />
                             <template x-if="'infantDateOfBirth' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.infantDateOfBirth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="infant-gender" class="text-sm text-neutral-700 block mb-1">
                                 <span>Jenis Kelamin</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -77,7 +77,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="infant-birth-type" class="text-sm text-neutral-700 block mb-1">
                                 <span>Jenis Kelahiran</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -153,8 +153,8 @@
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.date.datepicker id="mother-date-of-birth" x-bind:store-name="'SERVICE_BIRTH_STORE'"
-                                x-model="$store.SERVICE_BIRTH_STORE.form.motherDateOfBirthString" />
+                            <x-input.date.datepicker id="mother-date-of-birth" store="SERVICE_BIRTH_STORE"
+                                stateDate="form.motherDateOfBirth" format="long" />
                             <template x-if="'motherDateOfBirth' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
                                     <span
@@ -162,7 +162,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="mother-citizenship" class="text-sm text-neutral-700 block mb-1">
                                 <span>Kewarganegaraan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -180,7 +180,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="mother-religion" class="text-sm text-neutral-700 block mb-1">
                                 <span>Agama</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -268,8 +268,8 @@
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.date.datepicker id="father-date-of-birth" x-bind:store-name="'SERVICE_BIRTH_STORE'"
-                                x-model="$store.SERVICE_BIRTH_STORE.form.fatherDateOfBirthString" />
+                            <x-input.date.datepicker id="father-date-of-birth" store="SERVICE_BIRTH_STORE"
+                                stateDate="form.fatherDateOfBirth" format="long" />
                             <template x-if="'fatherDateOfBirth' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
                                     <span
@@ -277,7 +277,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="father-citizenship" class="text-sm text-neutral-700 block mb-1">
                                 <span>Kewarganegaraan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -295,7 +295,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="father-religion" class="text-sm text-neutral-700 block mb-1">
                                 <span>Agama</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -489,14 +489,12 @@
                     infantName: '',
                     infantBirthPlace: '',
                     infantDateOfBirth: '',
-                    infantDateOfBirthString: '',
                     infantGender: '',
                     infantBirthType: '',
                     infantBirthOrder: 1,
                     motherName: '',
                     motherNik: '',
                     motherBirthPlace: '',
-                    motherDateOfBirthString: '',
                     motherDateOfBirth: '',
                     motherCitizenship: '',
                     motherReligion: '',
@@ -505,7 +503,6 @@
                     fatherName: '',
                     fatherNik: '',
                     fatherBirthPlace: '',
-                    fatherDateOfBirthString: '',
                     fatherDateOfBirth: '',
                     fatherCitizenship: '',
                     fatherReligion: '',
@@ -538,33 +535,12 @@
                 },
                 send() {
                     this.alertStore.show();
+                    console.log(this.form);
+
                 },
                 onAccept() {
                     this.alertStore.hide();
                     this.pageLoaderStore.show();
-
-                    const infantVal = new Date(this.form.infantDateOfBirthString);
-                    const infantYear = infantVal.getFullYear();
-                    const infantMonth = String(infantVal.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                    const infantDay = String(infantVal.getDate()).padStart(2, '0');
-                    const infantFormatted = `${infantYear}-${infantMonth}-${infantDay}`;
-
-                    const motherVal = new Date(this.form.motherDateOfBirthString);
-                    const motherYear = motherVal.getFullYear();
-                    const motherMonth = String(motherVal.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                    const motherDay = String(motherVal.getDate()).padStart(2, '0');
-                    const motherFormatted = `${motherYear}-${motherMonth}-${motherDay}`;
-
-                    const fatherVal = new Date(this.form.motherDateOfBirthString);
-                    const fatherYear = fatherVal.getFullYear();
-                    const fatherMonth = String(fatherVal.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                    const fatherDay = String(fatherVal.getDate()).padStart(2, '0');
-                    const fatherFormatted = `${fatherYear}-${fatherMonth}-${fatherDay}`;
-
-                    this.form.infantDateOfBirth = infantFormatted;
-                    this.form.motherDateOfBirth = motherFormatted;
-                    this.form.fatherDateOfBirth = fatherFormatted;
-
                     this.component.$wire.call('send', this.form, this.captchaToken)
                         .then(response => {
                             const {

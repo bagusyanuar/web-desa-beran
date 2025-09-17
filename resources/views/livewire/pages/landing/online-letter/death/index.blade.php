@@ -72,7 +72,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full" wire:ignore>
+                        <div class="w-full">
                             <x-label.label for="date-of-birth">
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>

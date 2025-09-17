@@ -2,10 +2,30 @@
 
 namespace App\Livewire\Pages\WebPanel\OnlineLetter\Birth;
 
+use App\Commons\Libs\Http\AlpineResponse;
+use App\Schemas\WebPanel\OnlineLetter\Birth\BirthQuery;
+use App\Services\WebPanel\OnlineLetter\BirthService;
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
+#[Layout('layouts.app-admin')]
 class Index extends Component
 {
+     /** @var BirthService $service */
+    private $service;
+
+    public function boot(BirthService $service)
+    {
+        $this->service = $service;
+    }
+
+    public function findAll($query)
+    {
+        $queryParams = (new BirthQuery())->hydrateSchemaQuery($query);
+        $response = $this->service->findAll($queryParams);
+        return AlpineResponse::fromService($response);
+    }
+
     public function render()
     {
         return view('livewire.pages.web-panel.online-letter.birth.index');

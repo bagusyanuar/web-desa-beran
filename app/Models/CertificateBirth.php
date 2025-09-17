@@ -18,7 +18,8 @@ class CertificateBirth extends Model
         'reference_number',
         'status',
         'approved_by_id',
-        'approved_at'
+        'approved_at',
+        'failed_description'
     ];
 
     public function applicant()

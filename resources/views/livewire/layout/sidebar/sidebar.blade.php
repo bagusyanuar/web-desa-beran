@@ -14,7 +14,7 @@
             <x-sidebar.sidebar-item-tree text="Surat Online" icon="mailbox">
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.domicile') }}" text="Domisili" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.death') }}" text="Kematian" />
-                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.death') }}" text="Kelahiran" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.birth') }}" text="Kelahiran" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>

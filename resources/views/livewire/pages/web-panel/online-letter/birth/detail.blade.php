@@ -1,19 +1,19 @@
-<section id="online-letter-death-detail" data-component-id="online-letter-death-detail" class="w-full">
+<section id="online-letter-birth-detail" data-component-id="online-letter-birth-detail" class="w-full">
     <div class="mb-7 flex items-start gap-3">
-        <a href="{{ route('web-panel.online-letter.death') }}"
+        <a href="{{ route('web-panel.online-letter.birth') }}"
             class="w-10 h-10 flex items-center justify-center rounded-lg border border-neutral-300 cursor-pointer hover:bg-neutral-100 transition-all ease-in-out duration-200"
             wire:ignore>
             <i data-lucide="arrow-left" class="text-neutral-700 h-4 w-4"></i>
         </a>
         <div>
-            <p class="text-xl text-neutral-700 font-bold">Surat Keterangan Kematian</p>
-            <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan kematian.</p>
+            <p class="text-xl text-neutral-700 font-bold">Surat Keterangan Kelahiran</p>
+            <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan kelahiran.</p>
         </div>
     </div>
     <div class="w-full flex items-start gap-4">
         <div class="flex-1 p-6 bg-white border border-neutral-300 shadow-xl rounded-lg">
             <div class="flex items-center justify-between mb-3">
-                <p class="text-sm font-bold text-neutral-700 mb-3">A. Data Diri</p>
+                <p class="text-sm font-bold text-neutral-700 mb-3">A. Data Bayi</p>
                 <x-chip.chip-status-detail status="{{ $data->status }}" />
             </div>
 
@@ -27,29 +27,7 @@
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>{{ $data->person->name }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>NIK</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->person->identifier_number }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>No. KK</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->person->family_identifier_number }}</span>
+                            <span>{{ $data->infant->name }}</span>
                         </td>
                     </tr>
                     <tr class="even:bg-white odd:bg-brand-50">
@@ -63,7 +41,7 @@
                             @php
                                 \Carbon\Carbon::setLocale('id');
                             @endphp
-                            <span>{{ $data->person->birth_place . ', ' . \Carbon\Carbon::parse($data->person->date_of_birth)->translatedFormat('d F Y') }}</span>
+                            <span>{{ $data->infant->birth_place . ', ' . \Carbon\Carbon::parse($data->infant->date_of_birth)->translatedFormat('d F Y') }}</span>
                         </td>
                     </tr>
                     <tr class="even:bg-white odd:bg-brand-50">
@@ -74,150 +52,18 @@
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>{{ App\Commons\Libs\Helper\Converter::genderToDisplay($data->person->gender) }}</span>
+                            <span>{{ App\Commons\Libs\Helper\Converter::genderToDisplay($data->infant->gender) }}</span>
                         </td>
                     </tr>
                     <tr class="even:bg-white odd:bg-brand-50">
                         <td class="px-3 py-2.5">
-                            <span>Kewarganegaraan</span>
+                            <span>Jenis Kelahiran</span>
                         </td>
                         <td class="px-3 py-2.5 w-8">
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>{{ App\Commons\Libs\Helper\Converter::citizenshipToDisplay($data->person->citizenship) }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Agama</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ ucfirst($data->person->religion) }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Status Perkawinan</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ App\Commons\Libs\Helper\Converter::marriageToDisplay($data->person->marriage) }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Pekerjaan</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->person->job ?? '-' }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Alamat</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->person->address }}</span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="flex items-center justify-between mb-3">
-                <p class="text-sm font-bold text-neutral-700 mb-3">B. Keterangan Kematian</p>
-            </div>
-            <div class="w-full overflow-hidden rounded-lg border border-neutral-300 mb-5">
-                <table class="border-collapse w-full text-sm font-semibold">
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5 w-48">
-                            <span>Hari, Tanggal (Usia)</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            @php
-                                \Carbon\Carbon::setLocale('id');
-                            @endphp
-                            <span>{{ \Carbon\Carbon::parse($data->record->date)->translatedFormat('l, d F Y') }}
-                                ({{ floor(\Carbon\Carbon::parse($data->person->date_of_birth)->diffInYears(\Carbon\Carbon::parse($data->record->date))) . ' Tahun' }})</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Kecamatan</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->record->district_name }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Kota</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->record->city_name }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Provinsi</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->record->province_name }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Sebab Kematian</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->record->cause_of_death }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Yang Menentukan</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->record->decider ?? '-' }}</span>
-                        </td>
-                    </tr>
-                    <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Keterangan Visum</span>
-                        </td>
-                        <td class="px-3 py-2.5 w-8">
-                            <span>:</span>
-                        </td>
-                        <td class="px-3 py-2.5">
-                            <span>{{ $data->record->post_mortem_notes ?? '-' }}</span>
+                            <span>{{ App\Commons\Libs\Helper\Converter::birthTypeToDisplay($data->infant->birth_type) }}</span>
                         </td>
                     </tr>
                     <tr class="even:bg-white odd:bg-brand-50">
@@ -228,18 +74,159 @@
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>{{ $data->record->birth_order ?? '-' }}</span>
+                            <span>{{ $data->infant->birth_order }}</span>
                         </td>
                     </tr>
+                </table>
+            </div>
+            <div class="flex items-center justify-between mb-3">
+                <p class="text-sm font-bold text-neutral-700 mb-3">B. Data Ibu</p>
+            </div>
+            <div class="w-full overflow-hidden rounded-lg border border-neutral-300 mb-5">
+                <table class="border-collapse w-full text-sm font-semibold">
                     <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5">
-                            <span>Jam</span>
+                        <td class="px-3 py-2.5 w-48">
+                            <span>Nama</span>
                         </td>
                         <td class="px-3 py-2.5 w-8">
                             <span>:</span>
                         </td>
                         <td class="px-3 py-2.5">
-                            <span>{{ \Carbon\Carbon::parse($data->record->date)->format('H:i') }} WIB</span>
+                            <span>{{ $data->mother->name }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5 w-48">
+                            <span>Tempat, Tanggal Lahir</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            @php
+                                \Carbon\Carbon::setLocale('id');
+                            @endphp
+                            <span>{{ $data->mother->birth_place . ', ' . \Carbon\Carbon::parse($data->mother->date_of_birth)->translatedFormat('d F Y') }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5">
+                            <span>Kewarganegaraan</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ App\Commons\Libs\Helper\Converter::citizenshipToDisplay($data->mother->citizenship) }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5">
+                            <span>Agama</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ ucfirst($data->mother->religion) }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5">
+                            <span>Pekerjaan</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ $data->mother->job ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5">
+                            <span>Alamat</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ $data->mother->address }}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="flex items-center justify-between mb-3">
+                <p class="text-sm font-bold text-neutral-700 mb-3">C. Data Ayah</p>
+            </div>
+            <div class="w-full overflow-hidden rounded-lg border border-neutral-300 mb-5">
+                <table class="border-collapse w-full text-sm font-semibold">
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5 w-48">
+                            <span>Nama</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ $data->father->name }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5 w-48">
+                            <span>Tempat, Tanggal Lahir</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            @php
+                                \Carbon\Carbon::setLocale('id');
+                            @endphp
+                            <span>{{ $data->father->birth_place . ', ' . \Carbon\Carbon::parse($data->father->date_of_birth)->translatedFormat('d F Y') }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5">
+                            <span>Kewarganegaraan</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ App\Commons\Libs\Helper\Converter::citizenshipToDisplay($data->father->citizenship) }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5">
+                            <span>Agama</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ ucfirst($data->father->religion) }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5">
+                            <span>Pekerjaan</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ $data->father->job ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-white odd:bg-brand-50">
+                        <td class="px-3 py-2.5">
+                            <span>Alamat</span>
+                        </td>
+                        <td class="px-3 py-2.5 w-8">
+                            <span>:</span>
+                        </td>
+                        <td class="px-3 py-2.5">
+                            <span>{{ $data->father->address }}</span>
                         </td>
                     </tr>
                 </table>
@@ -261,34 +248,33 @@
                 <p class="text-sm font-bold text-neutral-700 mb-3">Konfirmasi</p>
                 <div class="w-full mb-3" wire:ignore>
                     <x-select.select2 id="status" x-init="initSelect({ placeholder: 'pilih status konfirmasi' })"
-                        x-model="$store.SERVICE_DEATH_DETAIL_STORE.form.status">
+                        x-model="$store.SERVICE_BIRTH_DETAIL_STORE.form.status">
                         <option></option>
                         <option value="accept">Terima</option>
                         <option value="denied">Tolak</option>
                     </x-select.select2>
-                    <template x-if="'status' in $store.SERVICE_DEATH_DETAIL_STORE.formValidator">
+                    <template x-if="'status' in $store.SERVICE_BIRTH_DETAIL_STORE.formValidator">
                         <x-label.validator>
-                            <span x-text="$store.SERVICE_DEATH_DETAIL_STORE.formValidator.status[0]"></span>
+                            <span x-text="$store.SERVICE_BIRTH_DETAIL_STORE.formValidator.status[0]"></span>
                         </x-label.validator>
                     </template>
                 </div>
-                <div x-cloak x-show="$store.SERVICE_DEATH_DETAIL_STORE.form.status === 'denied'" class="w-full"
-                    wire:ignore>
+                <div x-cloak x-show="$store.SERVICE_BIRTH_DETAIL_STORE.form.status === 'denied'" class="w-full" wire:ignore>
                     <x-label.label for="address">
                         <span>Alasan Penolakan</span>
                         <span class="text-red-500 text-sm italic">*</span>
                     </x-label.label>
                     <x-input.text.textarea id="address" rows="3" class="!text-sm"
-                        x-model="$store.SERVICE_DEATH_DETAIL_STORE.form.reason" />
-                    <template x-if="'reason' in $store.SERVICE_DEATH_DETAIL_STORE.formValidator">
+                        x-model="$store.SERVICE_BIRTH_DETAIL_STORE.form.reason" />
+                    <template x-if="'reason' in $store.SERVICE_BIRTH_DETAIL_STORE.formValidator">
                         <x-label.validator>
-                            <span x-text="$store.SERVICE_DEATH_DETAIL_STORE.formValidator.reason[0]"></span>
+                            <span x-text="$store.SERVICE_BIRTH_DETAIL_STORE.formValidator.reason[0]"></span>
                         </x-label.validator>
                     </template>
                 </div>
                 <div class="w-full border-b border-neutral-300 my-3">
                 </div>
-                <button x-on:click="$store.SERVICE_DEATH_DETAIL_STORE.confirm()"
+                <button x-on:click="$store.SERVICE_BIRTH_DETAIL_STORE.confirm()"
                     class="w-full flex items-center justify-center gap-1 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
                     wire:ignore>
                     <i data-lucide="check" class="h-4 w-4"></i>
@@ -314,7 +300,7 @@
                         <span>Hubungi Pemohon</span>
                     </a>
                     @if ($data->status === App\Commons\Enum\CertificateStatus::Pending->value)
-                        <button x-on:click="$store.SERVICE_DEATH_DETAIL_STORE.download('{{ $id }}')"
+                        <button x-on:click="$store.SERVICE_BIRTH_DETAIL_STORE.download('{{ $id }}')"
                             class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-accent-500 bg-neutral-50 cursor-pointer hover:bg-neutral-100 transition-all duration-200 ease-in-out"
                             wire:ignore>
                             <i data-lucide="printer" class="h-4 w-4"></i>
@@ -326,9 +312,9 @@
 
         </div>
     </div>
-    <x-alert.confirmation onAccept="$store.SERVICE_DEATH_DETAIL_STORE.onConfirm()" acceptText="Konfrimasi">
+    <x-alert.confirmation onAccept="$store.SERVICE_BIRTH_DETAIL_STORE.onConfirm()" acceptText="Konfrimasi">
         <p class="text-sm text-neutral-700 text-justify">Anda akan mengkonfirmasi <span class="font-semibold">Surat
-                Keterangan Kematian</span>. Pastikan data yang anda isi sudah
+                Keterangan Kelahiran</span>. Pastikan data yang anda isi sudah
             lengkap dan
             benar, jika sudah klik <span class="font-semibold">"Konfirmasi"</span> jika belum silahkan klik
             <span class="font-semibold">"Batal"</span> dan perbaiki data anda.
@@ -341,7 +327,7 @@
     @vite(['resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
-            const STORE_NAME = 'SERVICE_DEATH_DETAIL_STORE';
+            const STORE_NAME = 'SERVICE_BIRTH_DETAIL_STORE';
             const STORE_PROPS = {
                 component: null,
                 alertStore: null,
@@ -357,7 +343,7 @@
                         component
                     }) => {
                         const componentID = document.querySelector(
-                                '[data-component-id="online-letter-death-detail"]')
+                                '[data-component-id="online-letter-birth-detail"]')
                             ?.getAttribute(
                                 'wire:id');
                         if (component.id === componentID) {

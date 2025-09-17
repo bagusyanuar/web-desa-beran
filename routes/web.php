@@ -34,4 +34,6 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/surat-keterangan-domisili/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Domicile\Detail::class)->name('web-panel.online-letter.domicile.detail');
     Route::get('/surat-keterangan-kematian', App\Livewire\Pages\WebPanel\OnlineLetter\Death\Index::class)->name('web-panel.online-letter.death');
     Route::get('/surat-keterangan-kematian/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Death\Detail::class)->name('web-panel.online-letter.death.detail');
+    Route::get('/surat-keterangan-kelahiran', App\Livewire\Pages\WebPanel\OnlineLetter\Birth\Index::class)->name('web-panel.online-letter.birth');
+    Route::get('/surat-keterangan-kelahiran/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Birth\Detail::class)->name('web-panel.online-letter.birth.detail');
 });

@@ -75,7 +75,7 @@ class BirthService implements BirthServiceInterface
             CertificateBirthFather::create($dataFather);
 
             $dataApplicant = [
-                'certificate_death_id' => $certificateBirth->id,
+                'certificate_birth_id' => $certificateBirth->id,
                 'name' => $schema->getApplicantName(),
                 'phone' => $schema->getApplicantPhone(),
             ];

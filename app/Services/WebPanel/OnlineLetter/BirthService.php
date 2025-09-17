@@ -16,7 +16,7 @@ use Dompdf\Options;
 
 class BirthService implements BirthServiceInterface
 {
-   public function findAll(BirthQuery $queryParams): ServiceResponse
+    public function findAll(BirthQuery $queryParams): ServiceResponse
     {
         try {
             $queryParams->hydrateQuery();
@@ -47,7 +47,7 @@ class BirthService implements BirthServiceInterface
     public function findByID($id): ServiceResponse
     {
         try {
-            $data = CertificateBirth::with(['applicant', 'person', 'mother', 'father'])
+            $data = CertificateBirth::with(['applicant', 'infant', 'mother', 'father'])
                 ->where('id', '=', $id)
                 ->first();
             if (!$data) {
@@ -94,7 +94,7 @@ class BirthService implements BirthServiceInterface
     {
         try {
             //code...
-            $certificate = CertificateBirth::with(['applicant', 'person', 'mother', 'father'])
+            $certificate = CertificateBirth::with(['applicant', 'infant', 'mother', 'father'])
                 ->where('id', '=', $id)
                 ->first();
             if (!$certificate) {

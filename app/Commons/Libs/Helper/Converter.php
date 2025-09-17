@@ -30,4 +30,13 @@ class Converter
             default => '-'
         };
     }
+
+    public static function birthTypeToDisplay($birthType): string
+    {
+        return match ($birthType) {
+            'single' => 'Tunggal',
+            'twin' => 'Kembar',
+            default => '-'
+        };
+    }
 }
