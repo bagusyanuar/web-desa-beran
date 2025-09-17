@@ -164,6 +164,38 @@
                     <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 30px;">
                         Demikian surat keterangan ini dibuat dengan sebenarnya dan dapat dipergunakan sebagaimana mestinya.
                     </p>
+                    <table class="w-full border-collapse">
+                        <tr>
+                            <td style="text-align: center">
+                                <p class="text-md" style="line-height: 1; margin-bottom: 0; margin-top: 0">Tanda Tangan</p>
+                                <p class="text-md" style="line-height: 1; margin-bottom: 0; margin-top: 0">Yang Bersangkutan
+                                </p>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <p class="text-md"
+                                    style="line-height: 1; margin-bottom: 0; margin-top: 0; text-transform: uppercase; text-decoration: underline;">
+                                    {{ $certificate->person->name }}</p>
+                            </td>
+                            <td style="text-align: center">
+                                @php
+                                    \Carbon\Carbon::setLocale('id');
+                                @endphp
+                                <p class="text-md" style="line-height: 1; margin-bottom: 0; margin-top: 0">Beran,
+                                    {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+                                <p class="text-md" style="line-height: 1; margin-bottom: 0; margin-top: 0">Kepala Desa Beran
+                                </p>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <p class="text-md"
+                                    style="line-height: 1; margin-bottom: 0; margin-top: 0; text-transform: uppercase; text-decoration: underline;">
+                                    AGUS PRIYADI S.SOS</p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </td>
             <td style="width: 0;">
