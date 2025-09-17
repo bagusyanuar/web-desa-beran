@@ -30,4 +30,14 @@ class CertificateBirth extends Model
     {
         return $this->hasOne(CertificateBirthInfant::class, 'certificate_birth_id');
     }
+
+    public function mother()
+    {
+        return $this->hasOne(CertificateBirthMother::class, 'certificate_birth_id');
+    }
+
+    public function father()
+    {
+        return $this->hasOne(CertificateBirthFather::class, 'certificate_birth_id');
+    }
 }
