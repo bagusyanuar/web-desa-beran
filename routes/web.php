@@ -32,4 +32,6 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/dashboard', App\Livewire\Pages\WebPanel\Dashboard\Index::class)->name('web-panel.dashboard');
     Route::get('/surat-keterangan-domisili', App\Livewire\Pages\WebPanel\OnlineLetter\Domicile\Index::class)->name('web-panel.online-letter.domicile');
     Route::get('/surat-keterangan-domisili/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Domicile\Detail::class)->name('web-panel.online-letter.domicile.detail');
+    Route::get('/surat-keterangan-kematian', App\Livewire\Pages\WebPanel\OnlineLetter\Death\Index::class)->name('web-panel.online-letter.death');
+    Route::get('/surat-keterangan-kematian/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Death\Detail::class)->name('web-panel.online-letter.death.detail');
 });

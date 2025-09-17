@@ -18,11 +18,22 @@ class CertificateDeath extends Model
         'reference_number',
         'status',
         'approved_by_id',
-        'approved_at'
+        'approved_at',
+        'failed_description'
     ];
 
     public function applicant()
     {
         return $this->hasOne(CertificateDeathApplicant::class, 'certificate_death_id');
+    }
+
+    public function person()
+    {
+        return $this->hasOne(CertificateDeathPerson::class, 'certificate_death_id');
+    }
+
+    public function record()
+    {
+        return $this->hasOne(CertificateDeathRecord::class, 'certificate_death_id');
     }
 }

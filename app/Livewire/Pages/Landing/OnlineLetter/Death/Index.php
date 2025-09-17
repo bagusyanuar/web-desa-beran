@@ -33,6 +33,7 @@ class Index extends Component
         if ($captchaValidation['success']) {
             $schema = (new DeathSchema())->hydrateSchemaBody($body);
             $response = $this->service->send($schema);
+
             return AlpineResponse::fromService($response);
         }
         return AlpineResponse::toJSON(500, "invalid captcha");

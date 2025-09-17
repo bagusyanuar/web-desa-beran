@@ -13,7 +13,7 @@
             <x-sidebar.sidebar-item to="/dashboard" text="Dashboard" icon="house" />
             <x-sidebar.sidebar-item-tree text="Surat Online" icon="mailbox">
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.domicile') }}" text="Domisili" />
-                <x-sidebar.sidebar-item-tree-child to="/web-panel/surat-keterangan-kematian" text="Kematian" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.death') }}" text="Kematian" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>

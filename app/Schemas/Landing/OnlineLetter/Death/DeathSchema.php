@@ -102,6 +102,7 @@ class DeathSchema extends BaseSchema
         $causeOfDeath = $this->body['causeOfDeath'];
         $postMortemNotes = !empty(trim($this->body['postMortemNotes'] ?? '')) ? $this->body['postMortemNotes'] : null;;
         $birthOrder = !empty(trim($this->body['birthOrder'] ?? '')) ? $this->body['birthOrder'] : null;;
+        $decider = !empty(trim($this->body['decider'] ?? '')) ? $this->body['decider'] : null;;
         $applicantName = $this->body['applicantName'];
         $applicantPhone = $this->body['applicantPhone'];
         $this->setName($name)
@@ -122,6 +123,7 @@ class DeathSchema extends BaseSchema
             ->setCauseOfDeath($causeOfDeath)
             ->setPostMortemNotes($postMortemNotes)
             ->setBirthOrder($birthOrder)
+            ->setDecider($decider)
             ->setApplicantName($applicantName)
             ->setApplicantPhone($applicantPhone);
     }

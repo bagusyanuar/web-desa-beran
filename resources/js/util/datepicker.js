@@ -26,26 +26,25 @@ document.addEventListener('alpine:init', () => {
                         baseConfig.format = format;
                     }
                     this.datepicker = new Datepicker(this.$el, baseConfig);
-
                     // event on change date
                     this.$el.addEventListener('changeDate', (event) => {
                         this.dateValue = event.target.value;
                         const store = Alpine.store(this.store)
                         if (store && this.stateDate) {
                             const val = this.formattedValue()
-                            store[this.stateDate] = val;
+                            this.setNestedValue(store, this.stateDate, val);
                         }
                     });
 
                     if (this.stateDate) {
-                        if (Alpine.store(this.store)[this.stateDate] !== '') {
-                            this.datepicker.setDate(new Date(Alpine.store(this.store)[this.stateDate]))
+                        if (this.getNestedValue(Alpine.store(this.store), this.stateDate) !== '') {
+                            this.datepicker.setDate(new Date(this.getNestedValue(Alpine.store(this.store), this.stateDate)))
                         } else {
                             this.datepicker.setDate(null);
                         }
 
                         this.$watch(() => {
-                            return Alpine.store(this.store)[this.stateDate]
+                            return this.getNestedValue(Alpine.store(this.store), this.stateDate)
                         }, (val) => {
                             if (val === '') {
                                 this.datepicker.setDate(null);
@@ -54,6 +53,23 @@ document.addEventListener('alpine:init', () => {
                     }
                 })
 
+            },
+            setNestedValue(obj, path, value) {
+                const keys = path.split(".");
+                let current = obj;
+
+                while (keys.length > 1) {
+                    const key = keys.shift();
+                    if (!(key in current)) {
+                        current[key] = {}; // kalau belum ada, buat object baru
+                    }
+                    current = current[key];
+                }
+
+                current[keys[0]] = value;
+            },
+            getNestedValue(obj, path) {
+                return path.split('.').reduce((acc, key) => acc?.[key], obj);
             },
             generateFormat() {
                 let format = 'yyyy-mm-dd';

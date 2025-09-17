@@ -51,7 +51,8 @@
                                 <span>No. Kartu Keluarga</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="family-identifier" x-model="$store.SERVICE_DEATH_STORE.form.familyIdentifier" />
+                            <x-input.text.text id="family-identifier"
+                                x-model="$store.SERVICE_DEATH_STORE.form.familyIdentifier" />
                             <template x-if="'familyIdentifier' in $store.SERVICE_DEATH_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DEATH_STORE.formValidator.familyIdentifier[0]"></span>
@@ -71,20 +72,20 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <x-label.label for="date-of-birth">
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.date.datepicker id="date-of-birth" x-bind:store-name="'SERVICE_DEATH_STORE'"
-                                x-model="$store.SERVICE_DEATH_STORE.form.dateOfBirthString" />
+                            <x-input.date.datepicker id="date-of-birth" store="SERVICE_DEATH_STORE"
+                                stateDate="form.dateOfBirth" format="long" />
                             <template x-if="'dateOfBirth' in $store.SERVICE_DEATH_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DEATH_STORE.formValidator.dateOfBirth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="gender" class="text-sm text-neutral-700 block mb-1">
                                 <span>Jenis Kelamin</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -101,7 +102,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="citizenship" class="text-sm text-neutral-700 block mb-1">
                                 <span>Kewarganegaraan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -118,7 +119,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="religion" class="text-sm text-neutral-700 block mb-1">
                                 <span>Agama</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -140,7 +141,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="marriage" class="text-sm text-neutral-700 block mb-1">
                                 <span>Status Perkawinan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -221,14 +222,14 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <div class="w-full flex items-center gap-1">
-                                <x-input.date.datepicker id="date" x-bind:store-name="'SERVICE_DEATH_STORE'"
-                                    x-model="$store.SERVICE_DEATH_STORE.form.date" />
+                                <x-input.date.datepicker id="date"
+                                    store="SERVICE_DEATH_STORE" stateDate="form.date" format="long" />
                                 <x-input.date.timepicker class="!w-1/3"
                                     x-model="$store.SERVICE_DEATH_STORE.form.time" />
                             </div>
-                            <template x-if="'datetime' in $store.SERVICE_DEATH_STORE.formValidator">
+                            <template x-if="'dateOfDeath' in $store.SERVICE_DEATH_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.datetime[0]"></span>
+                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.dateOfDeath[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -425,7 +426,6 @@
                     nik: '',
                     familyIdentifier: '',
                     birthPlace: '',
-                    dateOfBirthString: '',
                     dateOfBirth: '',
                     gender: '',
                     citizenship: '',
@@ -475,20 +475,15 @@
                     this.alertStore.hide();
                     this.pageLoaderStore.show();
 
-                    const val = new Date(this.form.dateOfBirthString);
-                    const year = val.getFullYear();
-                    const month = String(val.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                    const day = String(val.getDate()).padStart(2, '0');
-                    const formatted = `${year}-${month}-${day}`;
-
                     const valDeath = new Date(this.form.date);
                     const yearDeath = valDeath.getFullYear();
                     const monthDeath = String(valDeath.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
                     const dayDeath = String(valDeath.getDate()).padStart(2, '0');
                     const formattedDeath = `${yearDeath}-${monthDeath}-${dayDeath} ${this.form.time}`;
 
-                    this.form.dateOfBirth = formatted;
                     this.form.dateOfDeath = formattedDeath;
+
+                    console.log(this.form);
 
                     this.component.$wire.call('send', this.form, this.captchaToken)
                         .then(response => {
