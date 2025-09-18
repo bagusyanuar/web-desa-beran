@@ -48,4 +48,6 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/surat-keterangan-belum-menikah/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\SingleStatus\Detail::class)->name('web-panel.online-letter.single-status.detail');
     Route::get('/surat-keterangan-tidak-mampu', App\Livewire\Pages\WebPanel\OnlineLetter\Incapacity\Index::class)->name('web-panel.online-letter.incapacity');
     Route::get('/surat-keterangan-tidak-mampu/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Incapacity\Detail::class)->name('web-panel.online-letter.incapacity.detail');
+    Route::get('/surat-keterangan-penghasilan', App\Livewire\Pages\WebPanel\OnlineLetter\Income\Index::class)->name('web-panel.online-letter.income');
+    Route::get('/surat-keterangan-penghasilan/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Income\Detail::class)->name('web-panel.online-letter.income.detail');
 });

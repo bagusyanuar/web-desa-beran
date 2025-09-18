@@ -357,7 +357,7 @@
                     applicantName: '',
                     applicantPhone: '',
                 },
-                showReceipt: true,
+                showReceipt: false,
                 receiptData: {
                     referenceNumber: '',
                     applicantName: '',

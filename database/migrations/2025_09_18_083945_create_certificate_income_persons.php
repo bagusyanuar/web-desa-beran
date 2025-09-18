@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('certificate_income_persons', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('certificate_incomes_id')->unique('uniq_cicp_cic_id')->nullable();
+            $table->uuid('certificate_income_id')->unique('uniq_cicp_cic_id')->nullable();
             $table->string('name');
             $table->string('identifier_number');
             $table->string('birth_place')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('job')->nullable();
             $table->text('address')->nullable();
             $table->timestamps();
-            $table->foreign('certificate_incomes_id', 'fk_cicp_cic')
+            $table->foreign('certificate_income_id', 'fk_cicp_cic')
                 ->references('id')
                 ->on('certificate_incomes')
                 ->onDelete('set null');
