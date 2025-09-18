@@ -44,4 +44,6 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/surat-keterangan-catatan-kepolisian/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\PoliceClearance\Detail::class)->name('web-panel.online-letter.police-clearance.detail');
     Route::get('/surat-keterangan-belum-menikah', App\Livewire\Pages\WebPanel\OnlineLetter\SingleStatus\Index::class)->name('web-panel.online-letter.single-status');
     Route::get('/surat-keterangan-belum-menikah/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\SingleStatus\Detail::class)->name('web-panel.online-letter.single-status.detail');
+    Route::get('/surat-keterangan-tidak-mampu', App\Livewire\Pages\WebPanel\OnlineLetter\Incapacity\Index::class)->name('web-panel.online-letter.incapacity');
+    Route::get('/surat-keterangan-tidak-mampu/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Incapacity\Detail::class)->name('web-panel.online-letter.incapacity.detail');
 });
