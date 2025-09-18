@@ -26,6 +26,8 @@ Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/surat-keterangan-catatan-kepolisian/{code}', App\Livewire\Pages\Landing\OnlineLetter\PoliceClearance\Index::class)->name('online-letter.police-clearance.code');
     Route::get('/surat-keterangan-belum-menikah', App\Livewire\Pages\Landing\OnlineLetter\SingleStatus\Index::class)->name('online-letter.single-status');
     Route::get('/surat-keterangan-belum-menikah/{code}', App\Livewire\Pages\Landing\OnlineLetter\SingleStatus\Index::class)->name('online-letter.single-status.code');
+    Route::get('/surat-keterangan-tidak-mampu', App\Livewire\Pages\Landing\OnlineLetter\Incapacity\Index::class)->name('online-letter.incapacity');
+    Route::get('/surat-keterangan-tidak-mampu/{code}', App\Livewire\Pages\Landing\OnlineLetter\Incapacity\Index::class)->name('online-letter.incapacity.code');
 });
 
 
