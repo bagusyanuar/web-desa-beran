@@ -18,11 +18,22 @@ class CertificatePoliceClearance extends Model
         'reference_number',
         'status',
         'approved_by_id',
-        'approved_at'
+        'approved_at',
+        'failed_description'
     ];
 
     public function applicant()
     {
         return $this->hasOne(CertificatePoliceClearanceApplicant::class, 'certificate_police_clearance_id');
+    }
+
+    public function descriptions()
+    {
+        return $this->hasMany(CertificatePoliceClearanceDescription::class, 'certificate_police_clearance_id');
+    }
+
+    public function person()
+    {
+        return $this->hasOne(CertificatePoliceClearancePerson::class, 'certificate_police_clearance_id');
     }
 }

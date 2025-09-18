@@ -12,9 +12,12 @@
         <div class="w-full flex-1 flex flex-col gap-1 px-3 py-6 overflow-y-auto">
             <x-sidebar.sidebar-item to="/dashboard" text="Dashboard" icon="house" />
             <x-sidebar.sidebar-item-tree text="Surat Online" icon="mailbox">
-                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.domicile') }}" text="Domisili" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.domicile') }}"
+                    text="Domisili" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.death') }}" text="Kematian" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.birth') }}" text="Kelahiran" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.police-clearance') }}"
+                    text="Catatan Kepolisian" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>
