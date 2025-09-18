@@ -24,6 +24,8 @@ Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/surat-keterangan-kelahiran/{code}', App\Livewire\Pages\Landing\OnlineLetter\Birth\Index::class)->name('online-letter.birth.code');
     Route::get('/surat-keterangan-catatan-kepolisian', App\Livewire\Pages\Landing\OnlineLetter\PoliceClearance\Index::class)->name('online-letter.police-clearance');
     Route::get('/surat-keterangan-catatan-kepolisian/{code}', App\Livewire\Pages\Landing\OnlineLetter\PoliceClearance\Index::class)->name('online-letter.police-clearance.code');
+    Route::get('/surat-keterangan-belum-menikah', App\Livewire\Pages\Landing\OnlineLetter\SingleStatus\Index::class)->name('online-letter.single-status');
+    Route::get('/surat-keterangan-belum-menikah/{code}', App\Livewire\Pages\Landing\OnlineLetter\SingleStatus\Index::class)->name('online-letter.single-status.code');
 });
 
 
@@ -38,4 +40,6 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/surat-keterangan-kelahiran/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Birth\Detail::class)->name('web-panel.online-letter.birth.detail');
     Route::get('/surat-keterangan-catatan-kepolisian', App\Livewire\Pages\WebPanel\OnlineLetter\PoliceClearance\Index::class)->name('web-panel.online-letter.police-clearance');
     Route::get('/surat-keterangan-catatan-kepolisian/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\PoliceClearance\Detail::class)->name('web-panel.online-letter.police-clearance.detail');
+    Route::get('/surat-keterangan-belum-menikah', App\Livewire\Pages\WebPanel\OnlineLetter\SingleStatus\Index::class)->name('web-panel.online-letter.single-status');
+    Route::get('/surat-keterangan-belum-menikah/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\SingleStatus\Detail::class)->name('web-panel.online-letter.single-status.detail');
 });

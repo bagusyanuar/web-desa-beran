@@ -18,6 +18,8 @@
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.birth') }}" text="Kelahiran" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.police-clearance') }}"
                     text="Catatan Kepolisian" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.single-status') }}"
+                    text="Belum Menikah" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>

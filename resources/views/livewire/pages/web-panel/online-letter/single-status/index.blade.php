@@ -1,11 +1,11 @@
-<section id="online-letter-birth" data-component-id="online-letter-birth" class="w-full">
+<section id="online-letter-single-status" data-component-id="online-letter-single-status" class="w-full">
     <div class="mb-7">
-        <p class="text-xl text-neutral-700 font-bold">Surat Keterangan Kelahiran</p>
-        <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan kelahiran.</p>
+        <p class="text-xl text-neutral-700 font-bold">Surat Keterangan Belum Menikah</p>
+        <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan belum menikah.</p>
     </div>
     <div class="w-full p-3 bg-white border border-neutral-300 shadow-xl rounded-lg">
         <div class="flex items-center justify-between mb-3">
-            <x-table.search store="SERVICE_BIRTH_STORE" dispatcher="findAll" />
+            <x-table.search store="SERVICE_SINGLE_STATUS_STORE" dispatcher="findAll" />
             <x-table.filter>
                 <div class="w-64 flex flex-col">
                     <p class="text-xs font-semibold text-neutral-700">Filter :</p>
@@ -14,28 +14,28 @@
                     <div class="w-full flex flex-col gap-2 mb-5">
                         <div class="w-full flex items-center">
                             <input type="checkbox" id="created" value="created"
-                                x-model="$store.SERVICE_BIRTH_STORE.status"
+                                x-model="$store.SERVICE_SINGLE_STATUS_STORE.status"
                                 class="w-4 h-4 rounded-sm text-accent-500 bg-gray-100 border-neutral-300 !focus:ring-0 !focus:outline-none"
                                 style="box-shadow: none" />
                             <label for="created" class="ms-2 text-xs text-neutral-700">Menunggu Konfirmasi</label>
                         </div>
                         <div class="w-full flex items-center">
                             <input type="checkbox" id="pending" value="pending"
-                                x-model="$store.SERVICE_BIRTH_STORE.status"
+                                x-model="$store.SERVICE_SINGLE_STATUS_STORE.status"
                                 class="w-4 h-4 rounded-sm text-accent-500 bg-gray-100 border-neutral-300 !focus:ring-0 !focus:outline-none"
                                 style="box-shadow: none" />
                             <label for="pending" class="ms-2 text-xs text-neutral-700">Menunggu Diambil</label>
                         </div>
                         <div class="w-full flex items-center">
                             <input type="checkbox" id="finished" value="finished"
-                                x-model="$store.SERVICE_BIRTH_STORE.status"
+                                x-model="$store.SERVICE_SINGLE_STATUS_STORE.status"
                                 class="w-4 h-4 rounded-sm text-accent-500 bg-gray-100 border-neutral-300 !focus:ring-0 !focus:outline-none"
                                 style="box-shadow: none" />
                             <label for="finished" class="ms-2 text-xs text-neutral-700">Selesai</label>
                         </div>
                         <div class="w-full flex items-center">
                             <input type="checkbox" id="failed" value="failed"
-                                x-model="$store.SERVICE_BIRTH_STORE.status"
+                                x-model="$store.SERVICE_SINGLE_STATUS_STORE.status"
                                 class="w-4 h-4 rounded-sm text-accent-500 bg-gray-100 border-neutral-300 !focus:ring-0 !focus:outline-none"
                                 style="box-shadow: none" />
                             <label for="failed" class="ms-2 text-xs text-neutral-700">Gagal</label>
@@ -44,17 +44,17 @@
                     <p class="text-xs font-semibold text-neutral-700 mb-2">Periode :</p>
                     <div class="flex items-center mb-3 gap-1">
                         <div class="flex-1" wire:ignore>
-                            <x-input.date.datepicker class="!text-xs" id="start-date" store="SERVICE_BIRTH_STORE"
+                            <x-input.date.datepicker class="!text-xs" id="start-date" store="SERVICE_SINGLE_STATUS_STORE"
                                 stateDate="startDate" format="slash" />
                         </div>
                         <span class="text-xs text-neutral-700">/</span>
                         <div class="flex-1" wire:ignore>
-                            <x-input.date.datepicker class="!text-xs" id="start-date" store="SERVICE_BIRTH_STORE"
+                            <x-input.date.datepicker class="!text-xs" id="start-date" store="SERVICE_SINGLE_STATUS_STORE"
                                 stateDate="endDate" format="slash" />
                         </div>
                     </div>
                     <div class="w-full">
-                        <button x-on:click="open = false; $store.SERVICE_BIRTH_STORE.filter()"
+                        <button x-on:click="open = false; $store.SERVICE_SINGLE_STATUS_STORE.filter()"
                             class="rounded-md w-full py-2 bg-brand-500 text-white text-xs hover:bg-brand-700 transition-all ease-in-out duration-200 cursor-pointer">
                             <span>Filter</span>
                         </button>
@@ -63,7 +63,7 @@
             </x-table.filter>
         </div>
 
-        <x-table.table store="SERVICE_BIRTH_STORE">
+        <x-table.table store="SERVICE_SINGLE_STATUS_STORE">
             <x-table.thead>
                 <x-table.th width="w-[140px]" align="center">
                     <span class="text-sm text-neutral-700">Tanggal</span>
@@ -109,7 +109,7 @@
                                 }
                             }" x-init="initIcons()" x-effect="initIcons()"
                                 class="w-6 h-6 rounded-md flex items-center justify-center cursor-pointer hover:bg-neutral-100"
-                                x-on:click="$store.SERVICE_BIRTH_STORE.redirectToDetail(v.id)">
+                                x-on:click="$store.SERVICE_SINGLE_STATUS_STORE.redirectToDetail(v.id)">
                                 <i data-lucide="ellipsis-vertical" class="text-neutral-500 h-4 w-4"></i>
                             </div>
                         </x-table.td>
@@ -117,7 +117,7 @@
                 </template>
             </x-table.tbody>
         </x-table.table>
-        <x-table.pagination store="SERVICE_BIRTH_STORE" dispatcher="findAll" />
+        <x-table.pagination store="SERVICE_SINGLE_STATUS_STORE" dispatcher="findAll" />
     </div>
 </section>
 
@@ -125,7 +125,7 @@
     @vite(['resources/js/util/datepicker.js', 'resources/js/util/table.js'])
     <script>
         document.addEventListener('alpine:init', () => {
-            const STORE_NAME = 'SERVICE_BIRTH_STORE';
+            const STORE_NAME = 'SERVICE_SINGLE_STATUS_STORE';
             const STORE_PROPS = {
                 component: null,
                 totalRows: 100,
@@ -143,7 +143,7 @@
                         component
                     }) => {
                         const componentID = document.querySelector(
-                            '[data-component-id="online-letter-birth"]')?.getAttribute(
+                            '[data-component-id="online-letter-single-status"]')?.getAttribute(
                             'wire:id');
                         if (component.id === componentID) {
                             this.component = component;
@@ -182,7 +182,7 @@
                         })
                 },
                 redirectToDetail(id) {
-                    window.location.href = '/web-panel/surat-keterangan-kelahiran/' + id;
+                    window.location.href = '/web-panel/surat-keterangan-belum-menikah/' + id;
                 },
                 filter() {
                     this.findAll()
