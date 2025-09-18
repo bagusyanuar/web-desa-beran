@@ -5,9 +5,8 @@
         <table class="w-full" style="border-collapse: collapse;">
             <tr>
                 <td style="text-align: center; height: fit-content;">
-                    <p class="text-md font-bold" style="line-height: 0; margin-bottom: 0;">BUKTI PENGAJUAN SURAT PENGANTAR
-                        KETERANGAN
-                        CATATAN KEPOLISIAN</p>
+                    <p class="text-md font-bold" style="line-height: 0; margin-bottom: 0;">BUKTI PENGAJUAN SURAT KETERANGAN
+                        PENGHASILAN</p>
                 </td>
             </tr>
         </table>
@@ -66,7 +65,7 @@
                                         style="line-height: 1.2; margin-bottom: 0;">{{ \Carbon\Carbon::parse($certificate->date)->translatedFormat('d F Y') }}</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom: 1px solid black;">
                                 <td
                                     style="width: 30%; vertical-align: top; padding-left: 5px; padding-top: 3px; padding-bottom: 3px;">
                                     <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">No. Permohonan</span>
@@ -79,13 +78,26 @@
                                         style="line-height: 1.2; margin-bottom: 0;">{{ $certificate->reference_number }}</span>
                                 </td>
                             </tr>
+                            <tr>
+                                <td
+                                    style="width: 30%; vertical-align: top; padding-left: 5px; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">Penghasilan Per
+                                        Bulan</span>
+                                </td>
+                                <td style="width: 5px; vertical-align: top; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">:</span>
+                                </td>
+                                <td style="vertical-align: top; padding-right: 5px; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm"
+                                        style="line-height: 1.2; margin-bottom: 0;">Rp.{{ number_format($certificate->income_per_month, 0, ',', '.') }}</span>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </td>
                 <td style="width: 40%; text-align: center; vertical-align: middle;">
                     <div>
                         <img src="{{ $qrcode }}" width="180" height="180">
-
                     </div>
                 </td>
             </tr>
@@ -96,7 +108,7 @@
         monitoring
         pengajuan surat.</p>
     <p class="text-xs" style="line-height: 1; color: black; font-style: italic">atau Kunjungi
-        {{ route('online-letter.police-clearance.code', [
+        {{ route('online-letter.income.code', [
             'code' => $certificate->reference_number,
         ]) }}
     </p>

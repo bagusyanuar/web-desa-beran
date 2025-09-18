@@ -167,7 +167,7 @@
                         </div>
                         <div class="w-full col-span-2">
                             <x-label.label for="income-per-month">
-                                <span>Tujuan Pembuatan</span>
+                                <span>Penghasilan Per Bulan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.text type="number" id="income-per-month"
@@ -245,7 +245,7 @@
             x-transition:leave-end="translate-y-[-10rem] opacity-0"
             class="w-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[51] flex items-center justify-center">
             <div class="bg-white rounded-lg shadow-lg w-[40rem] p-4">
-                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN TIDAK MAMPU BERHASIL
+                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN PENGHASILAN BERHASIL
                     DIBUAT
                 </p>
                 <div class="w-full flex items-center gap-3">
@@ -357,7 +357,7 @@
                     applicantName: '',
                     applicantPhone: '',
                 },
-                showReceipt: false,
+                showReceipt: true,
                 receiptData: {
                     referenceNumber: '',
                     applicantName: '',
@@ -396,11 +396,11 @@
                                 case 201:
                                     this.formClear();
                                     const code = data['url'];
-                                    const incapacity = data['incapacity'];
+                                    const income = data['income'];
                                     const {
                                         name, phone
                                     } = data['applicant']
-                                    const referenceNumber = incapacity['reference_number'];
+                                    const referenceNumber = income['reference_number'];
                                     this.receiptData.applicantName = name;
                                     this.receiptData.applicantPhone = phone;
                                     this.receiptData.referenceNumber = referenceNumber;
