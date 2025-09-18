@@ -166,6 +166,19 @@
                                 </x-label.validator>
                             </template>
                         </div>
+                        <div class="w-full col-span-2">
+                            <x-label.label for="purpose">
+                                <span>Tujuan Pembuatan</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </x-label.label>
+                            <x-input.text.textarea id="purpose" rows="3"
+                                x-model="$store.SERVICE_INCAPACITY_STORE.form.purpose" />
+                            <template x-if="'purpose' in $store.SERVICE_INCAPACITY_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_INCAPACITY_STORE.formValidator.purpose[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
                     </div>
                     <p class="text-md font-bold text-neutral-700 mb-5 mt-10">B. Informasi Pemohon</p>
                     <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7 mb-10">
@@ -329,6 +342,7 @@
                     marriage: '',
                     job: '',
                     address: '',
+                    purpose: '',
                     applicantName: '',
                     applicantPhone: '',
                 },
@@ -367,8 +381,6 @@
                                 message,
                                 data
                             } = response;
-                            console.log(response);
-
                             switch (status) {
                                 case 201:
                                     this.formClear();
