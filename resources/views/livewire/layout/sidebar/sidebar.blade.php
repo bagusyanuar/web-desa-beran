@@ -24,6 +24,8 @@
                     text="Tidak Mampu" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.income') }}"
                     text="Penghasilan" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.widower') }}"
+                    text="Duda" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>

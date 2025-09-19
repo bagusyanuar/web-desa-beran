@@ -27,6 +27,8 @@ class Converter
         return match ($marriage) {
             'married' => 'Menikah',
             'not-married' => 'Belum Menikah',
+            'divorced' => 'Cerai Hidup',
+            'widowed' => 'Cerai Mati',
             default => '-'
         };
     }
