@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models;
+
+use App\Commons\Libs\Traits\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class CertificateParentIncomeParent extends Model
+{
+    use HasFactory, Uuid;
+
+    protected $table = 'certificate_parent_income_parents';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = [
+        'certificate_parent_income_id',
+        'name',
+        'identifier_number',
+        'birth_place',
+        'date_of_birth',
+        'gender',
+        'citizenship',
+        'religion',
+        'marriage',
+        'job',
+        'address',
+    ];
+
+    public function certificate_parent_income()
+    {
+        return $this->belongsTo(CertificateParentIncome::class, 'certificate_parent_income_id');
+    }
+}
