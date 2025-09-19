@@ -27,7 +27,7 @@ class MaritalStatusService implements MaritalStatusServiceInterface
             $schema->hydrateBody();
 
             $refNum = match ($schema->getType()) {
-                'widow' => 'SKJ-' . date('YmdHis'),
+                'widow' => 'SKJD-' . date('YmdHis'),
                 'widower' => 'SKDD-' . date('YmdHis'),
                 default => null
             };

@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Livewire\Pages\Landing\OnlineLetter\Widower;
+
+use App\Commons\Const\Option;
+use App\Commons\Libs\Captcha\Recaptcha;
+use App\Commons\Libs\Http\AlpineResponse;
+use App\Schemas\Landing\OnlineLetter\MaritalStatus\MaritalStatusSchema;
+use App\Services\Landing\OnlineLetter\MaritalStatusService;
+use Livewire\Component;
+use Livewire\Attributes\Layout;
+
+
+#[Layout('layouts.app')]
+class Index extends Component
+{
+    /** @var MaritalStatusService $service */
+    private $service;
+
+    public $genders = Option::Gender;
+    public $citizenships = Option::Citizenship;
+    public $marriages = Option::Marriage;
+    public $religions = Option::Religion;
+
+    public function boot(MaritalStatusService $service)
+    {
+        $this->service = $service;
+    }
+
+    public function send($body, $captchaToken)
+    {
+        $captchaValidation = Recaptcha::validate($captchaToken);
+        if ($captchaValidation['success']) {
+            $schema = (new MaritalStatusSchema())->hydrateSchemaBody($body);
+            $response = $this->service->send($schema);
+
+            return AlpineResponse::fromService($response);
+        }
+        return AlpineResponse::toJSON(500, "invalid captcha");
+    }
+
+    public function create_receipt($referenceNumber)
+    {
+        $response = $this->service->createReceipt($referenceNumber);
+        return AlpineResponse::fromService($response);
+    }
+
+    public function render()
+    {
+        return view('livewire.pages.landing.online-letter.widower.index');
+    }
+}
