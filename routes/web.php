@@ -32,6 +32,8 @@ Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/surat-keterangan-penghasilan/{code}', App\Livewire\Pages\Landing\OnlineLetter\Income\Index::class)->name('online-letter.income.code');
     Route::get('/surat-keterangan-duda', App\Livewire\Pages\Landing\OnlineLetter\Widower\Index::class)->name('online-letter.widower');
     Route::get('/surat-keterangan-duda/{code}', App\Livewire\Pages\Landing\OnlineLetter\Widower\Index::class)->name('online-letter.widower.code');
+    Route::get('/surat-keterangan-janda', App\Livewire\Pages\Landing\OnlineLetter\Widow\Index::class)->name('online-letter.widow');
+    Route::get('/surat-keterangan-janda/{code}', App\Livewire\Pages\Landing\OnlineLetter\Widow\Index::class)->name('online-letter.widow.code');
 });
 
 
@@ -54,4 +56,6 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/surat-keterangan-penghasilan/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Income\Detail::class)->name('web-panel.online-letter.income.detail');
     Route::get('/surat-keterangan-duda', App\Livewire\Pages\WebPanel\OnlineLetter\Widower\Index::class)->name('web-panel.online-letter.widower');
     Route::get('/surat-keterangan-duda/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Widower\Detail::class)->name('web-panel.online-letter.widower.detail');
+    Route::get('/surat-keterangan-janda', App\Livewire\Pages\WebPanel\OnlineLetter\Widow\Index::class)->name('web-panel.online-letter.widow');
+    Route::get('/surat-keterangan-janda/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Widow\Detail::class)->name('web-panel.online-letter.widow.detail');
 });

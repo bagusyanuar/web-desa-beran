@@ -6,7 +6,7 @@
             <tr>
                 <td style="text-align: center; height: fit-content;">
                     <p class="text-md font-bold" style="line-height: 0; margin-bottom: 0;">BUKTI PENGAJUAN SURAT KETERANGAN
-                        DUDA</p>
+                        JANDA</p>
                 </td>
             </tr>
         </table>
@@ -94,7 +94,7 @@
         monitoring
         pengajuan surat.</p>
     <p class="text-xs" style="line-height: 1; color: black; font-style: italic">atau Kunjungi
-        {{ route('online-letter.widower.code', [
+        {{ route('online-letter.widow.code', [
             'code' => $certificate->reference_number,
         ]) }}
     </p>

@@ -30,6 +30,10 @@ class MaritalStatusService implements MaritalStatusServiceInterface
                     /** @var Builder $q */
                     return $q->whereIn('status', $queryParams->getStatus());
                 })
+                ->when($queryParams->getType(), function ($q) use ($queryParams) {
+                    /** @var Builder $q */
+                    return $q->where('type', $queryParams->getType());
+                })
                 ->when(($queryParams->getStartDate() && $queryParams->getEndDate()), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->whereBetween('date', [$queryParams->getStartDate(), $queryParams->getEndDate()]);
