@@ -466,7 +466,7 @@
     </div>
     <x-alert.confirmation onAccept="$store.SERVICE_PARENT_INCOME_STORE.onAccept()">
         <p class="text-sm text-neutral-700 text-justify">Anda akan mengirim permohonan <span
-                class="font-semibold">Surat Keterangan Duda</span>. Pastikan data yang anda isi sudah
+                class="font-semibold">Surat Keterangan Penghasilan Orang Tua</span>. Pastikan data yang anda isi sudah
             lengkap dan
             benar, jika sudah klik <span class="font-semibold">"Kirim"</span> jika belum silahkan klik
             <span class="font-semibold">"Batal"</span> dan perbaiki data anda.
