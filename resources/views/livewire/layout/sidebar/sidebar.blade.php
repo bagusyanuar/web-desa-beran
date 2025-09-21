@@ -28,6 +28,8 @@
                     text="Duda" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.widow') }}"
                     text="Janda" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.parent-income') }}"
+                    text="Penghasilan Orang Tua" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>

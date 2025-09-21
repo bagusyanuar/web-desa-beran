@@ -38,4 +38,9 @@ class CertificateParentIncome extends Model
     {
         return $this->hasOne(CertificateParentIncomePerson::class, 'certificate_parent_income_id');
     }
+
+    public function parent()
+    {
+        return $this->hasOne(CertificateParentIncomeParent::class, 'certificate_parent_income_id');
+    }
 }

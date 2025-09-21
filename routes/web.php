@@ -60,4 +60,6 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/surat-keterangan-duda/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Widower\Detail::class)->name('web-panel.online-letter.widower.detail');
     Route::get('/surat-keterangan-janda', App\Livewire\Pages\WebPanel\OnlineLetter\Widow\Index::class)->name('web-panel.online-letter.widow');
     Route::get('/surat-keterangan-janda/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Widow\Detail::class)->name('web-panel.online-letter.widow.detail');
+    Route::get('/surat-keterangan-penghasilan-orang-tua', App\Livewire\Pages\WebPanel\OnlineLetter\ParentIncome\Index::class)->name('web-panel.online-letter.parent-income');
+    Route::get('/surat-keterangan-penghasilan-orang-tua/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\ParentIncome\Detail::class)->name('web-panel.online-letter.parent-income.detail');
 });
