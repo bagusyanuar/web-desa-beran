@@ -64,15 +64,15 @@
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.date.datepicker id="date-of-birth" x-bind:store-name="'SERVICE_DOMICILE_STORE'"
-                                x-model="$store.SERVICE_DOMICILE_STORE.form.dateOfBirth" />
+                             <x-input.date.datepicker id="date-of-birth" store="SERVICE_DOMICILE_STORE"
+                                stateDate="form.dateOfBirth" format="long" />
                             <template x-if="'dateOfBirth' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.dateOfBirth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="gender" class="text-sm text-neutral-700 block mb-1">
                                 <span>Jenis Kelamin</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -89,7 +89,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="citizenship" class="text-sm text-neutral-700 block mb-1">
                                 <span>Kewarganegaraan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -106,7 +106,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="religion" class="text-sm text-neutral-700 block mb-1">
                                 <span>Agama</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -128,7 +128,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full" wire:ignore>
                             <label for="marriage" class="text-sm text-neutral-700 block mb-1">
                                 <span>Status Perkawinan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -161,6 +161,19 @@
                             <template x-if="'address' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.address[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
+                        <div class="w-full col-span-2">
+                            <x-label.label for="purpose">
+                                <span>Tujuan Pengajuan</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </x-label.label>
+                            <x-input.text.textarea id="purpose" rows="3"
+                                x-model="$store.SERVICE_DOMICILE_STORE.form.purpose" />
+                            <template x-if="'purpose' in $store.SERVICE_DOMICILE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.purpose[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -325,6 +338,7 @@
                     marriage: '',
                     job: '',
                     address: '',
+                    purpose: '',
                     applicantName: '',
                     applicantPhone: '',
                 },
@@ -356,13 +370,6 @@
                 onAccept() {
                     this.alertStore.hide();
                     this.pageLoaderStore.show();
-                    const val = new Date(this.form.dateOfBirth);
-                    const year = val.getFullYear();
-                    const month = String(val.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                    const day = String(val.getDate()).padStart(2, '0');
-
-                    const formatted = `${year}-${month}-${day}`;
-                    this.form.dateOfBirth = formatted;
                     this.component.$wire.call('send', this.form, this.captchaToken)
                         .then(response => {
                             const {

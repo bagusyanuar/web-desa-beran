@@ -13,6 +13,7 @@ use App\Schemas\WebPanel\OnlineLetter\Domicile\DomicileQuery;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 
 class DomicileService implements DomicileServiceInterface
 {
@@ -60,10 +61,11 @@ class DomicileService implements DomicileServiceInterface
         }
     }
 
+
     public function confirm($id, DomicileConfirmationSchema $schema): ServiceResponse
     {
         try {
-            $userId = null;
+            $userId = Auth::user()->id;
             $approvedAt = Carbon::now();
 
             $validator = $schema->validate();
@@ -85,6 +87,29 @@ class DomicileService implements DomicileServiceInterface
                 'approved_at' => $approvedAt
             ]);
             return ServiceResponse::statusOK("successfully confirm certificate");
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function finish($id): ServiceResponse
+    {
+        try {
+            $userId = Auth::user()->id;
+            $approvedAt = Carbon::now();
+            $data = CertificateDomicile::with(['applicant'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            $data->update([
+                'status' => CertificateStatus::Finished->value,
+                'approved_by_id' => $userId,
+                'approved_at' => $approvedAt
+            ]);
+            return ServiceResponse::statusOK("successfully finish certificate");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

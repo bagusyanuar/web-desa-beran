@@ -9,4 +9,5 @@ interface DomicileServiceInterface
 {
     public function send(DomicileSchema $schema): ServiceResponse;
     public function createReceipt($referenceNumber): ServiceResponse;
+    public function findByCode($code): ServiceResponse;
 }

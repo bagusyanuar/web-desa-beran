@@ -28,8 +28,9 @@ class DomicileService implements DomicileServiceInterface
 
             $dataDomicile = [
                 'date' => Carbon::now(),
-                'reference_number' => 'SKD-' . date('YmdHis'),
+                'reference_number' => 'SKDP' . date('YmdHis'),
                 'status' => 'created',
+                'purpose' => $schema->getPurpose(),
                 'approved_by_id' => null,
                 'approved_at' => null
             ];
@@ -73,6 +74,21 @@ class DomicileService implements DomicileServiceInterface
         }
     }
 
+    public function findByCode($code): ServiceResponse
+    {
+        try {
+            $data = CertificateDomicile::with(['applicant', 'person'])
+                ->where('reference_number', '=', $code)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+            return ServiceResponse::statusOK("successfully get certificate domicile", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
     public function createReceipt($referenceNumber): ServiceResponse
     {
         try {
@@ -94,7 +110,7 @@ class DomicileService implements DomicileServiceInterface
             $options = new Options();
             $options->setIsPhpEnabled(true);
             $options->setIsRemoteEnabled(true);
-            $pdf = Pdf::loadView('pdf.letter-receipt', [
+            $pdf = Pdf::loadView('pdf.letter-receipt.domicile', [
                 'qrcode' => $qrCode,
                 'certificate' => $certificate
             ])->setPaper('a5', 'landscape');

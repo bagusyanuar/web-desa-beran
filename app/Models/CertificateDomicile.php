@@ -17,6 +17,7 @@ class CertificateDomicile extends Model
         'date',
         'reference_number',
         'status',
+        'purpose',
         'approved_by_id',
         'approved_at',
         'failed_description'

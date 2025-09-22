@@ -16,6 +16,7 @@ class DomicileSchema extends BaseSchema
     private $marriage;
     private $job;
     private $address;
+    private $purpose;
     private $applicantName;
     private $applicantPhone;
 
@@ -32,6 +33,7 @@ class DomicileSchema extends BaseSchema
             'marriage' => 'required|in:married,not-married',
             'job' => 'string',
             'address' => 'required|string',
+            'purpose' => 'required|string',
             'applicantName' => 'required|string',
             'applicantPhone' => 'required|string'
         ];
@@ -53,6 +55,7 @@ class DomicileSchema extends BaseSchema
             'marriage.required' => 'kolom status perkawinan wajib diisi',
             'marriage.in' => 'nilai status perkawinan tidak valid',
             'address.required' => 'kolom alamat wajib diisi',
+            'purpose.required' => 'kolom tujuan pengajuan wajib diisi',
             'applicantName.required' => 'kolom nama lengkap pemohon wajib diisi',
             'applicantPhone.required' => 'kolom nomor whatsapp pemohon wajib diisi'
         ];
@@ -70,6 +73,7 @@ class DomicileSchema extends BaseSchema
         $marriage = $this->body['marriage'];
         $job = !empty(trim($this->body['job'] ?? '')) ? $this->body['job'] : null;
         $address = $this->body['address'];
+        $purpose = $this->body['purpose'];
         $applicantName = $this->body['applicantName'];
         $applicantPhone = $this->body['applicantPhone'];
         $this->setName($name)
@@ -82,6 +86,7 @@ class DomicileSchema extends BaseSchema
             ->setMarriage($marriage)
             ->setJob($job)
             ->setAddress($address)
+            ->setPurpose($purpose)
             ->setApplicantName($applicantName)
             ->setApplicantPhone($applicantPhone);
     }
@@ -322,6 +327,26 @@ class DomicileSchema extends BaseSchema
     public function setApplicantPhone($applicantPhone)
     {
         $this->applicantPhone = $applicantPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of purpose
+     */
+    public function getPurpose()
+    {
+        return $this->purpose;
+    }
+
+    /**
+     * Set the value of purpose
+     *
+     * @return  self
+     */
+    public function setPurpose($purpose)
+    {
+        $this->purpose = $purpose;
 
         return $this;
     }

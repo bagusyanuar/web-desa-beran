@@ -41,6 +41,12 @@ class Detail extends Component
         return AlpineResponse::fromService($response);
     }
 
+    public function finish()
+    {
+        $response = $this->service->finish($this->id);
+        return AlpineResponse::fromService($response);
+    }
+
     private function generateChatTextLink()
     {
         $phone = $this->data->applicant->phone;

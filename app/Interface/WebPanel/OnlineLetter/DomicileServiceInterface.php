@@ -12,4 +12,5 @@ interface DomicileServiceInterface
     public function findByID($id): ServiceResponse;
     public function confirm($id, DomicileConfirmationSchema $schema): ServiceResponse;
     public function createReceipt($id): ServiceResponse;
+    public function finish($id): ServiceResponse;
 }
