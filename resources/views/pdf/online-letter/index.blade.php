@@ -72,6 +72,31 @@
         .border-collapse {
             border-collapse: collapse;
         }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .space-x-0 {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .line-press {
+            line-height: 1;
+        }
+
+        .line-normal {
+            line-height: 1.2;
+        }
+
+        .line-half  {
+            line-height: 1.5;
+        }
+
+        .line-double {
+            line-height: 2;
+        }
     </style>
 </head>
 
