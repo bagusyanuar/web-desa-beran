@@ -13,6 +13,7 @@ use App\Schemas\WebPanel\OnlineLetter\Death\DeathQuery;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 
 class DeathService implements DeathServiceInterface
 {
@@ -20,7 +21,7 @@ class DeathService implements DeathServiceInterface
     {
         try {
             $queryParams->hydrateQuery();
-            $query = CertificateDeath::with(['applicant'])
+            $query = CertificateDeath::with(['applicant', 'person', 'record'])
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%")
@@ -55,6 +56,29 @@ class DeathService implements DeathServiceInterface
             }
 
             return ServiceResponse::statusOK("successfully get certificate death", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function finish($id): ServiceResponse
+    {
+        try {
+            $userId = Auth::user()->id;
+            $approvedAt = Carbon::now();
+            $data = CertificateDeath::with(['applicant'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            $data->update([
+                'status' => CertificateStatus::Finished->value,
+                'approved_by_id' => $userId,
+                'approved_at' => $approvedAt
+            ]);
+            return ServiceResponse::statusOK("successfully finish certificate");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

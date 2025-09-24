@@ -12,4 +12,5 @@ interface DeathServiceInterface
     public function findByID($id): ServiceResponse;
     public function confirm($id, DeathConfirmationSchema $schema): ServiceResponse;
     public function createReceipt($id): ServiceResponse;
+    public function finish($id): ServiceResponse;
 }

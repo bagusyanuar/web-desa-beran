@@ -72,7 +72,7 @@
                     <span class="text-sm text-neutral-700">No. Pengajuan</span>
                 </x-table.th>
                 <x-table.th>
-                    <span class="text-sm text-neutral-700">Pemohon</span>
+                    <span class="text-sm text-neutral-700">Atas Nama</span>
                 </x-table.th>
                 <x-table.th width="w-[140px]" align="center">
                     <span class="text-sm text-neutral-700">No. Whatsapp</span>
@@ -94,7 +94,7 @@
                             <span class="text-sm text-neutral-700" x-text="v.reference_number"></span>
                         </x-table.td>
                         <x-table.td>
-                            <span class="text-sm text-neutral-700" x-text="v.applicant?.name || '-'"></span>
+                            <span class="text-sm text-neutral-700" x-text="v.person?.name || '-'"></span>
                         </x-table.td>
                         <x-table.td width="w-[140px]" align="center">
                             <span class="text-sm text-neutral-700" x-text="v.applicant?.phone || '-'"></span>
