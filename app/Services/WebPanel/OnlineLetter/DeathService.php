@@ -25,7 +25,7 @@ class DeathService implements DeathServiceInterface
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%")
-                        ->orWhereRelation('applicant', 'name', 'LIKE', "%{$queryParams->getParam()}%");
+                        ->orWhereRelation('person', 'name', 'LIKE', "%{$queryParams->getParam()}%");
                 })
                 ->when($queryParams->getStatus(), function ($q) use ($queryParams) {
                     /** @var Builder $q */

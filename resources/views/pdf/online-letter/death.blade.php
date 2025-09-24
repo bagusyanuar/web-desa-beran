@@ -4,7 +4,8 @@
     <p class="text-lg font-bold line-press"
         style="margin-bottom: 0; margin-top: 25px; text-align: center; text-decoration: underline">SURAT
         KETERANGAN KEMATIAN</p>
-    <p class="text-md font-bold line-press" style="margin-top: 3px; margin-bottom: 15px; text-align: center;">Nomor : 400.12.3.1
+    <p class="text-md font-bold line-press" style="margin-top: 3px; margin-bottom: 15px; text-align: center;">Nomor :
+        400.12.3.1
         /<span style="margin-left: 25px; margin-right: 25px;"> </span>/ 404.601.09
         / {{ \Carbon\Carbon::now()->format('Y') }}</p>
     <table class="w-full border-collapse">
@@ -198,7 +199,8 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 30%">
-                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Tempat Kematian</p>
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Tempat
+                                                    Kematian</p>
                                             </td>
                                             <td style="width: 10px; text-align: center;">
                                                 <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
@@ -252,7 +254,8 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 30%">
-                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Sebab Kematian
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Sebab
+                                                    Kematian
                                                 </p>
                                             </td>
                                             <td style="width: 10px; text-align: center;">
@@ -266,7 +269,8 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 30%">
-                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Yang Menentukan</p>
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Yang
+                                                    Menentukan</p>
                                             </td>
                                             <td style="width: 10px; text-align: center;">
                                                 <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">:</p>
@@ -279,7 +283,8 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 30%">
-                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Keterangan Visum
+                                                <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">Keterangan
+                                                    Visum
                                                 </p>
                                             </td>
                                             <td style="width: 10px; text-align: center;">
@@ -313,7 +318,8 @@
                                             </td>
                                             <td>
                                                 <p style="line-height: 1.2; margin-bottom: 0; margin-top: 0;">
-                                                    {{ \Carbon\Carbon::parse($certificate->record->date)->format('H:i') }} WIB
+                                                    {{ \Carbon\Carbon::parse($certificate->record->date)->format('H:i') }}
+                                                    WIB
                                                 </p>
                                             </td>
                                         </tr>
@@ -324,7 +330,8 @@
                             </td>
                         </tr>
                     </table>
-                    <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 15px;">
+                    <p class="text-md"
+                        style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 15px;">
                         Demikian surat keterangan ini dibuat agar dapat dipergunakan seperlunya.
                     </p>
                     <table class="w-full border-collapse">

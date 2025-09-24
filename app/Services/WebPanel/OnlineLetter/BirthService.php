@@ -13,6 +13,7 @@ use App\Schemas\WebPanel\OnlineLetter\Birth\BirthQuery;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 
 class BirthService implements BirthServiceInterface
 {
@@ -20,11 +21,11 @@ class BirthService implements BirthServiceInterface
     {
         try {
             $queryParams->hydrateQuery();
-            $query = CertificateBirth::with(['applicant'])
+            $query = CertificateBirth::with(['applicant', 'infant', 'mother', 'father'])
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%")
-                        ->orWhereRelation('applicant', 'name', 'LIKE', "%{$queryParams->getParam()}%");
+                        ->orWhereRelation('infant', 'name', 'LIKE', "%{$queryParams->getParam()}%");
                 })
                 ->when($queryParams->getStatus(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
@@ -55,6 +56,29 @@ class BirthService implements BirthServiceInterface
             }
 
             return ServiceResponse::statusOK("successfully get certificate birth", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function finish($id): ServiceResponse
+    {
+        try {
+            $userId = Auth::user()->id;
+            $approvedAt = Carbon::now();
+            $data = CertificateBirth::with(['applicant'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            $data->update([
+                'status' => CertificateStatus::Finished->value,
+                'approved_by_id' => $userId,
+                'approved_at' => $approvedAt
+            ]);
+            return ServiceResponse::statusOK("successfully finish certificate");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

@@ -30,7 +30,7 @@ class BirthService implements BirthServiceInterface
 
             $dataBirth = [
                 'date' => Carbon::now(),
-                'reference_number' => 'SKL-' . date('YmdHis'),
+                'reference_number' => 'SKKL' . date('YmdHis'),
                 'status' => 'created',
                 'approved_by_id' => null,
                 'approved_at' => null

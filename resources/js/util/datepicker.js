@@ -31,7 +31,7 @@ document.addEventListener('alpine:init', () => {
                         this.dateValue = event.target.value;
                         const store = Alpine.store(this.store)
                         if (store && this.stateDate) {
-                            const val = this.formattedValue()
+                            const val = this.formattedValue(event.detail.date);
                             this.setNestedValue(store, this.stateDate, val);
                         }
                     });
@@ -105,11 +105,10 @@ document.addEventListener('alpine:init', () => {
                 }
                 return format;
             },
-            formattedValue() {
-                let value = this.dateValue;
+            formattedValue(value) {
                 switch (this.format) {
                     case 'slash':
-                        const [dd, mm, yyyy] = this.dateValue.split('/');
+                        const [dd, mm, yyyy] = value.split('/');
                         const valSlash = new Date(yyyy, mm - 1, dd);
                         const yearSlash = valSlash.getFullYear();
                         const monthSlash = String(valSlash.getMonth() + 1).padStart(2, '0');
@@ -117,7 +116,7 @@ document.addEventListener('alpine:init', () => {
                         value = `${yearSlash}-${monthSlash}-${daySlash}`;
                         break;
                     case 'long':
-                        const valLong = new Date(this.dateValue);
+                        const valLong = new Date(value);
                         const yearLong = valLong.getFullYear();
                         const monthLong = String(valLong.getMonth() + 1).padStart(2, '0');
                         const dayLong = String(valLong.getDate()).padStart(2, '0');
