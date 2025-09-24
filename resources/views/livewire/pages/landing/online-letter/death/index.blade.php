@@ -181,6 +181,18 @@
                     <p class="text-md font-bold text-neutral-700 mb-5 mt-10">B. Informasi Kematian</p>
                     <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7">
                         <div class="w-full">
+                            <x-label.label for="death-place">
+                                <span>Tempat Kematian</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </x-label.label>
+                            <x-input.text.text id="death-place" x-model="$store.SERVICE_DEATH_STORE.form.deathPlace" />
+                            <template x-if="'deathPlace' in $store.SERVICE_DEATH_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_DEATH_STORE.formValidator.deathPlace[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
+                        <div class="w-full">
                             <x-label.label for="district">
                                 <span>Kecamatan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -216,7 +228,7 @@
                                 </x-label.validator>
                             </template>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full col-span-2">
                             <x-label.label for="date">
                                 <span>Waktu Kematian (Tanggal & Jam)</span>
                                 <span class="text-red-500 text-sm italic">*</span>
@@ -433,6 +445,7 @@
                     marriage: '',
                     job: '',
                     address: '',
+                    deathPlace: '',
                     district: '',
                     city: '',
                     province: '',
@@ -482,9 +495,6 @@
                     const formattedDeath = `${yearDeath}-${monthDeath}-${dayDeath} ${this.form.time}`;
 
                     this.form.dateOfDeath = formattedDeath;
-
-                    console.log(this.form);
-
                     this.component.$wire.call('send', this.form, this.captchaToken)
                         .then(response => {
                             const {

@@ -9,4 +9,5 @@ interface DeathServiceInterface
 {
     public function send(DeathSchema $schema): ServiceResponse;
     public function createReceipt($referenceNumber): ServiceResponse;
+    public function findByCode($code): ServiceResponse;
 }

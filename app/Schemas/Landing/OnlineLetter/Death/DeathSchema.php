@@ -17,6 +17,7 @@ class DeathSchema extends BaseSchema
     private $marriage;
     private $job;
     private $address;
+    private $deathPlace;
     private $district;
     private $city;
     private $province;
@@ -42,6 +43,7 @@ class DeathSchema extends BaseSchema
             'marriage' => 'required|in:married,not-married',
             'job' => 'string',
             'address' => 'required|string',
+            'deathPlace' => 'required|string',
             'district' => 'required|string',
             'city' => 'required|string',
             'province' => 'required|string',
@@ -71,6 +73,7 @@ class DeathSchema extends BaseSchema
             'marriage.required' => 'kolom status perkawinan wajib diisi',
             'marriage.in' => 'nilai status perkawinan tidak valid',
             'address.required' => 'kolom alamat wajib diisi',
+            'deathPlace.required' => 'kolom tempat kematian wajib diisi',
             'district.required' => 'kolom kecamatan wajib diisi',
             'city.required' => 'kolom kota wajib diisi',
             'province.required' => 'kolom provinsi wajib diisi',
@@ -95,6 +98,7 @@ class DeathSchema extends BaseSchema
         $marriage = $this->body['marriage'];
         $job = !empty(trim($this->body['job'] ?? '')) ? $this->body['job'] : null;
         $address = $this->body['address'];
+        $deathPlace = $this->body['deathPlace'];
         $district = $this->body['district'];
         $city = $this->body['city'];
         $province = $this->body['province'];
@@ -116,6 +120,7 @@ class DeathSchema extends BaseSchema
             ->setMarriage($marriage)
             ->setJob($job)
             ->setAddress($address)
+            ->setDeathPlace($deathPlace)
             ->setDistrict($district)
             ->setCity($city)
             ->setProvince($province)
@@ -544,6 +549,26 @@ class DeathSchema extends BaseSchema
     public function setBirthOrder($birthOrder)
     {
         $this->birthOrder = $birthOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of deathPlace
+     */
+    public function getDeathPlace()
+    {
+        return $this->deathPlace;
+    }
+
+    /**
+     * Set the value of deathPlace
+     *
+     * @return  self
+     */
+    public function setDeathPlace($deathPlace)
+    {
+        $this->deathPlace = $deathPlace;
 
         return $this;
     }

@@ -17,8 +17,9 @@ class CertificateDeathRecord extends Model
     protected $fillable = [
         'certificate_death_id',
         'date',
+        'death_place',
         'district_name',
-        'city_name', // no ktp
+        'city_name',
         'province_name',
         'cause_of_death',
         'decider',

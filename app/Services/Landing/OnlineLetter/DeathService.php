@@ -29,7 +29,7 @@ class DeathService implements DeathServiceInterface
 
             $dataDeath = [
                 'date' => Carbon::now(),
-                'reference_number' => 'SKM-' . date('YmdHis'),
+                'reference_number' => 'SKKM' . date('YmdHis'),
                 'status' => 'created',
                 'approved_by_id' => null,
                 'approved_at' => null
@@ -62,6 +62,7 @@ class DeathService implements DeathServiceInterface
             $dataRecord = [
                 'certificate_death_id' => $certificateDeath->id,
                 'date' => $schema->getDateOfDeath(),
+                'death_place' => $schema->getDeathPlace(),
                 'district_name' => $schema->getDistrict(),
                 'city_name' => $schema->getCity(),
                 'province_name' => $schema->getProvince(),
@@ -88,11 +89,26 @@ class DeathService implements DeathServiceInterface
         }
     }
 
+    public function findByCode($code): ServiceResponse
+    {
+        try {
+            $data = CertificateDeath::with(['applicant', 'person', 'record'])
+                ->where('reference_number', '=', $code)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+            return ServiceResponse::statusOK("successfully get certificate death", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
     public function createReceipt($referenceNumber): ServiceResponse
     {
         try {
             //code...
-            $certificate = CertificateDeath::with(['applicant'])
+            $certificate = CertificateDeath::with(['applicant', 'person', 'record'])
                 ->where('reference_number', '=', $referenceNumber)
                 ->first();
             if (!$certificate) {
