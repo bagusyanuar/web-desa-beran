@@ -180,7 +180,7 @@
                         </div>
                         <div class="w-full col-span-2">
                             <x-label.label for="purpose">
-                                <span>Tujuan Pembuatan</span>
+                                <span>Tujuan Pengajuan</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.textarea id="purpose" rows="3"

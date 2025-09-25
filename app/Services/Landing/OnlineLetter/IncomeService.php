@@ -28,7 +28,7 @@ class IncomeService implements IncomeServiceInterface
 
             $dataIncome = [
                 'date' => Carbon::now(),
-                'reference_number' => 'SKP-' . date('YmdHis'),
+                'reference_number' => 'SKPH' . date('YmdHis'),
                 'status' => 'created',
                 'approved_by_id' => null,
                 'approved_at' => null,
@@ -71,6 +71,21 @@ class IncomeService implements IncomeServiceInterface
             ]);
         } catch (\Throwable $e) {
             DB::rollBack();
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function findByCode($code): ServiceResponse
+    {
+        try {
+            $data = CertificateIncome::with(['applicant', 'person'])
+                ->where('reference_number', '=', $code)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+            return ServiceResponse::statusOK("successfully get certificate domicile", $data);
+        } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }

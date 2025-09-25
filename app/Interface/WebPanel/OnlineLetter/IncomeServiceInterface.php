@@ -11,5 +11,6 @@ interface IncomeServiceInterface
     public function findAll(IncomeQuery $queryParams): ServiceResponse;
     public function findByID($id): ServiceResponse;
     public function confirm($id, IncomeConfirmationSchema $schema): ServiceResponse;
+    public function finish($id): ServiceResponse;
     public function createReceipt($id): ServiceResponse;
 }

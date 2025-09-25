@@ -29,7 +29,7 @@ Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/surat-keterangan-tidak-mampu', App\Livewire\Pages\Landing\OnlineLetter\Incapacity\Index::class)->name('online-letter.incapacity');
     Route::get('/surat-keterangan-tidak-mampu/{code}', App\Livewire\Pages\Landing\OnlineLetter\Incapacity\Detail::class)->name('online-letter.incapacity.code');
     Route::get('/surat-keterangan-penghasilan', App\Livewire\Pages\Landing\OnlineLetter\Income\Index::class)->name('online-letter.income');
-    Route::get('/surat-keterangan-penghasilan/{code}', App\Livewire\Pages\Landing\OnlineLetter\Income\Index::class)->name('online-letter.income.code');
+    Route::get('/surat-keterangan-penghasilan/{code}', App\Livewire\Pages\Landing\OnlineLetter\Income\Detail::class)->name('online-letter.income.code');
     Route::get('/surat-keterangan-duda', App\Livewire\Pages\Landing\OnlineLetter\Widower\Index::class)->name('online-letter.widower');
     Route::get('/surat-keterangan-duda/{code}', App\Livewire\Pages\Landing\OnlineLetter\Widower\Index::class)->name('online-letter.widower.code');
     Route::get('/surat-keterangan-janda', App\Livewire\Pages\Landing\OnlineLetter\Widow\Index::class)->name('online-letter.widow');
