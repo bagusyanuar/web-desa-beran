@@ -16,6 +16,7 @@ class PoliceClearanceSchema extends BaseSchema
     private $marriage;
     private $job;
     private $address;
+    private $purpose;
     private $descriptions;
     private $applicantName;
     private $applicantPhone;
@@ -33,6 +34,7 @@ class PoliceClearanceSchema extends BaseSchema
             'marriage' => 'required|in:married,not-married',
             'job' => 'string',
             'address' => 'required|string',
+            'purpose' => 'required|string',
             'descriptions' => 'required|array|min:1',
             'descriptions.*' => 'required|string',
             'applicantName' => 'required|string',
@@ -56,6 +58,7 @@ class PoliceClearanceSchema extends BaseSchema
             'marriage.required' => 'kolom status perkawinan wajib diisi',
             'marriage.in' => 'nilai status perkawinan tidak valid',
             'address.required' => 'kolom alamat wajib diisi',
+            'purpose.required' => 'kolom tujuan pengajuan wajib diisi',
             'descriptions.required' => 'kolom keterangan wajib diisi',
             'descriptions.*.required' => 'kolom keterangan wajib diisi',
             'applicantName.required' => 'kolom nama lengkap pemohon wajib diisi',
@@ -75,6 +78,7 @@ class PoliceClearanceSchema extends BaseSchema
         $marriage = $this->body['marriage'];
         $job = !empty(trim($this->body['job'] ?? '')) ? $this->body['job'] : null;
         $address = $this->body['address'];
+        $purpose = $this->body['purpose'];
         $descriptions = $this->body['descriptions'];
         $applicantName = $this->body['applicantName'];
         $applicantPhone = $this->body['applicantPhone'];
@@ -88,6 +92,7 @@ class PoliceClearanceSchema extends BaseSchema
             ->setMarriage($marriage)
             ->setJob($job)
             ->setAddress($address)
+            ->setPurpose($purpose)
             ->setDescriptions($descriptions)
             ->setApplicantName($applicantName)
             ->setApplicantPhone($applicantPhone);
@@ -349,6 +354,26 @@ class PoliceClearanceSchema extends BaseSchema
     public function setDescriptions($descriptions)
     {
         $this->descriptions = $descriptions;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of purpose
+     */
+    public function getPurpose()
+    {
+        return $this->purpose;
+    }
+
+    /**
+     * Set the value of purpose
+     *
+     * @return  self
+     */
+    public function setPurpose($purpose)
+    {
+        $this->purpose = $purpose;
 
         return $this;
     }

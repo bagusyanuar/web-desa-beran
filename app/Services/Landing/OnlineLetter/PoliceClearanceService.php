@@ -29,8 +29,9 @@ class PoliceClearanceService implements PoliceClearanceServiceInterface
 
             $dataDeath = [
                 'date' => Carbon::now(),
-                'reference_number' => 'SKCK-' . date('YmdHis'),
+                'reference_number' => 'SKCK' . date('YmdHis'),
                 'status' => 'created',
+                'purpose' => $schema->getPurpose(),
                 'approved_by_id' => null,
                 'approved_at' => null
             ];

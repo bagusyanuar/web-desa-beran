@@ -11,5 +11,6 @@ interface PoliceClearanceServiceInterface
     public function findAll(PoliceClearanceQuery $queryParams): ServiceResponse;
     public function findByID($id): ServiceResponse;
     public function confirm($id, PoliceClearanceConfirmationSchema $schema): ServiceResponse;
+    public function finish($id): ServiceResponse;
     public function createReceipt($id): ServiceResponse;
 }

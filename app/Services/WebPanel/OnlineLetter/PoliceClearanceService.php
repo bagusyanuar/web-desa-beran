@@ -13,6 +13,7 @@ use App\Schemas\WebPanel\OnlineLetter\PoliceClearance\PoliceClearanceQuery;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 
 class PoliceClearanceService implements PoliceClearanceServiceInterface
 {
@@ -20,11 +21,11 @@ class PoliceClearanceService implements PoliceClearanceServiceInterface
     {
         try {
             $queryParams->hydrateQuery();
-            $query = CertificatePoliceClearance::with(['applicant'])
+            $query = CertificatePoliceClearance::with(['applicant', 'person'])
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%")
-                        ->orWhereRelation('applicant', 'name', 'LIKE', "%{$queryParams->getParam()}%");
+                        ->orWhereRelation('person', 'name', 'LIKE', "%{$queryParams->getParam()}%");
                 })
                 ->when($queryParams->getStatus(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
@@ -55,6 +56,29 @@ class PoliceClearanceService implements PoliceClearanceServiceInterface
             }
 
             return ServiceResponse::statusOK("successfully get certificate death", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function finish($id): ServiceResponse
+    {
+        try {
+            $userId = Auth::user()->id;
+            $approvedAt = Carbon::now();
+            $data = CertificatePoliceClearance::with(['applicant'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            $data->update([
+                'status' => CertificateStatus::Finished->value,
+                'approved_by_id' => $userId,
+                'approved_at' => $approvedAt
+            ]);
+            return ServiceResponse::statusOK("successfully finish certificate");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

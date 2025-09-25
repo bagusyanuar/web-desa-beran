@@ -174,6 +174,19 @@
                                 </x-label.validator>
                             </template>
                         </div>
+                        <div class="w-full col-span-2">
+                            <x-label.label for="purpose">
+                                <span>Tujuan Pembuatan</span>
+                                <span class="text-red-500 text-sm italic">*</span>
+                            </x-label.label>
+                            <x-input.text.textarea id="purpose" rows="3"
+                                x-model="$store.SERVICE_POLICE_CLEARANCE_STORE.form.purpose" />
+                            <template x-if="'purpose' in $store.SERVICE_POLICE_CLEARANCE_STORE.formValidator">
+                                <x-label.validator>
+                                    <span x-text="$store.SERVICE_POLICE_CLEARANCE_STORE.formValidator.purpose[0]"></span>
+                                </x-label.validator>
+                            </template>
+                        </div>
                     </div>
                     <p class="text-md font-bold text-neutral-700 mb-5 mt-10">B. Informasi Keterangan</p>
                     <div class="w-full flex flex-col gap-x-7 gap-y-7">
@@ -360,6 +373,7 @@
                     marriage: '',
                     job: '',
                     address: '',
+                    purpose: '',
                     applicantName: '',
                     applicantPhone: '',
                     descriptions: [''],
@@ -401,8 +415,6 @@
                                 message,
                                 data
                             } = response;
-                            console.log(response);
-
                             switch (status) {
                                 case 201:
                                     this.formClear();
@@ -435,7 +447,6 @@
                 },
                 download() {
                     const referenceNumber = this.receiptData.referenceNumber;
-                    // const referenceNumber = 'SKCK-20250910042549';
                     this.pageLoaderStore.show();
                     this.component.$wire.call('create_receipt', referenceNumber)
                         .then(response => {
