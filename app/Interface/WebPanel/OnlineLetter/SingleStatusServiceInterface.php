@@ -11,5 +11,6 @@ interface SingleStatusServiceInterface
     public function findAll(SingleStatusQuery $queryParams): ServiceResponse;
     public function findByID($id): ServiceResponse;
     public function confirm($id, SingleStatusConfirmationSchema $schema): ServiceResponse;
+    public function finish($id): ServiceResponse;
     public function createReceipt($id): ServiceResponse;
 }

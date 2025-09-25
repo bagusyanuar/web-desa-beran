@@ -28,7 +28,7 @@ class SingleStatusService implements SingleStatusServiceInterface
 
             $dataSingleStatus = [
                 'date' => Carbon::now(),
-                'reference_number' => 'SKBM-' . date('YmdHis'),
+                'reference_number' => 'SKBM' . date('YmdHis'),
                 'status' => 'created',
                 'approved_by_id' => null,
                 'approved_at' => null
@@ -68,6 +68,21 @@ class SingleStatusService implements SingleStatusServiceInterface
             ]);
         } catch (\Throwable $e) {
             DB::rollBack();
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function findByCode($code): ServiceResponse
+    {
+        try {
+            $data = CertificateSingleStatus::with(['applicant', 'person'])
+                ->where('reference_number', '=', $code)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+            return ServiceResponse::statusOK("successfully get certificate domicile", $data);
+        } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }

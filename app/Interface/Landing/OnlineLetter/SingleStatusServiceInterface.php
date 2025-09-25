@@ -8,5 +8,6 @@ use App\Schemas\Landing\OnlineLetter\SingleStatus\SingleStatusSchema;
 interface SingleStatusServiceInterface
 {
     public function send(SingleStatusSchema $schema): ServiceResponse;
+    public function findByCode($code): ServiceResponse;
     public function createReceipt($referenceNumber): ServiceResponse;
 }
