@@ -23,7 +23,7 @@ Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/surat-keterangan-kelahiran', App\Livewire\Pages\Landing\OnlineLetter\Birth\Index::class)->name('online-letter.birth');
     Route::get('/surat-keterangan-kelahiran/{code}', App\Livewire\Pages\Landing\OnlineLetter\Birth\Detail::class)->name('online-letter.birth.code');
     Route::get('/surat-keterangan-catatan-kepolisian', App\Livewire\Pages\Landing\OnlineLetter\PoliceClearance\Index::class)->name('online-letter.police-clearance');
-    Route::get('/surat-keterangan-catatan-kepolisian/{code}', App\Livewire\Pages\Landing\OnlineLetter\PoliceClearance\Index::class)->name('online-letter.police-clearance.code');
+    Route::get('/surat-keterangan-catatan-kepolisian/{code}', App\Livewire\Pages\Landing\OnlineLetter\PoliceClearance\Detail::class)->name('online-letter.police-clearance.code');
     Route::get('/surat-keterangan-belum-menikah', App\Livewire\Pages\Landing\OnlineLetter\SingleStatus\Index::class)->name('online-letter.single-status');
     Route::get('/surat-keterangan-belum-menikah/{code}', App\Livewire\Pages\Landing\OnlineLetter\SingleStatus\Index::class)->name('online-letter.single-status.code');
     Route::get('/surat-keterangan-tidak-mampu', App\Livewire\Pages\Landing\OnlineLetter\Incapacity\Index::class)->name('online-letter.incapacity');
