@@ -13,6 +13,7 @@ use App\Schemas\WebPanel\OnlineLetter\Incapacity\IncapacityQuery;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 
 class IncapacityService implements IncapacityServiceInterface
 {
@@ -20,7 +21,7 @@ class IncapacityService implements IncapacityServiceInterface
     {
         try {
             $queryParams->hydrateQuery();
-            $query = CertificateIncapacity::with(['applicant'])
+            $query = CertificateIncapacity::with(['applicant', 'person'])
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%")
@@ -85,6 +86,29 @@ class IncapacityService implements IncapacityServiceInterface
                 'approved_at' => $approvedAt
             ]);
             return ServiceResponse::statusOK("successfully confirm certificate");
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function finish($id): ServiceResponse
+    {
+        try {
+            $userId = Auth::user()->id;
+            $approvedAt = Carbon::now();
+            $data = CertificateIncapacity::with(['applicant'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            $data->update([
+                'status' => CertificateStatus::Finished->value,
+                'approved_by_id' => $userId,
+                'approved_at' => $approvedAt
+            ]);
+            return ServiceResponse::statusOK("successfully finish certificate");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

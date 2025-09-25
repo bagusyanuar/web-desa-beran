@@ -11,5 +11,6 @@ interface IncapacityServiceInterface
     public function findAll(IncapacityQuery $queryParams): ServiceResponse;
     public function findByID($id): ServiceResponse;
     public function confirm($id, IncapacityConfirmationSchema $schema): ServiceResponse;
+    public function finish($id): ServiceResponse;
     public function createReceipt($id): ServiceResponse;
 }

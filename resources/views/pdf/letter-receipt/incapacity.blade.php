@@ -28,7 +28,7 @@
                                 </td>
                                 <td style="height: fit-content; padding-right: 5px; padding-top: 3px; padding-bottom: 3px;">
                                     <span class="text-sm"
-                                        style="line-height: 0; margin-bottom: 0;">{{ $certificate->applicant->name }}</span>
+                                        style="line-height: 0; margin-bottom: 0; text-transform: uppercase">{{ $certificate->applicant->name }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -42,6 +42,53 @@
                                 <td style="height: fit-content; padding-right: 5px; padding-top: 3px; padding-bottom: 3px;">
                                     <span class="text-sm"
                                         style="line-height: 0; margin-bottom: 0;">{{ $certificate->applicant->phone }}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p class="text-sm font-bold" style="line-height: 1.2; margin-bottom: 3px;">B. Data Permohonan</p>
+                    <div style="border: 1px solid black; border-radius: 3px; margin-bottom: 10px;">
+                        <table class="w-full" style="border-collapse: collapse;">
+                            <tr style="border-bottom: 1px solid black;">
+                                <td
+                                    style="width: 40%; vertical-align: top; padding-left: 5px; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">Tgl. Permohonan</span>
+                                </td>
+                                <td style="width: 5px; vertical-align: top; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">:</span>
+                                </td>
+                                <td style="vertical-align: top; padding-right: 5px; padding-top: 3px; padding-bottom: 3px;">
+                                    @php
+                                        \Carbon\Carbon::setLocale('id');
+                                    @endphp
+                                    <span class="text-sm"
+                                        style="line-height: 1.2; margin-bottom: 0;">{{ \Carbon\Carbon::parse($certificate->date)->translatedFormat('d F Y') }}</span>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid black;">
+                                <td
+                                    style="width: 40%; vertical-align: top; padding-left: 5px; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">No. Permohonan</span>
+                                </td>
+                                <td style="width: 5px; vertical-align: top; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">:</span>
+                                </td>
+                                <td style="vertical-align: top; padding-right: 5px; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm"
+                                        style="line-height: 1.2; margin-bottom: 0;">{{ $certificate->reference_number }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td
+                                    style="width: 40%; vertical-align: top; padding-left: 5px; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">Tujuan Pengajuan</span>
+                                </td>
+                                <td style="width: 5px; vertical-align: top; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm" style="line-height: 1.2; margin-bottom: 0;">:</span>
+                                </td>
+                                <td style="vertical-align: top; padding-right: 5px; padding-top: 3px; padding-bottom: 3px;">
+                                    <span class="text-sm"
+                                        style="line-height: 1.2; margin-bottom: 0;">{{ $certificate->purpose }}</span>
                                 </td>
                             </tr>
                         </table>

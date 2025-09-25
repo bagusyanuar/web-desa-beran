@@ -34,6 +34,12 @@ class Detail extends Component
         $this->generateChatTextLink();
     }
 
+    public function finish()
+    {
+        $response = $this->service->finish($this->id);
+        return AlpineResponse::fromService($response);
+    }
+
     public function confirm($body)
     {
         $schema = (new IncapacityConfirmationSchema())->hydrateSchemaBody($body);
