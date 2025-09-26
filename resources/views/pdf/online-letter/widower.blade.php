@@ -159,7 +159,7 @@
                     <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 15px;">
                         Nama tersebut di atas, benar- benar Penduduk Desa Beran Kec./Kab. Ngawi, duda dari
                         {{ $certificate->person->marriage === 'widowed' ? 'almarhum' : '' }} saudari / ibu
-                        {{ $certificate->person->spouse_name }}.
+                        <span style="text-transform: uppercase;">{{ $certificate->person->spouse_name }}</span>.
                     </p>
                     <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 15px;">
                         Demikian surat keterangan ini kami buat dengan sebenarnya dan agar dapat dipergunakan sebagaimana

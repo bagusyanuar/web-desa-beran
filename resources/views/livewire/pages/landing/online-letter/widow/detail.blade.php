@@ -1,4 +1,4 @@
-<section id="online-letter-widower-detail" data-component-id="online-letter-widower-detail" class="w-full">
+<section id="online-letter-widow-detail" data-component-id="online-letter-widow-detail" class="w-full">
     <div class="w-full h-[20rem] relative">
         <div class="w-full h-full">
             <img src="{{ asset('static/images/service/bg-service.png') }}"
@@ -6,10 +6,10 @@
         </div>
         <div class="w-full h-full absolute top-0 left-0 bg-white/80 flex items-center justify-center">
             <x-container.landing-container class="flex flex-col items-center gap-3">
-                <h1 class="text-4xl text-accent-700 font-bold">SURAT KETERANGAN DUDA</h1>
+                <h1 class="text-4xl text-accent-700 font-bold">SURAT KETERANGAN JANDA</h1>
                 <p class="text-md text-brand-500 w-1/2 text-center">Dokumen resmi yang diterbitkan oleh kelurahan atau
                     desa untuk menerangkan status perkawinan
-                    seseorang yang sah secara administrasi sebagai duda, baik karena perceraian maupun ditinggal
+                    seseorang yang sah secara administrasi sebagai janda, baik karena perceraian maupun ditinggal
                     wafat oleh pasangan, dan digunakan untuk keperluan administrasi maupun persyaratan tertentu.</p>
             </x-container.landing-container>
         </div>
@@ -17,7 +17,7 @@
     <div class="w-full py-10">
         <x-container.landing-container class="">
             <p class="text-center text-accent-500 text-lg font-bold mb-10">
-                INFORMASI PENGAJUAN SURAT KETERANGAN DUDA
+                INFORMASI PENGAJUAN SURAT KETERANGAN JANDA
             </p>
             <div class="w-5/6 justify-self-center bg-white rounded-xl shadow-xl p-6 border border-neutral-300">
                 <div class="w-full">
@@ -229,7 +229,7 @@
     @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
-            const STORE_NAME = 'SERVICE_WIDOWER_DETAIL_STORE';
+            const STORE_NAME = 'SERVICE_WIDOW_DETAIL_STORE';
             const STORE_PROPS = {
                 component: null,
                 init: function() {
@@ -237,7 +237,7 @@
                         component
                     }) => {
                         const componentID = document.querySelector(
-                                '[data-component-id="online-letter-widower-detail"]')
+                                '[data-component-id="online-letter-widow-detail"]')
                             ?.getAttribute(
                                 'wire:id');
                         if (component.id === componentID) {
