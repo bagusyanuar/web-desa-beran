@@ -87,6 +87,21 @@ class MaritalStatusService implements MaritalStatusServiceInterface
         }
     }
 
+    public function findByCode($code): ServiceResponse
+    {
+        try {
+            $data = CertificateMaritalStatus::with(['applicant', 'person'])
+                ->where('reference_number', '=', $code)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+            return ServiceResponse::statusOK("successfully get certificate domicile", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
     public function createReceipt($referenceNumber): ServiceResponse
     {
         try {

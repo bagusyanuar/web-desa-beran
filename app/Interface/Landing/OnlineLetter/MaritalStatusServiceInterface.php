@@ -8,5 +8,6 @@ use App\Schemas\Landing\OnlineLetter\MaritalStatus\MaritalStatusSchema;
 interface MaritalStatusServiceInterface
 {
     public function send(MaritalStatusSchema $schema): ServiceResponse;
+    public function findByCode($code): ServiceResponse;
     public function createReceipt($referenceNumber): ServiceResponse;
 }

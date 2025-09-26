@@ -11,5 +11,6 @@ interface MaritalStatusServiceInterface
     public function findAll(MaritalStatusQuery $queryParams): ServiceResponse;
     public function findByID($id): ServiceResponse;
     public function confirm($id, MaritalStatusConfirmationSchema $schema): ServiceResponse;
+    public function finish($id): ServiceResponse;
     public function createReceipt($id): ServiceResponse;
 }
