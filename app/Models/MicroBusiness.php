@@ -35,6 +35,11 @@ class MicroBusiness extends Model
         return $this->hasMany(MicroBusinessContact::class, 'micro_business_id');
     }
 
+    public function main_contact()
+    {
+        return $this->hasOne(MicroBusinessContact::class, 'micro_business_id')->where('is_main', '=', true);
+    }
+
     public function images()
     {
         return $this->hasMany(MicroBusinessImage::class, 'micro_business_id');

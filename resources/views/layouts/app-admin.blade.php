@@ -14,6 +14,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('static/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('static/css/datepicker.min.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -28,6 +30,7 @@
     </main>
     <script src="{{ asset('static/js/jquery-3.7.0.js') }}"></script>
     <script src="{{ asset('static/js/select2.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();
