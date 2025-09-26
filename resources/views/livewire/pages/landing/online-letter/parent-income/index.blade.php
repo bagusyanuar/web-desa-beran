@@ -7,9 +7,10 @@
         <div class="w-full h-full absolute top-0 left-0 bg-white/80 flex items-center justify-center">
             <x-container.landing-container class="flex flex-col items-center gap-3">
                 <h1 class="text-4xl text-accent-700 font-bold">SURAT KETERANGAN PENGHASILAN ORANG TUA</h1>
-                <p class="text-md text-brand-500 w-1/2 text-center">Dokumen resmi yang menerangkan jumlah penghasilan orang tua atau wali, biasanya diterbitkan
-        oleh kelurahan, desa, atau instansi tempat bekerja, dan digunakan sebagai syarat administrasi
-        dalam pengajuan beasiswa, pendaftaran sekolah, maupun kebutuhan resmi lainnya.</p>
+                <p class="text-md text-brand-500 w-1/2 text-center">Dokumen resmi yang menerangkan jumlah penghasilan
+                    orang tua atau wali, biasanya diterbitkan
+                    oleh kelurahan, desa, atau instansi tempat bekerja, dan digunakan sebagai syarat administrasi
+                    dalam pengajuan beasiswa, pendaftaran sekolah, maupun kebutuhan resmi lainnya.</p>
             </x-container.landing-container>
         </div>
     </div>
@@ -56,7 +57,8 @@
                                 x-model="$store.SERVICE_PARENT_INCOME_STORE.form.birthPlace" />
                             <template x-if="'birthPlace' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.birthPlace[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.birthPlace[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -69,7 +71,8 @@
                                 stateDate="form.dateOfBirth" format="long" />
                             <template x-if="'dateOfBirth' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.dateOfBirth[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.dateOfBirth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -103,7 +106,8 @@
                             </x-select.select2>
                             <template x-if="'citizenship' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.citizenship[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.citizenship[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -173,10 +177,12 @@
                                 <span>Nama Lengkap</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="parent-name" x-model="$store.SERVICE_PARENT_INCOME_STORE.form.parentName" />
+                            <x-input.text.text id="parent-name"
+                                x-model="$store.SERVICE_PARENT_INCOME_STORE.form.parentName" />
                             <template x-if="'parentName' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentName[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentName[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -185,10 +191,12 @@
                                 <span>NIK (Nomor Induk Kependudukan)</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="parent-nik" x-model="$store.SERVICE_PARENT_INCOME_STORE.form.parentNik" />
+                            <x-input.text.text id="parent-nik"
+                                x-model="$store.SERVICE_PARENT_INCOME_STORE.form.parentNik" />
                             <template x-if="'parentNik' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentNik[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentNik[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -202,7 +210,8 @@
                                 x-model="$store.SERVICE_PARENT_INCOME_STORE.form.parentBirthPlace" />
                             <template x-if="'parentBirthPlace' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentBirthPlace[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentBirthPlace[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -215,7 +224,8 @@
                                 stateDate="form.parentDateOfBirth" format="long" />
                             <template x-if="'parentDateOfBirth' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentDateOfBirth[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentDateOfBirth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -232,7 +242,8 @@
                             </x-select.select2>
                             <template x-if="'parentGender' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentGender[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentGender[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -249,7 +260,8 @@
                             </x-select.select2>
                             <template x-if="'parentCitizenship' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentCitizenship[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentCitizenship[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -271,7 +283,8 @@
                             </x-select.select2>
                             <template x-if="'parentReligion' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentReligion[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentReligion[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -288,7 +301,8 @@
                             </x-select.select2>
                             <template x-if="'parentMarriage' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentMarriage[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentMarriage[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -296,7 +310,8 @@
                             <x-label.label for="parent-job">
                                 <span>Pekerjaan</span>
                             </x-label.label>
-                            <x-input.text.text id="parent-job" x-model="$store.SERVICE_PARENT_INCOME_STORE.form.parentJob" />
+                            <x-input.text.text id="parent-job"
+                                x-model="$store.SERVICE_PARENT_INCOME_STORE.form.parentJob" />
                         </div>
                         <div class="w-full col-span-2">
                             <x-label.label for="parent-address">
@@ -307,7 +322,8 @@
                                 x-model="$store.SERVICE_PARENT_INCOME_STORE.form.parentAddress" />
                             <template x-if="'parentAddress' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentAddress[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.parentAddress[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -318,9 +334,11 @@
                             </x-label.label>
                             <x-input.text.text type="number" id="father-income-per-month"
                                 x-model="$store.SERVICE_PARENT_INCOME_STORE.form.fatherIncomePerMonth" />
-                            <template x-if="'fatherIncomePerMonth' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
+                            <template
+                                x-if="'fatherIncomePerMonth' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.fatherIncomePerMonth[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.fatherIncomePerMonth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -331,9 +349,11 @@
                             </x-label.label>
                             <x-input.text.text type="number" id="mother-income-per-month"
                                 x-model="$store.SERVICE_PARENT_INCOME_STORE.form.motherIncomePerMonth" />
-                            <template x-if="'motherIncomePerMonth' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
+                            <template
+                                x-if="'motherIncomePerMonth' in $store.SERVICE_PARENT_INCOME_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.motherIncomePerMonth[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_PARENT_INCOME_STORE.formValidator.motherIncomePerMonth[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -393,7 +413,8 @@
             x-transition:leave-end="translate-y-[-10rem] opacity-0"
             class="w-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[51] flex items-center justify-center">
             <div class="bg-white rounded-lg shadow-lg w-[40rem] p-4">
-                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN PENGHASILAN ORANG TUA BERHASIL
+                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN PENGHASILAN ORANG TUA
+                    BERHASIL
                     DIBUAT
                 </p>
                 <div class="w-full flex items-center gap-3">

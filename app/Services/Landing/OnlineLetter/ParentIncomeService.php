@@ -91,6 +91,21 @@ class ParentIncomeService implements ParentIncomeServiceInterface
         }
     }
 
+    public function findByCode($code): ServiceResponse
+    {
+        try {
+            $data = CertificateParentIncome::with(['applicant', 'person', 'parent'])
+                ->where('reference_number', '=', $code)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+            return ServiceResponse::statusOK("successfully get certificate domicile", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
     public function createReceipt($referenceNumber): ServiceResponse
     {
         try {
@@ -103,7 +118,7 @@ class ParentIncomeService implements ParentIncomeServiceInterface
             }
 
             # generate qrcode
-            $url = route('online-letter.income.code', [
+            $url = route('online-letter.parent-income.code', [
                 'code' => $referenceNumber
             ]);
             $qrCode = QRCodeService::generate($url);

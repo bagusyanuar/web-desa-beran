@@ -13,6 +13,7 @@ use App\Schemas\WebPanel\OnlineLetter\ParentIncome\ParentIncomeQuery;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 
 class ParentIncomeService implements ParentIncomeServiceInterface
 {
@@ -20,11 +21,11 @@ class ParentIncomeService implements ParentIncomeServiceInterface
     {
         try {
             $queryParams->hydrateQuery();
-            $query = CertificateParentIncome::with(['applicant'])
+            $query = CertificateParentIncome::with(['applicant', 'person'])
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->where('reference_number', 'LIKE', "%{$queryParams->getParam()}%")
-                        ->orWhereRelation('applicant', 'name', 'LIKE', "%{$queryParams->getParam()}%");
+                        ->orWhereRelation('person', 'name', 'LIKE', "%{$queryParams->getParam()}%");
                 })
                 ->when($queryParams->getStatus(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
@@ -55,6 +56,29 @@ class ParentIncomeService implements ParentIncomeServiceInterface
             }
 
             return ServiceResponse::statusOK("successfully get certificate income", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function finish($id): ServiceResponse
+    {
+        try {
+            $userId = Auth::user()->id;
+            $approvedAt = Carbon::now();
+            $data = CertificateParentIncome::with(['applicant'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("certificate not found");
+            }
+
+            $data->update([
+                'status' => CertificateStatus::Finished->value,
+                'approved_by_id' => $userId,
+                'approved_at' => $approvedAt
+            ]);
+            return ServiceResponse::statusOK("successfully finish certificate");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

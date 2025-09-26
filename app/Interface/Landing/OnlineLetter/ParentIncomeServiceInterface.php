@@ -8,5 +8,6 @@ use App\Schemas\Landing\OnlineLetter\ParentIncome\ParentIncomeSchema;
 interface ParentIncomeServiceInterface
 {
     public function send(ParentIncomeSchema $schema): ServiceResponse;
+    public function findByCode($code): ServiceResponse;
     public function createReceipt($referenceNumber): ServiceResponse;
 }

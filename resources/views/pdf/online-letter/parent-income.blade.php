@@ -1,11 +1,12 @@
 @extends('pdf.online-letter.index')
 
 @section('content')
-    <p class="text-lg font-bold"
-        style="line-height: 0.5; margin-bottom: 0; margin-top: 25px; text-align: center; text-decoration: underline">SURAT
+    <p class="text-lg font-bold line-press"
+        style="margin-bottom: 0; margin-top: 25px; text-align: center; text-decoration: underline">SURAT
         KETERANGAN PENGHASILAN ORANG TUA</p>
-    <p class="text-md font-bold" style="line-height: 0.3; margin-bottom: 10px; text-align: center;">Nomor : 477 / / 404.601.09
-        / 2025</p>
+    <p class="text-md font-bold line-press" style="margin-top: 3px; margin-bottom: 15px; text-align: center;">Nomor : 400.12.5
+        /<span style="margin-left: 25px; margin-right: 25px;"> </span>/ 404.601.09
+        / {{ \Carbon\Carbon::now()->format('Y') }}</p>
     <table class="w-full border-collapse">
         <tr>
             <td style="width: 0;">
@@ -155,7 +156,7 @@
                         </tr>
                     </table>
                     <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 15px;">
-                        Yang merupakan orang tua / wali murid dari :
+                        Yang merupakan orang tua / wali dari :
                     </p>
                     <table class="w-full border-collapse" style="margin-bottom: 30px;">
                         <tr>

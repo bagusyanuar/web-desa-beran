@@ -26,7 +26,7 @@
                         <td class="px-3 py-2.5 w-8">
                             <span>:</span>
                         </td>
-                        <td class="px-3 py-2.5">
+                        <td class="px-3 py-2.5 uppercase">
                             <span>{{ $data->person->name }}</span>
                         </td>
                     </tr>
@@ -125,19 +125,18 @@
             </div>
             <div class="flex items-center justify-between mb-3">
                 <p class="text-sm font-bold text-neutral-700 mb-3">B. Data Orang Tua / Wali</p>
-                <x-chip.chip-status-detail status="{{ $data->status }}" />
             </div>
 
             <div class="w-full overflow-hidden rounded-lg border border-neutral-300 mb-5">
                 <table class="border-collapse w-full text-sm font-semibold">
                     <tr class="even:bg-white odd:bg-brand-50">
-                        <td class="px-3 py-2.5 w-48">
+                        <td class="px-3 py-2.5 w-64">
                             <span>Nama</span>
                         </td>
                         <td class="px-3 py-2.5 w-8">
                             <span>:</span>
                         </td>
-                        <td class="px-3 py-2.5">
+                        <td class="px-3 py-2.5 uppercase">
                             <span>{{ $data->parent->name }}</span>
                         </td>
                     </tr>
@@ -285,8 +284,8 @@
                         </x-label.validator>
                     </template>
                 </div>
-                <div x-cloak x-show="$store.SERVICE_PARENT_INCOME_DETAIL_STORE.form.status === 'denied'" class="w-full"
-                    wire:ignore>
+                <div x-cloak x-show="$store.SERVICE_PARENT_INCOME_DETAIL_STORE.form.status === 'denied'"
+                    class="w-full" wire:ignore>
                     <x-label.label for="address">
                         <span>Alasan Penolakan</span>
                         <span class="text-red-500 text-sm italic">*</span>
@@ -318,20 +317,27 @@
 
             @if (
                 $data->status === App\Commons\Enum\CertificateStatus::Failed->value ||
-                    $data->status === App\Commons\Enum\CertificateStatus::Pending->value)
+                    $data->status === App\Commons\Enum\CertificateStatus::Pending->value ||
+                    $data->status === App\Commons\Enum\CertificateStatus::Finished->value)
                 <div class="w-full flex flex-col gap-2">
-                    <a href="{{ $chatTextLink }}" target="_blank"
-                        class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
-                        wire:ignore>
-                        <i data-lucide="phone" class="h-4 w-4"></i>
-                        <span>Hubungi Pemohon</span>
-                    </a>
-                    @if ($data->status === App\Commons\Enum\CertificateStatus::Pending->value)
+                    <div class="flex items-center gap-2">
+                        <a href="{{ $chatTextLink }}" target="_blank"
+                            class="flex-1 flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-white bg-accent-500 cursor-pointer hover:bg-accent-700 transition-all duration-200 ease-in-out"
+                            wire:ignore>
+                            <i data-lucide="phone" class="h-4 w-4"></i>
+                            <span>Hubungi Pemohon</span>
+                        </a>
                         <button x-on:click="$store.SERVICE_PARENT_INCOME_DETAIL_STORE.download('{{ $id }}')"
-                            class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-accent-500 bg-neutral-50 cursor-pointer hover:bg-neutral-100 transition-all duration-200 ease-in-out"
+                            class="flex items-center justify-center gap-2 rounded-lg py-2.5 px-3 text-sm text-accent-500 border border-accent-500 bg-neutral-50 cursor-pointer hover:bg-neutral-100 transition-all duration-200 ease-in-out"
                             wire:ignore>
                             <i data-lucide="printer" class="h-4 w-4"></i>
-                            <span>Cetak Surat</span>
+                        </button>
+                    </div>
+                    @if ($data->status === App\Commons\Enum\CertificateStatus::Pending->value)
+                        <button x-on:click="$store.SERVICE_PARENT_INCOME_DETAIL_STORE.finish()"
+                            class="w-full flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm text-accent-500 bg-neutral-50 cursor-pointer hover:bg-neutral-100 transition-all duration-200 ease-in-out"
+                            wire:ignore>
+                            <span>Selesai</span>
                         </button>
                     @endif
                 </div>
@@ -405,6 +411,32 @@
                                     this.formValidator = data;
                                     this.toastStore.error('Harap mengisi data dengan lengkap dan benar',
                                         2000);
+                                    break;
+                                case 500:
+                                    this.toastStore.error(message, 2000);
+                                default:
+                                    break;
+                            }
+                        })
+                        .finally(() => {
+                            this.pageLoaderStore.hide();
+                        });
+                },
+                finish() {
+                    this.pageLoaderStore.show();
+                    this.component.$wire.call('finish')
+                        .then(response => {
+                            const {
+                                status,
+                                message,
+                                data
+                            } = response;
+                            switch (status) {
+                                case 200:
+                                    this.toastStore.success("Berhasil menyelesaikan pengajuan surat", 1500,
+                                        function() {
+                                            window.location.reload();
+                                        });
                                     break;
                                 case 500:
                                     this.toastStore.error(message, 2000);

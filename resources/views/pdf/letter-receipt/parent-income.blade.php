@@ -28,7 +28,7 @@
                                 </td>
                                 <td style="height: fit-content; padding-right: 5px; padding-top: 3px; padding-bottom: 3px;">
                                     <span class="text-sm"
-                                        style="line-height: 0; margin-bottom: 0;">{{ $certificate->applicant->name }}</span>
+                                        style="line-height: 0; margin-bottom: 0; text-transform: uppercase;">{{ $certificate->applicant->name }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -122,7 +122,7 @@
         monitoring
         pengajuan surat.</p>
     <p class="text-xs" style="line-height: 1; color: black; font-style: italic">atau Kunjungi
-        {{ route('online-letter.income.code', [
+        {{ route('online-letter.parent-income.code', [
             'code' => $certificate->reference_number,
         ]) }}
     </p>
