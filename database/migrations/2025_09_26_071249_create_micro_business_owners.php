@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('micro_businesses', function (Blueprint $table) {
+        Schema::create('micro_business_owners', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
+            $table->uuid('micro_business_id')->unique('uniq_mbo_mcbu_id')->nullable();
+            $table->string('name');
+            $table->text('image')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+            $table->foreign('micro_business_id', 'fk_mbo_mcbu')
+                ->references('id')
+                ->on('micro_businesses')
+                ->onDelete('set null');
         });
     }
 
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('micro_businesses');
+        Schema::dropIfExists('micro_business_owners');
     }
 };
