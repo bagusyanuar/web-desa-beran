@@ -31,6 +31,7 @@
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.parent-income') }}"
                     text="Penghasilan Orang Tua" />
             </x-sidebar.sidebar-item-tree>
+            <x-sidebar.sidebar-item to="{{ route('web-panel.micro-business') }}" text="Produk UMKM" icon="shopping-bag" />
         </div>
     </div>
 </aside>
