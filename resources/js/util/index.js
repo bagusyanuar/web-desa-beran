@@ -5,3 +5,4 @@ import './alert';
 import './loader';
 import './table';
 import './summernote';
+import './dropzone';

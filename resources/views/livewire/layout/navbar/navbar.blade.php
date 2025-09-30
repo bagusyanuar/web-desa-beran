@@ -1,5 +1,5 @@
 <nav
-    class="bg-white w-full h-16 ps-72 top-0 fixed right-0 border-b border-neutral-300 transition-all ease-in-out duration-300">
+    class="bg-white w-full h-16 ps-72 top-0 z-[30] fixed right-0 border-b border-neutral-300 transition-all ease-in-out duration-300">
     <div class="w-full h-full flex items-center justify-between px-6">
         <div class="">
             <span class="text-neutral-700">Welcome Back, <span class="font-semibold">John Doe</span></span>

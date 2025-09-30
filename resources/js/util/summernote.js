@@ -5,8 +5,7 @@ document.addEventListener('alpine:init', () => {
             initSummernote() {
                 this.$nextTick(() => {
                     this.element = $(this.$el);
-                    console.log('summernote');
-
+                    let self = this;
                     $(this.$el).summernote({
                         placeholder: 'Hello stand alone ui',
                         tabsize: 2,
@@ -19,7 +18,12 @@ document.addEventListener('alpine:init', () => {
                             ['table', ['table']],
                             ['insert', ['link', 'picture', 'video']],
                             ['view', ['fullscreen', 'codeview', 'help']]
-                        ]
+                        ],
+                        callbacks: {
+                            onChange: function (contents) {
+                                self.$dispatch('input', contents)
+                            }
+                        }
                     });
                 });
             }
