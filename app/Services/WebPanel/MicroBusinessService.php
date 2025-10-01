@@ -22,7 +22,7 @@ class MicroBusinessService implements MicroBusinessServiceInterface
     {
         try {
             $queryParams->hydrateQuery();
-            $query = MicroBusiness::with(['owner', 'main_contact'])
+            $query = MicroBusiness::with(['owner', 'contact'])
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->where('title', 'LIKE', "%{$queryParams->getParam()}%")

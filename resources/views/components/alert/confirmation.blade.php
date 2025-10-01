@@ -1,4 +1,5 @@
 @props([
+    'title' => 'Konfirmasi Pengajuan Surat',
     'onAccept' => '',
     'acceptText' => 'Kirim',
     'cancelText' => 'Batal',
@@ -19,7 +20,7 @@
                         style="height: 48px; width: 48px;"></i>
                 </div>
                 <div class="flex-1">
-                    <p class="text-accent-500 text-md font-bold mb-1">Konfirmasi Pengajuan Surat</p>
+                    <p class="text-accent-500 text-md font-bold mb-1">{{ $title }}</p>
                     {{ $slot }}
                 </div>
             </div>

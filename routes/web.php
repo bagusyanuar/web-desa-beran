@@ -63,5 +63,5 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/surat-keterangan-penghasilan-orang-tua', App\Livewire\Pages\WebPanel\OnlineLetter\ParentIncome\Index::class)->name('web-panel.online-letter.parent-income');
     Route::get('/surat-keterangan-penghasilan-orang-tua/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\ParentIncome\Detail::class)->name('web-panel.online-letter.parent-income.detail');
     Route::get('/produk-umkm', App\Livewire\Pages\WebPanel\MicroBusiness\Index::class)->name('web-panel.micro-business');
-    Route::get('/produk-umkm/tambah', App\Livewire\Pages\WebPanel\MicroBusiness\Detail::class)->name('web-panel.micro-business.new');
+    Route::get('/produk-umkm/tambah', App\Livewire\Pages\WebPanel\MicroBusiness\Create::class)->name('web-panel.micro-business.new');
 });

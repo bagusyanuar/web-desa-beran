@@ -21,7 +21,7 @@
                 <x-table.th width="w-[180px]" align="center">
                     <span class="text-sm text-neutral-700">Pemilik</span>
                 </x-table.th>
-                <x-table.th width="w-[140px]" align="center">
+                <x-table.th width="w-[160px]" align="center">
                     <span class="text-sm text-neutral-700">Kontak</span>
                 </x-table.th>
                 <x-table.th width="w-[80px]">
@@ -33,11 +33,11 @@
                         <x-table.td>
                             <span class="text-sm text-neutral-700" x-text="v.title"></span>
                         </x-table.td>
-                        <x-table.td width="w-[140px]" align="center">
+                        <x-table.td width="w-[180px]" align="center">
                             <span class="text-sm text-neutral-700" x-text="v.owner?.name || '-'"></span>
                         </x-table.td>
-                        <x-table.td width="w-[140px]" align="center">
-                            <span class="text-sm text-neutral-700" x-text="v.main_contact?.value || '-'"></span>
+                        <x-table.td width="w-[160px]" align="center">
+                            <span class="text-sm text-neutral-700" x-text="v.contact?.value || '-'"></span>
                         </x-table.td>
                         <x-table.td width="w-[80px]" align="center">
                             <div wire:ignore x-data="{

@@ -25,23 +25,18 @@ class MicroBusiness extends Model
         return $this->hasOne(MicroBusinessOwner::class, 'micro_business_id');
     }
 
-    public function addresses()
+    public function address()
     {
-        return $this->hasMany(MicroBusinessAddress::class, 'micro_business_id');
+        return $this->hasOne(MicroBusinessAddress::class, 'micro_business_id')->where('is_main', '=', true);
     }
 
-    public function contacts()
-    {
-        return $this->hasMany(MicroBusinessContact::class, 'micro_business_id');
-    }
-
-    public function main_contact()
+    public function contact()
     {
         return $this->hasOne(MicroBusinessContact::class, 'micro_business_id')->where('is_main', '=', true);
     }
 
-    public function images()
+    public function image()
     {
-        return $this->hasMany(MicroBusinessImage::class, 'micro_business_id');
+        return $this->hasOne(MicroBusinessImage::class, 'micro_business_id')->where('is_thumbnail', '=', true);
     }
 }
