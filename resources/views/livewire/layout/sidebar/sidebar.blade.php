@@ -24,14 +24,17 @@
                     text="Tidak Mampu" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.income') }}"
                     text="Penghasilan" />
-                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.widower') }}"
-                    text="Duda" />
-                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.widow') }}"
-                    text="Janda" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.widower') }}" text="Duda" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.widow') }}" text="Janda" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.online-letter.parent-income') }}"
                     text="Penghasilan Orang Tua" />
             </x-sidebar.sidebar-item-tree>
-            <x-sidebar.sidebar-item to="{{ route('web-panel.micro-business') }}" text="Produk UMKM" icon="shopping-bag" />
+            <x-sidebar.sidebar-item to="{{ route('web-panel.micro-business') }}" text="Produk UMKM"
+                icon="shopping-bag" />
+            <x-sidebar.sidebar-item-tree text="Profil Desa" icon="info">
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.about') }}"
+                    text="Tentang Desa" />
+            </x-sidebar.sidebar-item-tree>
         </div>
     </div>
 </aside>
