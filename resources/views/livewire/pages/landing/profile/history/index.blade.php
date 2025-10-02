@@ -21,7 +21,7 @@
                     <p class="text-lg text-accent-500 font-bold mb-5">SEJARAH DESA BERAN</p>
                     @if ($data->image !== null)
                         <div class="w-full rounded-lg bg-blue-600 mb-5">
-                            <img src="{{ $data->image }}" class="w-full h-96 rounded-lg object-cover" />
+                            <img src="{{ $data->image }}" alt="image-profile" class="w-full h-96 rounded-lg object-cover" />
                         </div>
                     @endif
                     <div class="w-full text-neutral-700 text-sm">
