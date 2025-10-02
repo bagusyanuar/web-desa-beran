@@ -14,6 +14,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('static/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('static/css/datepicker.min.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -26,6 +28,7 @@
     <script src="{{ asset('static/js/jquery-3.7.0.js') }}"></script>
     <script src="{{ asset('static/js/select2.min.js') }}"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         lucide.createIcons();
     </script>

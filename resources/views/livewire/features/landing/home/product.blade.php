@@ -1,23 +1,53 @@
 <section id="landing-product" data-component-id="landing-product">
-    <div class="w-full h-[30rem] relative">
-        <div class="w-full h-[30rem]">
-            <img src="{{ asset('static/images/bg-product.jpg') }}" class="h-[30rem] w-full object-cover object-top"
+    <div class="w-full h-[35rem] relative">
+        <div class="w-full h-[35rem]">
+            <img src="{{ asset('static/images/bg-product.jpg') }}" class="h-[35rem] w-full object-cover object-top"
                 alt="main-service" />
         </div>
-        <div class="w-full h-[30rem] absolute top-0 left-0 bg-white/80 flex items-center justify-center">
+        <div class="w-full h-[35rem] absolute top-0 left-0 bg-white/80 flex items-center justify-center">
             <x-container.landing-container class="flex items-center gap-7">
-                <div class="flex-1">
-                    <h1 class="text-[3rem] text-accent-700 font-bold">PRODUK UMKM</h1>
-                    <p class="text-md text-brand-500 mb-5">Produk UMKM Desa kami lahir dari tangan-tangan terampil
+                <div class="w-full">
+                    <h1 class="text-[3rem] text-accent-700 font-bold text-center">PRODUK UMKM</h1>
+                    <p class="text-md text-brand-500 mb-5 text-center">Produk UMKM Desa kami lahir dari tangan-tangan
+                        terampil
                         masyarakat lokal. Setiap karya mengandung cerita, tradisi, dan kearifan yang diwariskan
                         turun-temurun. Dengan bahan alami pilihan dan proses yang penuh ketelitian, kami
                         menghadirkan produk yang bukan hanya bernilai guna, tapi juga bernilai rasa dan budaya.</p>
-                    <a href="#" class="text-md text-brand-500 flex items-center gap-3">
+                    {{-- <a href="#" class="text-md text-brand-500 flex items-center gap-3">
                         <span>Lihat Selengkapnya</span>
                         <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
-                    </a>
+                    </a> --}}
+                    <div class="w-full flex gap-3" wire:ignore>
+                        <x-slick.carousel slideToShow="3" mode="width">
+                            <div class="px-3 w-48">
+                                <div class="bg-white shadow-xl h-64">
+                                </div>
+                            </div>
+                            <div class="px-3 w-48">
+                                <div class="bg-white shadow-xl h-64">
+                                </div>
+                            </div>
+                            <div class="px-3 w-48">
+                                <div class="bg-white shadow-xl h-64">
+                                </div>
+                            </div>
+                            <div class="px-3 w-48">
+                                <div class="bg-white shadow-xl h-64">
+                                </div>
+                            </div>
+                            <div class="px-3 w-48">
+                                <div class="bg-white shadow-xl h-64">
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="bg-white shadow-xl h-64">
+                                </div>
+                            </div>
+
+                        </x-slick.carousel>
+                    </div>
                 </div>
-                <div class="flex-1 flex flex-col gap-5">
+                {{-- <div class="flex-1 flex flex-col gap-5">
                     <div
                         class="bg-white w-3/4 h-32 rounded-lg shadow-xl flex items-start gap-3 p-1 cursor-pointer hover:shadow-2xl hover:translate-x-2 transition-all duration-300 ease-in">
                         <div class="h-full w-1/3 rounded-lg">
@@ -105,8 +135,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </x-container.landing-container>
         </div>
     </div>
 </section>
+
+
+@push('scripts')
+    @vite(['resources/js/util/slick.js'])
+@endpush
