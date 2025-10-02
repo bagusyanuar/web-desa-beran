@@ -21,28 +21,20 @@
                 <ul class="flex items-center gap-1">
                     <x-navbar.navbar-item text="Beranda" to="/" />
                     <x-navbar.navbar-item-tree text="Profil">
-                        <div class="w-48 bg-white px-1.5 py-1.5 rounded-md border border-neutral-300">
-                            <a href="#"
-                                class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Tentang
-                                Desa</a>
-                            <a href="#"
-                                class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Visi
-                                dan Misi</a>
-                            <a href="#"
-                                class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Aparatur
-                                Desa</a>
-                            <a href="#"
-                                class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Statistik
-                                Desa</a>
+                        <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
+                            <x-navbar.navbar-tree-list to="{{ route('history') }}" text="Sejarah Desa" />
+                            <x-navbar.navbar-tree-list to="#" text="Profil Wilayah Desa" />
+                            <x-navbar.navbar-tree-list to="#" text="Profil Masyarakat Desa" />
+                            <x-navbar.navbar-tree-list to="#" text="Profil Potensi Desa" />
+                            <x-navbar.navbar-tree-list to="#" text="Visi Misi Desa" />
+                            <x-navbar.navbar-tree-list to="#" text="Prestasi" />
+                            <x-navbar.navbar-tree-list to="#" text="Peta Desa" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Layanan">
-                        <div class="w-48 bg-white px-1.5 py-1.5  rounded-md border border-neutral-300">
-                            <a href="{{ route('online-letter') }}"
-                                class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Surat
-                                Online</a>
-                            <a href="#"
-                                class="rounded block p-1.5 text-xs text-neutral-700 hover:bg-neutral-100 transition-all duration-200 ease-in">Aduan</a>
+                        <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
+                            <x-navbar.navbar-tree-list to="{{ route('online-letter') }}" text="Surat Online" />
+                            <x-navbar.navbar-tree-list to="#" text="Aduan" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Publikasi">

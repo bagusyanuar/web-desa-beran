@@ -84,7 +84,9 @@
                     console.log(this.form);
                     this.alertStore.hide();
                     this.pageLoaderStore.show();
-                    const uploadImage = this.imageDropper.files.map(file => {
+                    const uploadImage = this.imageDropper.files
+                    .filter(file => file instanceof File)
+                    .map(file => {
                         return new Promise((resolve, reject) => {
                             this.component.$wire.upload('image', file, resolve,
                                 reject);
@@ -92,7 +94,6 @@
                     })
                     await Promise.all(uploadImage);
                     const response = await this.component.$wire.call('save', this.form);
-                    console.log(response);
                     const {
                         status,
                         data,
@@ -125,7 +126,6 @@
                             data,
                             message
                         } = response;
-                        console.log(response);
                         if (data) {
                             const {
                                 description,
@@ -133,6 +133,15 @@
                             } = data;
                             this.form.description = description;
                             this.imageDropperUrl = image;
+                            let mockFile = {
+                                name: "gambar-lama.jpg",
+                                size: 12345
+                            };
+                            this.imageDropper.emit("addedfile", mockFile);
+                            this.imageDropper.emit("thumbnail", mockFile, this.imageDropperUrl);
+                            this.imageDropper.emit("complete", mockFile);
+                            this.imageDropper.files.push(mockFile);
+
                         } else {
                             this.form.description = '';
                         }
