@@ -32,8 +32,10 @@
             <x-sidebar.sidebar-item to="{{ route('web-panel.micro-business') }}" text="Produk UMKM"
                 icon="shopping-bag" />
             <x-sidebar.sidebar-item-tree text="Profil Desa" icon="info">
-                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.about') }}"
-                    text="Tentang Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.history') }}"
+                    text="Sejarah Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.regional') }}"
+                    text="Wilayah Desa" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>
