@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('static/css/datepicker.min.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['s', 'resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
 

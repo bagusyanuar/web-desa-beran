@@ -143,5 +143,5 @@
 
 
 @push('scripts')
-    @vite(['resources/js/util/slick.js'])
+    @vite(['resources/js/util/index.js'])
 @endpush
