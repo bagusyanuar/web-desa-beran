@@ -318,7 +318,7 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
-    @vite(['resources/js/util/index.js])
+    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_WIDOW_STORE';
