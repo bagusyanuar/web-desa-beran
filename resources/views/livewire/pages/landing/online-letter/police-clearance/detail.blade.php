@@ -216,7 +216,8 @@
                         class="w-full flex items-start gap-3 rounded-lg bg-blue-100 text-blue-500 border border-blue-500 p-3">
                         <i data-lucide="info" class="h-6 w-6"></i>
                         <div class="flex-1">
-                            <p class="text-sm mb-3">Sehubungan dengan pengajuan Surat Pengantar Keterangan Catatan Kepolisian, bersama ini
+                            <p class="text-sm mb-3">Sehubungan dengan pengajuan Surat Pengantar Keterangan Catatan
+                                Kepolisian, bersama ini
                                 kami
                                 sampaikan bahwa pemohon diwajibkan membawa dan melampirkan dokumen kelengkapan sebagai
                                 berikut :</p>
@@ -243,7 +244,7 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
-    @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
+    @vite(['resources/js/util/index.js])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_DOMICILE_DETAIL_STORE';

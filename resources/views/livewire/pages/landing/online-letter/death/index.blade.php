@@ -185,7 +185,8 @@
                                 <span>Tempat Kematian</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="death-place" x-model="$store.SERVICE_DEATH_STORE.form.deathPlace" />
+                            <x-input.text.text id="death-place"
+                                x-model="$store.SERVICE_DEATH_STORE.form.deathPlace" />
                             <template x-if="'deathPlace' in $store.SERVICE_DEATH_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DEATH_STORE.formValidator.deathPlace[0]"></span>
@@ -234,8 +235,8 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <div class="w-full flex items-center gap-1">
-                                <x-input.date.datepicker id="date"
-                                    store="SERVICE_DEATH_STORE" stateDate="form.date" format="long" />
+                                <x-input.date.datepicker id="date" store="SERVICE_DEATH_STORE"
+                                    stateDate="form.date" format="long" />
                                 <x-input.date.timepicker class="!w-1/3"
                                     x-model="$store.SERVICE_DEATH_STORE.form.time" />
                             </div>
@@ -423,7 +424,7 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
-    @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
+    @vite(['resources/js/util/index.js])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_DEATH_STORE';

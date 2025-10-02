@@ -183,7 +183,8 @@
                                 x-model="$store.SERVICE_POLICE_CLEARANCE_STORE.form.purpose" />
                             <template x-if="'purpose' in $store.SERVICE_POLICE_CLEARANCE_STORE.formValidator">
                                 <x-label.validator>
-                                    <span x-text="$store.SERVICE_POLICE_CLEARANCE_STORE.formValidator.purpose[0]"></span>
+                                    <span
+                                        x-text="$store.SERVICE_POLICE_CLEARANCE_STORE.formValidator.purpose[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -352,7 +353,7 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
-    @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
+    @vite(['resources/js/util/index.js])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_POLICE_CLEARANCE_STORE';

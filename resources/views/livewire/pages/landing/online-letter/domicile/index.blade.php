@@ -64,7 +64,7 @@
                                 <span>Tanggal Lahir</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                             <x-input.date.datepicker id="date-of-birth" store="SERVICE_DOMICILE_STORE"
+                            <x-input.date.datepicker id="date-of-birth" store="SERVICE_DOMICILE_STORE"
                                 stateDate="form.dateOfBirth" format="long" />
                             <template x-if="'dateOfBirth' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
@@ -317,7 +317,7 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
-    @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
+    @vite(['resources/js/util/index.js])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_DOMICILE_STORE';
