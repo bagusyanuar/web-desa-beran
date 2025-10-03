@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', App\Livewire\Pages\Landing\Home\Index::class)->name('home');
 Route::get('/sejarah-desa-beran', App\Livewire\Pages\Landing\Profile\History\Index::class)->name('history');
 Route::get('/wilayah-desa-beran', App\Livewire\Pages\Landing\Profile\Regional\Index::class)->name('regional');
-Route::get('/produk-umkm-desa-beran/{slug}', App\Livewire\Pages\Landing\Profile\Regional\Index::class)->name('micro-business.detail');
+Route::group(['prefix' => 'produk-umkm-desa-beran'], function () {
+    Route::get('/', App\Livewire\Pages\Landing\MicroBusiness\Index::class)->name('micro-business');
+    Route::get('/{slug}', App\Livewire\Pages\Landing\MicroBusiness\Detail::class)->name('micro-business.detail');
+});
+
 
 Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/', App\Livewire\Pages\Landing\OnlineLetter\Index::class)->name('online-letter');

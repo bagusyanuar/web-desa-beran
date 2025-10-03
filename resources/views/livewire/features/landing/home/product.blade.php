@@ -24,7 +24,7 @@
                         </x-slick.carousel>
                     </div>
                     <div class="flex items-center justify-center">
-                        <a href="#" class="text-md text-brand-500 flex items-center gap-3">
+                        <a href="{{ route('micro-business') }}" class="text-md text-brand-500 flex items-center gap-3">
                             <span>Lihat Selengkapnya</span>
                             <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                         </a>
