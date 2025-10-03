@@ -23,9 +23,16 @@ class Detail extends Component
     /** @var MicroBusinessService $service */
     private $service;
 
+    public $id;
+
     public function boot(MicroBusinessService $service)
     {
         $this->service = $service;
+    }
+
+    public function mount($id)
+    {
+        $this->id = $id;
     }
 
     public function save($body)
@@ -35,7 +42,13 @@ class Detail extends Component
             'productImage' => $this->productImage,
         ]);
         $schema = (new MicroBusinessSchema())->hydrateSchemaBody($mergeBody);
-        $response = $this->service->create($schema);
+        $response = $this->service->update($this->id, $schema);
+        return AlpineResponse::fromService($response);
+    }
+
+    public function getDetail()
+    {
+        $response = $this->service->findByID($this->id);
         return AlpineResponse::fromService($response);
     }
 

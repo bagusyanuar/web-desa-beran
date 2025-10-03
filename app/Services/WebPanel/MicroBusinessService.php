@@ -38,6 +38,144 @@ class MicroBusinessService implements MicroBusinessServiceInterface
         }
     }
 
+    public function findByID($id): ServiceResponse
+    {
+        try {
+            $data = MicroBusiness::with(['owner', 'contact', 'address', 'image'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("data not found");
+            }
+            return ServiceResponse::statusOK("successfully get micro business", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function update($id, MicroBusinessSchema $schema): ServiceResponse
+    {
+        try {
+            DB::beginTransaction();
+            $validator = $schema->validate();
+            if ($validator->fails()) {
+                return ServiceResponse::unprocessableEntity($validator->errors()->toArray());
+            }
+            $schema->hydrateBody();
+
+            $microBusiness = MicroBusiness::with(['owner', 'contact', 'address', 'image'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$microBusiness) {
+                DB::rollBack();
+                return ServiceResponse::notFound("data not found");
+            }
+
+            $dataMicroBusineess = [
+                'title' => $schema->getTitle(),
+                'slug' => Str::slug($schema->getTitle()),
+                'description' => $schema->getDescription(),
+            ];
+
+            $microBusiness->update($dataMicroBusineess);
+
+            # update owner
+            $owner = $microBusiness->owner;
+            if ($owner) {
+                $ownerImageName = null;
+                if ($schema->getOwnerImage()) {
+                    $fileUploadService = new FileUpload($schema->getOwnerImage(), "assets/images/micro-business/owner");
+                    $fileUploadResponse = $fileUploadService->upload();
+                    if (!$fileUploadResponse->isSuccess()) {
+                        DB::rollBack();
+                        return ServiceResponse::internalServerError($fileUploadResponse->getMessage());
+                    }
+                    $ownerImageName = $fileUploadResponse->getFileName();
+                }
+
+                $dataOwner = [
+                    'micro_business_id' => $microBusiness->id,
+                    'name' => $schema->getOwnerName(),
+                    'image' => $ownerImageName,
+                    'description' => $schema->getOwnerDescription(),
+                ];
+                $owner->update($dataOwner);
+            }
+
+            # update address
+            $address = $microBusiness->address;
+            $dataAddress = [
+                'micro_business_id' => $microBusiness->id,
+                'address' => $schema->getOwnerAddress(),
+                'is_main' => true,
+            ];
+            if ($address) {
+                $address->update($dataAddress);
+            } else {
+                MicroBusinessAddress::create($dataAddress);
+            }
+
+            # update contact
+            $contact = $microBusiness->contact;
+            $dataContact = [
+                'micro_business_id' => $microBusiness->id,
+                'type' => 'phone',
+                'value' => $schema->getOwnerContact(),
+                'is_main' => true,
+            ];
+            if ($contact) {
+                $contact->update($dataContact);
+            } else {
+                MicroBusinessContact::create($dataContact);
+            }
+
+            # update image
+            $image = $microBusiness->image;
+            $productImageName = null;
+            if ($schema->getProductImage()) {
+                $fileUploadService = new FileUpload($schema->getProductImage(), "assets/images/micro-business/product");
+                $fileUploadResponse = $fileUploadService->upload();
+                if (!$fileUploadResponse->isSuccess()) {
+                    DB::rollBack();
+                    return ServiceResponse::internalServerError($fileUploadResponse->getMessage());
+                }
+                $productImageName = $fileUploadResponse->getFileName();
+            }
+            $dataImage = [
+                'micro_business_id' => $microBusiness->id,
+                'image' => $productImageName,
+                'is_thumbnail' => true,
+            ];
+
+            if ($image) {
+                $image->update($dataImage);
+            } else {
+                MicroBusinessImage::create($dataImage);
+            }
+            DB::commit();
+            return ServiceResponse::statusOK("successfully update micro business");
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function delete($id): ServiceResponse
+    {
+        try {
+            $data = MicroBusiness::with(['owner', 'contact', 'address', 'image'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("data not found");
+            }
+            $data->delete();
+            return ServiceResponse::statusOK("successfully delete micro business");
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
     public function create(MicroBusinessSchema $schema): ServiceResponse
     {
         try {
