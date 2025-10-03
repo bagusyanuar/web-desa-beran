@@ -2,14 +2,14 @@
     'image' => null,
     'title' => 'Product Title',
     'owner' => 'Owner Name',
-    'description' => ''
+    'description' => '',
 ])
 
 <div class="px-3 last:px-0">
-    <div class="bg-white shadow-xl w-56 h-72 flex flex-col rounded-lg border border-neutral-300">
+    <div
+        {{ $attributes->merge(['class' => 'bg-white shadow-xl w-56 h-72 flex flex-col rounded-lg border border-neutral-300 cursor-pointer']) }}>
         <div class="w-full h-32">
-            <img src="{{ asset($image) }}"
-                class="rounded-t-lg w-full h-full object-cover object-center" />
+            <img src="{{ asset($image) }}" class="rounded-t-lg w-full h-full object-cover object-center" />
         </div>
         <div class="w-full flex flex-col flex-1 px-2 py-2">
             <p class="text-md text-brand-500 font-bold">{{ $title }}</p>
