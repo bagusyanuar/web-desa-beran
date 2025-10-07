@@ -1,7 +1,8 @@
 <section id="online-letter-police-clearance" data-component-id="online-letter-police-clearance" class="w-full">
     <div class="mb-7">
         <p class="text-xl text-neutral-700 font-bold">Surat Keterangan Catatan Kepolisian</p>
-        <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan catatan kepolisian.</p>
+        <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan catatan kepolisian.
+        </p>
     </div>
     <div class="w-full p-3 bg-white border border-neutral-300 shadow-xl rounded-lg">
         <div class="flex items-center justify-between mb-3">
@@ -44,13 +45,13 @@
                     <p class="text-xs font-semibold text-neutral-700 mb-2">Periode :</p>
                     <div class="flex items-center mb-3 gap-1">
                         <div class="flex-1" wire:ignore>
-                            <x-input.date.datepicker class="!text-xs" id="start-date" store="SERVICE_POLICE_CLEARANCE_STORE"
-                                stateDate="startDate" format="slash" />
+                            <x-input.date.datepicker class="!text-xs" id="start-date"
+                                store="SERVICE_POLICE_CLEARANCE_STORE" stateDate="startDate" format="slash" />
                         </div>
                         <span class="text-xs text-neutral-700">/</span>
                         <div class="flex-1" wire:ignore>
-                            <x-input.date.datepicker class="!text-xs" id="start-date" store="SERVICE_POLICE_CLEARANCE_STORE"
-                                stateDate="endDate" format="slash" />
+                            <x-input.date.datepicker class="!text-xs" id="start-date"
+                                store="SERVICE_POLICE_CLEARANCE_STORE" stateDate="endDate" format="slash" />
                         </div>
                     </div>
                     <div class="w-full">
@@ -122,7 +123,7 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/datepicker.js', 'resources/js/util/table.js'])
+    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_POLICE_CLEARANCE_STORE';
@@ -143,8 +144,9 @@
                         component
                     }) => {
                         const componentID = document.querySelector(
-                            '[data-component-id="online-letter-police-clearance"]')?.getAttribute(
-                            'wire:id');
+                                '[data-component-id="online-letter-police-clearance"]')
+                            ?.getAttribute(
+                                'wire:id');
                         if (component.id === componentID) {
                             this.component = component;
                             this.findAll()

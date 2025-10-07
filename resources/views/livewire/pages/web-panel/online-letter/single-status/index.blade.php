@@ -44,13 +44,13 @@
                     <p class="text-xs font-semibold text-neutral-700 mb-2">Periode :</p>
                     <div class="flex items-center mb-3 gap-1">
                         <div class="flex-1" wire:ignore>
-                            <x-input.date.datepicker class="!text-xs" id="start-date" store="SERVICE_SINGLE_STATUS_STORE"
-                                stateDate="startDate" format="slash" />
+                            <x-input.date.datepicker class="!text-xs" id="start-date"
+                                store="SERVICE_SINGLE_STATUS_STORE" stateDate="startDate" format="slash" />
                         </div>
                         <span class="text-xs text-neutral-700">/</span>
                         <div class="flex-1" wire:ignore>
-                            <x-input.date.datepicker class="!text-xs" id="start-date" store="SERVICE_SINGLE_STATUS_STORE"
-                                stateDate="endDate" format="slash" />
+                            <x-input.date.datepicker class="!text-xs" id="start-date"
+                                store="SERVICE_SINGLE_STATUS_STORE" stateDate="endDate" format="slash" />
                         </div>
                     </div>
                     <div class="w-full">
@@ -122,7 +122,7 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/datepicker.js', 'resources/js/util/table.js'])
+    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_SINGLE_STATUS_STORE';
