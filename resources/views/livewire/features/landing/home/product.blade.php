@@ -17,7 +17,7 @@
                     <div class="w-full flex gap-3 mb-5" wire:ignore>
                         <x-slick.carousel slideToShow="3" speed="2000" mode="width">
                             @foreach ($data as $v)
-                                <x-slick.card-product image="/static/images/products/product-1.jpg"
+                                <x-slick.card-product image="{{ $v->image->image }}"
                                     title="{{ $v->title }}" owner="{{ $v->owner->name }}"
                                     description="{{ strip_tags($v->description) }}" wire:click="toDetail('{{ $v->slug }}')" />
                             @endforeach

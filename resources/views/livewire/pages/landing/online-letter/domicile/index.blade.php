@@ -19,7 +19,25 @@
             </p>
             <div class="w-5/6 justify-self-center bg-white rounded-xl shadow-xl p-6 border border-neutral-300">
                 <div class="w-full">
-                    <p class="text-md font-bold text-neutral-700 mb-5">A. Data Diri</p>
+                    <div
+                        class="w-full flex items-start gap-3 rounded-lg bg-blue-100 text-blue-500 border border-blue-500 p-3">
+                        <i data-lucide="info" class="h-6 w-6"></i>
+                        <div class="flex-1">
+                            <p class="text-sm mb-3">Sehubungan dengan pengajuan Surat Keterangan Domisili, bersama ini
+                                kami
+                                sampaikan bahwa pemohon diwajibkan membawa dan melampirkan dokumen kelengkapan sebagai
+                                berikut :</p>
+                            <ol class="list-decimal list-outside ml-4 text-sm">
+                                <li>
+                                    <p>Fotokopi KTP atau Fotokopi Kartu Keluarga (KK)</p>
+                                </li>
+                                <li>
+                                    <p>Surat Pengantar dari RT Setempat</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <p class="text-md font-bold text-neutral-700 my-5">A. Data Diri</p>
                     <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7">
                         <div class="w-full">
                             <x-label.label for="name">
@@ -211,7 +229,6 @@
                             <x-captcha.recaptcha store="SERVICE_DOMICILE_STORE" stateData="captchaToken" />
                         </div>
                     </div>
-
                     <button class="w-full rounded-lg text-md text-white py-2.5 bg-brand-500"
                         x-on:click="$store.SERVICE_DOMICILE_STORE.send()">
                         <span>Kirim</span>
