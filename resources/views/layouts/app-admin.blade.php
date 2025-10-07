@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('static/css/datepicker.min.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
 
-    @vite(['resources/css/app.scss', 'resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
 

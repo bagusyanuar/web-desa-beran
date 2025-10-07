@@ -14,7 +14,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('static/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('static/css/datepicker.min.css') }}" />
-    @vite(['resources/css/app.scss', 'resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
 
