@@ -46,7 +46,7 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/summernote.js', 'resources/js/util/dropzone.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
+    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_ABOUT_STORE';
@@ -84,13 +84,13 @@
                     this.alertStore.hide();
                     this.pageLoaderStore.show();
                     const uploadImage = this.imageDropper.files
-                    .filter(file => file instanceof File)
-                    .map(file => {
-                        return new Promise((resolve, reject) => {
-                            this.component.$wire.upload('image', file, resolve,
-                                reject);
-                        });
-                    })
+                        .filter(file => file instanceof File)
+                        .map(file => {
+                            return new Promise((resolve, reject) => {
+                                this.component.$wire.upload('image', file, resolve,
+                                    reject);
+                            });
+                        })
                     await Promise.all(uploadImage);
                     const response = await this.component.$wire.call('save', this.form);
                     const {

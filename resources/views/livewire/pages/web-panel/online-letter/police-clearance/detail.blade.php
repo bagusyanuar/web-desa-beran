@@ -224,7 +224,8 @@
                             <i data-lucide="phone" class="h-4 w-4"></i>
                             <span>Hubungi Pemohon</span>
                         </a>
-                        <button x-on:click="$store.SERVICE_POLICE_CLEARANCE_DETAIL_STORE.download('{{ $id }}')"
+                        <button
+                            x-on:click="$store.SERVICE_POLICE_CLEARANCE_DETAIL_STORE.download('{{ $id }}')"
                             class="flex items-center justify-center gap-2 rounded-lg py-2.5 px-3 text-sm text-accent-500 border border-accent-500 bg-neutral-50 cursor-pointer hover:bg-neutral-100 transition-all duration-200 ease-in-out"
                             wire:ignore>
                             <i data-lucide="printer" class="h-4 w-4"></i>
@@ -254,7 +255,7 @@
     <x-alert.toast />
 </section>
 @push('scripts')
-    @vite(['resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
+    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_POLICE_CLEARANCE_DETAIL_STORE';

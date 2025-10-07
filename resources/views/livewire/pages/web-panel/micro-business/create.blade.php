@@ -19,7 +19,8 @@
                     <span>Nama Produk</span>
                     <span class="text-red-500 text-sm italic">*</span>
                 </x-label.label>
-                <x-input.text.text placeholder="nama produk umkm" id="name" x-model="$store.SERVICE_MICRO_BUSINESS_CREATE_STORE.form.title" />
+                <x-input.text.text placeholder="nama produk umkm" id="name"
+                    x-model="$store.SERVICE_MICRO_BUSINESS_CREATE_STORE.form.title" />
                 <template x-if="'title' in $store.SERVICE_MICRO_BUSINESS_CREATE_STORE.formValidator">
                     <x-label.validator>
                         <span x-text="$store.SERVICE_MICRO_BUSINESS_CREATE_STORE.formValidator.title[0]"></span>
@@ -112,7 +113,7 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/table.js', 'resources/js/util/summernote.js', 'resources/js/util/dropzone.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
+    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_MICRO_BUSINESS_CREATE_STORE';
