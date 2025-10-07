@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RedirectAdminIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,9 +47,10 @@ Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/surat-keterangan-penghasilan-orang-tua/{code}', App\Livewire\Pages\Landing\OnlineLetter\ParentIncome\Detail::class)->name('online-letter.parent-income.code');
 });
 
-
-Route::group(['prefix' => 'web-panel'], function () {
-    Route::get('/', App\Livewire\Pages\WebPanel\Login\Index::class)->name('web-panel.login');
+Route::get('/web-panel', App\Livewire\Pages\WebPanel\Login\Index::class)
+    ->middleware(RedirectAdminIfAuthenticated::class)
+    ->name('web-panel.login');
+Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', App\Livewire\Pages\WebPanel\Dashboard\Index::class)->name('web-panel.dashboard');
     Route::get('/surat-keterangan-domisili', App\Livewire\Pages\WebPanel\OnlineLetter\Domicile\Index::class)->name('web-panel.online-letter.domicile');
     Route::get('/surat-keterangan-domisili/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\Domicile\Detail::class)->name('web-panel.online-letter.domicile.detail');
