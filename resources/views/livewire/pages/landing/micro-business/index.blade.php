@@ -23,53 +23,71 @@
                     <div class="flex items-center border border-neutral-300 rounded-md w-full mb-5" wire:ignore>
                         <i data-lucide="search" class="text-neutral-500 min-h-4 min-w-4 ms-2"></i>
                         <input type="text" placeholder="search..."
+                            x-model="$store.SERVICE_MICRO_BUSINESS_STORE.param"
+                            x-on:input="$store.SERVICE_MICRO_BUSINESS_STORE.onSearch()"
                             class="flex-grow w-full py-2 ps-2 pe-3 rounded-md text-sm text-neutral-700 border-none focus:outline-none focus:ring-0" />
                     </div>
                     <div class="w-full grid grid-cols-4 gap-3 mb-5">
                         <template x-if="$store.SERVICE_MICRO_BUSINESS_STORE.loading">
-
+                            <template x-for="(data, index) in [1, 2, 3, 4, 5, 6, 7, 8]" :key="index">
+                                <x-loader.shimmer class="!w-full !h-60" />
+                            </template>
                         </template>
-                        @foreach ([1, 2, 3, 4, 5, 6, 7, 8] as $v)
-                            <div
-                                class="w-full h-60 flex flex-col bg-white border border-neutral-300 rounded-lg shadow-xl">
-                                <div class="w-full h-28">
-                                    <img src="{{ asset('/static/images/products/product-1.jpg') }}"
-                                        class="rounded-t-lg w-full h-full object-cover object-center" />
-                                </div>
-                                <div class="w-full flex-1 flex flex-col px-2 py-1.5">
-                                    <p
-                                        class="text-sm text-brand-500 font-bold leading-[1.2] overflow-hidden [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical]">
-                                        Product Name</p>
-                                    <p class="text-xs text-neutral-700 mb-1">Bp. Widhyan Rahmat</p>
-                                    <div class="flex-1">
-                                        <p
-                                            class="text-xs text-neutral-700 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
-                                            {{ strip_tags("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged") }}
+                        <template
+                            x-if="!$store.SERVICE_MICRO_BUSINESS_STORE.loading && $store.SERVICE_MICRO_BUSINESS_STORE.data.length > 0">
+                            <template x-for="(data, index) in $store.SERVICE_MICRO_BUSINESS_STORE.data"
+                                :key="index">
+                                <div
+                                    class="w-full h-60 flex flex-col bg-white border border-neutral-300 rounded-lg shadow-xl cursor-pointer">
+                                    <div class="w-full h-28">
+                                        <img x-bind:src="data.image?.image"
+                                            class="rounded-t-lg w-full h-full object-cover object-center" />
+                                    </div>
+                                    <div class="w-full flex-1 flex flex-col px-2 py-1.5">
+                                        <p x-text="data.title"
+                                            class="text-sm text-brand-500 font-bold leading-[1.2] overflow-hidden [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical]">
                                         </p>
+                                        <p class="text-xs text-neutral-700 mb-1 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical]"
+                                            x-text="data.owner?.name"></p>
+                                        <div class="flex-1">
+                                            <p x-text="$store.SERVICE_MICRO_BUSINESS_STORE.stripTags(data.description)"
+                                                class="text-xs text-neutral-700 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <div class="w-full flex justify-end items-center pb-1.5 px-2" wire:ignore
+                                        x-data="{
+                                            initIcons() {
+                                                setTimeout(() => { lucide.createIcons(); }, 0);
+                                            }
+                                        }" x-init="initIcons()" x-effect="initIcons()">
+                                        <div wire:ignore
+                                            class="rounded-md h-6 w-6 text-neutral-500 flex items-center justify-center cursor-pointer hover:bg-neutral-300">
+                                            <i data-lucide="phone" class="h-4 aspect-[1/1]"></i>
+                                        </div>
+                                        <div wire:ignore
+                                            class="rounded-md h-6 w-6 text-neutral-500 flex items-center justify-center cursor-pointer hover:bg-neutral-300">
+                                            <i data-lucide="share-2" class="h-4 aspect-[1/1]"></i>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="w-full flex justify-end items-center pb-1.5 px-2">
-                                    <div wire:ignore
-                                        class="rounded-md h-6 w-6 text-neutral-500 flex items-center justify-center cursor-pointer hover:bg-neutral-300">
-                                        <i data-lucide="phone" class="h-4 aspect-[1/1]"></i>
-                                    </div>
-                                    <div wire:ignore
-                                        class="rounded-md h-6 w-6 text-neutral-500 flex items-center justify-center cursor-pointer hover:bg-neutral-300">
-                                        <i data-lucide="share-2" class="h-4 aspect-[1/1]"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- <x-loader.shimmer class="!w-full !h-60" /> --}}
-                        @endforeach
+                            </template>
+                        </template>
                     </div>
                     <div class="flex items-center justify-center gap-3" wire:ignore>
-                        <button
-                            class="w-8 h-8 flex items-center justify-center rounded-md bg-brand-500 text-white cursor-pointer">
-                            <i data-lucide="chevron-left" class="text-white h-4 w-4"></i>
+                        <button x-on:click="$store.SERVICE_MICRO_BUSINESS_STORE.onPrev()"
+                            x-bind:disabled="$store.SERVICE_MICRO_BUSINESS_STORE.page === 1 || $store.SERVICE_MICRO_BUSINESS_STORE
+                                .totalPages <= 0"
+                            class="w-8 h-8 flex items-center justify-center rounded-md bg-brand-500 text-white cursor-pointer disabled:text-neutral-500 disabled:cursor-default disabled:bg-neutral-300">
+                            <i data-lucide="chevron-left" class="h-4 w-4"></i>
                         </button>
-                        <button
-                            class="w-8 h-8 flex items-center justify-center rounded-md bg-brand-500 text-white cursor-pointer">
-                            <i data-lucide="chevron-right" class="text-white h-4 w-4"></i>
+                        <button x-on:click="$store.SERVICE_MICRO_BUSINESS_STORE.onNext()"
+                            x-bind:disabled="$store.SERVICE_MICRO_BUSINESS_STORE.page === $store.SERVICE_MICRO_BUSINESS_STORE
+                                .totalPages || $store
+                                .SERVICE_MICRO_BUSINESS_STORE.totalPages <= 0"
+                            class="w-8 h-8 flex items-center justify-center rounded-md bg-brand-500 text-white cursor-pointer disabled:text-neutral-500 disabled:cursor-default disabled:bg-neutral-300">
+                            <i data-lucide="chevron-right" class="h-4 w-4"></i>
                         </button>
                     </div>
                 </div>
@@ -79,21 +97,25 @@
             </div>
         </x-container.landing-container>
     </div>
+    <x-loader.page-loader />
+    <x-alert.toast />
 </section>
 
 @push('scripts')
+    @vite(['resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_MICRO_BUSINESS_STORE';
             const STORE_PROPS = {
                 component: null,
-                alertStore: null,
                 pageLoaderStore: null,
                 toastStore: null,
                 loading: true,
                 param: '',
                 data: [],
                 page: 1,
+                totalPages: 0,
+                debounceTimer: null,
                 init: function() {
                     Livewire.hook('component.init', ({
                         component
@@ -103,7 +125,6 @@
                             'wire:id');
                         if (component.id === componentID) {
                             this.component = component;
-                            this.alertStore = Alpine.store('alertStore');
                             this.pageLoaderStore = Alpine.store('pageLoaderStore');
                             this.toastStore = Alpine.store('toastStore');
                             this.findAll();
@@ -117,21 +138,28 @@
                         pageSize: 8,
                     }
                     this.loading = true;
-                    this.component.$wire.call('findAll', this.query)
+                    this.component.$wire.call('findAll', query)
                         .then(response => {
                             const {
                                 status,
                                 message,
-                                data
+                                data,
+                                meta
                             } = response;
                             console.log(response);
 
                             switch (status) {
                                 case 200:
                                     this.data = data;
+                                    const {
+                                        page, totalRows, pageSize
+                                    } = meta;
+                                    this.totalPages = Math.ceil(totalRows / pageSize);
                                     break;
                                 case 500:
                                     this.data = [];
+                                    this.page = 1;
+                                    this.totalPages = 0;
                                     this.toastStore.error(message, 2000);
                                 default:
                                     break;
@@ -141,6 +169,25 @@
                             this.loading = false;
                         });
 
+                },
+                stripTags(html) {
+                    const doc = new DOMParser().parseFromString(html, 'text/html');
+                    return doc.body.textContent || "";
+                },
+                onNext() {
+                    this.page += 1;
+                    this.findAll();
+                },
+                onPrev() {
+                    this.page -= 1;
+                    this.findAll();
+                },
+                onSearch() {
+                    clearTimeout(this.debounceTimer);
+                    this.debounceTimer = setTimeout(() => {
+                        this.page = 1;
+                        this.findAll();
+                    }, 1000);
                 }
             };
             Alpine.store(STORE_NAME, STORE_PROPS);
