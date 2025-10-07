@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', App\Livewire\Pages\Landing\Home\Index::class)->name('home');
 Route::get('/sejarah-desa-beran', App\Livewire\Pages\Landing\Profile\History\Index::class)->name('history');
 Route::get('/wilayah-desa-beran', App\Livewire\Pages\Landing\Profile\Regional\Index::class)->name('regional');
+Route::group(['prefix' => 'produk-umkm-desa-beran'], function () {
+    Route::get('/', App\Livewire\Pages\Landing\MicroBusiness\Index::class)->name('micro-business');
+    Route::get('/{slug}', App\Livewire\Pages\Landing\MicroBusiness\Detail::class)->name('micro-business.detail');
+});
+
+
 Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/', App\Livewire\Pages\Landing\OnlineLetter\Index::class)->name('online-letter');
     Route::get('/surat-keterangan-domisili', App\Livewire\Pages\Landing\OnlineLetter\Domicile\Index::class)->name('online-letter.domicile');
@@ -66,6 +72,7 @@ Route::group(['prefix' => 'web-panel'], function () {
     Route::get('/surat-keterangan-penghasilan-orang-tua/{id}', App\Livewire\Pages\WebPanel\OnlineLetter\ParentIncome\Detail::class)->name('web-panel.online-letter.parent-income.detail');
     Route::get('/produk-umkm', App\Livewire\Pages\WebPanel\MicroBusiness\Index::class)->name('web-panel.micro-business');
     Route::get('/produk-umkm/tambah', App\Livewire\Pages\WebPanel\MicroBusiness\Create::class)->name('web-panel.micro-business.new');
+    Route::get('/produk-umkm/{id}/detail', App\Livewire\Pages\WebPanel\MicroBusiness\Detail::class)->name('web-panel.micro-business.detail');
     Route::get('/sejarah-desa', App\Livewire\Pages\WebPanel\Profile\About\Index::class)->name('web-panel.history');
     Route::get('/wilayah-desa', App\Livewire\Pages\WebPanel\Profile\Regional\Index::class)->name('web-panel.regional');
 });

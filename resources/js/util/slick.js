@@ -33,6 +33,7 @@ document.addEventListener('alpine:init', () => {
                             infinite: true,
                             slidesToScroll: 1,
                             autoplay: true,
+                            centerMode: true,
                             autoplaySpeed: this.speed,
                             variableWidth: true
                         };

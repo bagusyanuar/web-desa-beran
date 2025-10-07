@@ -43,7 +43,7 @@
                             <a href="#" class="block text-xs text-neutral-700">Galeri</a>
                         </div>
                     </x-navbar.navbar-item-tree>
-                    <x-navbar.navbar-item text="Produk" to="/" />
+                    <x-navbar.navbar-item text="Produk" to="{{ route('micro-business') }}" />
                 </ul>
             </div>
             <div>

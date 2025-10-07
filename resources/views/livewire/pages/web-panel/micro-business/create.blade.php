@@ -167,7 +167,6 @@
                         });
                     })
                     await Promise.all(uploadProductImage);
-                    console.log(this.ownerPictureDropper);
                     const response = await this.component.$wire.call('save', this.form);
 
 

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Livewire\Pages\WebPanel\MicroBusiness;
+namespace App\Livewire\Pages\Landing\MicroBusiness;
 
 use App\Commons\Libs\Http\AlpineResponse;
-use App\Schemas\WebPanel\MicroBusiness\MicroBusinessQuery;
-use App\Services\WebPanel\MicroBusinessService;
+use App\Schemas\Landing\MicroBusiness\MicroBusinessQuery;
+use App\Services\Landing\MicroBusinessService;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 
-#[Layout('layouts.app-admin')]
+
+#[Layout('layouts.app')]
 class Index extends Component
 {
     /** @var MicroBusinessService $service */
@@ -19,6 +20,7 @@ class Index extends Component
         $this->service = $service;
     }
 
+
     public function findAll($query)
     {
         $queryParams = (new MicroBusinessQuery())->hydrateSchemaQuery($query);
@@ -26,14 +28,8 @@ class Index extends Component
         return AlpineResponse::fromService($response);
     }
 
-    public function delete($id)
-    {
-        $response = $this->service->delete($id);
-        return AlpineResponse::fromService($response);
-    }
-
     public function render()
     {
-        return view('livewire.pages.web-panel.micro-business.index');
+        return view('livewire.pages.landing.micro-business.index');
     }
 }
