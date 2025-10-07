@@ -144,7 +144,7 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/index.js''])
+    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_MICRO_BUSINESS_STORE';
