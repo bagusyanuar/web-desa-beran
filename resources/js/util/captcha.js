@@ -1,6 +1,6 @@
 window.initRecaptcha = function () {
     grecaptcha.render("recaptcha-container", {
-        sitekey: "6LfrC-ErAAAAAMGFjSZcln-Ew7EKofnhf7TKe85t", // ganti dengan site key
+        sitekey: "6LebL-ErAAAAACcMUe-ExbSYUZJ3CaLTzJxGoWIf", // ganti dengan site key
         callback: function (token) {
             console.log(token);
 
@@ -32,7 +32,7 @@ document.addEventListener("alpine:init", () => {
                             this.captchaReady = true;
                             grecaptcha.render(this.$refs.recaptchaEl, {
                                 sitekey:
-                                    "6LfrC-ErAAAAAMGFjSZcln-Ew7EKofnhf7TKe85t",
+                                    "6LebL-ErAAAAACcMUe-ExbSYUZJ3CaLTzJxGoWIf",
                                 callback: (token) => {
                                     let store = Alpine.store(this.storeName);
                                     if (store && this.stateData in store) {
