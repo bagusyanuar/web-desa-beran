@@ -328,11 +328,8 @@
             <span class="font-semibold">"Batal"</span> dan perbaiki data anda.
         </p>
     </x-alert.confirmation>
-    <x-loader.page-loader />
-    <x-alert.toast />
 </section>
 @push('scripts')
-    @vite(['resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_BIRTH_DETAIL_STORE';
@@ -359,6 +356,7 @@
                             this.alertStore = Alpine.store('alertStore');
                             this.pageLoaderStore = Alpine.store('pageLoaderStore');
                             this.toastStore = Alpine.store('toastStore');
+
                         }
                     });
                 },

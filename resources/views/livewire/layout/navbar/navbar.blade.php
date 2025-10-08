@@ -32,8 +32,8 @@
             </div>
         </div>
     </div>
-    <x-loader.page-loader />
-    <x-alert.toast />
+    {{-- <x-loader.page-loader />
+    <x-alert.toast /> --}}
 </nav>
 
 @push('scripts')

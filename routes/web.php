@@ -75,6 +75,13 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::get('/produk-umkm', App\Livewire\Pages\WebPanel\MicroBusiness\Index::class)->name('web-panel.micro-business');
     Route::get('/produk-umkm/tambah', App\Livewire\Pages\WebPanel\MicroBusiness\Create::class)->name('web-panel.micro-business.new');
     Route::get('/produk-umkm/{id}/detail', App\Livewire\Pages\WebPanel\MicroBusiness\Detail::class)->name('web-panel.micro-business.detail');
+
     Route::get('/sejarah-desa', App\Livewire\Pages\WebPanel\Profile\About\Index::class)->name('web-panel.history');
     Route::get('/wilayah-desa', App\Livewire\Pages\WebPanel\Profile\Regional\Index::class)->name('web-panel.regional');
+
+    # publication route
+    Route::group(['prefix' => 'berita'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\News\Index::class)->name('web-panel.news');
+        Route::get('/tambah', App\Livewire\Pages\WebPanel\News\Create::class)->name('web-panel.news.new');
+    });
 });
