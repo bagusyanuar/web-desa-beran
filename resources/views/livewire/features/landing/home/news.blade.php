@@ -9,22 +9,10 @@
                 mendorong tumbuhnya keterbukaan, partisipasi, dan rasa memiliki terhadap kemajuan desa.</p>
             <div class="w-full flex gap-3 mb-5" wire:ignore>
                 <x-slick.carousel slideToShow="3" speed="2000" mode="width">
-                    @foreach ([1, 2, 3, 4, 5] as $v)
-                        <x-slick.card-news image="/static/images/about-1.jpg"
-                            title="Pelantikan Kepala Daerah Desa Beran" date="1 Januari 2025"
-                            description="Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                    industry. Lorem
-                                                    Ipsum has been
-                                                    the industry's standard dummy text ever since the 1500s, when an
-                                                    unknown
-                                                    printer
-                                                    took a galley
-                                                    of type and scrambled it to make a type specimen book. It has
-                                                    survived
-                                                    not only
-                                                    five centuries,
-                                                    but also the leap into electronic typesetting, remaining essentially
-                                                    unchanged." />
+                    @foreach ($data as $v)
+                        <x-slick.card-news image="{{ $v->thumbnail->image }}" title="{{ $v->title }}"
+                            description="{{ strip_tags($v->description) }}"
+                            wire:click="toDetail('{{ $v->slug }}')" />
                     @endforeach
                 </x-slick.carousel>
             </div>

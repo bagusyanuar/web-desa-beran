@@ -26,6 +26,11 @@ class News extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    public function thumbnail()
+    {
+        return $this->hasOne(NewsImage::class, 'news_id')->where('is_thumbnail', '=', true);
+    }
+
     public function images()
     {
         return $this->hasMany(NewsImage::class, 'news_id');

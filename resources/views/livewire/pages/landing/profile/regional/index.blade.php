@@ -18,9 +18,11 @@
             <div class="w-full flex items-start gap-5">
                 <div class="flex-1 bg-white rounded-lg shadow-xl p-6 border border-neutral-300">
                     <p class="text-lg text-accent-500 font-bold mb-5">PROFIL WILAYAH DESA BERAN</p>
-                    <div class="w-full text-neutral-700 text-sm">
-                        {!! $data->description !!}
-                    </div>
+                    @if (!empty($data))
+                        <div class="w-full text-neutral-700 text-sm">
+                            {!! $data->description !!}
+                        </div>
+                    @endif
                 </div>
                 <!-- page suggestion -->
                 <div class="w-80 flex flex-col gap-5">
