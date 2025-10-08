@@ -72,6 +72,15 @@
             </x-table.tbody>
         </x-table.table>
     </div>
+    <x-alert.confirmation title="Konfirmasi Hapus Berita" onAccept="$store.SERVICE_NEWS_STORE.onConfirm()"
+        acceptText="Konfrimasi">
+        <p class="text-sm text-neutral-700 text-justify">Anda akan mengkonfirmasi <span
+                class="font-semibold">Penghapusan
+                Berita / Artikel</span>. Pastikan data yang anda pilih sudah
+            benar, jika sudah klik <span class="font-semibold">"Konfirmasi"</span> jika belum silahkan klik
+            <span class="font-semibold">"Batal"</span> dan perbaiki data anda.
+        </p>
+    </x-alert.confirmation>
 </section>
 @push('scripts')
     <script>
@@ -134,7 +143,7 @@
                         })
                 },
                 goToDetail(id) {
-                    window.location.href = "/web-panel/produk-umkm/" + id + "/detail";
+                    window.location.href = "/web-panel/berita/" + id + "/edit";
                 },
                 confirm(id) {
                     this.selectedId = id;
@@ -151,7 +160,7 @@
                             } = response;
                             if (status === 200) {
                                 let self = this;
-                                this.toastStore.success("Berhasil menghapus data produk UMKM", 2000,
+                                this.toastStore.success("Berhasil menghapus data berita", 2000,
                                     function() {
                                         self.findAll();
                                     });

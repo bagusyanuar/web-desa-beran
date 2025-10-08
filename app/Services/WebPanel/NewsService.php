@@ -83,9 +83,92 @@ class NewsService implements NewsServiceInterface
         }
     }
 
-    public function findByID($id): ServiceResponse {}
+    public function findByID($id): ServiceResponse
+    {
+        try {
+            $data = News::with(['images'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("data not found");
+            }
+            return ServiceResponse::statusOK("successfully get news", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
 
-    public function update($id, NewsSchema $schema): ServiceResponse {}
+    public function update($id, NewsSchema $schema): ServiceResponse
+    {
+        try {
+            DB::beginTransaction();
+            $userId = Auth::user()->id;
+            $validator = $schema->validate();
+            if ($validator->fails()) {
+                return ServiceResponse::unprocessableEntity($validator->errors()->toArray());
+            }
+            $schema->hydrateBody();
 
-    public function delete($id): ServiceResponse {}
+            $data = News::with(['images'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("data not found");
+            }
+
+            $dataNews = [
+                'title' => $schema->getTitle(),
+                'slug' => Str::slug($schema->getTitle()),
+                'description' => $schema->getDescription(),
+                'author_id' => $userId
+            ];
+
+            $data->update($dataNews);
+
+            $thumbnailImage = $data->images->where('is_thumbnail', '=', true)->first();
+
+            $thumbnailImageName = null;
+            if ($schema->getThumbnail()) {
+                $fileUploadService = new FileUpload($schema->getThumbnail(), "assets/images/news");
+                $fileUploadResponse = $fileUploadService->upload();
+                if (!$fileUploadResponse->isSuccess()) {
+                    DB::rollBack();
+                    return ServiceResponse::internalServerError($fileUploadResponse->getMessage());
+                }
+                $thumbnailImageName = $fileUploadResponse->getFileName();
+            }
+            $dataThumbnail = [
+                'news_id' => $data->id,
+                'image' => $thumbnailImageName,
+                'is_thumbnail' => true,
+            ];
+
+            if ($thumbnailImage) {
+                $thumbnailImage->update($dataThumbnail);
+            } else {
+                NewsImage::create($dataThumbnail);
+            }
+            DB::commit();
+            return ServiceResponse::statusOK("successfully update news");
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
+
+    public function delete($id): ServiceResponse
+    {
+        try {
+            $data = News::with(['images'])
+                ->where('id', '=', $id)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("data not found");
+            }
+            $data->delete();
+            return ServiceResponse::statusOK("successfully delete news");
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
 }

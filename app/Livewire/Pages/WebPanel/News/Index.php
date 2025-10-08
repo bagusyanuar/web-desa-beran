@@ -27,6 +27,12 @@ class Index extends Component
         return AlpineResponse::fromService($response);
     }
 
+    public function delete($id)
+    {
+        $response = $this->service->delete($id);
+        return AlpineResponse::fromService($response);
+    }
+
     public function render()
     {
         return view('livewire.pages.web-panel.news.index');

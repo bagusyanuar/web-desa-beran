@@ -83,5 +83,6 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'berita'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\News\Index::class)->name('web-panel.news');
         Route::get('/tambah', App\Livewire\Pages\WebPanel\News\Create::class)->name('web-panel.news.new');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\News\Edit::class)->name('web-panel.news.update');
     });
 });
