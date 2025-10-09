@@ -21,6 +21,9 @@ Route::group(['prefix' => 'produk-umkm-desa-beran'], function () {
     Route::get('/', App\Livewire\Pages\Landing\MicroBusiness\Index::class)->name('micro-business');
     Route::get('/{slug}', App\Livewire\Pages\Landing\MicroBusiness\Detail::class)->name('micro-business.detail');
 });
+Route::group(['prefix' => 'berita-desa-beran'], function () {
+    Route::get('/', App\Livewire\Pages\Landing\News\Index::class)->name('news');
+});
 
 
 Route::group(['prefix' => 'surat-online'], function () {
