@@ -42,4 +42,19 @@ class MicroBusinessService implements MicroBusinessServiceInterface
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }
+
+    public function findBySlug($slug): ServiceResponse
+    {
+        try {
+            $data = MicroBusiness::with(['owner', 'contact', 'image'])
+                ->where('slug', '=', $slug)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("micro business not found");
+            }
+            return ServiceResponse::statusOK("successfully get micro business", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
 }

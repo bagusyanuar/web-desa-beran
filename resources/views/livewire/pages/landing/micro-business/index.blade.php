@@ -37,7 +37,7 @@
                             x-if="!$store.SERVICE_MICRO_BUSINESS_STORE.loading && $store.SERVICE_MICRO_BUSINESS_STORE.data.length > 0">
                             <template x-for="(data, index) in $store.SERVICE_MICRO_BUSINESS_STORE.data"
                                 :key="index">
-                                <div
+                                <div x-on:click="$store.SERVICE_MICRO_BUSINESS_STORE.goToDetail(data.slug)"
                                     class="w-full h-60 flex flex-col bg-white border border-neutral-300 rounded-lg shadow-xl cursor-pointer">
                                     <div class="w-full h-28">
                                         <img x-bind:src="data.image?.image"
@@ -230,7 +230,10 @@
                         this.page = 1;
                         this.findAll();
                     }, 1000);
-                }
+                },
+                goToDetail(slug) {
+                    window.location.href = '/produk-umkm-desa-beran/' + slug;
+                },
             };
             Alpine.store(STORE_NAME, STORE_PROPS);
         });
