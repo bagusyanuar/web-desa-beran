@@ -36,6 +36,7 @@
                             x-if="!$store.SERVICE_NEWS_STORE.loading && $store.SERVICE_NEWS_STORE.data.length > 0">
                             <template x-for="(data, index) in $store.SERVICE_NEWS_STORE.data" :key="index">
                                 <div
+                                    x-on:click="$store.SERVICE_NEWS_STORE.goToDetail(data.slug)"
                                     class="w-full h-60 flex flex-col bg-white border border-neutral-300 rounded-lg shadow-xl cursor-pointer">
                                     <div class="w-full h-28">
                                         <img x-bind:src="data.thumbnail?.image"
@@ -58,7 +59,7 @@
                                                 setTimeout(() => { lucide.createIcons(); }, 0);
                                             }
                                         }" x-init="initIcons()" x-effect="initIcons()">
-                                        <span class="text-xs text-neutral-500">1 September 2025</span>
+                                        <span class="text-xs text-neutral-500" x-text="data.published_at"></span>
                                     </div>
                                 </div>
                             </template>
@@ -216,7 +217,10 @@
                         this.page = 1;
                         this.findAll();
                     }, 1000);
-                }
+                },
+                goToDetail(slug) {
+                    window.location.href = '/berita-desa-beran/' + slug;
+                },
             };
             Alpine.store(STORE_NAME, STORE_PROPS);
         });

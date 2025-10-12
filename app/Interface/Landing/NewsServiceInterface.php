@@ -9,4 +9,5 @@ interface NewsServiceInterface
 {
     public function findAll(NewsQuery $queryParams): ServiceResponse;
     public function findSome(): ServiceResponse;
+    public function findBySlug($slug): ServiceResponse;
 }

@@ -21,6 +21,10 @@ class News extends Model
         'author_id'
     ];
 
+    protected $appends = [
+        'published_at'
+    ];
+
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
@@ -34,5 +38,10 @@ class News extends Model
     public function images()
     {
         return $this->hasMany(NewsImage::class, 'news_id');
+    }
+
+    public function getPublishedAtAttribute()
+    {
+        return $this->created_at->locale('id')->diffForHumans();
     }
 }

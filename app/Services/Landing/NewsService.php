@@ -42,4 +42,19 @@ class NewsService implements NewsServiceInterface
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }
+
+    public function findBySlug($slug): ServiceResponse
+    {
+        try {
+            $data = News::with(['author', 'thumbnail', 'images'])
+                ->where('slug', '=', $slug)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("news not found");
+            }
+            return ServiceResponse::statusOK("successfully get news", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
 }
