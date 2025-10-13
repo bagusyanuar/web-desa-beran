@@ -36,6 +36,8 @@
                     text="Sejarah Desa" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.regional') }}"
                     text="Wilayah Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.community') }}"
+                    text="Masyarakat Desa" />
             </x-sidebar.sidebar-item-tree>
             <x-sidebar.sidebar-item-tree text="Publikasi" icon="rss">
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.news') }}"
