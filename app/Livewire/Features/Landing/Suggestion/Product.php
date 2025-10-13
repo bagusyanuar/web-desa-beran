@@ -2,17 +2,17 @@
 
 namespace App\Livewire\Features\Landing\Suggestion;
 
-use App\Services\Landing\NewsService;
+use App\Services\Landing\MicroBusinessService;
 use Livewire\Component;
 
-class News extends Component
+class Product extends Component
 {
     public $data;
 
     public function mount()
     {
         $this->data = [];
-        $service = new NewsService();
+        $service = new MicroBusinessService();
         $response = $service->findSome();
         if ($response->getStatus() === 200) {
             $this->data = $response->getData();
@@ -21,11 +21,11 @@ class News extends Component
 
     public function toDetail($slug)
     {
-        return redirect()->route('news.detail', ['slug' => $slug]);
+        return redirect()->route('micro-business.detail', ['slug' => $slug]);
     }
 
     public function render()
     {
-        return view('livewire.features.landing.suggestion.news');
+        return view('livewire.features.landing.suggestion.product');
     }
 }

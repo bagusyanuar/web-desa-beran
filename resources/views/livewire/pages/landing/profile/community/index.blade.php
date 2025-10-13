@@ -37,6 +37,7 @@
                 <div class="w-80 flex flex-col gap-5">
                     <livewire:features.landing.suggestion.online-letter />
                     <livewire:features.landing.suggestion.news />
+                    <livewire:features.landing.suggestion.product />
                 </div>
             </div>
         </x-container.landing-container>
