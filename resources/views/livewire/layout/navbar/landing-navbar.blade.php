@@ -7,8 +7,8 @@
         'fixed': !$store.LANDING_NAVBAR_STORE.fixMode,
     }">
     <x-container.landing-container class="h-full">
-        <div class="w-full h-full flex items-center justify-between">
-            <div class="flex items-center gap-3">
+        <div class="w-full h-full flex items-center justify-between relative">
+            <div class="flex items-center gap-3 absolute left-0">
                 <img x-bind:src="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ?
                     '{{ asset('static/images/logo-image-white.png') }}' : '{{ asset('static/images/logo-image.png') }}'"
                     class="w-10 h-10" />
@@ -17,7 +17,7 @@
                         'text-brand-500'">Beran
                     Digital</span>
             </div>
-            <div class="flex items-center gap-5">
+            <div class="flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
                 <ul class="flex items-center gap-1">
                     <x-navbar.navbar-item text="Beranda" to="/" />
                     <x-navbar.navbar-item-tree text="Profil">
