@@ -18,6 +18,7 @@ Route::get('/', App\Livewire\Pages\Landing\Home\Index::class)->name('home');
 Route::get('/sejarah-desa-beran', App\Livewire\Pages\Landing\Profile\History\Index::class)->name('history');
 Route::get('/wilayah-desa-beran', App\Livewire\Pages\Landing\Profile\Regional\Index::class)->name('regional');
 Route::get('/masyarakat-desa-beran', App\Livewire\Pages\Landing\Profile\Community\Index::class)->name('community');
+Route::get('/potensi-desa-beran', App\Livewire\Pages\Landing\Profile\Potention\Index::class)->name('potention');
 Route::group(['prefix' => 'produk-umkm-desa-beran'], function () {
     Route::get('/', App\Livewire\Pages\Landing\MicroBusiness\Index::class)->name('micro-business');
     Route::get('/{slug}', App\Livewire\Pages\Landing\MicroBusiness\Detail::class)->name('micro-business.detail');
@@ -84,6 +85,7 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::get('/sejarah-desa', App\Livewire\Pages\WebPanel\Profile\About\Index::class)->name('web-panel.history');
     Route::get('/wilayah-desa', App\Livewire\Pages\WebPanel\Profile\Regional\Index::class)->name('web-panel.regional');
     Route::get('/masyarakat-desa', App\Livewire\Pages\WebPanel\Profile\Community\Index::class)->name('web-panel.community');
+    Route::get('/potensi-desa', App\Livewire\Pages\WebPanel\Profile\Potention\Index::class)->name('web-panel.potention');
 
     # publication route
     Route::group(['prefix' => 'berita'], function () {

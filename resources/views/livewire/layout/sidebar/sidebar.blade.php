@@ -44,6 +44,8 @@
                     text="Berita" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.regional') }}"
                     text="Wilayah Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.potention') }}"
+                    text="Potensi Desa" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>

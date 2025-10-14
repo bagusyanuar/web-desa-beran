@@ -23,9 +23,9 @@
                     <x-navbar.navbar-item-tree text="Profil">
                         <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
                             <x-navbar.navbar-tree-list to="{{ route('history') }}" text="Sejarah Desa" />
-                            <x-navbar.navbar-tree-list to="{{ route('regional') }}" text="Profil Wilayah Desa" />
-                            <x-navbar.navbar-tree-list to="{{ route('community') }}" text="Profil Masyarakat Desa" />
-                            <x-navbar.navbar-tree-list to="#" text="Profil Potensi Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('regional') }}" text="Wilayah Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('community') }}" text="Masyarakat Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('potention') }}" text="Potensi Desa" />
                             <x-navbar.navbar-tree-list to="#" text="Visi Misi Desa" />
                             <x-navbar.navbar-tree-list to="#" text="Prestasi" />
                             <x-navbar.navbar-tree-list to="#" text="Peta Desa" />
