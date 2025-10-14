@@ -45,6 +45,13 @@
                         <x-loader.shimmer class="!w-full !h-80 !rounded-lg" />
                     </template>
                 </template>
+                <template x-if="!$store.SERVICE_MICRO_BUSINESS_STORE.loading && $store.SERVICE_MICRO_BUSINESS_STORE.data.length <= 0">
+                    <div
+                        class="col-span-4 w-full h-96 flex items-center justify-center flex-col border border-neutral-300 rounded-lg shadow-xl">
+                        <img src="{{ asset('static/images/no-data.png') }}" class="h-32 w-32" />
+                        <span class="text-sm font-semibold text-accent-700">Tidak ada produk UMKM</span>
+                    </div>
+                </template>
                 <template
                     x-if="!$store.SERVICE_MICRO_BUSINESS_STORE.loading && $store.SERVICE_MICRO_BUSINESS_STORE.data.length > 0">
                     <template x-for="(data, index) in $store.SERVICE_MICRO_BUSINESS_STORE.data" :key="index">

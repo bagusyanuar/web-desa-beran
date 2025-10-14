@@ -1,10 +1,10 @@
 <nav id="landing-navbar" data-component-id="landing-navbar"
     class="w-full h-16 z-30 top-0 left-0 transition-colors ease-in duration-300"
     x-bind:class="{
-        'bg-transparent border-none' : $store.LANDING_NAVBAR_STORE.mode === 'transparent',
-        'bg-white border-b border-brand-500 shadow-sm' : $store.LANDING_NAVBAR_STORE.mode !== 'transparent',
-        'sticky' : $store.LANDING_NAVBAR_STORE.fixMode,
-        'fixed' : !$store.LANDING_NAVBAR_STORE.fixMode,
+        'bg-transparent border-none': $store.LANDING_NAVBAR_STORE.mode === 'transparent',
+        'bg-white border-b border-brand-500 shadow-sm': $store.LANDING_NAVBAR_STORE.mode !== 'transparent',
+        'sticky': $store.LANDING_NAVBAR_STORE.fixMode,
+        'fixed': !$store.LANDING_NAVBAR_STORE.fixMode,
     }">
     <x-container.landing-container class="h-full">
         <div class="w-full h-full flex items-center justify-between">
@@ -38,9 +38,9 @@
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Publikasi">
-                        <div class="w-48 bg-white p-3 rounded-md border border-neutral-300">
-                            <a href="#" class="block text-xs text-neutral-700">Berita</a>
-                            <a href="#" class="block text-xs text-neutral-700">Galeri</a>
+                        <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
+                            <x-navbar.navbar-tree-list to="{{ route('news') }}" text="Berita" />
+                            <x-navbar.navbar-tree-list to="#" text="Galeri" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item text="Produk" to="{{ route('micro-business') }}" />
