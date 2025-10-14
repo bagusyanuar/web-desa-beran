@@ -34,8 +34,3 @@
         </div>
     </div>
 </section>
-
-
-@push('scripts')
-    @vite(['resources/js/util/slick.js'])
-@endpush

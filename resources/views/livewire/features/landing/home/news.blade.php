@@ -25,7 +25,3 @@
         </div>
     </x-container.landing-container>
 </section>
-
-@push('scripts')
-    @vite(['resources/js/util/slick.js'])
-@endpush
