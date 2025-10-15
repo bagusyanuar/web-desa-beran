@@ -27,8 +27,7 @@
                             <x-navbar.navbar-tree-list to="{{ route('community') }}" text="Masyarakat Desa" />
                             <x-navbar.navbar-tree-list to="{{ route('potention') }}" text="Potensi Desa" />
                             <x-navbar.navbar-tree-list to="{{ route('vission-mission') }}" text="Visi Misi Desa" />
-                            <x-navbar.navbar-tree-list to="#" text="Prestasi" />
-                            <x-navbar.navbar-tree-list to="#" text="Peta Desa" />
+                            <x-navbar.navbar-tree-list to="#" text="Perangkat Desa" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Layanan">
@@ -41,6 +40,7 @@
                         <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
                             <x-navbar.navbar-tree-list to="{{ route('news') }}" text="Berita" />
                             <x-navbar.navbar-tree-list to="#" text="Galeri" />
+                            <x-navbar.navbar-tree-list to="#" text="Perpustakaan Online" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item text="Produk" to="{{ route('micro-business') }}" />
