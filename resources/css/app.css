@@ -8,4 +8,30 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+.note-editable ul {
+  list-style-type: disc !important;
+  margin-left: 1.5rem !important;
+}
+
+.note-editable ol {
+  list-style-type: decimal !important;
+  margin-left: 1.5rem !important;
+}
+
+.prose ul,
+.text-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+.prose ol,
+.text-content ol {
+    list-style-type: decimal !important;
+    margin-left: 1.5rem;
+}
+
+.prose li,
+.text-content li {
+    margin-bottom: 0.25rem;
+}
 

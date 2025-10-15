@@ -26,7 +26,7 @@
                             <x-navbar.navbar-tree-list to="{{ route('regional') }}" text="Wilayah Desa" />
                             <x-navbar.navbar-tree-list to="{{ route('community') }}" text="Masyarakat Desa" />
                             <x-navbar.navbar-tree-list to="{{ route('potention') }}" text="Potensi Desa" />
-                            <x-navbar.navbar-tree-list to="#" text="Visi Misi Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('vission-mission') }}" text="Visi Misi Desa" />
                             <x-navbar.navbar-tree-list to="#" text="Prestasi" />
                             <x-navbar.navbar-tree-list to="#" text="Peta Desa" />
                         </div>
