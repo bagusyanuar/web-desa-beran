@@ -110,8 +110,12 @@ class AboutStaffService implements AboutStaffServiceInterface
                 return ServiceResponse::notFound("staff not found");
             }
 
+            $dataStaff = [
+                'name' => $schema->getName(),
+                'position' => $schema->getPosition(),
+            ];
+
             # create thumbnail
-            $imageName = null;
             if ($schema->getImage()) {
                 $fileUploadService = new FileUpload($schema->getImage(), "assets/images/staff");
                 $fileUploadResponse = $fileUploadService->upload();
@@ -120,13 +124,10 @@ class AboutStaffService implements AboutStaffServiceInterface
                     return ServiceResponse::internalServerError($fileUploadResponse->getMessage());
                 }
                 $imageName = $fileUploadResponse->getFileName();
+                $dataStaff['image'] = $imageName;
             }
 
-            $dataStaff = [
-                'name' => $schema->getName(),
-                'position' => $schema->getPosition(),
-                'image' => $imageName,
-            ];
+
 
             $staff->update($dataStaff);
             DB::commit();

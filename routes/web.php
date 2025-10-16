@@ -92,7 +92,7 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'perangkat-desa'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Profile\Staff\Index::class)->name('web-panel.staff');
         Route::get('/tambah', App\Livewire\Pages\WebPanel\Profile\Staff\Create::class)->name('web-panel.staff.new');
-        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\News\Edit::class)->name('web-panel.staff.update');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\Profile\Staff\Edit::class)->name('web-panel.staff.update');
     });
 
     # publication route

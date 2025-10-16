@@ -18,7 +18,7 @@ class AboutStaffSchema extends BaseSchema
         return [
             'name' => 'required',
             'position' => 'required',
-            'image' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 
@@ -27,7 +27,6 @@ class AboutStaffSchema extends BaseSchema
         return [
             'name.required' => 'kolom nama wajib diisi',
             'position.required' => 'kolom jabatan wajib diisi',
-            'image.required' => 'kolom foto / gambar wajib diisi',
         ];
     }
 
