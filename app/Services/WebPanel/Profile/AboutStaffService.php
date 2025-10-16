@@ -25,7 +25,8 @@ class AboutStaffService implements AboutStaffServiceInterface
 
             $index = 1;
             $lastStaff = AboutStaff::with([])
-                ->last();
+                ->orderBy('index', 'DESC')
+                ->first();
             if ($lastStaff) {
                 $index = $lastStaff->index + 1;
             }

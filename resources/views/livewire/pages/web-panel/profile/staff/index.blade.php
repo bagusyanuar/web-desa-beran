@@ -31,15 +31,14 @@
                 <template x-for="(v, index) in data" :key="index">
                     <x-table.row>
                         <x-table.td width="w-[200px]" align="center">
-                            <span class="text-sm text-neutral-700 text-center"
-                                x-text="'-'"></span>
+                            <img alt="photo" class="h-16 w-16 rounded-md" x-bind:src="v.image" />
                         </x-table.td>
                         <x-table.td width="w-[200px]" align="center">
                             <span class="text-sm text-neutral-700 text-center"
-                                x-text="v.positon"></span>
+                                x-text="v.position"></span>
                         </x-table.td>
                         <x-table.td>
-                            <span class="text-sm text-neutral-700" x-text="v.title"></span>
+                            <span class="text-sm text-neutral-700" x-text="v.name"></span>
                         </x-table.td>
                         <x-table.td width="w-[80px]" align="center">
                             <x-popper.popper>
