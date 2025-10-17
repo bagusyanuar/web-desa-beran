@@ -14,7 +14,7 @@ document.addEventListener('alpine:init', () => {
                             url: '/url-dropper',
                             autoProcessQueue: false,
                             addRemoveLinks: true,
-                            acceptedFiles: '.jpg, .png, .jpeg',
+                            acceptedFiles: '.jpg, .png, .jpeg, .pdf',
                             uploadMultiple: false,
                             maxFiles: 1,
                             init: function () {

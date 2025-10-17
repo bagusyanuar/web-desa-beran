@@ -34,8 +34,7 @@ class NewsSchema extends BaseSchema
     public function hydrateBody()
     {
         $title = $this->body['title'];
-        $description = $this->body['title'];
-        $description = $this->body['title'];
+        $description = $this->body['description'];
         $thumbnail = $this->body['thumbnail'];
         $this->setTitle($title)
             ->setDescription($description)

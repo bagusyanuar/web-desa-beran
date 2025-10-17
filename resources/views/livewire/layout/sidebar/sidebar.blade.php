@@ -41,6 +41,7 @@
             </x-sidebar.sidebar-item-tree>
             <x-sidebar.sidebar-item-tree text="Publikasi" icon="rss">
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.news') }}" text="Berita" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.library') }}" text="Perpustakaan Online" />
                 <x-sidebar.sidebar-item-tree-child to="#" text="Galeri" />
             </x-sidebar.sidebar-item-tree>
         </div>
