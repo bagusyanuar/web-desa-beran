@@ -86,7 +86,7 @@ class LibraryService implements LibraryServiceInterface
     public function findByID($id): ServiceResponse
     {
         try {
-            $data = Library::with(['images'])
+            $data = Library::with([])
                 ->where('id', '=', $id)
                 ->first();
             if (!$data) {

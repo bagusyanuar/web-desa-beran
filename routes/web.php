@@ -106,6 +106,6 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'perpustakaan-online'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Library\Index::class)->name('web-panel.library');
         Route::get('/tambah', App\Livewire\Pages\WebPanel\Library\Create::class)->name('web-panel.library.new');
-        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\News\Edit::class)->name('web-panel.library.update');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\Library\Edit::class)->name('web-panel.library.update');
     });
 });
