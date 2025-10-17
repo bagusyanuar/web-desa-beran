@@ -20,6 +20,7 @@ Route::get('/wilayah-desa-beran', App\Livewire\Pages\Landing\Profile\Regional\In
 Route::get('/masyarakat-desa-beran', App\Livewire\Pages\Landing\Profile\Community\Index::class)->name('community');
 Route::get('/potensi-desa-beran', App\Livewire\Pages\Landing\Profile\Potention\Index::class)->name('potention');
 Route::get('/visi-dan-misi-desa-beran', App\Livewire\Pages\Landing\Profile\VissionMission\Index::class)->name('vission-mission');
+Route::get('/perangkat-desa-beran', App\Livewire\Pages\Landing\Profile\Staff\Index::class)->name('staff');
 Route::group(['prefix' => 'produk-umkm-desa-beran'], function () {
     Route::get('/', App\Livewire\Pages\Landing\MicroBusiness\Index::class)->name('micro-business');
     Route::get('/{slug}', App\Livewire\Pages\Landing\MicroBusiness\Detail::class)->name('micro-business.detail');

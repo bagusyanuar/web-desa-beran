@@ -31,7 +31,7 @@
                 <template x-for="(v, index) in data" :key="index">
                     <x-table.row>
                         <x-table.td width="w-[200px]" align="center">
-                            <img alt="photo" class="h-16 w-16 rounded-md object-cover object-center" x-bind:src="v.image" />
+                            <img alt="photo" class="h-16 w-16 rounded-md object-cover object-top" x-bind:src="v.image" />
                         </x-table.td>
                         <x-table.td width="w-[200px]" align="center">
                             <span class="text-sm text-neutral-700 text-center"
