@@ -62,12 +62,7 @@
                         <div class="flex items-center gap-2 mb-5 text-neutral-500 text-sm">
                             <div class="flex items-center">
                                 <i data-lucide="user" class="h-4 aspect-[1/1]"></i>
-                                <span>Administrator</span>
-                            </div>
-                            <span>|</span>
-                            <div class="flex items-center">
-                                <i data-lucide="calendar-days" class="h-4 aspect-[1/1]"></i>
-                                <span>{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}</span>
+                                <span>{{ $data->author_name }}</span>
                             </div>
                             <span>|</span>
                             <div class="relative" x-data="{ open: false }">
