@@ -76,5 +76,40 @@ document.addEventListener('alpine:init', () => {
         'x-init': 'initSlick()'
     }))
 
+    Alpine.bind('slickProductBind', () => ({
+        'x-data': () => ({
+            element: null,
+            slideToShow: 1,
+            mode: 'base',
+            speed: 1000,
+            initSlick() {
+                this.$nextTick(() => {
+                    this.element = $(this.$el);
+                    const parent = this.$el.parentElement
+                    let config = {
+                        arrows: true,
+                        infinite: false,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        variableWidth: true,
+                        prevArrow: parent.querySelector('.ol-prev-btn'),
+                        nextArrow: parent.querySelector('.ol-next-btn'),
+                        responsive: [
+                            {
+                                breakpoint: 9999, // angka besar agar selalu diterapkan
+                                settings: {
+                                    arrows: true,
+                                    infinite: false,
+                                },
+                            },
+                        ]
+                    };
+                    $(this.element).not('.slick-initialized').slick(config);
+                });
+            },
+        }),
+        'x-init': 'initSlick()'
+    }))
+
 
 });
