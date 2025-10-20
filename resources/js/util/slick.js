@@ -45,5 +45,36 @@ document.addEventListener('alpine:init', () => {
             }
         }),
         'x-init': 'initSlick()'
+    }));
+
+    Alpine.bind('slickOnlineLetterBind', () => ({
+        'x-data': () => ({
+            element: null,
+            slideToShow: 1,
+            mode: 'base',
+            speed: 1000,
+            initSlick() {
+                this.$nextTick(() => {
+                    this.element = $(this.$el);
+                    const parent = this.$el.parentElement
+                    let config = {
+                        arrows: true,
+                        infinite: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        centerMode: true,
+                        variableWidth: true,
+                        prevArrow: parent.querySelector('.ol-prev-btn'),
+                        nextArrow: parent.querySelector('.ol-next-btn'),
+                    };
+                    $(this.element).not('.slick-initialized').slick(config);
+                });
+            },
+        }),
+        'x-init': 'initSlick()'
     }))
+
+
 });
