@@ -4,7 +4,7 @@
             <img src="{{ asset('static/images/service/bg-service.png') }}"
                 class="h-[30rem] w-full object-cover object-center" alt="main-service" />
         </div>
-        <div class="w-full h-[30rem] absolute top-0 left-0 bg-white/80 flex items-center justify-center">
+        <div class="w-full h-[30rem] absolute top-0 left-0 bg-white/65 flex items-center justify-center">
             <x-container.landing-container class="flex items-center gap-3">
                 <div class="flex-1">
                     <h1 class="text-[3rem] text-accent-700 font-bold">SURAT ONLINE</h1>

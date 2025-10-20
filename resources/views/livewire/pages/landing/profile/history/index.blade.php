@@ -19,14 +19,17 @@
             <div class="w-full flex items-start gap-5">
                 <div class="flex-1 bg-white rounded-lg shadow-xl p-6 border border-neutral-300">
                     <p class="text-lg text-accent-500 font-bold mb-5">SEJARAH DESA BERAN</p>
-                    @if ($data->image !== null)
-                        <div class="w-full rounded-lg bg-blue-600 mb-5">
-                            <img src="{{ $data->image }}" alt="image-profile" class="w-full h-96 rounded-lg object-cover" />
+                    @if (!empty($data))
+                        @if ($data->image !== null)
+                            <div class="w-full rounded-lg bg-blue-600 mb-5">
+                                <img src="{{ $data->image }}" alt="image-profile"
+                                    class="w-full h-96 rounded-lg object-cover" />
+                            </div>
+                        @endif
+                        <div class="w-full text-neutral-700 text-sm">
+                            {!! $data->description !!}
                         </div>
                     @endif
-                    <div class="w-full text-neutral-700 text-sm">
-                        {!! $data->description !!}
-                    </div>
                 </div>
                 <!-- page suggestion -->
                 <div class="w-80 flex flex-col gap-5">
@@ -38,23 +41,28 @@
                             </a>
                         </div>
                         <div class="w-full rounded-b-lg px-3 py-1 flex flex-col">
-                            <a href="{{ route('online-letter.domicile') }}" class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
+                            <a href="{{ route('online-letter.domicile') }}"
+                                class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
                                 <span class="text-xs font-semibold">SURAT DOMISILI</span>
                                 <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                             </a>
-                            <a href="{{ route('online-letter.police-clearance') }}" class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
+                            <a href="{{ route('online-letter.police-clearance') }}"
+                                class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
                                 <span class="text-xs font-semibold">PENGANTAR SKCK</span>
                                 <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                             </a>
-                            <a href="{{ route('online-letter.incapacity') }}" class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
+                            <a href="{{ route('online-letter.incapacity') }}"
+                                class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
                                 <span class="text-xs font-semibold">KETERANGAN TIDAK MAMPU</span>
                                 <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                             </a>
-                            <a href="{{ route('online-letter.death') }}" class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
+                            <a href="{{ route('online-letter.death') }}"
+                                class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
                                 <span class="text-xs font-semibold">KETERANGAN KEMATIAN</span>
                                 <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                             </a>
-                            <a href="{{ route('online-letter.birth') }}" class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
+                            <a href="{{ route('online-letter.birth') }}"
+                                class="py-2 text-neutral-700 flex items-center justify-between border-b border-neutral-300 last:border-b-0">
                                 <span class="text-xs font-semibold">KETERANGAN KELAHIRAN</span>
                                 <i data-lucide="arrow-right" class="h-4 aspect-[1/1]"></i>
                             </a>

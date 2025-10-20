@@ -9,4 +9,5 @@ interface MicroBusinessServiceInterface
 {
     public function findAll(MicroBusinessQuery $queryParams): ServiceResponse;
     public function findSome(): ServiceResponse;
+    public function findBySlug($slug): ServiceResponse;
 }

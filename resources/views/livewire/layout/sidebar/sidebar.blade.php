@@ -32,10 +32,17 @@
             <x-sidebar.sidebar-item to="{{ route('web-panel.micro-business') }}" text="Produk UMKM"
                 icon="shopping-bag" />
             <x-sidebar.sidebar-item-tree text="Profil Desa" icon="info">
-                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.history') }}"
-                    text="Sejarah Desa" />
-                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.regional') }}"
-                    text="Wilayah Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.history') }}" text="Sejarah Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.regional') }}" text="Wilayah Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.community') }}" text="Masyarakat Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.potention') }}" text="Potensi Desa" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.vission-mission') }}" text="Visi dan Misi" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.staff') }}" text="Perangkat Desa" />
+            </x-sidebar.sidebar-item-tree>
+            <x-sidebar.sidebar-item-tree text="Publikasi" icon="rss">
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.news') }}" text="Berita" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.library') }}" text="Perpustakaan Online" />
+                <x-sidebar.sidebar-item-tree-child to="#" text="Galeri" />
             </x-sidebar.sidebar-item-tree>
         </div>
     </div>

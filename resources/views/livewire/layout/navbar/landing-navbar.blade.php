@@ -1,14 +1,14 @@
 <nav id="landing-navbar" data-component-id="landing-navbar"
     class="w-full h-16 z-30 top-0 left-0 transition-colors ease-in duration-300"
     x-bind:class="{
-        'bg-transparent border-none' : $store.LANDING_NAVBAR_STORE.mode === 'transparent',
-        'bg-white border-b border-brand-500 shadow-sm' : $store.LANDING_NAVBAR_STORE.mode !== 'transparent',
-        'sticky' : $store.LANDING_NAVBAR_STORE.fixMode,
-        'fixed' : !$store.LANDING_NAVBAR_STORE.fixMode,
+        'bg-transparent border-none': $store.LANDING_NAVBAR_STORE.mode === 'transparent',
+        'bg-white border-b border-brand-500 shadow-sm': $store.LANDING_NAVBAR_STORE.mode !== 'transparent',
+        'sticky': $store.LANDING_NAVBAR_STORE.fixMode,
+        'fixed': !$store.LANDING_NAVBAR_STORE.fixMode,
     }">
     <x-container.landing-container class="h-full">
-        <div class="w-full h-full flex items-center justify-between">
-            <div class="flex items-center gap-3">
+        <div class="w-full h-full flex items-center justify-between relative">
+            <div class="flex items-center gap-3 absolute left-0">
                 <img x-bind:src="$store.LANDING_NAVBAR_STORE.mode === 'transparent' ?
                     '{{ asset('static/images/logo-image-white.png') }}' : '{{ asset('static/images/logo-image.png') }}'"
                     class="w-10 h-10" />
@@ -17,18 +17,17 @@
                         'text-brand-500'">Beran
                     Digital</span>
             </div>
-            <div class="flex items-center gap-5">
+            <div class="flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
                 <ul class="flex items-center gap-1">
                     <x-navbar.navbar-item text="Beranda" to="/" />
                     <x-navbar.navbar-item-tree text="Profil">
                         <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
                             <x-navbar.navbar-tree-list to="{{ route('history') }}" text="Sejarah Desa" />
-                            <x-navbar.navbar-tree-list to="{{ route('regional') }}" text="Profil Wilayah Desa" />
-                            <x-navbar.navbar-tree-list to="#" text="Profil Masyarakat Desa" />
-                            <x-navbar.navbar-tree-list to="#" text="Profil Potensi Desa" />
-                            <x-navbar.navbar-tree-list to="#" text="Visi Misi Desa" />
-                            <x-navbar.navbar-tree-list to="#" text="Prestasi" />
-                            <x-navbar.navbar-tree-list to="#" text="Peta Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('regional') }}" text="Wilayah Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('community') }}" text="Masyarakat Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('potention') }}" text="Potensi Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('vission-mission') }}" text="Visi Misi Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('staff') }}" text="Perangkat Desa" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Layanan">
@@ -38,9 +37,10 @@
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Publikasi">
-                        <div class="w-48 bg-white p-3 rounded-md border border-neutral-300">
-                            <a href="#" class="block text-xs text-neutral-700">Berita</a>
-                            <a href="#" class="block text-xs text-neutral-700">Galeri</a>
+                        <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
+                            <x-navbar.navbar-tree-list to="{{ route('news') }}" text="Berita" />
+                            <x-navbar.navbar-tree-list to="#" text="Galeri" />
+                            <x-navbar.navbar-tree-list to="{{ route('library') }}" text="Perpustakaan Online" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item text="Produk" to="{{ route('micro-business') }}" />

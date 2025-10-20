@@ -17,9 +17,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', App\Livewire\Pages\Landing\Home\Index::class)->name('home');
 Route::get('/sejarah-desa-beran', App\Livewire\Pages\Landing\Profile\History\Index::class)->name('history');
 Route::get('/wilayah-desa-beran', App\Livewire\Pages\Landing\Profile\Regional\Index::class)->name('regional');
+Route::get('/masyarakat-desa-beran', App\Livewire\Pages\Landing\Profile\Community\Index::class)->name('community');
+Route::get('/potensi-desa-beran', App\Livewire\Pages\Landing\Profile\Potention\Index::class)->name('potention');
+Route::get('/visi-dan-misi-desa-beran', App\Livewire\Pages\Landing\Profile\VissionMission\Index::class)->name('vission-mission');
+Route::get('/perangkat-desa-beran', App\Livewire\Pages\Landing\Profile\Staff\Index::class)->name('staff');
+
 Route::group(['prefix' => 'produk-umkm-desa-beran'], function () {
     Route::get('/', App\Livewire\Pages\Landing\MicroBusiness\Index::class)->name('micro-business');
     Route::get('/{slug}', App\Livewire\Pages\Landing\MicroBusiness\Detail::class)->name('micro-business.detail');
+});
+
+Route::group(['prefix' => 'berita-desa-beran'], function () {
+    Route::get('/', App\Livewire\Pages\Landing\News\Index::class)->name('news');
+    Route::get('/{slug}', App\Livewire\Pages\Landing\News\Detail::class)->name('news.detail');
+});
+
+Route::group(['prefix' => 'perpustakaan-online-desa-beran'], function () {
+    Route::get('/', App\Livewire\Pages\Landing\Library\Index::class)->name('library');
+    Route::get('/{slug}', App\Livewire\Pages\Landing\Library\Detail::class)->name('library.detail');
 });
 
 
@@ -75,6 +90,29 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::get('/produk-umkm', App\Livewire\Pages\WebPanel\MicroBusiness\Index::class)->name('web-panel.micro-business');
     Route::get('/produk-umkm/tambah', App\Livewire\Pages\WebPanel\MicroBusiness\Create::class)->name('web-panel.micro-business.new');
     Route::get('/produk-umkm/{id}/detail', App\Livewire\Pages\WebPanel\MicroBusiness\Detail::class)->name('web-panel.micro-business.detail');
+
     Route::get('/sejarah-desa', App\Livewire\Pages\WebPanel\Profile\About\Index::class)->name('web-panel.history');
     Route::get('/wilayah-desa', App\Livewire\Pages\WebPanel\Profile\Regional\Index::class)->name('web-panel.regional');
+    Route::get('/masyarakat-desa', App\Livewire\Pages\WebPanel\Profile\Community\Index::class)->name('web-panel.community');
+    Route::get('/potensi-desa', App\Livewire\Pages\WebPanel\Profile\Potention\Index::class)->name('web-panel.potention');
+    Route::get('/visi-dan misi', App\Livewire\Pages\WebPanel\Profile\VissionMission\Index::class)->name('web-panel.vission-mission');
+
+    Route::group(['prefix' => 'perangkat-desa'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\Profile\Staff\Index::class)->name('web-panel.staff');
+        Route::get('/tambah', App\Livewire\Pages\WebPanel\Profile\Staff\Create::class)->name('web-panel.staff.new');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\Profile\Staff\Edit::class)->name('web-panel.staff.update');
+    });
+
+    # publication route
+    Route::group(['prefix' => 'berita'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\News\Index::class)->name('web-panel.news');
+        Route::get('/tambah', App\Livewire\Pages\WebPanel\News\Create::class)->name('web-panel.news.new');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\News\Edit::class)->name('web-panel.news.update');
+    });
+
+    Route::group(['prefix' => 'perpustakaan-online'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\Library\Index::class)->name('web-panel.library');
+        Route::get('/tambah', App\Livewire\Pages\WebPanel\Library\Create::class)->name('web-panel.library.new');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\Library\Edit::class)->name('web-panel.library.update');
+    });
 });

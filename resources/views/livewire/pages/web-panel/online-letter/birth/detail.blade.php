@@ -328,8 +328,6 @@
             <span class="font-semibold">"Batal"</span> dan perbaiki data anda.
         </p>
     </x-alert.confirmation>
-    <x-loader.page-loader />
-    <x-alert.toast />
 </section>
 @push('scripts')
     @vite(['resources/js/util/index.js'])
@@ -359,6 +357,7 @@
                             this.alertStore = Alpine.store('alertStore');
                             this.pageLoaderStore = Alpine.store('pageLoaderStore');
                             this.toastStore = Alpine.store('toastStore');
+
                         }
                     });
                 },
