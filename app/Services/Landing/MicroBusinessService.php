@@ -20,7 +20,7 @@ class MicroBusinessService implements MicroBusinessServiceInterface
                     return $q->where('title', 'LIKE', "%{$queryParams->getParam()}%")
                         ->orWhereRelation('owner', 'name', 'LIKE', "%{$queryParams->getParam()}%");
                 })
-                ->orderBy('title', 'ASC');
+                ->orderBy('created_at', 'DESC');
             $pagination = $query->paginate($queryParams->getPageSize(), '*', 'page', $queryParams->getPage());
             $data = $pagination->items();
             $meta = MetaPagination::generate($pagination);

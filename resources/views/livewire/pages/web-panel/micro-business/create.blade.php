@@ -27,6 +27,18 @@
                 </template>
             </div>
             <div class="w-full col-span-2">
+                <x-label.label for="price">
+                    <span>Hara Produk(Rp)</span>
+                    <span class="text-red-500 text-sm italic">*</span>
+                </x-label.label>
+                <x-input.text.text type="number" placeholder="harga produk umkm" id="name" x-model="$store.SERVICE_MICRO_BUSINESS_CREATE_STORE.form.price" />
+                <template x-if="'price' in $store.SERVICE_MICRO_BUSINESS_CREATE_STORE.formValidator">
+                    <x-label.validator>
+                        <span x-text="$store.SERVICE_MICRO_BUSINESS_CREATE_STORE.formValidator.price[0]"></span>
+                    </x-label.validator>
+                </template>
+            </div>
+            <div class="w-full col-span-2">
                 <x-label.label for="description">
                     <span>Deskrpsi Produk</span>
                 </x-label.label>

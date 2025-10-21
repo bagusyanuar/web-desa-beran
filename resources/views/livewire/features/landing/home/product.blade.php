@@ -22,14 +22,14 @@
                     <div class="w-full h-80" x-bind="slickProductBind">
                         @foreach ($data as $v)
                             <div wire:click="toDetail('{{ $v->slug }}')"
-                                class="w-64 h-72 bg-white rounded-md my-6 mx-3 cursor-pointer relative group"
+                                class="w-[17rem] h-72 bg-white rounded-md my-6 mx-3 cursor-pointer relative group"
                                 style="box-shadow: 10px 5px 15px rgba(0,0,0,0.5)">
                                 <img src="{{ asset($v->image->image) }}"
-                                    class="w-64 h-72 rounded-md object-center object-cover" />
+                                    class="w-[17rem] h-72 rounded-md object-center object-cover" />
                                 <div
-                                    class="w-full rounded-md flex flex-col items-center justify-center p-4 bg-brand-500/70 absolute bottom-0 left-0 opacity-0 h-0 group-hover:h-72 group-hover:opacity-100 transition-all duration-300">
+                                    class="w-full rounded-md flex flex-col items-center justify-center p-4 bg-black/50 absolute bottom-0 left-0 opacity-0 h-0 group-hover:h-72 group-hover:opacity-100 transition-all duration-500">
                                     <p
-                                        class="text-md mb-3 font-bold text-center text-white uppercase overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
+                                        class="text-lg mb-3 font-bold text-center text-white uppercase overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
                                         {{ $v->title }}</p>
 
                                     <div class="w-20 h-20 rounded-full mb-3">
