@@ -15,8 +15,12 @@
             </x-container.landing-container>
         </div>
     </div>
-    <div class="w-full py-10">
-        <x-container.landing-container class="">
+    <div class="w-full py-10 relative">
+        <img src="{{ asset('static/images/bg-ornament.png') }}"
+            class="w-96 h-fit absolute top-0 right-0 scale-y-[-1]" />
+        <img src="{{ asset('static/images/bg-ornament.png') }}" class="w-96 h-fit absolute top-0 left-0 rotate-180" />
+        <div class="absolute bg-white/90 w-full h-full right-0 top-0"></div>
+        <x-container.landing-container class="relative">
             <div class="w-full flex items-center gap-1 mb-5" wire:ignore x-data="{
                 initIcons() {
                     setTimeout(() => { lucide.createIcons(); }, 0);
