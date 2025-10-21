@@ -1,4 +1,4 @@
-<div class="w-full rounded-lg shadow-xl border border-neutral-300">
+<div class="w-full rounded-lg shadow-xl bg-white">
     <div class="w-full rounded-t-lg h-10 px-3 flex items-center justify-between bg-accent-500">
         <p class="text-sm text-white font-bold">Produk UMKM</p>
     </div>
@@ -12,11 +12,13 @@
                 </div>
                 <div class="flex-1 flex flex-col h-16">
                     <p
-                        class="flex-1 text-sm font-semibold text-neutral-700 leading-[1.1] overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
+                        class="text-md font-semibold text-neutral-700 leading-[1.1] overflow-hidden [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical]">
                         {{ $datum->title }}
                     </p>
+                    <span class="text-xs font-bold text-brand-500">Rp {{ number_format($datum->price, 2, ',', '.') }}</span>
                     <span
                         class="text-xs text-neutral-500">{{ $datum->owner->name }}</span>
+
                 </div>
             </div>
         @empty
@@ -26,7 +28,7 @@
             </div>
         @endforelse
     </div>
-    <div class="w-full flex items-center justify-center py-1.5 border-t border-neutral-300">
+    <div class="w-full flex items-center justify-center py-2.5 border-t border-neutral-300">
         <a href="{{ route('micro-business') }}" class="text-brand-500 text-xs flex items-center gap-1">
             <span>Selengkapnya</span>
             <i data-lucide="arrow-right" class="h-3 aspect-[1/1]"></i>
