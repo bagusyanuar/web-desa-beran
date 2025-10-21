@@ -111,5 +111,47 @@ document.addEventListener('alpine:init', () => {
         'x-init': 'initSlick()'
     }))
 
+    Alpine.bind('slickNewsBind', () => ({
+        'x-data': () => ({
+            element: null,
+            slideToShow: 1,
+            mode: 'base',
+            speed: 1000,
+            initSlick() {
+                this.$nextTick(() => {
+                    this.element = $(this.$el);
+                    const parent = this.$el.parentElement
+                    let config = {
+                        arrows: true,
+                        infinite: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        variableWidth: true,
+                        prevArrow: parent.querySelector('.ol-prev-btn'),
+                        nextArrow: parent.querySelector('.ol-next-btn'),
+                    };
+
+                    const $slider = $(this.element).not('.slick-initialized').slick(config);
+
+                    // Tambahkan listener untuk handle "loncatan" slick saat loop
+                    $slider.on('afterChange', (event, slick, currentSlide) => {
+                        // Periksa apakah slick sedang menampilkan clone terakhir (sebelum lompat)
+                        const $current = $(slick.$slides.get(currentSlide));
+
+                        // Jika slide ini clone, re-sync shadow ke slide asli
+                        if ($current.hasClass('slick-cloned')) {
+                            const targetIndex = currentSlide % slick.$slides.length;
+                            setTimeout(() => {
+                                $(slick.$slides).removeClass('slick-current');
+                                $(slick.$slides.get(targetIndex)).addClass('slick-current');
+                            }, 20); // waktu pendek agar sinkron
+                        }
+                    });
+                });
+            },
+        }),
+        'x-init': 'initSlick()'
+    }))
+
 
 });

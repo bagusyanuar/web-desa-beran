@@ -1,8 +1,6 @@
 <section id="landing-about" data-component-id="landing-about" class="relative w-full">
     <img src="{{ asset('static/images/bg-ornament.png') }}" class="w-96 h-fit absolute top-0 right-0 scale-y-[-1]" />
-    <div class="absolute bg-white/90 w-full h-full right-0 top-0">
-
-    </div>
+    <div class="absolute bg-white/90 w-full h-full right-0 top-0"></div>
     <x-container.landing-container class="py-10">
         <div class="w-full h-[22.5rem] flex items-center gap-7">
             @if (!empty($data))
