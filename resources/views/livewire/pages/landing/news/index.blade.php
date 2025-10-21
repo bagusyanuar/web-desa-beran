@@ -15,8 +15,12 @@
             </x-container.landing-container>
         </div>
     </div>
-    <div class="w-full py-10">
-        <x-container.landing-container class="">
+    <div class="w-full py-10 relative">
+        <img src="{{ asset('static/images/bg-ornament.png') }}"
+            class="w-96 h-fit absolute top-0 right-0 scale-y-[-1]" />
+        <img src="{{ asset('static/images/bg-ornament.png') }}" class="w-96 h-fit absolute top-0 left-0 rotate-180" />
+        <div class="absolute bg-white/90 w-full h-full right-0 top-0"></div>
+        <x-container.landing-container class="relative">
             <div class="w-full flex items-center gap-1 mb-5" wire:ignore x-data="{
                 initIcons() {
                     setTimeout(() => { lucide.createIcons(); }, 0);
@@ -29,24 +33,24 @@
                 </div>
                 <span class="text-brand-500 font-semibold">Berita</span>
             </div>
-            <div class="w-full p-6 rounded-lg bg-white shadow-xl border border-neutral-300 mb-7">
+            <div class="w-full py-6 rounded-lg mb-3">
                 <p class="text-lg text-accent-500 font-bold mb-3 leading-[1] text-center">Penelusuran Berita</p>
-                <div class="flex items-center border border-neutral-300 rounded-md w-full" wire:ignore>
+                <div class="flex items-center border border-neutral-300 rounded-md w-full bg-white" wire:ignore>
                     <i data-lucide="search" class="text-neutral-500 min-h-4 min-w-4 ms-2"></i>
                     <input type="text" placeholder="telusuri berita desa beran..."
                         x-model="$store.SERVICE_NEWS_STORE.param" x-on:input="$store.SERVICE_NEWS_STORE.onSearch()"
                         class="flex-grow w-full py-2.5 ps-2 pe-3 rounded-md text-sm text-neutral-700 border-none focus:outline-none focus:ring-0 placeholder:text-neutral-400" />
                 </div>
             </div>
-            <div class="w-full grid grid-cols-4 gap-5 mb-5">
+            <div class="w-full grid grid-cols-3 gap-5 mb-5">
                 <template x-if="$store.SERVICE_NEWS_STORE.loading">
                     <template x-for="(data, index) in [1, 2, 3, 4, 5, 6, 7, 8]" :key="index">
-                        <x-loader.shimmer class="!w-full !h-80 !rounded-lg" />
+                        <x-loader.shimmer class="!w-full !h-72 !rounded-lg" />
                     </template>
                 </template>
                 <template x-if="!$store.SERVICE_NEWS_STORE.loading && $store.SERVICE_NEWS_STORE.data.length <= 0">
                     <div
-                        class="col-span-4 w-full h-96 flex items-center justify-center flex-col border border-neutral-300 rounded-lg shadow-xl">
+                        class="col-span-3 w-full h-96 flex items-center justify-center flex-col border border-neutral-300 rounded-lg shadow-xl">
                         <img src="{{ asset('static/images/no-data.png') }}" class="h-32 w-32" />
                         <span class="text-sm font-semibold text-accent-700">Tidak ada berita</span>
                     </div>
@@ -54,19 +58,18 @@
                 <template x-if="!$store.SERVICE_NEWS_STORE.loading && $store.SERVICE_NEWS_STORE.data.length > 0">
                     <template x-for="(data, index) in $store.SERVICE_NEWS_STORE.data" :key="index">
                         <div x-on:click="$store.SERVICE_NEWS_STORE.goToDetail(data.slug)"
-                            class="flex flex-col w-full h-80 border border-neutral-300 rounded-lg shadow-xl cursor-pointer">
-                            <div class="h-52 w-full">
+                            class="flex flex-col w-full h-72 border border-neutral-300 rounded-lg shadow-md cursor-pointer hover:shadow-2xl transition-all ease-in-out duration-500">
+                            <div class="h-72 w-full relative">
                                 <img x-bind:src="data.thumbnail?.image"
-                                    class="rounded-t-lg w-full h-full object-cover object-center" />
-                            </div>
-                            <div class="flex-1 w-full px-3 py-2.5 flex flex-col">
-                                <div class="flex-1">
+                                    class="rounded-lg w-full h-full object-cover object-center" />
+                                <div
+                                    class="absolute top-0 left-0 w-full h-full px-6 bg-black/60 rounded-lg flex flex-col gap-3 items-center justify-center">
+                                    <img src="{{ asset('static/images/institution-logo.png') }}" alt="institution-logo"
+                                        class="h-14 w-fit" />
                                     <p x-text="data.title"
-                                        class="text-center text-md leading-[1.2] font-bold text-brand-500 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
+                                        class="text-center text-lg uppercase text-white font-bold overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
                                     </p>
-                                </div>
-                                <div class="w-full flex items-center justify-end">
-                                    <span class="text-xs text-neutral-500" x-text="data.published_at"></span>
+                                    <p class="text-sm text-white" x-text="data.published_at"></p>
                                 </div>
                             </div>
                         </div>

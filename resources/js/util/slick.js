@@ -89,7 +89,7 @@ document.addEventListener('alpine:init', () => {
                     let config = {
                         arrows: true,
                         infinite: false,
-                        slidesToShow: 1,
+                        slidesToShow: 2,
                         slidesToScroll: 1,
                         variableWidth: true,
                         prevArrow: parent.querySelector('.ol-prev-btn'),

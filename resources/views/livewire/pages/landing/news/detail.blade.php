@@ -27,8 +27,12 @@
             </x-container.landing-container>
         </div>
     </div>
-    <div class="w-full py-10">
-        <x-container.landing-container class="">
+    <div class="w-full py-10 relative">
+        <img src="{{ asset('static/images/bg-ornament.png') }}"
+            class="w-96 h-fit absolute top-0 right-0 scale-y-[-1]" />
+        <img src="{{ asset('static/images/bg-ornament.png') }}" class="w-96 h-fit absolute top-0 left-0 rotate-180" />
+        <div class="absolute bg-white/90 w-full h-full right-0 top-0"></div>
+        <x-container.landing-container class="relative">
             <div class="w-full flex items-center gap-1 mb-5" wire:ignore x-data="{
                 initIcons() {
                     setTimeout(() => { lucide.createIcons(); }, 0);
@@ -51,7 +55,7 @@
 
             </div>
             <div class="w-full flex items-start gap-5">
-                <div class="flex-1 bg-white rounded-lg shadow-xl p-6 border border-neutral-300">
+                <div class="flex-1 bg-white rounded-lg shadow-2xl p-6">
                     @php
                         \Carbon\Carbon::setLocale('id');
                     @endphp
@@ -193,9 +197,9 @@
                             </div>
                         </div>
                         @if (!empty($data->thumbnail))
-                            <div class="w-full rounded-lg mb-5">
+                            <div class="w-full rounded-lg mb-5 border-2 border-accent-500">
                                 <img src="{{ $data->thumbnail->image }}" alt="news-thumbnail"
-                                    class="w-full h-96 rounded-lg object-cover" />
+                                    class="w-full h-[32rem] rounded-lg object-cover" />
                             </div>
                         @endif
                         @php
@@ -203,7 +207,7 @@
                             $domain = preg_replace('/^www\./', '', $host);
                         @endphp
                         <div class="w-full text-neutral-700 text-sm">
-                            {{ $domain }} - {!! $data->description !!}
+                            {!! $data->description !!}
                         </div>
                     @else
                     @endif
