@@ -21,7 +21,7 @@
     @livewireStyles
 </head>
 
-<body x-data>
+<body x-data class="bg-neutral-100">
     <livewire:layout.sidebar.sidebar />
     <livewire:layout.navbar.navbar />
     <main class="w-full min-h-dvh ps-72 pt-16 overflow-y-auto">
