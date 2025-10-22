@@ -21,7 +21,7 @@ class News extends Component
 
     public function toDetail($slug)
     {
-        return redirect()->route('micro-business.detail', ['slug' => $slug]);
+        return redirect()->route('news.detail', ['slug' => $slug]);
     }
 
     public function render()

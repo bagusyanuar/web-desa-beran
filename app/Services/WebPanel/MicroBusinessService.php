@@ -73,6 +73,7 @@ class MicroBusinessService implements MicroBusinessServiceInterface
 
             $dataMicroBusineess = [
                 'title' => $schema->getTitle(),
+                'price' => $schema->getPrice(),
                 'slug' => Str::slug($schema->getTitle()),
                 'description' => $schema->getDescription(),
             ];
@@ -188,6 +189,7 @@ class MicroBusinessService implements MicroBusinessServiceInterface
 
             $dataMicroBusineess = [
                 'title' => $schema->getTitle(),
+                'price' => $schema->getPrice(),
                 'slug' => Str::slug($schema->getTitle()),
                 'description' => $schema->getDescription(),
             ];

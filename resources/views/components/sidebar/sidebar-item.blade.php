@@ -1,13 +1,17 @@
 @props([
     'to' => '#',
     'text' => 'Item',
-    'icon' => 'circle'
+    'icon' => 'circle',
 ])
 
+@php
+    $isActive = request()->is(trim(parse_url($to, PHP_URL_PATH), '/') . '*');
+@endphp
+
 <a href="{{ $to }}"
-    class="group relative px-3 py-2.5 w-full rounded flex items-center gap-2 cursor-pointer transition-all duration-200 ease-in">
-    <div class="hidden group-hover:block w-1.5 h-5/6 bg-accent-500 absolute top-1/2 left-0 -translate-y-1/2 rounded-tr-md rounded-br-md transition-all duration-200 ease-in">
-    </div>
-    <i data-lucide="{{ $icon }}" class="text-neutral-500 group-hover:text-neutral-900 h-5 aspect-[1/1]"></i>
-    <span class="text-neutral-500 group-hover:text-neutral-900">{{ $text }}</span>
+    class="group relative px-3 py-2.5 w-full rounded-md flex items-center gap-2 cursor-pointer {{ $isActive ? 'bg-accent-500' : 'hover:bg-accent-500' }} transition-all duration-300 ease-in-out">
+    <i data-lucide="{{ $icon }}"
+        class="{{ $isActive ? 'text-white' : 'text-white/80 group-hover:text-white' }} h-5 aspect-[1/1] transition-all duration-300 ease-in-out"></i>
+    <span
+        class="{{ $isActive ? 'text-white' : 'text-white/80 group-hover:text-white' }} font-light transition-all duration-300 ease-in-out">{{ $text }}</span>
 </a>
