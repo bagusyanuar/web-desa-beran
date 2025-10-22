@@ -39,7 +39,7 @@
                     <x-navbar.navbar-item-tree text="Publikasi">
                         <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
                             <x-navbar.navbar-tree-list to="{{ route('news') }}" text="Berita" />
-                            <x-navbar.navbar-tree-list to="#" text="Galeri" />
+                            <x-navbar.navbar-tree-list to="{{ route('gallery') }}" text="Galeri" />
                             <x-navbar.navbar-tree-list to="{{ route('library') }}" text="Perpustakaan Online" />
                         </div>
                     </x-navbar.navbar-item-tree>
