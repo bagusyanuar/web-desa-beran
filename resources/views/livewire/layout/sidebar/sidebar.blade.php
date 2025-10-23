@@ -42,6 +42,8 @@
             </x-sidebar.sidebar-item-tree>
             <x-sidebar.sidebar-item to="{{ route('web-panel.micro-business') }}" text="Produk UMKM"
                 icon="shopping-bag" />
+            <x-sidebar.sidebar-item to="{{ route('web-panel.complaint') }}" text="Aduan Masyarakat"
+                icon="megaphone" />
             <x-sidebar.sidebar-item-tree text="Profil Desa" icon="info" :routes="[
                 'web-panel.history',
                 'web-panel.regional',

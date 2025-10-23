@@ -103,6 +103,10 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::get('/potensi-desa', App\Livewire\Pages\WebPanel\Profile\Potention\Index::class)->name('web-panel.potention');
     Route::get('/visi-dan misi', App\Livewire\Pages\WebPanel\Profile\VissionMission\Index::class)->name('web-panel.vission-mission');
 
+    Route::group(['prefix' => 'aduan-masyarakat'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\Complaint\Index::class)->name('web-panel.complaint');
+    });
+
     Route::group(['prefix' => 'perangkat-desa'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Profile\Staff\Index::class)->name('web-panel.staff');
         Route::get('/tambah', App\Livewire\Pages\WebPanel\Profile\Staff\Create::class)->name('web-panel.staff.new');
