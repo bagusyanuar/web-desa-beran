@@ -38,6 +38,11 @@ Route::group(['prefix' => 'perpustakaan-online-desa-beran'], function () {
     Route::get('/{slug}', App\Livewire\Pages\Landing\Library\Detail::class)->name('library.detail');
 });
 
+Route::group(['prefix' => 'aduan-masyarakat-desa-beran'], function () {
+    Route::get('/', App\Livewire\Pages\Landing\Complaint\Index::class)->name('complaint');
+    Route::get('/{code}', App\Livewire\Pages\Landing\Library\Detail::class)->name('complaint.code');
+});
+
 
 Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/', App\Livewire\Pages\Landing\OnlineLetter\Index::class)->name('online-letter');
