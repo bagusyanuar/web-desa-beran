@@ -240,7 +240,7 @@
             </div>
             <div class="flex items-center gap-2" wire:ignore>
                 <i data-lucide="phone" class="w-4 h-4 text-neutral-700"></i>
-                <p class="text-sm text-neutral-700">(627718812958)</p>
+                <p class="text-sm text-neutral-700">({{ $data->applicant->phone }})</p>
             </div>
             <div class="w-full border-b border-neutral-300 my-3">
             </div>

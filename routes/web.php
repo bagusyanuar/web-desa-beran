@@ -105,6 +105,7 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'aduan-masyarakat'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Complaint\Index::class)->name('web-panel.complaint');
+        Route::get('/{id}', App\Livewire\Pages\WebPanel\Complaint\Detail::class)->name('web-panel.complaint.detail');
     });
 
     Route::group(['prefix' => 'perangkat-desa'], function () {

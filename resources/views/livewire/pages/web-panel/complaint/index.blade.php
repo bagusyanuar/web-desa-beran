@@ -169,7 +169,7 @@
                         })
                 },
                 redirectToDetail(id) {
-                    window.location.href = '/web-panel/surat-keterangan-kelahiran/' + id;
+                    window.location.href = '/web-panel/aduan-masyarakat/' + id;
                 },
                 filter() {
                     this.findAll()
