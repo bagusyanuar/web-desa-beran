@@ -40,7 +40,7 @@ Route::group(['prefix' => 'perpustakaan-online-desa-beran'], function () {
 
 Route::group(['prefix' => 'aduan-masyarakat-desa-beran'], function () {
     Route::get('/', App\Livewire\Pages\Landing\Complaint\Index::class)->name('complaint');
-    Route::get('/{code}', App\Livewire\Pages\Landing\Library\Detail::class)->name('complaint.code');
+    Route::get('/{code}', App\Livewire\Pages\Landing\Complaint\Detail::class)->name('complaint.code');
 });
 
 

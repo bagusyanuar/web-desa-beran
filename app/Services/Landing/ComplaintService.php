@@ -71,4 +71,19 @@ class ComplaintService implements ComplaintServiceInterface
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }
+
+    public function findByCode($code): ServiceResponse
+    {
+        try {
+            $data = Complaint::with(['applicant', 'images'])
+                ->where('reference_number', '=', $code)
+                ->first();
+            if (!$data) {
+                return ServiceResponse::notFound("complaint not found");
+            }
+            return ServiceResponse::statusOK("successfully get complaint", $data);
+        } catch (\Throwable $e) {
+            return ServiceResponse::internalServerError($e->getMessage());
+        }
+    }
 }
