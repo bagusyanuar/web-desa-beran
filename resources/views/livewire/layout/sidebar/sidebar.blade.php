@@ -11,7 +11,7 @@
         {{-- sidebar item --}}
         <div class="w-full flex-1 flex flex-col gap-1 px-4 py-3 overflow-y-auto">
             <x-sidebar.sidebar-item to="{{ route('web-panel.dashboard') }}" text="Dashboard" icon="house" />
-            <x-sidebar.sidebar-item-tree text="Surat Online" icon="mailbox" :routes="[
+            <x-sidebar.sidebar-item-tree text="Surat Online" icon="mail" :routes="[
                 'web-panel.online-letter.domicile',
                 'web-panel.online-letter.death',
                 'web-panel.online-letter.birth',
@@ -42,6 +42,8 @@
             </x-sidebar.sidebar-item-tree>
             <x-sidebar.sidebar-item to="{{ route('web-panel.micro-business') }}" text="Produk UMKM"
                 icon="shopping-bag" />
+            <x-sidebar.sidebar-item to="{{ route('web-panel.complaint') }}" text="Aduan Masyarakat"
+                icon="megaphone" />
             <x-sidebar.sidebar-item-tree text="Profil Desa" icon="info" :routes="[
                 'web-panel.history',
                 'web-panel.regional',

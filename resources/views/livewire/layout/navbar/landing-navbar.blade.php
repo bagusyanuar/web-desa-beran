@@ -33,7 +33,7 @@
                     <x-navbar.navbar-item-tree text="Layanan">
                         <div class="w-56 bg-white p-2.5 rounded-md border border-neutral-300">
                             <x-navbar.navbar-tree-list to="{{ route('online-letter') }}" text="Surat Online" />
-                            <x-navbar.navbar-tree-list to="#" text="Aduan" />
+                            <x-navbar.navbar-tree-list to="{{ route('complaint') }}" text="Aduan Masyarakat" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Publikasi">

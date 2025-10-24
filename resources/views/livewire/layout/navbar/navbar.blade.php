@@ -1,5 +1,5 @@
 <nav id="web-panel-navbar" data-component-id="web-panel-navbar"
-    class="w-full h-16 ps-72 top-0 z-[30] fixed right-0 transition-all ease-in-out duration-300">
+    class="w-full bg-neutral-100 h-16 ps-72 top-0 z-[30] fixed right-0 transition-all ease-in-out duration-300">
     <div class="w-full h-full flex items-center justify-between px-6">
         <div class="">
             <span class="text-neutral-700">Selamat Datang, <span class="font-semibold me-2">{{ auth()->user()->username }}</span><span class="text-xl">🖐</span></span>

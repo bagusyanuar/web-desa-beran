@@ -38,6 +38,11 @@ Route::group(['prefix' => 'perpustakaan-online-desa-beran'], function () {
     Route::get('/{slug}', App\Livewire\Pages\Landing\Library\Detail::class)->name('library.detail');
 });
 
+Route::group(['prefix' => 'aduan-masyarakat-desa-beran'], function () {
+    Route::get('/', App\Livewire\Pages\Landing\Complaint\Index::class)->name('complaint');
+    Route::get('/{code}', App\Livewire\Pages\Landing\Complaint\Detail::class)->name('complaint.code');
+});
+
 
 Route::group(['prefix' => 'surat-online'], function () {
     Route::get('/', App\Livewire\Pages\Landing\OnlineLetter\Index::class)->name('online-letter');
@@ -97,6 +102,11 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::get('/masyarakat-desa', App\Livewire\Pages\WebPanel\Profile\Community\Index::class)->name('web-panel.community');
     Route::get('/potensi-desa', App\Livewire\Pages\WebPanel\Profile\Potention\Index::class)->name('web-panel.potention');
     Route::get('/visi-dan misi', App\Livewire\Pages\WebPanel\Profile\VissionMission\Index::class)->name('web-panel.vission-mission');
+
+    Route::group(['prefix' => 'aduan-masyarakat'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\Complaint\Index::class)->name('web-panel.complaint');
+        Route::get('/{id}', App\Livewire\Pages\WebPanel\Complaint\Detail::class)->name('web-panel.complaint.detail');
+    });
 
     Route::group(['prefix' => 'perangkat-desa'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Profile\Staff\Index::class)->name('web-panel.staff');
