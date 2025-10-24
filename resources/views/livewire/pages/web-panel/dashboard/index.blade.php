@@ -3,17 +3,18 @@
         <p class="text-lg text-neutral-700 font-bold">Dashboard</p>
     </div>
     <div class="w-full grid grid-cols-4 gap-5 mb-5">
-        <div class="w-full bg-white shadow-xl rounded-lg px-3 py-2.5 flex items-start gap-3 border-t-2 border-orange-500">
-            <div class="w-16 h-16 rounded-md bg-orange-500 flex items-center justify-center text-white">
-                <i data-lucide="mailbox" class="h-6 aspect-[1/1]"></i>
+        <div
+            class="w-full bg-white shadow-xl rounded-lg px-3 py-2.5 flex items-start gap-3 border-t-2 border-orange-500">
+            <div class="w-16 h-16 rounded-md bg-orange-500 flex items-center justify-center text-white shadow-sm shadow-orange-400">
+                <i data-lucide="mail" class="h-6 aspect-[1/1]"></i>
             </div>
             <div class="flex flex-col gap-1">
-                <span class="text-neutral-700 font-semibold text-sm">Surat Online</span>
-                <span class="text-brand-500 font-bold text-2xl">12</span>
+                <span class="text-neutral-700 font-semibold text-sm leading-[1.2]">Surat Online</span>
+                <span class="text-brand-500 font-bold text-2xl leading-[1]">12</span>
             </div>
         </div>
         <div class="w-full bg-white shadow-xl rounded-lg px-3 py-2.5 flex items-start gap-3 border-t-2 border-rose-500">
-            <div class="w-16 h-16 rounded-md bg-rose-500 flex items-center justify-center text-white">
+            <div class="w-16 h-16 rounded-md bg-rose-500 flex items-center justify-center text-white shadow-sm shadow-rose-400">
                 <i data-lucide="megaphone" class="h-6 aspect-[1/1]"></i>
             </div>
             <div class="flex flex-col gap-1">
@@ -22,7 +23,7 @@
             </div>
         </div>
         <div class="w-full bg-white shadow-xl rounded-lg px-3 py-2.5 flex items-start gap-3 border-t-2 border-teal-500">
-            <div class="w-16 h-16 rounded-md bg-teal-500 flex items-center justify-center text-white">
+            <div class="w-16 h-16 rounded-md bg-teal-500 flex items-center justify-center text-white shadow-sm shadow-teal-400">
                 <i data-lucide="shopping-bag" class="h-6 aspect-[1/1]"></i>
             </div>
             <div class="flex flex-col gap-1">
@@ -30,8 +31,9 @@
                 <span class="text-brand-500 font-bold text-2xl">200</span>
             </div>
         </div>
-        <div class="w-full bg-white shadow-xl rounded-lg px-3 py-2.5 flex items-start gap-3 border-t-2 border-purple-500">
-            <div class="w-16 h-16 rounded-md bg-purple-500 flex items-center justify-center text-white">
+        <div
+            class="w-full bg-white shadow-xl rounded-lg px-3 py-2.5 flex items-start gap-3 border-t-2 border-purple-500">
+            <div class="w-16 h-16 rounded-md bg-purple-500 flex items-center justify-center text-white shadow-sm shadow-purple-400">
                 <i data-lucide="newspaper" class="h-6 aspect-[1/1]"></i>
             </div>
             <div class="flex flex-col gap-1">
@@ -40,16 +42,42 @@
             </div>
         </div>
     </div>
-    <div class="w-full flex items-start">
+    <div class="w-full flex items-start gap-5">
         <div class="flex-1">
             <div class="w-full p-1 bg-white shadow-xl border-t-4 border-orange-500 rounded-lg">
-                <div class="pt-2.5 px-7">
+                <div class="pt-2.5 px-3">
                     <p class="text-neutral-700 font-semibold">Statistik Pengajuan Surat Online</p>
                 </div>
-                <div id="selling-chart-canvas" class="h-[25rem]" style="min-width: 150px;"></div>
+                <div id="selling-chart-canvas" class="h-[20rem]" style="min-width: 150px;"></div>
             </div>
         </div>
-        <div class="w-80">
+        <div class="w-96 flex flex-col gap-5">
+            <div class="w-full bg-white shadow-xl border-t-4 border-orange-500 rounded-lg px-3.5 py-2.5">
+                <div class="flex items-center justify-between gap-3 mb-3">
+                    <span class="text-sm text-neutral-700 font-semibold">Surat Online Terbaru</span>
+                    <a href="#"
+                        class="text-neutral-500 hover:text-neutral-700 transition-all duration-200 ease-in-out">
+                        <i data-lucide="ellipsis" class="w-4 aspect-[1/1]"></i>
+                    </a>
+                </div>
+                <div class="w-full flex flex-col py-3 gap-1 border-t border-neutral-300">
+                    <div
+                        class="h-16 w-full flex items-start justify-between bg-white cursor-pointer rounded-lg hover:bg-neutral-100 transition-all duration-300 ease-in-out">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <span class="text-xs font-semibold text-neutral-700 uppercase">surat keterangan domisili</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full bg-white shadow-xl border-t-4 border-rose-500 rounded-lg px-3 py-2.5">
+                <div class="flex items-center justify-between gap-3">
+                    <span class="text-sm text-neutral-700 font-semibold">Aduan Terbaru</span>
+                    <a href="#"
+                        class="text-neutral-500 hover:text-neutral-700 transition-all duration-200 ease-in-out">
+                        <i data-lucide="ellipsis" class="w-4 aspect-[1/1]"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -107,6 +135,12 @@
                     let chartEl = document.getElementById('selling-chart-canvas');
                     this.chartInstance = echarts.init(chartEl);
                     this.chartInstance.setOption({
+                        grid: {
+                            top: 35,
+                            right: 40,
+                            bottom: 50,
+                            left: 45,
+                        },
                         tooltip: {
                             trigger: "item",
                             formatter: function(params) {
