@@ -1,17 +1,20 @@
 <section id="micro-business" data-component-id="micro-business" class="w-full">
-    <div class="mb-7">
-        <p class="text-xl text-neutral-700 font-bold">Produk UMKM</p>
-        <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola produk UMKM desa beran.</p>
+    <div class="mb-5">
+        <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Produk UMKM</p>
+        <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola produk UMKM desa beran.</p>
     </div>
-    <div class="w-full p-6 bg-white border border-neutral-300 shadow-xl rounded-lg">
+    <div class="w-full bg-white shadow-2xl p-6 rounded-lg border-t-4 border-accent-500">
         <div class="flex items-center justify-between mb-3">
-            <x-table.search store="SERVICE_MICRO_BUSINESS_STORE" dispatcher="findAll" />
-            <a href="{{ route('web-panel.micro-business.new') }}"
-                class="px-3.5 py-2 gap-1 rounded-md flex items-center justify-center bg-accent-500 border border-accent-500 cursor-pointer"
-                wire:ignore>
-                <i data-lucide="circle-plus" class="text-white h-4 w-4"></i>
-                <span class="text-xs text-white">New</span>
-            </a>
+            <span class="text-sm font-bold text-neutral-700 uppercase">Data Produk UMKM</span>
+            <div class="flex items-center gap-1">
+                <x-table.search store="SERVICE_MICRO_BUSINESS_STORE" dispatcher="findAll" />
+                <a href="{{ route('web-panel.micro-business.new') }}"
+                    class="px-3.5 py-2 gap-1 rounded-md flex items-center justify-center bg-accent-500 border border-accent-500 cursor-pointer"
+                    wire:ignore>
+                    <i data-lucide="circle-plus" class="text-white h-4 w-4"></i>
+                    <span class="text-xs text-white">New</span>
+                </a>
+            </div>
         </div>
         <x-table.table store="SERVICE_MICRO_BUSINESS_STORE">
             <x-table.thead>
@@ -76,6 +79,7 @@
                 </template>
             </x-table.tbody>
         </x-table.table>
+        <x-table.pagination store="SERVICE_MICRO_BUSINESS_STORE" dispatcher="findAll" />
     </div>
     <x-alert.confirmation title="Konfirmasi Produk UMKM" onAccept="$store.SERVICE_MICRO_BUSINESS_STORE.onConfirm()"
         acceptText="Konfrimasi">
@@ -91,7 +95,6 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/table.js', 'resources/js/util/popper.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_MICRO_BUSINESS_STORE';

@@ -1,12 +1,12 @@
 <section id="complaint-detail" data-component-id="complaint-detail" class="w-full">
-    <div class="mb-5 flex items-start gap-3">
+    <div class="mb-5 flex items-start gap-2">
         <a href="{{ route('web-panel.complaint') }}"
-            class="w-10 h-10 flex items-center justify-center rounded-lg border border-neutral-300 cursor-pointer hover:bg-neutral-100 transition-all ease-in-out duration-200"
+            class="w-8 h-8 flex items-center justify-center rounded-lg border border-neutral-300 cursor-pointer shadow-md hover:bg-neutral-200 transition-all ease-in-out duration-200"
             wire:ignore>
-            <i data-lucide="arrow-left" class="text-neutral-700 h-4 w-4"></i>
+            <i data-lucide="arrow-left" class="text-neutral-700 h-3 w-3"></i>
         </a>
         <div>
-            <p class="text-lg text-neutral-700 font-semibold">Aduan Masyarakat</p>
+            <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Aduan Masyarakat</p>
             <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola aduan masyarakat.</p>
         </div>
     </div>
