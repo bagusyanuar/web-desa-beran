@@ -1,17 +1,20 @@
 <section id="staff" data-component-id="staff" class="w-full">
-    <div class="mb-7">
-        <p class="text-xl text-neutral-700 font-bold">Perangkat Desa</p>
-        <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola perangkat desa beran.</p>
+    <div class="mb-5">
+        <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Perangkat Desa</p>
+        <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola perangkat desa beran.</p>
     </div>
-    <div class="w-full p-6 bg-white border border-neutral-300 shadow-xl rounded-lg">
+    <div class="w-full bg-white shadow-2xl p-6 rounded-lg border-t-4 border-accent-500">
         <div class="flex items-center justify-between mb-3">
-            <x-table.search store="SERVICE_STAFF_STORE" dispatcher="findAll" />
-            <a href="{{ route('web-panel.staff.new') }}"
-                class="px-3.5 py-2 gap-1 rounded-md flex items-center justify-center bg-accent-500 border border-accent-500 cursor-pointer"
-                wire:ignore>
-                <i data-lucide="circle-plus" class="text-white h-4 w-4"></i>
-                <span class="text-xs text-white">New</span>
-            </a>
+            <span class="text-sm font-bold text-neutral-700 uppercase">Data Perangkat Desa</span>
+            <div class="flex items-center gap-1">
+                <x-table.search store="SERVICE_STAFF_STORE" dispatcher="findAll" />
+                <a href="{{ route('web-panel.staff.new') }}"
+                    class="px-3.5 py-2 gap-1 rounded-md flex items-center justify-center bg-accent-500 border border-accent-500 cursor-pointer"
+                    wire:ignore>
+                    <i data-lucide="circle-plus" class="text-white h-4 w-4"></i>
+                    <span class="text-xs text-white">New</span>
+                </a>
+            </div>
         </div>
         <x-table.table store="SERVICE_STAFF_STORE">
             <x-table.thead>
@@ -31,11 +34,11 @@
                 <template x-for="(v, index) in data" :key="index">
                     <x-table.row>
                         <x-table.td width="w-[200px]" align="center">
-                            <img alt="photo" class="h-16 w-16 rounded-md object-cover object-top" x-bind:src="v.image" />
+                            <img alt="photo" class="h-16 w-16 rounded-md object-cover object-top"
+                                x-bind:src="v.image" />
                         </x-table.td>
                         <x-table.td width="w-[200px]" align="center">
-                            <span class="text-sm text-neutral-700 text-center"
-                                x-text="v.position"></span>
+                            <span class="text-sm text-neutral-700 text-center" x-text="v.position"></span>
                         </x-table.td>
                         <x-table.td>
                             <span class="text-sm text-neutral-700" x-text="v.name"></span>
@@ -77,6 +80,7 @@
                 </template>
             </x-table.tbody>
         </x-table.table>
+        <x-table.pagination store="SERVICE_STAFF_STORE" dispatcher="findAll" />
     </div>
     <x-alert.confirmation title="Konfirmasi Hapus Berita" onAccept="$store.SERVICE_STAFF_STORE.onConfirm()"
         acceptText="Konfrimasi">

@@ -1,10 +1,9 @@
 <section id="regional" data-component-id="regional" class="w-full">
-    <div class="mb-7">
-        <p class="text-xl text-neutral-700 font-bold">Wilayah Desa</p>
-        <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola profil wilayah desa beran.
-        </p>
+    <div class="mb-5">
+        <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Wilayah Desa</p>
+        <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola profil wilayah desa beran.</p>
     </div>
-    <div class="w-full p-6 bg-white border border-neutral-300 shadow-xl rounded-lg mb-6">
+    <div class="w-full bg-white shadow-2xl p-6 rounded-lg border-t-4 border-accent-500">
         <div class="w-full mb-6" wire:ignore>
             <x-label.label for="about-description">
                 <span>Deskripsi Wilayah Desa Beran</span>
