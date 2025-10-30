@@ -90,7 +90,7 @@
             line-height: 1.2;
         }
 
-        .line-half  {
+        .line-half {
             line-height: 1.5;
         }
 
@@ -124,5 +124,28 @@
     <hr style="border: none; border-top: 1px solid black; margin: 3px 0 3px 0; padding: 0;" />
     <hr style="border: none; border-top: 2px solid black; margin: 0 0 3px 0; padding: 0;" />
     @yield('content')
+    @php
+        $host = request()->getSchemeAndHttpHost();
+    @endphp
+    <script type="text/php">
+        if (isset($pdf)) {
+            $font = $fontMetrics->getFont("Arial", "normal"); // Or any other desired font
+            $size = 8; // Font size
+            date_default_timezone_set('Asia/Jakarta');
+            setlocale(LC_TIME, 'id_ID.UTF-8', 'id_ID', 'Indonesian_indonesia');
+            $timestamp = date("H:i:s");
+            $date = strftime("%A, %d %B %Y");
+            {{-- $text = "Page {PAGE_NUM}/{PAGE_COUNT} | Desa Beran | $date | $timestamp | {{ $host }}"; // Placeholder for page number and total count --}}
+            $text = "Desa Beran . $date . $timestamp . {{ $host }}"; // Placeholder for page number and total count
+
+            // Calculate position (example: bottom center)
+            $width = $fontMetrics->get_text_width($text, $font, $size) / 2;
+            $x = 35; // Posisi dari kiri
+            $y = $pdf->get_height() - 35;
+
+            $pdf->page_text($x, $y, $text, $font, $size);
+        }
+    </script>
 </body>
+
 </html>

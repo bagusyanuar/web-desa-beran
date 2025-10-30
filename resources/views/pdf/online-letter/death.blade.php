@@ -353,7 +353,7 @@
                                 <br />
                                 <p class="text-md"
                                     style="line-height: 1; margin-bottom: 0; margin-top: 0; text-transform: uppercase; text-decoration: underline;">
-                                    AGUS PRIYADI S.SOS</p>
+                                    {{ App\Commons\Const\App::SIGNATURE_NAME }}</p>
                             </td>
                         </tr>
                     </table>
