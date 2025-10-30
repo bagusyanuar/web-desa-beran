@@ -13,12 +13,16 @@
             </x-container.landing-container>
         </div>
     </div>
-    <div class="w-full py-10">
-        <x-container.landing-container class="">
+    <div class="w-full py-10 relative">
+        <img src="{{ asset('static/images/bg-ornament.png') }}"
+            class="w-96 h-fit absolute top-0 right-0 scale-y-[-1]" />
+        <img src="{{ asset('static/images/bg-ornament.png') }}" class="w-96 h-fit absolute top-0 left-0 rotate-180" />
+        <div class="absolute bg-white/90 w-full h-full right-0 top-0"></div>
+        <x-container.landing-container class="relative">
             <p class="text-center text-accent-500 text-lg font-bold mb-10">
                 FORMULIR SURAT KETERANGAN KEMATIAN PENDUDUK DESA BERAN
             </p>
-            <div class="w-5/6 justify-self-center bg-white rounded-xl shadow-xl p-6 border border-neutral-300">
+            <div class="w-5/6 justify-self-center bg-white shadow-2xl p-6 rounded-lg border-t-4 border-accent-500">
                 <div class="w-full">
                     <div
                         class="w-full flex items-start gap-3 rounded-lg bg-blue-100 text-blue-500 border border-blue-500 p-3">

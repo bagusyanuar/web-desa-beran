@@ -1,5 +1,5 @@
 <textarea type="text"
-    {{ $attributes->merge(['class' => 'w-full text-neutral-700 border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500']) }}></textarea>
+    {{ $attributes->merge(['class' => 'w-full text-neutral-700 border border-neutral-300 text-md p-[0.5rem] rounded-lg focus:outline-none focus:ring-0 focus:border-neutral-500 placeholder:text-neutral-400 placeholder:font-normal placeholder:text-sm']) }}></textarea>
 
 
 {{-- @props([

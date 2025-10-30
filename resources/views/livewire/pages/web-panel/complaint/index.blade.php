@@ -1,6 +1,6 @@
 <section id="complaint" data-component-id="complaint" class="w-full">
     <div class="mb-5">
-        <p class="text-lg text-neutral-700 font-semibold">Aduan Masyarakat</p>
+        <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Aduan Masyarakat</p>
         <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola aduan masyarakat.</p>
     </div>
     <div class="w-full bg-white shadow-2xl p-6 rounded-lg border-t-4 border-accent-500">
@@ -86,7 +86,7 @@
                             <span class="text-sm text-neutral-700" x-text="v.reference_number"></span>
                         </x-table.td>
                         <x-table.td>
-                            <span class="text-sm text-neutral-700" x-text="v.applicant?.name || '-'"></span>
+                            <span class="text-sm text-neutral-700 uppercase" x-text="v.applicant?.name || '-'"></span>
                         </x-table.td>
                         <x-table.td width="w-[180px]" align="center">
                             <x-chip.chip-status-complaint x-data="{ status: v.status }" />
@@ -106,6 +106,7 @@
                 </template>
             </x-table.tbody>
         </x-table.table>
+        <x-table.pagination store="SERVICE_COMPLAINT_STORE" dispatcher="findAll" />
     </div>
 </section>
 

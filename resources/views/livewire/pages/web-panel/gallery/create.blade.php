@@ -11,7 +11,7 @@
             </p>
         </div>
     </div>
-    <div class="w-full bg-white shadow-2xl p-6 rounded-lg border-t-2 border-accent-500">
+    <div class="w-full p-6 bg-white shadow-2xl rounded-lg border-t-4 border-accent-500 mb-6">
         <p class="text-sm font-bold text-neutral-700 mb-0">Informasi Perpustakaan Online</p>
         <div class="w-full border-b border-neutral-300 my-3"></div>
         <div class="w-full grid grid-cols-2 gap-x-6 gap-y-6">
