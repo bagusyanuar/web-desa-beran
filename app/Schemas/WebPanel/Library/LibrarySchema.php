@@ -22,7 +22,7 @@ class LibrarySchema extends BaseSchema
             'title' => 'required|string',
             'authorName' => 'required|string',
             'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
-            'file' => 'nullable|file|mimes:pdf|max:6144'
+            'file' => 'nullable|file|mimes:pdf'
         ];
     }
 
