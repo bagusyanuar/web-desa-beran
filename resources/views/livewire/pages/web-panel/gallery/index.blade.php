@@ -1,10 +1,9 @@
 <section id="gallery" data-component-id="gallery" class="w-full">
-    <div class="mb-7">
-        <p class="text-xl text-neutral-700 font-bold">Galeri</p>
-        <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola galeri foto desa beran.
-        </p>
+    <div class="mb-5">
+        <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Galeri</p>
+        <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola galeri foto desa beran.</p>
     </div>
-    <div class="w-full bg-white shadow-2xl p-6 rounded-lg border-t-2 border-accent-500">
+    <div class="w-full bg-white shadow-2xl p-6 rounded-lg border-t-4 border-accent-500">
         <div class="flex items-center justify-between mb-6">
             <span class="text-sm font-bold text-neutral-700 uppercase">Data Gallery</span>
             <a href="{{ route('web-panel.gallery.new') }}"
