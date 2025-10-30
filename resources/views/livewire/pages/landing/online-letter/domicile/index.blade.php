@@ -12,12 +12,16 @@
             </x-container.landing-container>
         </div>
     </div>
-    <div class="w-full py-10">
-        <x-container.landing-container class="">
+    <div class="w-full py-10 relative">
+        <img src="{{ asset('static/images/bg-ornament.png') }}"
+            class="w-96 h-fit absolute top-0 right-0 scale-y-[-1]" />
+        <img src="{{ asset('static/images/bg-ornament.png') }}" class="w-96 h-fit absolute top-0 left-0 rotate-180" />
+        <div class="absolute bg-white/90 w-full h-full right-0 top-0"></div>
+        <x-container.landing-container class="relative">
             <p class="text-center text-accent-500 text-lg font-bold mb-10">
                 FORMULIR SURAT KETERANGAN DOMISILI PENDUDUK DESA BERAN
             </p>
-            <div class="w-5/6 justify-self-center bg-white rounded-xl shadow-xl p-6 border border-neutral-300">
+            <div class="w-5/6 justify-self-center bg-white shadow-2xl p-6 rounded-lg border-t-4 border-accent-500">
                 <div class="w-full">
                     <div
                         class="w-full flex items-start gap-3 rounded-lg bg-blue-100 text-blue-500 border border-blue-500 p-3">
@@ -44,7 +48,8 @@
                                 <span>Nama Lengkap</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="name" x-model="$store.SERVICE_DOMICILE_STORE.form.name" />
+                            <x-input.text.text id="name" x-model="$store.SERVICE_DOMICILE_STORE.form.name"
+                                placeholder="cth: Widhyan Rachmat" />
                             <template x-if="'name' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.name[0]"></span>
@@ -56,7 +61,8 @@
                                 <span>NIK (Nomor Induk Kependudukan)</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="nik" x-model="$store.SERVICE_DOMICILE_STORE.form.nik" />
+                            <x-input.text.text id="nik" x-model="$store.SERVICE_DOMICILE_STORE.form.nik"
+                                placeholder="cth: 1111222233334444" />
                             <template x-if="'nik' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.nik[0]"></span>
@@ -69,8 +75,8 @@
                                 <span class="text-red-500 text-sm italic">* <span class="text-xs">(Nama kota /
                                         kabupaten)</span></span>
                             </x-label.label>
-                            <x-input.text.text id="birth-place"
-                                x-model="$store.SERVICE_DOMICILE_STORE.form.birthPlace" />
+                            <x-input.text.text id="birth-place" x-model="$store.SERVICE_DOMICILE_STORE.form.birthPlace"
+                                placeholder="cth: Ngawi" />
                             <template x-if="'birthPlace' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.birthPlace[0]"></span>
@@ -83,7 +89,7 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.date.datepicker id="date-of-birth" store="SERVICE_DOMICILE_STORE"
-                                stateDate="form.dateOfBirth" format="long" />
+                                stateDate="form.dateOfBirth" format="long" placeholder="pilih tanggal lahir" />
                             <template x-if="'dateOfBirth' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.dateOfBirth[0]"></span>
@@ -167,7 +173,8 @@
                             <x-label.label for="job">
                                 <span>Pekerjaan</span>
                             </x-label.label>
-                            <x-input.text.text id="job" x-model="$store.SERVICE_DOMICILE_STORE.form.job" />
+                            <x-input.text.text id="job" x-model="$store.SERVICE_DOMICILE_STORE.form.job"
+                                placeholder="cth: Wiraswasta" />
                         </div>
                         <div class="w-full col-span-2">
                             <x-label.label for="address">
@@ -175,7 +182,8 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.textarea id="address" rows="3"
-                                x-model="$store.SERVICE_DOMICILE_STORE.form.address" />
+                                x-model="$store.SERVICE_DOMICILE_STORE.form.address"
+                                placeholder="cth: jl. abc no. 18" />
                             <template x-if="'address' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.address[0]"></span>
@@ -188,7 +196,8 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.textarea id="purpose" rows="3"
-                                x-model="$store.SERVICE_DOMICILE_STORE.form.purpose" />
+                                x-model="$store.SERVICE_DOMICILE_STORE.form.purpose"
+                                placeholder="cth: Mendapatkan Beasiswa" />
                             <template x-if="'purpose' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.purpose[0]"></span>
@@ -204,7 +213,8 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.text id="applicant_name"
-                                x-model="$store.SERVICE_DOMICILE_STORE.form.applicantName" />
+                                x-model="$store.SERVICE_DOMICILE_STORE.form.applicantName"
+                                placeholder="cth: Widhyan Rachmat" />
                             <template x-if="'applicantName' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_DOMICILE_STORE.formValidator.applicantName[0]"></span>
@@ -217,7 +227,8 @@
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
                             <x-input.text.text id="applicant_name"
-                                x-model="$store.SERVICE_DOMICILE_STORE.form.applicantPhone" />
+                                x-model="$store.SERVICE_DOMICILE_STORE.form.applicantPhone"
+                                placeholder="cth: 62897123456623" />
                             <template x-if="'applicantPhone' in $store.SERVICE_DOMICILE_STORE.formValidator">
                                 <x-label.validator>
                                     <span
