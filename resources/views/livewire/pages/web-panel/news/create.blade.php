@@ -53,6 +53,18 @@
                     </x-label.validator>
                 </template>
             </div>
+            <div class="w-full col-span-2">
+                <x-label.label for="non-thumbnail-image">
+                    <span>Foto Tambahan</span>
+                </x-label.label>
+                <x-input.file.dropzone-multi store="SERVICE_NEWS_CREATE_STORE" stateComponent="imageDropper"
+                    class="!h-12"></x-input.file.dropzone-multi>
+                <template x-if="'images' in $store.SERVICE_NEWS_CREATE_STORE.formValidator">
+                    <x-label.validator>
+                        <span x-text="$store.SERVICE_NEWS_CREATE_STORE.formValidator.images[0]"></span>
+                    </x-label.validator>
+                </template>
+            </div>
         </div>
         <div class="w-full border-b border-neutral-300 my-3"></div>
         <div class="flex items-center justify-end">
@@ -87,7 +99,7 @@
                     description: '',
                 },
                 thumbnailDropper: null,
-                pictureDropper: null,
+                imageDropper: null,
                 formValidator: {},
                 init: function() {
                     Livewire.hook('component.init', ({
@@ -117,13 +129,17 @@
                         });
                     })
                     await Promise.all(uploadThumbnailImage);
-                    // const uploadProductImage = this.productPictureDropper.files.map(file => {
-                    //     return new Promise((resolve, reject) => {
-                    //         this.component.$wire.upload('productImage', file, resolve,
-                    //             reject);
-                    //     });
-                    // })
-                    // await Promise.all(uploadProductImage);
+
+                    const uploadImage = this.imageDropper.files
+                        .filter(file => file instanceof File)
+                        .map((file, index) => {
+                            return new Promise((resolve, reject) => {
+                                this.component.$wire.upload(`images.${index}`, file, resolve,
+                                    reject);
+                            });
+                        })
+                    await Promise.all(uploadImage);
+
                     const response = await this.component.$wire.call('save', this.form);
 
                     const {

@@ -17,6 +17,9 @@ class Create extends Component
     /** @var UploadedFile | null $thumbnail */
     public $thumbnail;
 
+    /** @var UploadedFile[] | [] $images */
+    public $images = [];
+
     /** @var NewsService $service */
     private $service;
 
@@ -25,10 +28,16 @@ class Create extends Component
         $this->service = $service;
     }
 
+    public function mount()
+    {
+        $this->images = [];
+    }
+
     public function save($body)
     {
         $mergeBody = array_merge($body, [
             'thumbnail' => $this->thumbnail,
+            'images' => $this->images,
         ]);
         $schema = (new NewsSchema())->hydrateSchemaBody($mergeBody);
         $response = $this->service->create($schema);

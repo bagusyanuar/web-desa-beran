@@ -53,6 +53,18 @@
                     </x-label.validator>
                 </template>
             </div>
+            <div class="w-full col-span-2">
+                <x-label.label for="non-thumbnail-image">
+                    <span>Foto Tambahan</span>
+                </x-label.label>
+                <x-input.file.dropzone-multi store="SERVICE_NEWS_UPDATE_STORE" stateComponent="imageDropper"
+                    class="!h-12"></x-input.file.dropzone-multi>
+                <template x-if="'images' in $store.SERVICE_NEWS_UPDATE_STORE.formValidator">
+                    <x-label.validator>
+                        <span x-text="$store.SERVICE_NEWS_UPDATE_STORE.formValidator.images[0]"></span>
+                    </x-label.validator>
+                </template>
+            </div>
         </div>
         <div class="w-full border-b border-neutral-300 my-3"></div>
         <div class="flex items-center justify-end">
@@ -88,7 +100,7 @@
                     description: '',
                 },
                 thumbnailDropper: null,
-                pictureDropper: null,
+                imageDropper: null,
                 formValidator: {},
                 init: function() {
                     Livewire.hook('component.init', ({
@@ -121,6 +133,18 @@
                             });
                         })
                     await Promise.all(uploadThumbnailImage);
+
+                    const uploadImage = this.imageDropper.files
+                        .filter(file => file instanceof File)
+                        .map((file, index) => {
+
+                            return new Promise((resolve, reject) => {
+                                this.component.$wire.upload(`images.${index}`, file, resolve,
+                                    reject);
+                            });
+                        })
+                    await Promise.all(uploadImage);
+
                     const response = await this.component.$wire.call('save', this.form);
 
                     const {
@@ -147,9 +171,10 @@
                     }
                     this.pageLoaderStore.hide();
                 },
-                getDetail() {
-                    this.pageLoaderStore.show();
-                    this.component.$wire.call('getDetail').then(response => {
+                async getDetail() {
+                    try {
+                        this.pageLoaderStore.show();
+                        const response = await this.component.$wire.call('getDetail');
                         const {
                             status,
                             data,
@@ -170,17 +195,59 @@
                                     this.form.description = description;
 
                                     if (images.length > 0) {
-                                        let mockFileThumbnail = {
-                                            name: "gambar-lama.jpg",
-                                            size: 12345
-                                        };
-                                        const thumbnailImage = images[0]['image'];
+
+                                        const thumbnailImage = images.find(item => item
+                                            .is_thumbnail ===
+                                            true);
+                                        const nonThumbnailImages = images.filter(item => item
+                                            .is_thumbnail === false);
+
                                         if (thumbnailImage) {
-                                            this.thumbnailDropper.emit("addedfile", mockFileThumbnail);
-                                            this.thumbnailDropper.emit("thumbnail", mockFileThumbnail,
-                                                thumbnailImage);
-                                            this.thumbnailDropper.emit("complete", mockFileThumbnail);
-                                            this.thumbnailDropper.files.push(mockFileThumbnail);
+                                            let mockFileThumbnail = {
+                                                name: "gambar-lama.jpg",
+                                                size: 12345
+                                            };
+                                            const thumbnail = thumbnailImage['image'];
+                                            const responseThumbnail = await fetch(thumbnail);
+                                            const blobThumbnail = await responseThumbnail.blob();
+                                            const fileThumbnail = new File([blobThumbnail], "non-thumb-img.jpg", {
+                                                type: blobThumbnail.type
+                                            });
+
+                                            this.thumbnailDropper.emit("addedfile",
+                                                fileThumbnail);
+                                            this.thumbnailDropper.emit("thumbnail",
+                                                fileThumbnail,
+                                                thumbnail);
+                                            this.thumbnailDropper.emit("complete",
+                                                fileThumbnail);
+                                            this.thumbnailDropper.files.push(fileThumbnail);
+                                        }
+
+                                        if (nonThumbnailImages.length > 0) {
+                                            for (const item of nonThumbnailImages) {
+                                                let mockFileNonThumbnail = {
+                                                    name: "non-thumb-img.jpg",
+                                                    size: 12345
+                                                };
+
+                                                const nonThumbnail = item['image'];
+                                                const responseImage = await fetch(nonThumbnail);
+                                                const blob = await responseImage.blob();
+                                                const file = new File([blob], "non-thumb-img.jpg", {
+                                                    type: blob.type
+                                                });
+
+                                                this.imageDropper.emit("addedfile",
+                                                    file);
+                                                this.imageDropper.emit("thumbnail",
+                                                    file,
+                                                    nonThumbnail);
+                                                this.imageDropper.emit("complete",
+                                                    file);
+                                                this.imageDropper.files.push(
+                                                    file);
+                                            }
                                         }
 
                                     }
@@ -189,11 +256,12 @@
                             default:
                                 break;
                         }
-
-
-                    }).finally(() => {
+                    } catch (error) {
+                        console.log(error);
+                    } finally {
                         this.pageLoaderStore.hide();
-                    })
+                    }
+
                 }
             }
 

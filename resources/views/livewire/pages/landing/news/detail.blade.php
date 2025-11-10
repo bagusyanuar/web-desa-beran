@@ -209,6 +209,21 @@
                         <div class="w-full text-neutral-700 text-sm">
                             {!! $data->description !!}
                         </div>
+
+                        @if (!empty($data->images->where('is_thumbnail', '=', false)))
+                            <p class="text-md text-accent-500 font-bold mt-7 mb-3">
+                                Gambar Lain Pada Artikel Ini
+                            </p>
+                            <div class="w-full grid grid-cols-3 gap-3">
+                                @foreach ($data->images->where('is_thumbnail', '=', false) as $image)
+                                    <div class="w-full aspect-square rounded-lg shadow-2xl">
+                                        <img src="{{ $image->image }}" alt="news-images"
+                                            class="w-full aspect-square rounded-lg object-cover" />
+                                    </div>
+                                @endforeach
+                            </div>
+
+                        @endif
                     @else
                     @endif
                 </div>

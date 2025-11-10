@@ -3,6 +3,7 @@
 namespace App\Services\WebPanel;
 
 use App\Commons\FileUpload\FileUpload;
+use App\Commons\FileUpload\MultipleFileUpload;
 use App\Commons\Libs\Http\MetaPagination;
 use App\Commons\Libs\Http\ServiceResponse;
 use App\Interface\WebPanel\NewsServiceInterface;
@@ -73,7 +74,32 @@ class NewsService implements NewsServiceInterface
                 'is_thumbnail' => true,
             ];
 
-            NewsImage::create($dataThumbnail);
+            # create images non thumbnail
+
+            $newsImages = [];
+            if (!empty($schema->getImages())) {
+                $multipleFileUploadService = new MultipleFileUpload($schema->getImages(), "assets/images/news");
+                $multipleFileUploadResponse = $multipleFileUploadService->upload();
+                if (!$multipleFileUploadResponse->isSuccess()) {
+                    DB::rollBack();
+                    return ServiceResponse::internalServerError($multipleFileUploadResponse->getMessage());
+                }
+
+                foreach ($multipleFileUploadResponse->getData() as $image) {
+                    $dataNonThumbnails = [
+                        'news_id' => $news->id,
+                        'image' => $image,
+                        'is_thumbnail' => false,
+                    ];
+                    array_push($newsImages, $dataNonThumbnails);
+                }
+            }
+
+            array_push($newsImages, $dataThumbnail);
+
+            foreach ($newsImages as $newsImage) {
+                NewsImage::create($newsImage);
+            }
 
             DB::commit();
             return ServiceResponse::statusCreated("successfully create news");
@@ -125,7 +151,7 @@ class NewsService implements NewsServiceInterface
 
             $data->update($dataNews);
 
-            $thumbnailImage = $data->images->where('is_thumbnail', '=', true)->first();
+            // $thumbnailImage = $data->images->where('is_thumbnail', '=', true)->first();
 
             $thumbnailImageName = null;
             if ($schema->getThumbnail()) {
@@ -137,17 +163,39 @@ class NewsService implements NewsServiceInterface
                 }
                 $thumbnailImageName = $fileUploadResponse->getFileName();
             }
+
+            $newsImages = [];
+
             $dataThumbnail = [
                 'news_id' => $data->id,
                 'image' => $thumbnailImageName,
                 'is_thumbnail' => true,
             ];
 
-            if ($thumbnailImage) {
-                $thumbnailImage->update($dataThumbnail);
-            } else {
-                NewsImage::create($dataThumbnail);
+            # create images non thumbnail
+
+            if (!empty($schema->getImages())) {
+                $multipleFileUploadService = new MultipleFileUpload($schema->getImages(), "assets/images/news");
+                $multipleFileUploadResponse = $multipleFileUploadService->upload();
+                if (!$multipleFileUploadResponse->isSuccess()) {
+                    DB::rollBack();
+                    return ServiceResponse::internalServerError($multipleFileUploadResponse->getMessage());
+                }
+
+                foreach ($multipleFileUploadResponse->getData() as $image) {
+                    $dataNonThumbnails = [
+                        'news_id' => $data->id,
+                        'image' => $image,
+                        'is_thumbnail' => false,
+                    ];
+                    array_push($newsImages, $dataNonThumbnails);
+                }
             }
+
+            array_push($newsImages, $dataThumbnail);
+
+            $data->images()->delete();
+            $data->images()->createMany($newsImages);
             DB::commit();
             return ServiceResponse::statusOK("successfully update news");
         } catch (\Throwable $e) {
