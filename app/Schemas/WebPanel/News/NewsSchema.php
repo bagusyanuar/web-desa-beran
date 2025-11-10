@@ -13,12 +13,17 @@ class NewsSchema extends BaseSchema
     /** @var UploadedFile|null $thumbnail */
     private $thumbnail;
 
+    /** @var UploadedFile[]|[] $images */
+    private $images;
+
     protected function rules()
     {
         return [
             'title' => 'required|string',
             'description' => 'required|string',
-            'thumbnail' => 'required|file|mimes:jpg,jpeg,png|max:2048'
+            'thumbnail' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'images' => 'array',
+            'images.*' => 'file|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 
@@ -36,9 +41,11 @@ class NewsSchema extends BaseSchema
         $title = $this->body['title'];
         $description = $this->body['description'];
         $thumbnail = $this->body['thumbnail'];
+        $images = $this->body['images'] ?? [];
         $this->setTitle($title)
             ->setDescription($description)
-            ->setThumbnail($thumbnail);
+            ->setThumbnail($thumbnail)
+            ->setImages($images);
     }
 
 
@@ -98,6 +105,26 @@ class NewsSchema extends BaseSchema
     public function setThumbnail($thumbnail)
     {
         $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of images
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Set the value of images
+     *
+     * @return  self
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
 
         return $this;
     }

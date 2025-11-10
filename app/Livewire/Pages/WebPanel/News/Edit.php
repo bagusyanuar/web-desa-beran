@@ -18,6 +18,9 @@ class Edit extends Component
     /** @var UploadedFile | null $thumbnail */
     public $thumbnail;
 
+    /** @var UploadedFile[] | [] $images */
+    public $images = [];
+
     /** @var NewsService $service */
     private $service;
 
@@ -37,6 +40,7 @@ class Edit extends Component
     {
         $mergeBody = array_merge($body, [
             'thumbnail' => $this->thumbnail,
+            'images' => $this->images,
         ]);
         $schema = (new NewsSchema())->hydrateSchemaBody($mergeBody);
         $response = $this->service->update($this->id, $schema);
