@@ -97,11 +97,24 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::get('/produk-umkm/tambah', App\Livewire\Pages\WebPanel\MicroBusiness\Create::class)->name('web-panel.micro-business.new');
     Route::get('/produk-umkm/{id}/detail', App\Livewire\Pages\WebPanel\MicroBusiness\Detail::class)->name('web-panel.micro-business.detail');
 
+    # profile routes
     Route::get('/sejarah-desa', App\Livewire\Pages\WebPanel\Profile\About\Index::class)->name('web-panel.history');
     Route::get('/wilayah-desa', App\Livewire\Pages\WebPanel\Profile\Regional\Index::class)->name('web-panel.regional');
     Route::get('/masyarakat-desa', App\Livewire\Pages\WebPanel\Profile\Community\Index::class)->name('web-panel.community');
     Route::get('/potensi-desa', App\Livewire\Pages\WebPanel\Profile\Potention\Index::class)->name('web-panel.potention');
     Route::get('/visi-dan-misi', App\Livewire\Pages\WebPanel\Profile\VissionMission\Index::class)->name('web-panel.vission-mission');
+
+    Route::group(['prefix' => 'dusun'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\Village\Index::class)->name('web-panel.village');
+        Route::get('/tambah', App\Livewire\Pages\WebPanel\Village\Create::class)->name('web-panel.village.new');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\Village\Edit::class)->name('web-panel.village.update');
+    });
+
+    Route::group(['prefix' => 'rw'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\CommunityUnit\Index::class)->name('web-panel.rw');
+        Route::get('/tambah', App\Livewire\Pages\WebPanel\CommunityUnit\Create::class)->name('web-panel.rw.new');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\CommunityUnit\Edit::class)->name('web-panel.rw.update');
+    });
 
     Route::group(['prefix' => 'aduan-masyarakat'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Complaint\Index::class)->name('web-panel.complaint');
