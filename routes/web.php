@@ -116,6 +116,12 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
         Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\CommunityUnit\Edit::class)->name('web-panel.rw.update');
     });
 
+    Route::group(['prefix' => 'rt'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\NeighborhoodUnit\Index::class)->name('web-panel.rt');
+        Route::get('/tambah', App\Livewire\Pages\WebPanel\NeighborhoodUnit\Create::class)->name('web-panel.rt.new');
+        Route::get('/{id}/edit', App\Livewire\Pages\WebPanel\NeighborhoodUnit\Edit::class)->name('web-panel.rt.update');
+    });
+
     Route::group(['prefix' => 'aduan-masyarakat'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Complaint\Index::class)->name('web-panel.complaint');
         Route::get('/{id}', App\Livewire\Pages\WebPanel\Complaint\Detail::class)->name('web-panel.complaint.detail');

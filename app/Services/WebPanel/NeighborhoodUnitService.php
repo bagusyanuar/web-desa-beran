@@ -4,30 +4,18 @@ namespace App\Services\WebPanel;
 
 use App\Commons\Libs\Http\MetaPagination;
 use App\Commons\Libs\Http\ServiceResponse;
-use App\Interface\WebPanel\CommunityUnitServiceInterface;
-use App\Models\CommunityUnit;
-use App\Schemas\WebPanel\CommunityUnit\CommunityUnitQuery;
-use App\Schemas\WebPanel\CommunityUnit\CommunityUnitSchema;
+use App\Interface\WebPanel\NeighborhoodUnitServiceInterface;
+use App\Models\NeighborhoodUnit;
+use App\Schemas\WebPanel\NeighborhoodUnit\NeighborhoodUnitQuery;
+use App\Schemas\WebPanel\NeighborhoodUnit\NeighborhoodUnitSchema;
 
-class CommunityUnitService implements CommunityUnitServiceInterface
+class NeighborhoodUnitService implements NeighborhoodUnitServiceInterface
 {
-    public function findAllNoPaging(): ServiceResponse
-    {
-        try {
-            $data = CommunityUnit::with(['village'])
-                ->orderBy('code', 'ASC')
-                ->get();
-            return ServiceResponse::statusOK("successfully get villages", $data);
-        } catch (\Throwable $e) {
-            return ServiceResponse::internalServerError($e->getMessage());
-        }
-    }
-
-    public function findAll(CommunityUnitQuery $queryParams): ServiceResponse
+    public function findAll(NeighborhoodUnitQuery $queryParams): ServiceResponse
     {
         try {
             $queryParams->hydrateQuery();
-            $query = CommunityUnit::with(['village'])
+            $query = NeighborhoodUnit::with(['community_unit.village'])
                 ->when($queryParams->getParam(), function ($q) use ($queryParams) {
                     /** @var Builder $q */
                     return $q->where('code', 'LIKE', "%{$queryParams->getParam()}%")
@@ -37,7 +25,7 @@ class CommunityUnitService implements CommunityUnitServiceInterface
             $pagination = $query->paginate($queryParams->getPageSize(), '*', 'page', $queryParams->getPage());
             $data = $pagination->items();
             $meta = MetaPagination::generate($pagination);
-            return ServiceResponse::statusOK("successfully get community units", $data, $meta);
+            return ServiceResponse::statusOK("successfully get neighborhood units", $data, $meta);
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }
@@ -46,19 +34,19 @@ class CommunityUnitService implements CommunityUnitServiceInterface
     public function findByID($id): ServiceResponse
     {
         try {
-            $data = CommunityUnit::with(['village'])
+            $data = NeighborhoodUnit::with(['community_unit'])
                 ->where('id', '=', $id)
                 ->first();
             if (!$data) {
                 return ServiceResponse::notFound("data not found");
             }
-            return ServiceResponse::statusOK("successfully get community unit", $data);
+            return ServiceResponse::statusOK("successfully get neighborhood unit", $data);
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }
 
-    public function create(CommunityUnitSchema $schema): ServiceResponse
+    public function create(NeighborhoodUnitSchema $schema): ServiceResponse
     {
         try {
             $validator = $schema->validate();
@@ -68,20 +56,20 @@ class CommunityUnitService implements CommunityUnitServiceInterface
             $schema->hydrateBody();
 
             $data = [
-                'village_id' => $schema->getVillageId(),
+                'community_unit_id' => $schema->getCommunityUnitId(),
                 'code' => $schema->getCode(),
                 'leader_name' => $schema->getLeaderName(),
                 'leader_contact' => $schema->getLeaderContact(),
             ];
 
-            CommunityUnit::create($data);
-            return ServiceResponse::statusCreated("successfully create community unit");
+            NeighborhoodUnit::create($data);
+            return ServiceResponse::statusCreated("successfully create neighborhood unit");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }
     }
 
-    public function update($id, CommunityUnitSchema $schema): ServiceResponse
+    public function update($id, NeighborhoodUnitSchema $schema): ServiceResponse
     {
         try {
             $validator = $schema->validate();
@@ -90,22 +78,22 @@ class CommunityUnitService implements CommunityUnitServiceInterface
             }
             $schema->hydrateBody();
 
-            $communityUnit = CommunityUnit::with([])
+            $neighborhoodUnit = NeighborhoodUnit::with(['community_unit'])
                 ->where('id', '=', $id)
                 ->first();
-            if (!$communityUnit) {
+            if (!$neighborhoodUnit) {
                 return ServiceResponse::notFound("data not found");
             }
 
             $data = [
-                'village_id' => $schema->getVillageId(),
+                'community_unit_id' => $schema->getCommunityUnitId(),
                 'code' => $schema->getCode(),
                 'leader_name' => $schema->getLeaderName(),
                 'leader_contact' => $schema->getLeaderContact(),
             ];
 
-            $communityUnit->update($data);
-            return ServiceResponse::statusOK("successfully update community unit");
+            $neighborhoodUnit->update($data);
+            return ServiceResponse::statusOK("successfully update neighborhood unit");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }
@@ -114,15 +102,15 @@ class CommunityUnitService implements CommunityUnitServiceInterface
     public function delete($id): ServiceResponse
     {
         try {
-            $communityUnit = CommunityUnit::with([])
+            $neighborhoodUnit = NeighborhoodUnit::with(['community_unit'])
                 ->where('id', '=', $id)
                 ->first();
-            if (!$communityUnit) {
+            if (!$neighborhoodUnit) {
                 return ServiceResponse::notFound("data not found");
             }
 
-            $communityUnit->delete();
-            return ServiceResponse::statusOK("successfully delete community unit");
+            $neighborhoodUnit->delete();
+            return ServiceResponse::statusOK("successfully delete neighborhood unit");
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());
         }

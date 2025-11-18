@@ -8,6 +8,7 @@ use App\Schemas\WebPanel\CommunityUnit\CommunityUnitSchema;
 
 interface CommunityUnitServiceInterface
 {
+    public function findAllNoPaging(): ServiceResponse;
     public function findAll(CommunityUnitQuery $queryParams): ServiceResponse;
     public function create(CommunityUnitSchema $schema): ServiceResponse;
     public function findByID($id): ServiceResponse;

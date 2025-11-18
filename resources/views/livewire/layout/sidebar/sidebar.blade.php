@@ -53,6 +53,7 @@
                 'web-panel.vission-mission',
                 'web-panel.village',
                 'web-panel.rw',
+                'web-panel.rt',
             ]">
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.history') }}" text="Sejarah Desa" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.regional') }}" text="Wilayah Desa" />
@@ -63,6 +64,7 @@
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.staff') }}" text="Perangkat Desa" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.village') }}" text="Dusun" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.rw') }}" text="RW" />
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.rt') }}" text="RT" />
             </x-sidebar.sidebar-item-tree>
             <x-sidebar.sidebar-item-tree text="Publikasi" icon="rss" :routes="[
                 'web-panel.news',
