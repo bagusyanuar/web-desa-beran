@@ -21,6 +21,7 @@ Route::get('/masyarakat-desa-beran', App\Livewire\Pages\Landing\Profile\Communit
 Route::get('/potensi-desa-beran', App\Livewire\Pages\Landing\Profile\Potention\Index::class)->name('potention');
 Route::get('/visi-dan-misi-desa-beran', App\Livewire\Pages\Landing\Profile\VissionMission\Index::class)->name('vission-mission');
 Route::get('/perangkat-desa-beran', App\Livewire\Pages\Landing\Profile\Staff\Index::class)->name('staff');
+Route::get('/rt-dan-rw', App\Livewire\Pages\Landing\Profile\Village\Index::class)->name('village');
 Route::get('/galeri-desa-beran', App\Livewire\Pages\Landing\Gallery\Index::class)->name('gallery');
 
 Route::group(['prefix' => 'produk-umkm-desa-beran'], function () {

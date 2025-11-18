@@ -28,6 +28,7 @@
                             <x-navbar.navbar-tree-list to="{{ route('potention') }}" text="Potensi Desa" />
                             <x-navbar.navbar-tree-list to="{{ route('vission-mission') }}" text="Visi Misi Desa" />
                             <x-navbar.navbar-tree-list to="{{ route('staff') }}" text="Perangkat Desa" />
+                            <x-navbar.navbar-tree-list to="{{ route('village') }}" text="RT/RW" />
                         </div>
                     </x-navbar.navbar-item-tree>
                     <x-navbar.navbar-item-tree text="Layanan">
