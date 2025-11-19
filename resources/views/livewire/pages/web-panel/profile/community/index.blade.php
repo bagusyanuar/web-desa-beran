@@ -38,7 +38,7 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/summernote.js', 'resources/js/util/dropzone.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
+    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_COMMUNITY_STORE';
