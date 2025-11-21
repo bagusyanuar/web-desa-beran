@@ -75,6 +75,11 @@
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.library') }}" text="Perpustakaan Online" />
                 <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.gallery') }}" text="Galeri" />
             </x-sidebar.sidebar-item-tree>
+            <x-sidebar.sidebar-item-tree text="Pengaturan" icon="settings" :routes="[
+                'web-panel.setting.hero',
+            ]">
+                <x-sidebar.sidebar-item-tree-child to="{{ route('web-panel.setting.hero') }}" text="Gambar Latar" />
+            </x-sidebar.sidebar-item-tree>
         </div>
     </div>
 </aside>

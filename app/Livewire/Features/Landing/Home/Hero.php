@@ -8,6 +8,8 @@ class Hero extends Component
 {
     public $heroes = [];
 
+    public $imageHero = null;
+
     public function mount()
     {
         $this->heroes = [
