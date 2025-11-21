@@ -7,7 +7,8 @@
             <i data-lucide="arrow-left" class="text-neutral-700 h-3 w-3"></i>
         </a>
         <div>
-            <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Surat Keterangan Pengantar Catatan Kepolisian</p>
+            <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Surat Keterangan Pengantar Catatan Kepolisian
+            </p>
             <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan pengantar catatan
                 kepolisian.</p>
         </div>
@@ -255,7 +256,6 @@
     <x-alert.toast />
 </section>
 @push('scripts')
-    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_POLICE_CLEARANCE_DETAIL_STORE';

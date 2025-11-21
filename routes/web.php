@@ -151,4 +151,8 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Gallery\Index::class)->name('web-panel.gallery');
         Route::get('/tambah', App\Livewire\Pages\WebPanel\Gallery\Create::class)->name('web-panel.gallery.new');
     });
+
+    Route::group(['prefix' => 'gambar-latar'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\Setting\Hero\Index::class)->name('web-panel.setting.hero');
+    });
 });

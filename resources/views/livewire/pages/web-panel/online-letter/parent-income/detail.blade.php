@@ -7,7 +7,8 @@
         </a>
         <div>
             <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Surat Keterangan Penghasilan Orang Tua</p>
-            <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan penghasilan orang tua.</p>
+            <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan penghasilan orang
+                tua.</p>
         </div>
     </div>
     <div class="w-full flex items-start gap-4">
@@ -357,7 +358,6 @@
     <x-alert.toast />
 </section>
 @push('scripts')
-    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_PARENT_INCOME_DETAIL_STORE';

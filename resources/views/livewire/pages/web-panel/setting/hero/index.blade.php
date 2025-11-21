@@ -1,33 +1,28 @@
-<section id="community" data-component-id="community" class="w-full">
+<section id="setting-hero" data-component-id="setting-hero" class="w-full">
     <div class="mb-5">
-        <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Masyarakat Desa</p>
-        <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola profil masyarakat desa beran.</p>
+        <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Gambar Latar</p>
+        <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola gambar latar belakang pada website desa beran.</p>
     </div>
     <div class="w-full bg-white shadow-2xl p-6 rounded-lg border-t-4 border-accent-500">
-        <div class="w-full mb-6" wire:ignore>
-            <x-label.label for="about-description">
-                <span>Deskripsi Masyarakat Desa Beran</span>
+        <div class="w-full">
+            <x-label.label for="image">
+                <span>Gambar Latar</span>
             </x-label.label>
-            <x-input.text.summernote id="about-description" height="350"
-                x-model="$store.SERVICE_COMMUNITY_STORE.form.description" />
-            <template x-if="'description' in $store.SERVICE_COMMUNITY_STORE.formValidator">
-                <x-label.validator>
-                    <span x-text="$store.SERVICE_COMMUNITY_STORE.formValidator.description[0]"></span>
-                </x-label.validator>
-            </template>
+            <x-input.file.dropzone store="SERVICE_SETTING_HERO_STORE" stateComponent="imageDropper"
+                class="!h-12"></x-input.file.dropzone>
         </div>
         <div class="w-full border-b border-neutral-300 my-3"></div>
         <div class="flex items-center justify-end">
-            <button x-on:click="$store.SERVICE_COMMUNITY_STORE.confirm()"
+            <button x-on:click="$store.SERVICE_SETTING_HERO_STORE.confirm()"
                 class="px-3.5 py-2 gap-1 rounded-md flex items-center justify-center bg-accent-500 border border-accent-500 cursor-pointer">
                 <span class="text-sm text-white">Simpan</span>
             </button>
         </div>
     </div>
-    <x-alert.confirmation title="Konfirmasi Perubahan Profil" onAccept="$store.SERVICE_COMMUNITY_STORE.onConfirm()"
+    <x-alert.confirmation title="Konfirmasi Perubahan Profil" onAccept="$store.SERVICE_SETTING_HERO_STORE.onConfirm()"
         acceptText="Konfrimasi">
         <p class="text-sm text-neutral-700 text-justify">Anda akan mengkonfirmasi <span class="font-semibold">Perubahan
-                Profil Masyarakat DESA BERAN</span>. Pastikan data yang anda isi sudah
+                Gambar Latar Website DESA BERAN</span>. Pastikan data yang anda isi sudah
             lengkap dan
             benar, jika sudah klik <span class="font-semibold">"Konfirmasi"</span> jika belum silahkan klik
             <span class="font-semibold">"Batal"</span> dan perbaiki data anda.
@@ -40,29 +35,28 @@
 @push('scripts')
     <script>
         document.addEventListener('alpine:init', () => {
-            const STORE_NAME = 'SERVICE_COMMUNITY_STORE';
+            const STORE_NAME = 'SERVICE_SETTING_HERO_STORE';
             const STORE_PROPS = {
                 component: null,
                 alertStore: null,
                 pageLoaderStore: null,
                 toastStore: null,
-                form: {
-                    description: ''
-                },
+                imageDropper: null,
+                imageDropperUrl: null,
                 formValidator: {},
                 init: function() {
                     Livewire.hook('component.init', ({
                         component
                     }) => {
                         const componentID = document.querySelector(
-                            '[data-component-id="community"]')?.getAttribute(
+                            '[data-component-id="setting-hero"]')?.getAttribute(
                             'wire:id');
                         if (component.id === componentID) {
                             this.component = component;
                             this.alertStore = Alpine.store('alertStore');
                             this.pageLoaderStore = Alpine.store('pageLoaderStore');
                             this.toastStore = Alpine.store('toastStore');
-                            this.getCurrentProfile();
+                            this.getSetting();
                         }
                     });
                 },
@@ -72,7 +66,16 @@
                 async onConfirm() {
                     this.alertStore.hide();
                     this.pageLoaderStore.show();
-                    const response = await this.component.$wire.call('save', this.form);
+                    const uploadImage = this.imageDropper.files
+                    .filter(file => file instanceof File)
+                    .map(file => {
+                        return new Promise((resolve, reject) => {
+                            this.component.$wire.upload('imageHero', file, resolve,
+                                reject);
+                        });
+                    })
+                    await Promise.all(uploadImage);
+                    const response = await this.component.$wire.call('save');
                     const {
                         status,
                         data,
@@ -80,7 +83,7 @@
                     } = response;
                     switch (status) {
                         case 200:
-                            this.toastStore.success("Berhasil merubah profil masyarakat des", 2000,
+                            this.toastStore.success("Berhasil mengganti foto latar", 2000,
                                 function() {
                                     window.location.reload();
                                 });
@@ -97,9 +100,9 @@
                     }
                     this.pageLoaderStore.hide();
                 },
-                getCurrentProfile() {
+                getSetting() {
                     this.pageLoaderStore.show();
-                    this.component.$wire.call('getAbout').then(response => {
+                    this.component.$wire.call('getSetting').then(response => {
                         const {
                             status,
                             data,
@@ -107,12 +110,18 @@
                         } = response;
                         if (data) {
                             const {
-                                description,
-                                image,
+                                image_hero,
                             } = data;
-                            this.form.description = description;
-                        } else {
-                            this.form.description = '';
+                            this.imageDropperUrl = image_hero;
+                            let mockFile = {
+                                name: "gambar-lama.jpg",
+                                size: 12345
+                            };
+                            this.imageDropper.emit("addedfile", mockFile);
+                            this.imageDropper.emit("thumbnail", mockFile, this.imageDropperUrl);
+                            this.imageDropper.emit("complete", mockFile);
+                            this.imageDropper.files.push(mockFile);
+
                         }
 
                     }).finally(() => {

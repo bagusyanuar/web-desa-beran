@@ -1,8 +1,14 @@
 <section id="landing-hero" data-component-id="landing-hero">
     <div class="w-full h-dvh">
         <div class="w-full h-dvh">
-            <img src="{{ asset('static/images/hero/main-hero.png') }}" class="h-dvh w-full object-cover object-center"
-                alt="main-hero" />
+            @if (!empty($imageHero))
+                <img src="{{ asset($imageHero) }}" class="h-dvh w-full object-cover object-center"
+                    alt="main-hero" />
+            @else
+                <img src="{{ asset('static/images/hero/main-hero.png') }}" class="h-dvh w-full object-cover object-center"
+                    alt="main-hero" />
+            @endif
+
         </div>
         <div class="w-full h-dvh absolute top-0 left-0 bg-black/50">
             <x-container.landing-container class="absolute top-1/2 -translate-y-1/2 text-center">

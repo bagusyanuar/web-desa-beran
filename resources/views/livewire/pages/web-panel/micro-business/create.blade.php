@@ -32,7 +32,8 @@
                     <span>Hara Produk(Rp)</span>
                     <span class="text-red-500 text-sm italic">*</span>
                 </x-label.label>
-                <x-input.text.text type="number" placeholder="harga produk umkm" id="name" x-model="$store.SERVICE_MICRO_BUSINESS_CREATE_STORE.form.price" />
+                <x-input.text.text type="number" placeholder="harga produk umkm" id="name"
+                    x-model="$store.SERVICE_MICRO_BUSINESS_CREATE_STORE.form.price" />
                 <template x-if="'price' in $store.SERVICE_MICRO_BUSINESS_CREATE_STORE.formValidator">
                     <x-label.validator>
                         <span x-text="$store.SERVICE_MICRO_BUSINESS_CREATE_STORE.formValidator.price[0]"></span>
@@ -125,7 +126,6 @@
 </section>
 
 @push('scripts')
-    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_MICRO_BUSINESS_CREATE_STORE';

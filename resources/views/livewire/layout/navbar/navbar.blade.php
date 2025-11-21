@@ -2,16 +2,19 @@
     class="w-full bg-neutral-100 h-16 ps-72 top-0 z-[30] fixed right-0 transition-all ease-in-out duration-300">
     <div class="w-full h-full flex items-center justify-between px-6">
         <div class="">
-            <span class="text-neutral-700">Selamat Datang, <span class="font-semibold me-2">{{ auth()->user()->username }}</span><span class="text-xl">🖐</span></span>
+            <span class="text-neutral-700">Selamat Datang, <span
+                    class="font-semibold me-2">{{ auth()->user()->username }}</span><span class="text-xl">🖐</span></span>
         </div>
         <div class="relative" x-data="{ open: false }">
             <div class="flex items-center gap-2 cursor-pointer" x-on:click="open = !open">
-                <div class="h-10 w-10 rounded-full bg-accent-500 flex items-center justify-center border-2 border-white shadow-xl">
+                <div
+                    class="h-10 w-10 rounded-full bg-accent-500 flex items-center justify-center border-2 border-white shadow-xl">
                     <span class="text-white text-sm">BD</span>
                 </div>
 
                 <div class="flex flex-col justify-center gap-0.5">
-                    <span class="text-neutral-700 text-xs font-semibold leading-none inline-block">{{ auth()->user()->username }}</span>
+                    <span
+                        class="text-neutral-700 text-xs font-semibold leading-none inline-block">{{ auth()->user()->username }}</span>
                     <span class="text-neutral-700 text-xs block leading-none">Administrator</span>
                 </div>
             </div>
@@ -37,7 +40,6 @@
 </nav>
 
 @push('scripts')
-    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'WEB_PANEL_NAVBAR_STORE';

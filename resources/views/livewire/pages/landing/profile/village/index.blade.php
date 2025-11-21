@@ -26,7 +26,8 @@
                                 <div class="w-full rounded-t-lg bg-accent-500 text-white px-3 py-1.5 text-sm">
                                     <div class="flex items-center justify-between">
                                         <span>{{ $datum->name }}</span>
-                                        <span>Ketua : {{ $datum->leader_name }}</span>
+                                        <span>Kepala Dusun : {{ $datum->leader_name }}
+                                            {{ $datum->leader_contact ? '(' . $datum->leader_contact . ')' : '' }}</span>
                                     </div>
                                 </div>
                                 <div class="w-full border border-neutral-400 border-t-0 rounded-b-lg px-3 py-2.5">
@@ -36,7 +37,7 @@
                                                 <td class="w-[50px] px-1.5 py-1 text-center">
                                                     #
                                                 </td>
-                                                <td class="w-[150px] px-1.5 py-1">Nama RW
+                                                <td class="w-[150px] px-1.5 py-1">RW
                                                 </td>
                                                 <td class="min-w-[250px] px-1.5 py-1">
                                                     Ketua
@@ -53,6 +54,7 @@
                                                         </td>
                                                         <td class="min-w-[250px] px-1.5 py-1 uppercase">
                                                             {{ $communityUnit->leader_name }}
+                                                            {{ $communityUnit->leader_contact ? '(' . $communityUnit->leader_contact . ')' : '' }}
                                                         </td>
                                                         <td class="w-[120px] px-1.5 py-1 text-center">
                                                             {{ count($communityUnit->neighborhood_units) }}
@@ -69,7 +71,7 @@
                                                                         #
                                                                     </td>
                                                                     <td class="w-[150px] px-1.5 py-1 text-center">
-                                                                        Nama RT
+                                                                        RT
                                                                     </td>
                                                                     <td class="min-w-[250px] px-1.5 py-1">
                                                                         Ketua
@@ -89,6 +91,7 @@
                                                                             <td
                                                                                 class="min-w-[250px] px-1.5 py-1 uppercase">
                                                                                 {{ $neighborhoodUnit->leader_name }}
+                                                                                {{ $neighborhoodUnit->leader_contact ? '(' . $neighborhoodUnit->leader_contact . ')' : '' }}
                                                                             </td>
                                                                         </tr>
                                                                     @empty

@@ -236,7 +236,6 @@
     <x-alert.toast />
 </section>
 @push('scripts')
-    @vite(['resources/js/util/index.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_DOMICILE_DETAIL_STORE';
