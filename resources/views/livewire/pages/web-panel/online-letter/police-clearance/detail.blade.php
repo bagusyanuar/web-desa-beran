@@ -254,7 +254,6 @@
     <x-alert.toast />
 </section>
 @push('scripts')
-    @vite(['resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_POLICE_CLEARANCE_DETAIL_STORE';
