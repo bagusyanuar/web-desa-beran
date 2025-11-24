@@ -1,14 +1,16 @@
 window.initRecaptcha = function () {
-    alert("loaded");
-    grecaptcha.render("recaptcha-container", {
-        sitekey: "6LebL-ErAAAAACcMUe-ExbSYUZJ3CaLTzJxGoWIf", // ganti dengan site key
-        callback: function (token) {
-            console.log(token);
+    if (window.recaptchaWidgetId !== undefined) {
+        // Sudah pernah dirender
+        return;
+    }
 
-            // component.set('captcha', token);
+    window.recaptchaWidgetId = grecaptcha.render("recaptcha-container", {
+        sitekey: "6LebL-ErAAAAACcMUe-ExbSYUZJ3CaLTzJxGoWIf",
+        callback: function (token) {
+            console.log("token:", token);
         },
         "expired-callback": function () {
-            component.set("captcha", null);
+            console.log("expired");
         },
     });
 };
