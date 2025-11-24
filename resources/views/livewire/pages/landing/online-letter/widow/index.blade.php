@@ -72,8 +72,7 @@
                                 <span class="text-red-500 text-sm italic">* <span class="text-xs">(Nama kota /
                                         kabupaten)</span></span>
                             </x-label.label>
-                            <x-input.text.text id="birth-place"
-                                x-model="$store.SERVICE_WIDOW_STORE.form.birthPlace" />
+                            <x-input.text.text id="birth-place" x-model="$store.SERVICE_WIDOW_STORE.form.birthPlace" />
                             <template x-if="'birthPlace' in $store.SERVICE_WIDOW_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_WIDOW_STORE.formValidator.birthPlace[0]"></span>
@@ -210,8 +209,7 @@
                                 x-model="$store.SERVICE_WIDOW_STORE.form.applicantName" />
                             <template x-if="'applicantName' in $store.SERVICE_WIDOW_STORE.formValidator">
                                 <x-label.validator>
-                                    <span
-                                        x-text="$store.SERVICE_WIDOW_STORE.formValidator.applicantName[0]"></span>
+                                    <span x-text="$store.SERVICE_WIDOW_STORE.formValidator.applicantName[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -224,8 +222,7 @@
                                 x-model="$store.SERVICE_WIDOW_STORE.form.applicantPhone" />
                             <template x-if="'applicantPhone' in $store.SERVICE_WIDOW_STORE.formValidator">
                                 <x-label.validator>
-                                    <span
-                                        x-text="$store.SERVICE_WIDOW_STORE.formValidator.applicantPhone[0]"></span>
+                                    <span x-text="$store.SERVICE_WIDOW_STORE.formValidator.applicantPhone[0]"></span>
                                 </x-label.validator>
                             </template>
                         </div>
@@ -339,7 +336,7 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=initRecaptcha&render=explicit" async defer></script>
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_WIDOW_STORE';
