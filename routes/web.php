@@ -152,7 +152,12 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
         Route::get('/tambah', App\Livewire\Pages\WebPanel\Gallery\Create::class)->name('web-panel.gallery.new');
     });
 
+    # setting routes
     Route::group(['prefix' => 'gambar-latar'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Setting\Hero\Index::class)->name('web-panel.setting.hero');
+    });
+
+    Route::group(['prefix' => 'teks-ucapan'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\Setting\GreetingWord\Index::class)->name('web-panel.setting.greeting-word');
     });
 });

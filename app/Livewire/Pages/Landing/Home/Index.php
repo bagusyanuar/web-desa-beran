@@ -10,6 +10,7 @@ use Livewire\Attributes\Layout;
 class Index extends Component
 {
     public $imageHero = null;
+    public $greetingWord = '';
 
     public function mount()
     {
@@ -19,6 +20,7 @@ class Index extends Component
             $data = $settingServiceResponse->getData();
             if($data) {
                 $this->imageHero = $data->image_hero;
+                $this->greetingWord = $data->greeting_word;
             }
         }
     }
