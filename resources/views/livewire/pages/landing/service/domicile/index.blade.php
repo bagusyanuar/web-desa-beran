@@ -82,6 +82,6 @@
 </section>
 
 @push('scripts')
-    <script src="https://www.google.com/recaptcha/api.js?onload=onCaptchaLoad&render=explicit" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=initRecaptcha&render=explicit" async defer></script>
     @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/landing/service/certificate-domicile.js'])
 @endpush
