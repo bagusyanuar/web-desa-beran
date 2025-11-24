@@ -1,4 +1,5 @@
 window.initRecaptcha = function () {
+    alert("loaded");
     grecaptcha.render("recaptcha-container", {
         sitekey: "6LebL-ErAAAAACcMUe-ExbSYUZJ3CaLTzJxGoWIf", // ganti dengan site key
         callback: function (token) {
