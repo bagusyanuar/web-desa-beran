@@ -323,7 +323,7 @@
                                 <span>Unduh Bukti</span>
                             </button>
                         </div>
-                        <span class="text-xs text-neutral-500 italic leading-none">*) Gunakan QR Code untuk melakukan
+                        <span class="text-xs text-neutral-500 italic leading-none">* Gunakan QR Code untuk melakukan
                             monitoring status pengajuan</span>
                     </div>
                 </div>
