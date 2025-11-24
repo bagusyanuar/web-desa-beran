@@ -1,6 +1,6 @@
 window.initRecaptcha = function () {
     grecaptcha.render("recaptcha-container", {
-        sitekey: "6LebL-ErAAAAACcMUe-ExbSYUZJ3CaLTzJxGoWIf", // ganti dengan site key
+        sitekey: env("CAPTCHA_SITE_KEY"), // ganti dengan site key
         callback: function (token) {
             console.log(token);
 
@@ -27,8 +27,7 @@ document.addEventListener("alpine:init", () => {
                         grecaptcha.ready(() => {
                             this.captchaReady = true;
                             grecaptcha.render(this.$refs.recaptchaEl, {
-                                sitekey:
-                                    "6LebL-ErAAAAACcMUe-ExbSYUZJ3CaLTzJxGoWIf",
+                                sitekey: env("CAPTCHA_SITE_KEY"),
                                 callback: (token) => {
                                     let store = Alpine.store(this.storeName);
                                     store[this.stateData] = token;
