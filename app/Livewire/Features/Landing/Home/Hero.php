@@ -9,6 +9,8 @@ class Hero extends Component
     public $heroes = [];
 
     public $imageHero = null;
+    public $landingTitle = '';
+    public $landingSubTitle = '';
 
     public function mount()
     {
