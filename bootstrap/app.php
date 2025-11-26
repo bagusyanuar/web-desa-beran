@@ -20,9 +20,9 @@ $app = Application::configure(basePath: dirname(__DIR__))
     ->create();
 
 // Ganti public path di sini — cara aman Laravel 11
-// $customPublic = realpath(dirname(__DIR__) . '/..'); // 1 folder di atas project
-// if ($customPublic && is_dir($customPublic)) {
-//     $app->usePublicPath($customPublic);
-// }
+$customPublic = realpath(dirname(__DIR__) . '/..'); // 1 folder di atas project
+if ($customPublic && is_dir($customPublic)) {
+    $app->usePublicPath($customPublic);
+}
 
 return $app;
