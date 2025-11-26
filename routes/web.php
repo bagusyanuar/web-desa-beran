@@ -160,4 +160,8 @@ Route::group(['prefix' => 'web-panel', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'teks-ucapan'], function () {
         Route::get('/', App\Livewire\Pages\WebPanel\Setting\GreetingWord\Index::class)->name('web-panel.setting.greeting-word');
     });
+
+    Route::group(['prefix' => 'judul-latar'], function () {
+        Route::get('/', App\Livewire\Pages\WebPanel\Setting\LandingTitle\Index::class)->name('web-panel.setting.landing-title');
+    });
 });

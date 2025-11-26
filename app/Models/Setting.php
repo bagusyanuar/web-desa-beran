@@ -16,5 +16,7 @@ class Setting extends Model
     protected $fillable = [
         'image_hero',
         'greeting_word',
+        'landing_title',
+        'landing_sub_title',
     ];
 }
