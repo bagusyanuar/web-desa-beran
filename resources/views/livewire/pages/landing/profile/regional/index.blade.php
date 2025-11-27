@@ -1,4 +1,4 @@
-<section id="history" data-component-id="history" class="w-full">
+<section id="regional" data-component-id="regional" class="w-full">
     <div class="w-full h-[20rem] relative">
         <div class="w-full h-full">
             <img src="{{ asset('static/images/service/bg-service.png') }}"
@@ -23,6 +23,8 @@
                             {!! $data->description !!}
                         </div>
                     @endif
+                    <p class="text-lg text-accent-500 font-bold mb-5 mt-5">PETA WILAYAH DESA</p>
+                    <div id="map" class="z-10" style="height: 450px; width: 100%"></div>
                 </div>
                 <!-- page suggestion -->
                 <div class="w-80 flex flex-col gap-5">
@@ -34,3 +36,57 @@
         </x-container.landing-container>
     </div>
 </section>
+
+@push('scripts')
+    <script>
+        document.addEventListener('alpine:init', () => {
+            const STORE_NAME = 'SERVICE_REGIONAL_STORE';
+            const STORE_PROPS = {
+                component: null,
+                init: function() {
+                    Livewire.hook('component.init', ({
+                        component
+                    }) => {
+                        const componentID = document.querySelector(
+                            '[data-component-id="regional"]')?.getAttribute(
+                            'wire:id');
+                        if (component.id === componentID) {
+                            this.component = component;
+                            this.generateMap()
+                        }
+                    });
+                },
+                generateMap() {
+                    const map = L.map('map').setView([-7.407, 110.36], 14);
+
+                    // Tile OSM
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '© OpenStreetMap'
+                    }).addTo(map);
+
+                    fetch('/static/geojson/map.geojson')
+                        .then(res => res.json())
+                        .then(data => {
+                            const area = L.geoJSON(data, {
+                                style: {
+                                    color: 'red',
+                                    weight: 2,
+                                    fillColor: 'yellow',
+                                    fillOpacity: 0.3
+                                }
+                            }).addTo(map);
+
+                            // Zoom otomatis ke area polygon
+                            map.fitBounds(area.getBounds());
+
+                            // Optional: tambahkan popup nama desa
+                            area.bindPopup('Desa Beran, Ngawi');
+                        })
+                        .catch(err => console.error('Gagal load GeoJSON:', err));
+                },
+            };
+            Alpine.store(STORE_NAME, STORE_PROPS);
+        });
+    </script>
+@endpush
