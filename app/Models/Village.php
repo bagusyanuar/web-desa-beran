@@ -22,6 +22,6 @@ class Village extends Model
 
     public function community_units()
     {
-        return $this->hasMany(CommunityUnit::class, 'village_id');
+        return $this->hasMany(CommunityUnit::class, 'village_id')->order('code', 'ASC');
     }
 }
