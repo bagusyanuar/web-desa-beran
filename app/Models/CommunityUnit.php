@@ -28,6 +28,6 @@ class CommunityUnit extends Model
 
     public function neighborhood_units()
     {
-        return $this->hasMany(NeighborhoodUnit::class, 'community_unit_id')->order('code', 'ASC');
+        return $this->hasMany(NeighborhoodUnit::class, 'community_unit_id')->orderBy('code', 'ASC');
     }
 }
