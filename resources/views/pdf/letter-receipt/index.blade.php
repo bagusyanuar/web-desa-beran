@@ -7,8 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        @font-face {
+            font-family: 'Bookman';
+            /* Gunakan path fisik file di server */
+            src: url('{{ public_path('static/fonts/bookmanoldstyle.ttf') }}') format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Bookman';
+            src: url('{{ public_path('static/fonts/bookmanoldstyle_bold.ttf') }}') format("truetype");
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Bookman';
+            src: url('{{ public_path('static/fonts/bookmanoldstyle_italic.ttf') }}') format("truetype");
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Bookman';
+            src: url('{{ public_path('static/fonts/bookmanoldstyle_bolditalic.ttf') }}') format("truetype");
+            font-weight: bold;
+            font-style: italic;
+        }
+
         @page {
-            margin: 90px 20px 20px 20px;
+            margin: 150px 70px 20px 70px;
             /* Atur margin atas untuk area header */
         }
 
@@ -24,17 +53,17 @@
         } */
 
         #header {
-            height: 80px;
+            height: 100px;
             width: 100%;
             position: fixed;
-            top: -80px;
+            top: -100px;
             left: 0;
             /* background-color: #f5f5f5; */
             /* border-bottom: 1px solid #ccc; */
         }
 
         body {
-            font-family: Helvetica, sans-serif;
+            font-family: 'Bookman', serif;
         }
 
         .text-lg {
@@ -100,4 +129,5 @@
     <hr style="border: none; border-top: 2px solid black; margin: 0 0 3px 0; padding: 0;" />
     @yield('content')
 </body>
+
 </html>

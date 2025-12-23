@@ -130,6 +130,7 @@ class BirthService implements BirthServiceInterface
             $options = new Options();
             $options->setIsPhpEnabled(true);
             $options->setIsRemoteEnabled(true);
+            $options->set('chroot', public_path());
             $pdf = Pdf::loadView('pdf.online-letter.birth', [
                 'certificate' => $certificate
             ])->setPaper('a4', 'potrait');
