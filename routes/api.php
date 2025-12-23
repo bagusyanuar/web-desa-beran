@@ -34,4 +34,11 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'village'], function () {
         Route::get('/', [App\Http\Controllers\Mobile\Profile\VillageController::class, 'getVillages']);
     });
+
+    Route::group(['prefix' => 'online-letter'], function () {
+
+        Route::group(['prefix' => 'birth'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\BirthController::class, 'send']);
+        });
+    });
 });

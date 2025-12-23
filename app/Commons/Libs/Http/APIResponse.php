@@ -37,4 +37,15 @@ class APIResponse
             'meta' => $meta
         ], $status);
     }
+
+    public static function fromService(ServiceResponse $response)
+    {
+
+        return self::toJSON(
+            $response->getHttpStatus(),
+            $response->getMessage(),
+            $response->getData(),
+            $response->getMeta()
+        );
+    }
 }
