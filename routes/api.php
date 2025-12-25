@@ -40,5 +40,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'birth'], function () {
             Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\BirthController::class, 'send']);
         });
+
+        Route::group(['prefix' => 'death'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\DeathController::class, 'send']);
+        });
     });
 });
