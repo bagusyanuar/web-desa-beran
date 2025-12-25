@@ -45,4 +45,9 @@ Route::group(['prefix' => 'v1'], function () {
             Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\DeathController::class, 'send']);
         });
     });
+
+    Route::group(['prefix' => 'news'], function () {
+        Route::get('/', [App\Http\Controllers\Mobile\Publication\NewsController::class, 'findAll']);
+        Route::get('/{slug}', [App\Http\Controllers\Mobile\Publication\NewsController::class, 'findBySlug']);
+    });
 });
