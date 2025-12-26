@@ -35,7 +35,7 @@ class IncomeSchema extends BaseSchema
             'job' => 'string',
             'address' => 'required|string',
             'purpose' => 'required|string',
-            'incomePerMonth' => 'required|string',
+            'incomePerMonth' => 'required|numeric',
             'applicantName' => 'required|string',
             'applicantPhone' => 'required|string'
         ];
