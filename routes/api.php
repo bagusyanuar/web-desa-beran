@@ -44,6 +44,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'death'], function () {
             Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\DeathController::class, 'send']);
         });
+
+        Route::group(['prefix' => 'domicile'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\DomicileController::class, 'send']);
+        });
     });
 
     Route::group(['prefix' => 'news'], function () {
