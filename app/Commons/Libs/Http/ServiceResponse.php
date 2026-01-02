@@ -2,6 +2,8 @@
 
 namespace App\Commons\Libs\Http;
 
+use App\Commons\Enum\HttpStatus;
+
 class ServiceResponse
 {
     private $success;
@@ -9,6 +11,7 @@ class ServiceResponse
     private $message;
     private $data;
     private $meta;
+    private HttpStatus $httpStatus;
 
     /**
      * ServiceResponse constructor.
@@ -31,6 +34,7 @@ class ServiceResponse
         $this->message = $message;
         $this->data = $data;
         $this->meta = $meta;
+        $this->httpStatus = HttpStatus::from($status);
     }
 
     /**
@@ -66,6 +70,24 @@ class ServiceResponse
     public function setStatus($status)
     {
         $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return HttpStatus
+     */
+    public function getHttpStatus()
+    {
+        return $this->httpStatus;
+    }
+
+    /**
+     * @param mixed $status
+     * @return ServiceResponse
+     */
+    public function setHttpStatus($status)
+    {
+        $this->httpStatus = $status;
         return $this;
     }
 
@@ -122,6 +144,8 @@ class ServiceResponse
         $this->meta = $meta;
         return $this;
     }
+
+
 
     public static function statusOK($message = 'success', $data = null, $meta = null): self
     {

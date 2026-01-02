@@ -120,6 +120,7 @@ class PoliceClearanceService implements PoliceClearanceServiceInterface
             $options = new Options();
             $options->setIsPhpEnabled(true);
             $options->setIsRemoteEnabled(true);
+            $options->set('chroot', public_path());
             $pdf = Pdf::loadView('pdf.letter-receipt.police-clearance', [
                 'qrcode' => $qrCode,
                 'certificate' => $certificate

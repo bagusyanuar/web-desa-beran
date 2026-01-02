@@ -111,6 +111,7 @@ class IncomeService implements IncomeServiceInterface
             $options = new Options();
             $options->setIsPhpEnabled(true);
             $options->setIsRemoteEnabled(true);
+            $options->set('chroot', public_path());
             $pdf = Pdf::loadView('pdf.letter-receipt.income', [
                 'qrcode' => $qrCode,
                 'certificate' => $certificate

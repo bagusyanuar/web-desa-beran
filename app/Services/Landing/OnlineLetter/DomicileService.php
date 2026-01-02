@@ -110,6 +110,7 @@ class DomicileService implements DomicileServiceInterface
             $options = new Options();
             $options->setIsPhpEnabled(true);
             $options->setIsRemoteEnabled(true);
+            $options->set('chroot', public_path());
             $pdf = Pdf::loadView('pdf.letter-receipt.domicile', [
                 'qrcode' => $qrCode,
                 'certificate' => $certificate
