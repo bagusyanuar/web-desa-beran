@@ -12,7 +12,7 @@ class StaffService implements StaffServiceInterface
     {
         try {
             $data = AboutStaff::with([])
-                ->first();
+                ->get();
             return ServiceResponse::statusOK("successfully get staffs", $data);
         } catch (\Throwable $e) {
             return ServiceResponse::internalServerError($e->getMessage());

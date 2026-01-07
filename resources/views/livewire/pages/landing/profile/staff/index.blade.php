@@ -23,13 +23,17 @@
                 <div class="flex-1 bg-white rounded-lg shadow-xl p-6 border border-neutral-300">
                     <p class="text-lg text-accent-500 font-bold mb-5">PERANGKAT DESA BERAN</p>
                     @if (!empty($data))
-                        <div class="w-full grid grid-cols-4 gap-3">
-                            <div class="flex flex-col items-center w-full">
-                                <img src="{{ asset($data->image) }}" alt="photo" class="w-full h-64 rounded-lg object-cover object-top mb-1" />
-                                <span class="text-md font-bold text-neutral-700 text-center">{{ $data->name }}</span>
-                                <span class="text-md text-neutral-500 text-center">{{ $data->position }}</span>
+                        @foreach ($data as $datum)
+                            <div class="w-full grid grid-cols-4 gap-3">
+                                <div class="flex flex-col items-center w-full">
+                                    <img src="{{ asset($datum->image) }}" alt="photo"
+                                        class="w-full h-64 rounded-lg object-cover object-top mb-1" />
+                                    <span
+                                        class="text-md font-bold text-neutral-700 text-center">{{ $datum->name }}</span>
+                                    <span class="text-md text-neutral-500 text-center">{{ $datum->position }}</span>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     @else
                         <div class="w-full h-96 flex flex-col items-center justify-center">
                             <img src="{{ asset('static/images/no-data.png') }}" alt="no-data"

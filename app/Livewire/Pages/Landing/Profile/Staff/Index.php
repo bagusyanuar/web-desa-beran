@@ -19,7 +19,7 @@ class Index extends Component
         if ($response->getStatus() === 200) {
             $this->data = $response->getData();
         } else {
-            $this->data = null;
+            $this->data = [];
         }
     }
 
