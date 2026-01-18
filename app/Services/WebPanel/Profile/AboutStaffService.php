@@ -46,6 +46,7 @@ class AboutStaffService implements AboutStaffServiceInterface
             $dataStaff = [
                 'name' => $schema->getName(),
                 'position' => $schema->getPosition(),
+                'position_group' => $schema->getPositionGroup(),
                 'image' => $imageName,
                 'index' => $index,
             ];
@@ -113,6 +114,7 @@ class AboutStaffService implements AboutStaffServiceInterface
             $dataStaff = [
                 'name' => $schema->getName(),
                 'position' => $schema->getPosition(),
+                'position_group' => $schema->getPositionGroup(),
             ];
 
             # create thumbnail

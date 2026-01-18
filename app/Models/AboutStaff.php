@@ -17,6 +17,7 @@ class AboutStaff extends Model
     protected $fillable = [
         'name',
         'position',
+        'position_group',
         'image',
         'index',
     ];
