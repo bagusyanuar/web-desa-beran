@@ -22,25 +22,54 @@
             <div class="w-full flex items-start gap-5">
                 <div class="flex-1 bg-white rounded-lg shadow-xl p-6 border border-neutral-300">
                     <p class="text-lg text-accent-500 font-bold mb-5">PERANGKAT DESA BERAN</p>
-                    @if (!empty($data))
-                        @foreach ($data as $datum)
-                            <div class="w-full grid grid-cols-4 gap-3">
+                    <div class="w-full h-[35rem] mb-7">
+                        <img src="{{ asset('static/images/struktur-desa.png') }}" alt="struktur-desa"
+                            class="w-full h-[35] rounded-lg object-cover object-center mb-1" />
+                    </div>
+                    @if (!empty($heads))
+                        <div class="w-full grid grid-cols-4 gap-3 mb-5">
+                            @foreach ($heads as $head)
                                 <div class="flex flex-col items-center w-full">
-                                    <img src="{{ asset($datum->image) }}" alt="photo"
+                                    <img src="{{ asset($head->image) }}" alt="photo"
                                         class="w-full h-64 rounded-lg object-cover object-top mb-1" />
                                     <span
-                                        class="text-md font-bold text-neutral-700 text-center">{{ $datum->name }}</span>
-                                    <span class="text-md text-neutral-500 text-center">{{ $datum->position }}</span>
+                                        class="text-md font-bold text-neutral-700 text-center">{{ $head->name }}</span>
+                                    <span class="text-md text-neutral-500 text-center">{{ $head->position }}</span>
                                 </div>
-                            </div>
-                        @endforeach
-                    @else
-                        <div class="w-full h-96 flex flex-col items-center justify-center">
-                            <img src="{{ asset('static/images/no-data.png') }}" alt="no-data"
-                                class="h-32 w-32 object-cover object-center" />
-                            <span class="text-sm text-accent-500">Perangkat desa tidak ditemukan.</span>
+                            @endforeach
                         </div>
                     @endif
+                    @if (!empty($secretaries))
+                        <div class="w-full grid grid-cols-4 gap-3 mb-5">
+                            @foreach ($secretaries as $secretary)
+                                <div class="flex flex-col items-center w-full">
+                                    <img src="{{ asset($secretary->image) }}" alt="photo"
+                                        class="w-full h-64 rounded-lg object-cover object-top mb-1" />
+                                    <span
+                                        class="text-md font-bold text-neutral-700 text-center">{{ $secretary->name }}</span>
+                                    <span class="text-md text-neutral-500 text-center">{{ $secretary->position }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if (!empty($members))
+                        <div class="w-full grid grid-cols-4 gap-3">
+                            @foreach ($members as $member)
+                                <div class="flex flex-col items-center w-full">
+                                    <img src="{{ asset($member->image) }}" alt="photo"
+                                        class="w-full h-64 rounded-lg object-cover object-top mb-1" />
+                                    <span
+                                        class="text-md font-bold text-neutral-700 text-center">{{ $member->name }}</span>
+                                    <span class="text-md text-neutral-500 text-center">{{ $member->position }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                    {{-- <div class="w-full h-96 flex flex-col items-center justify-center">
+                        <img src="{{ asset('static/images/no-data.png') }}" alt="no-data"
+                            class="h-32 w-32 object-cover object-center" />
+                        <span class="text-sm text-accent-500">Perangkat desa tidak ditemukan.</span>
+                    </div> --}}
                 </div>
                 <!-- page suggestion -->
                 <div class="w-80 flex flex-col gap-5">

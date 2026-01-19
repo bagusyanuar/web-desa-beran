@@ -11,6 +11,9 @@ use Livewire\Attributes\Layout;
 class Index extends Component
 {
     public $data;
+    public $members;
+    public $heads;
+    public $secretaries;
 
     public function mount()
     {
@@ -18,8 +21,15 @@ class Index extends Component
         $response = $service->getProfile();
         if ($response->getStatus() === 200) {
             $this->data = $response->getData();
+            $data = $response->getData();
+            $this->heads = $data->where('position_group', '=', 'head')->all();
+            $this->secretaries = $data->where('position_group', '=', 'secretary')->all();
+            $this->members = $data->whereNotIn('position_group', ['head', 'secretary'])->all();
         } else {
             $this->data = [];
+            $this->heads = [];
+            $this->secretaries = [];
+            $this->members = [];
         }
     }
 
