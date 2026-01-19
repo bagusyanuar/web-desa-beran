@@ -46,7 +46,14 @@ return [
          * Symbol, ZapfDingbats.
          */
         'font_dir' => storage_path('fonts'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
-
+        // 'font_data' => [
+        //     'bookman' => [
+        //         'R'  => 'URWBookman-Light.ttf',
+        //         'B'  => 'URWBookman-Demi.ttf',
+        //         'I'  => 'URWBookman-LightItalic.ttf',
+        //         'BI' => 'URWBookman-DemiItalic.ttf',
+        //     ],
+        // ],
         /**
          * The location of the DOMPDF font cache directory
          *

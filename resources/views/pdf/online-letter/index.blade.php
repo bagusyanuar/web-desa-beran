@@ -7,8 +7,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        @font-face {
+            font-family: 'Bookman';
+            /* Gunakan path fisik file di server */
+            src: url('{{ public_path('static/fonts/bookmanoldstyle.ttf') }}') format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Bookman';
+            src: url('{{ public_path('static/fonts/bookmanoldstyle_bold.ttf') }}') format("truetype");
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Bookman';
+            src: url('{{ public_path('static/fonts/bookmanoldstyle_italic.ttf') }}') format("truetype");
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Bookman';
+            src: url('{{ public_path('static/fonts/bookmanoldstyle_bolditalic.ttf') }}') format("truetype");
+            font-weight: bold;
+            font-style: italic;
+        }
+
+
+
         @page {
-            margin: 90px 70px 20px 70px;
+            margin: 160px 70px 40px 70px;
             /* Atur margin atas untuk area header */
         }
 
@@ -24,17 +55,17 @@
         } */
 
         #header {
-            height: 80px;
+            height: 100px;
             width: 100%;
             position: fixed;
-            top: -80px;
+            top: -110px;
             left: 0;
             /* background-color: #f5f5f5; */
             /* border-bottom: 1px solid #ccc; */
         }
 
         body {
-            font-family: Helvetica, sans-serif;
+            font-family: 'Bookman', serif;
         }
 
         .text-lg {
@@ -90,12 +121,21 @@
             line-height: 1.2;
         }
 
-        .line-half  {
+        .line-half {
             line-height: 1.5;
         }
 
         .line-double {
             line-height: 2;
+        }
+
+        table {
+            page-break-inside: auto;
+        }
+
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
         }
     </style>
 </head>
@@ -104,25 +144,47 @@
     <div id="header">
         <table style="border-collapse: collapse; width: 100%">
             <tr>
-                <td style="vertical-align: middle; height: 80px; width: 100%">
+                <td style="vertical-align: middle; height: 90px; width: 100%">
                     <div style="width: 100%;">
                         <img src="{{ asset('static/images/institution-logo.png') }}" alt="Image"
-                            style="height: 60px; position: absolute; left: 0; top: 50%; transform: translateY(-50%);" />
-                        <p class="text-md font-bold text-center mb-0" style="line-height: 0.5;">
+                            style="height: 70px; position: absolute; left: 0; top: 37%; transform: translateY(-50%);" />
+                        <p class="text-lg font-bold text-center mb-0" style="line-height: 0.25;">
                             PEMERINTAH KABUPATEN NGAWI</p>
-                        <p class="text-sm text-center mb-0" style="line-height: 0.5;">KECAMATAN NGAWI</p>
-                        <p class="text-sm text-center mb-0" style="line-height: 0.5;">DESA BERAN</p>
-                        <p class="text-xs text-center mb-0" style="line-height: 0.5;">JL.A.YANI NO. 05 Telp. (0351)
+                        <p class="text-md text-center mb-0" style="line-height: 0.25;">KECAMATAN NGAWI</p>
+                        <p class="text-md text-center mb-0" style="line-height: 0.25;">DESA BERAN</p>
+                        <p class="text-sm text-center mb-0" style="line-height: 0.25;">JL.A.YANI NO. 05 Telp. (0351)
                             749715 NGAWI KODE POS ( 63216 )</p>
 
                     </div>
                 </td>
             </tr>
         </table>
-
+        <hr style="border: none; border-top: 1px solid black; margin: 3px 0 3px 0; padding: 0;" />
+        <hr style="border: none; border-top: 2px solid black; margin: 0 0 3px 0; padding: 0;" />
     </div>
-    <hr style="border: none; border-top: 1px solid black; margin: 3px 0 3px 0; padding: 0;" />
-    <hr style="border: none; border-top: 2px solid black; margin: 0 0 3px 0; padding: 0;" />
     @yield('content')
+    @php
+        $host = request()->getSchemeAndHttpHost();
+    @endphp
+    <script type="text/php">
+        if (isset($pdf)) {
+            $font = $fontMetrics->getFont("Arial", "normal"); // Or any other desired font
+            $size = 8; // Font size
+            date_default_timezone_set('Asia/Jakarta');
+            setlocale(LC_TIME, 'id_ID.UTF-8', 'id_ID', 'Indonesian_indonesia');
+            $timestamp = date("H:i:s");
+            $date = strftime("%A, %d %B %Y");
+            {{-- $text = "Page {PAGE_NUM}/{PAGE_COUNT} | Desa Beran | $date | $timestamp | {{ $host }}"; // Placeholder for page number and total count --}}
+            $text = "Desa Beran . $date . $timestamp . {{ $host }}"; // Placeholder for page number and total count
+
+            // Calculate position (example: bottom center)
+            $width = $fontMetrics->get_text_width($text, $font, $size) / 2;
+            $x = 35; // Posisi dari kiri
+            $y = $pdf->get_height() - 35;
+
+            $pdf->page_text($x, $y, $text, $font, $size);
+        }
+    </script>
 </body>
+
 </html>

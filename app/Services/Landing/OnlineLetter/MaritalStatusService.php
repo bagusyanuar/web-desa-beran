@@ -137,6 +137,7 @@ class MaritalStatusService implements MaritalStatusServiceInterface
             $options = new Options();
             $options->setIsPhpEnabled(true);
             $options->setIsRemoteEnabled(true);
+            $options->set('chroot', public_path());
             $pdf = Pdf::loadView($pdfTemplate, [
                 'qrcode' => $qrCode,
                 'certificate' => $certificate

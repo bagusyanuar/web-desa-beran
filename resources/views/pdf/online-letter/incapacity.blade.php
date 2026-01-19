@@ -157,7 +157,8 @@
                     </table>
                     <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 15px;">
                         Nama tersebut di atas benar- benar Penduduk Desa Beran Kec./Kab. Ngawi yang keadaan ekonominya
-                        benar- benar tidak mampu, surat keterangan ini diberikan guna {{ $certificate->purpose }}.
+                        benar- benar tidak mampu, surat keterangan ini diberikan guna <span
+                            class="uppercase font-bold">{{ $certificate->purpose }}</span>.
                     </p>
                     <p class="text-md" style="text-indent: 50px; line-height: 2; text-align: justify; margin-bottom: 15px;">
                         Demikian surat keterangan ini kami buat dengan sebenarnya dan agar dapat dipergunakan sebagaimana
@@ -191,8 +192,8 @@
                                 <br />
                                 <br />
                                 <p class="text-md"
-                                    style="line-height: 1; margin-bottom: 0; margin-top: 0; text-transform: uppercase; text-decoration: underline;">
-                                    AGUS PRIYADI S.SOS</p>
+                                    style="line-height: 1; margin-bottom: 0; margin-top: 0; text-decoration: underline;">
+                                    {{ App\Commons\Const\App::SIGNATURE_NAME }}</p>
                             </td>
                         </tr>
                     </table>

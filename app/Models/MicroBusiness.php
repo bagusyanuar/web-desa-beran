@@ -17,7 +17,12 @@ class MicroBusiness extends Model
     protected $fillable = [
         'title',
         'slug',
+        'price',
         'description',
+    ];
+
+    protected $casts = [
+        'price' => 'float'
     ];
 
     public function owner()

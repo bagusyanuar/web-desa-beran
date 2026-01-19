@@ -7,3 +7,4 @@ import './table';
 import './summernote';
 import './dropzone';
 import './slick';
+import './popper';

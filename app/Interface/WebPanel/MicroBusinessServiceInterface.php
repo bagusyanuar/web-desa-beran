@@ -10,4 +10,7 @@ interface MicroBusinessServiceInterface
 {
     public function findAll(MicroBusinessQuery $queryParams): ServiceResponse;
     public function create(MicroBusinessSchema $schema): ServiceResponse;
+    public function findByID($id): ServiceResponse;
+    public function update($id, MicroBusinessSchema $schema): ServiceResponse;
+    public function delete($id): ServiceResponse;
 }

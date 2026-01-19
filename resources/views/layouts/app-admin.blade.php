@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="{{ asset('static/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('static/css/datepicker.min.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet" /> --}}
 
-    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js', 'resources/js/util/index.js'])
     @livewireStyles
 </head>
 
-<body>
+<body x-data class="bg-neutral-100">
     <livewire:layout.sidebar.sidebar />
     <livewire:layout.navbar.navbar />
     <main class="w-full min-h-dvh ps-72 pt-16 overflow-y-auto">
@@ -28,9 +29,12 @@
             {{ $slot }}
         </section>
     </main>
+    <x-loader.page-loader />
+    <x-alert.toast />
     <script src="{{ asset('static/js/jquery-3.7.0.js') }}"></script>
     <script src="{{ asset('static/js/select2.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script> --}}
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();

@@ -8,6 +8,7 @@ use Illuminate\Http\UploadedFile;
 class MicroBusinessSchema extends BaseSchema
 {
     private $title;
+    private $price;
     private $description;
     private $ownerName;
     /** @var UploadedFile|null $ownerImage */
@@ -23,6 +24,7 @@ class MicroBusinessSchema extends BaseSchema
     {
         return [
             'title' => 'required|string',
+            'price' => 'required|numeric',
             'description' => 'string',
             'ownerName' => 'required|string',
             'ownerDescription' => 'string',
@@ -35,6 +37,7 @@ class MicroBusinessSchema extends BaseSchema
     {
         return [
             'title.required' => 'kolom nama produk wajib diisi',
+            'price.required' => 'kolom harga produk wajib diisi',
             'ownerName.required' => 'kolom nama pemilik wajib diisi'
         ];
     }
@@ -42,6 +45,7 @@ class MicroBusinessSchema extends BaseSchema
     public function hydrateBody()
     {
         $title = $this->body['title'];
+        $price = $this->body['price'];
         $ownerName = $this->body['ownerName'];
         $description = !empty(trim($this->body['description'] ?? '')) ? $this->body['description'] : null;
         $ownerImage = !empty(trim($this->body['ownerImage'] ?? '')) ? $this->body['ownerImage'] : null;
@@ -51,6 +55,7 @@ class MicroBusinessSchema extends BaseSchema
         $productImage = !empty(trim($this->body['productImage'] ?? '')) ? $this->body['productImage'] : null;
 
         $this->setTitle($title)
+            ->setPrice($price)
             ->setDescription($description)
             ->setOwnerName($ownerName)
             ->setOwnerImage($ownerImage)
@@ -217,6 +222,26 @@ class MicroBusinessSchema extends BaseSchema
     public function setProductImage($productImage)
     {
         $this->productImage = $productImage;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of price
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set the value of price
+     *
+     * @return  self
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
 
         return $this;
     }

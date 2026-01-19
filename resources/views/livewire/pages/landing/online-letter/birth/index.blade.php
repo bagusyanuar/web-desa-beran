@@ -19,7 +19,27 @@
             </p>
             <div class="w-5/6 justify-self-center bg-white rounded-xl shadow-xl p-6 border border-neutral-300">
                 <div class="w-full">
-                    <p class="text-md font-bold text-neutral-700 mb-5">A. Data Anak</p>
+                    <div
+                        class="w-full flex items-start gap-3 rounded-lg bg-blue-100 text-blue-500 border border-blue-500 p-3">
+                        <i data-lucide="info" class="h-6 w-6"></i>
+                        <div class="flex-1">
+                            <p class="text-sm mb-3">Sehubungan dengan pengajuan Surat Keterangan Kelahiran, bersama
+                                ini
+                                kami
+                                sampaikan bahwa pemohon diwajibkan membawa dan melampirkan dokumen kelengkapan sebagai
+                                berikut :</p>
+                            <ol class="list-decimal list-outside ml-4 text-sm">
+                                <li>
+                                    <p>Fotokopi KTP atau Fotokopi Kartu Keluarga (KK)</p>
+                                </li>
+                                <li>
+                                    <p>Surat Pengantar dari RT Setempat</p>
+                                </li>
+                            </ol>
+
+                        </div>
+                    </div>
+                    <p class="text-md font-bold text-neutral-700 my-5">A. Data Anak</p>
                     <div class="w-full grid grid-cols-2 gap-x-7 gap-y-7">
                         <div class="w-full col-span-2">
                             <x-label.label for="infant-name">
@@ -230,7 +250,8 @@
                                 <span>Nama Lengkap</span>
                                 <span class="text-red-500 text-sm italic">*</span>
                             </x-label.label>
-                            <x-input.text.text id="father-name" x-model="$store.SERVICE_BIRTH_STORE.form.fatherName" />
+                            <x-input.text.text id="father-name"
+                                x-model="$store.SERVICE_BIRTH_STORE.form.fatherName" />
                             <template x-if="'fatherName' in $store.SERVICE_BIRTH_STORE.formValidator">
                                 <x-label.validator>
                                     <span x-text="$store.SERVICE_BIRTH_STORE.formValidator.fatherName[0]"></span>
@@ -390,7 +411,8 @@
             x-transition:leave-end="translate-y-[-10rem] opacity-0"
             class="w-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[51] flex items-center justify-center">
             <div class="bg-white rounded-lg shadow-lg w-[40rem] p-4">
-                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN KELAHIRAN BERHASIL DIBUAT
+                <p class="text-lg text-accent-500 text-center font-bold mb-5">SURAT KETERANGAN KELAHIRAN BERHASIL
+                    DIBUAT
                 </p>
                 <div class="w-full flex items-center gap-3">
                     <div class="w-56">
@@ -475,7 +497,6 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
-    @vite(['resources/js/util/captcha.js', 'resources/js/util/datepicker.js', 'resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_BIRTH_STORE';

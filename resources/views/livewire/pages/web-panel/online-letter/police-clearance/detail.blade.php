@@ -1,21 +1,21 @@
 <section id="online-letter-police-clearance-detail" data-component-id="online-letter-police-clearance-detail"
     class="w-full">
-    <div class="mb-7 flex items-start gap-3">
+    <div class="mb-5 flex items-start gap-2">
         <a href="{{ route('web-panel.online-letter.police-clearance') }}"
-            class="w-10 h-10 flex items-center justify-center rounded-lg border border-neutral-300 cursor-pointer hover:bg-neutral-100 transition-all ease-in-out duration-200"
+            class="w-8 h-8 flex items-center justify-center rounded-lg border border-neutral-300 cursor-pointer shadow-md hover:bg-neutral-200 transition-all ease-in-out duration-200"
             wire:ignore>
-            <i data-lucide="arrow-left" class="text-neutral-700 h-4 w-4"></i>
+            <i data-lucide="arrow-left" class="text-neutral-700 h-3 w-3"></i>
         </a>
         <div>
-            <p class="text-xl text-neutral-700 font-bold">Surat Keterangan Pengantar Catatan Kepolisian</p>
-            <p class="text-md text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan pengantar catatan
+            <p class="text-lg text-neutral-700 font-semibold leading-[1.2]">Surat Keterangan Pengantar Catatan Kepolisian</p>
+            <p class="text-sm text-neutral-500">Halaman ini digunakan untuk mengelola surat keterangan pengantar catatan
                 kepolisian.</p>
         </div>
     </div>
     <div class="w-full flex items-start gap-4">
-        <div class="flex-1 p-6 bg-white border border-neutral-300 shadow-xl rounded-lg">
+        <div class="flex-1 p-6 bg-white shadow-2xl rounded-lg border-t-4 border-accent-500">
             <div class="flex items-center justify-between mb-3">
-                <p class="text-sm font-bold text-neutral-700 mb-3">A. Data Diri</p>
+                <p class="text-sm font-bold text-neutral-700">A. Data Diri</p>
                 <x-chip.chip-status-detail status="{{ $data->status }}" />
             </div>
 
@@ -154,15 +154,15 @@
                 </table>
             </div>
         </div>
-        <div class="w-96 p-6 bg-white border border-neutral-300 shadow-xl rounded-lg">
-            <p class="text-sm font-bold text-neutral-700 mb-3">Informasi Pemohon</p>
+        <div class="w-96 p-6 bg-white shadow-2xl rounded-lg border-t-4 border-accent-500">
+            <p class="text-sm font-bold text-neutral-700 mb-3 uppercase">Informasi Pemohon</p>
             <div class="flex items-center gap-2 mb-1" wire:ignore>
                 <i data-lucide="user" class="w-4 h-4 text-neutral-700"></i>
-                <p class="text-sm text-neutral-700">{{ $data->applicant->name }}</p>
+                <p class="text-sm text-neutral-700 uppercase">{{ $data->applicant->name }}</p>
             </div>
             <div class="flex items-center gap-2" wire:ignore>
                 <i data-lucide="phone" class="w-4 h-4 text-neutral-700"></i>
-                <p class="text-sm text-neutral-700">{{ $data->applicant->phone }}</p>
+                <p class="text-sm text-neutral-700">({{ $data->applicant->phone }})</p>
             </div>
             <div class="w-full border-b border-neutral-300 my-3">
             </div>
@@ -254,7 +254,6 @@
     <x-alert.toast />
 </section>
 @push('scripts')
-    @vite(['resources/js/util/select2.js', 'resources/js/util/alert.js', 'resources/js/util/loader.js'])
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_POLICE_CLEARANCE_DETAIL_STORE';

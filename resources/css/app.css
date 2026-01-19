@@ -8,4 +8,46 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+.note-editable ul {
+  list-style-type: disc !important;
+  margin-left: 1.5rem !important;
+}
+
+.note-editable ol {
+  list-style-type: decimal !important;
+  margin-left: 1.5rem !important;
+}
+
+.prose ul,
+.text-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+.prose ol,
+.text-content ol {
+    list-style-type: decimal !important;
+    margin-left: 1.5rem;
+}
+
+.prose li,
+.text-content li {
+    margin-bottom: 0.25rem;
+}
+
+.news-slider .slick-slide {
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    z-index: 1;
+}
+
+.news-slider .slick-slide.slick-current {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
 

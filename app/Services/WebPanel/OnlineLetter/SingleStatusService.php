@@ -130,6 +130,7 @@ class SingleStatusService implements SingleStatusServiceInterface
             $options = new Options();
             $options->setIsPhpEnabled(true);
             $options->setIsRemoteEnabled(true);
+            $options->set('chroot', public_path());
             $pdf = Pdf::loadView('pdf.online-letter.single-status', [
                 'certificate' => $certificate
             ])->setPaper('a4', 'potrait');

@@ -193,7 +193,7 @@
                                 <br />
                                 <br />
                                 <p class="text-md"
-                                    style="line-height: 1; margin-bottom: 0; margin-top: 0; text-transform: uppercase; text-decoration: underline;">
+                                    style="line-height: 1; margin-bottom: 0; margin-top: 0; text-decoration: underline;">
                                     {{ App\Commons\Const\App::SIGNATURE_NAME }}</p>
                             </td>
                         </tr>
@@ -204,4 +204,5 @@
             </td>
         </tr>
     </table>
+
 @endsection

@@ -127,6 +127,7 @@ class ParentIncomeService implements ParentIncomeServiceInterface
             $options = new Options();
             $options->setIsPhpEnabled(true);
             $options->setIsRemoteEnabled(true);
+            $options->set('chroot', public_path());
             $pdf = Pdf::loadView('pdf.letter-receipt.parent-income', [
                 'qrcode' => $qrCode,
                 'certificate' => $certificate
