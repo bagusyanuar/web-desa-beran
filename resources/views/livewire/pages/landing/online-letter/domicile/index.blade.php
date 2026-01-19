@@ -323,7 +323,7 @@
                                 <span>Unduh Bukti</span>
                             </button>
                         </div>
-                        <span class="text-xs text-neutral-500 italic leading-none">*) Gunakan QR Code untuk melakukan
+                        <span class="text-xs text-neutral-500 italic leading-none">* Gunakan QR Code untuk melakukan
                             monitoring status pengajuan</span>
                     </div>
                 </div>
@@ -344,7 +344,7 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=initRecaptcha&render=explicit" async defer></script>
     <script>
         document.addEventListener('alpine:init', () => {
             const STORE_NAME = 'SERVICE_DOMICILE_STORE';
