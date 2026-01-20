@@ -49,7 +49,7 @@
                     x-model="$store.SERVICE_STAFF_CREATE_STORE.form.positionGroup">
                     <option></option>
                     <option value="head">Kepala Desa</option>
-                    <option value="secretary">Sekertaris</option>
+                    <option value="secretary">Sekretaris</option>
                     <option value="member">Anggota</option>
                 </x-select.select2>
                 <template x-if="'positionGroup' in $store.SERVICE_STAFF_CREATE_STORE.formValidator">
