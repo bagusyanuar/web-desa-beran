@@ -46,15 +46,15 @@
                     <span class="text-red-500 text-sm italic">*</span>
                 </label>
                 <x-select.select2 id="position-group" x-init="initSelect({ placeholder: 'pilih kelompok kelamin' })"
-                    x-model="$store.SERVICE_STAFF_CREATE_STORE.form.positionGroup">
+                    x-model="$store.SERVICE_STAFF_UPDATE_STORE.form.positionGroup">
                     <option></option>
                     <option value="head">Kepala Desa</option>
-                    <option value="secretary">Sekertaris</option>
+                    <option value="secretary">Sekretaris</option>
                     <option value="member">Anggota</option>
                 </x-select.select2>
-                <template x-if="'positionGroup' in $store.SERVICE_STAFF_CREATE_STORE.formValidator">
+                <template x-if="'positionGroup' in $store.SERVICE_STAFF_UPDATE_STORE.formValidator">
                     <x-label.validator>
-                        <span x-text="$store.SERVICE_STAFF_CREATE_STORE.formValidator.positionGroup[0]"></span>
+                        <span x-text="$store.SERVICE_STAFF_UPDATE_STORE.formValidator.positionGroup[0]"></span>
                     </x-label.validator>
                 </template>
             </div>
