@@ -56,6 +56,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'income'], function () {
             Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\IncomeController::class, 'send']);
         });
+
+        Route::group(['prefix' => 'marital-status'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\MaritalStatusController::class, 'send']);
+        });
     });
 
     Route::group(['prefix' => 'news'], function () {
