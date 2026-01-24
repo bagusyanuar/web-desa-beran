@@ -68,6 +68,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'police-clearance'], function () {
             Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\PoliceClearanceController::class, 'send']);
         });
+
+        Route::group(['prefix' => 'single-status'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\SingleStatusController::class, 'send']);
+        });
     });
 
     Route::group(['prefix' => 'news'], function () {
