@@ -56,6 +56,22 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'income'], function () {
             Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\IncomeController::class, 'send']);
         });
+
+        Route::group(['prefix' => 'marital-status'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\MaritalStatusController::class, 'send']);
+        });
+
+        Route::group(['prefix' => 'parent-income'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\ParentIncomeController::class, 'send']);
+        });
+
+        Route::group(['prefix' => 'police-clearance'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\PoliceClearanceController::class, 'send']);
+        });
+
+        Route::group(['prefix' => 'single-status'], function () {
+            Route::post('/', [App\Http\Controllers\Mobile\OnlineLetter\SingleStatusController::class, 'send']);
+        });
     });
 
     Route::group(['prefix' => 'news'], function () {
